@@ -1,0 +1,12 @@
+basepay: 25.0
+show_every_time: true
+exp: 10
+enchant:
+  pays: true
+  hide: false
+  tier:
+    1: efficiency_1 unbreaking_1 fortune_1
+    2: efficiency_2 unbreaking_2 fortune_2
+    3: efficiency_3 unbreaking_3 fortune_3
+    4: efficiency_4 unbreaking_4
+    5: efficiency_5 unbreaking_5 silk_touch

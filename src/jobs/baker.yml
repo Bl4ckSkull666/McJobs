@@ -1,0 +1,12 @@
+basepay: 2.0
+show_every_time: true
+exp: 1
+craft:
+  pays: true
+  hide: false
+  tier:
+    1: cooked_fish bread sugar
+    2: cooked_beef cooked_chicken grilled_pork
+    3: cookie mushroom_soup fermented_spider_eye
+    4: cake speckled_melon
+    5: golden_apple

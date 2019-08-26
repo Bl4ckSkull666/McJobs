@@ -1,0 +1,18 @@
+basepay: 0.5
+exp: 1
+break:
+  pays: true
+  hide: false
+  tier:
+    1: yellow_flower red_rose brown_mushroom red_mushroom crops cactus sugar_cane_block pumpkin melon_block
+    3: nether_warts
+place:
+  pays: true
+  hide: false
+  tier:
+    2: soil melon_stem pumpkin_stem
+defeat:
+  pays: true
+  hide: false
+  tier:
+    2: cow chicken pig sheep

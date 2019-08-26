@@ -1,0 +1,12 @@
+basepay: 2.0
+show_every_time: true
+exp: 5
+potions:
+  pays: true
+  hide: false
+  tier:
+    1: awkward
+    2: regen swift fire_res strength health
+    3: fire_res_ext fire_res_spl swift_spl swift_ext swift_two health_spl health_two regen_spl regen_ext regen_two strength_spl strength_ext strength_two
+    4: fire_res_ext_spl swift_ext_spl swift_two_spl health_two_spl regen_ext_spl regen_two_spl strength_two_spl strength_ext_spl
+    

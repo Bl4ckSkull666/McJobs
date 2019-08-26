@@ -1,0 +1,11 @@
+basepay: 1.0
+exp: 0.25
+break:
+  pays: true
+  hide: false
+  tier:
+    1: stone coal_ore netherrack
+    2: iron_ore glowing_redstone_ore
+    3: gold_ore lapis_ore glowstone emerald_ore
+    4: diamond_ore
+    5: obsidian

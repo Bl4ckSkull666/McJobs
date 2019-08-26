@@ -1,0 +1,11 @@
+basepay: 3.0
+exp: 1
+place:
+  pays: true
+  hide: false
+  tier:
+    1: wood wood_stairs sign_post wooden_door wall_sign furnace workbench trap_door chest fence bed_block ladder
+    2: cobblestone_stairs step stone_plate glass thin_glass fence_gate stone
+    3: brick brick_stairs sandstone smooth_brick smooth_stairs nether_brick nether_fence nether_brick_stairs
+    4: iron_door_block dispenser bookshelf iron_fence
+    5: brewing_stand enchantment_table

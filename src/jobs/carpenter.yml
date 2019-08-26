@@ -1,0 +1,11 @@
+basepay: 3.0
+exp: 2
+craft:
+  pays: true
+  hide: false
+  tier:
+    1: wood_stairs sign_post wooden_door wall_sign trap_door fence bed_block ladder step
+    2: cobblestone_stairs fence_gate birch_wood_stairs double_step jungle_wood_stairs sandstone_stairs spruce_wood_stairs
+    3: brick brick_stairs smooth_brick smooth_stairs nether_brick nether_fence nether_brick_stairs
+    4: iron_door_block dispenser bookshelf iron_fence
+    5: ender_chest

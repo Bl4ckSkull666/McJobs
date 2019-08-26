@@ -1,0 +1,18 @@
+basepay: 25.0
+exp: 5
+craft:
+  pays: true
+  hide: false
+  tier:
+    1: wood_sword
+    2: stone_sword bow
+    3: gold_sword
+    4: iron_sword
+    5: diamond_sword
+repair:
+  pays: true
+  hide: false
+  tier:
+    1: stone_sword bow
+    2: gold_sword iron_sword
+    3: diamond_sword

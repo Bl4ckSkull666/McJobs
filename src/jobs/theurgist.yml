@@ -1,0 +1,12 @@
+basepay: 25.0
+show_every_time: true
+exp: 10
+enchant:
+  pays: true
+  hide: false
+  tier:
+    1: respiration_1 protection_1 blast_prot_1 feather_fall_1 fire_prot_1 proj_prot_1
+    2: respiration_2 protection_2 blast_prot_2 feather_fall_2 fire_prot_2 proj_prot_2
+    3: respiration_3 protection_3 blast_prot_3 feather_fall_3 fire_prot_3 proj_prot_3
+    4: protection_4 blast_prot_4 feather_fall_4 fire_prot_4 proj_prot_4
+    5: aqua_affinity

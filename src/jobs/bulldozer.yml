@@ -1,0 +1,13 @@
+basepay: 67.0
+show_every_time: true
+exp: 0
+default: true
+break:
+  pays: false
+  hide: false
+  tier:
+    1: wood wood_stairs sign_post wooden_door wall_sign furnace workbench trap_door chest fence bed_block ladder cobblestone_stairs step stone_plate glass thin_glass fence_gate
+    2: brick brick_stairs sandstone smooth_brick smooth_stairs nether_brick nether_fence nether_brick_stairs redstone_wire redstone_torch_on redstone_torch_off iron_door_block dispenser bookshelf iron_fence
+    3: stone_button lever stone_plate wood_plate diode_block_off diode_block_on piston_base piston_sticky_base redstone_lamp_off redstone_lamp_on
+    4: note_block jukebox
+    5: brewing_stand enchantment_table 

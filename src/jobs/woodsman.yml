@@ -1,0 +1,18 @@
+basepay: 0.25
+exp: 1
+break:
+  pays: true
+  hide: false
+  tier:
+    1: leaves
+    4: log
+place:
+  pays: true
+  hide: false
+  tier:
+    2: sapling
+craft:
+  pays: true
+  hide: false
+  tier:
+    1: stick wood_axe wood_spade wood_hoe wood_pickaxe fishing_rod bowl

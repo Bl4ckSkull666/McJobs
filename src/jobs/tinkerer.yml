@@ -1,0 +1,16 @@
+basepay: 5.0
+exp: 2
+place:
+  pays: true
+  hide: false
+  tier:
+    1: redstone_wire redstone_torch_on
+    2: stone_button lever stone_plate wood_plate diode_block_off
+    3: piston_base piston_sticky_base redstone_lamp_off note_block
+    4: jukebox
+craft:
+  pays: true
+  hide: false
+  tier:
+    1: rails detector_rail
+    2: powered_rail tripwire_hook
