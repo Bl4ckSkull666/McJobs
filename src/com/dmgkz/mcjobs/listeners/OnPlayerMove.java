@@ -23,8 +23,9 @@ public class OnPlayerMove implements Listener {
         Player p = e.getPlayer();
         for(Map.Entry<String, PlayerJobs> me: PlayerJobs.getJobsList().entrySet()) {
             if(me.getValue() != null && me.getValue().getData().getRegionPositions() != null) {
-                if(me.getValue().getData().getRegionPositions().hasEntered(p.getUniqueId(), e.getTo()))
+                if(me.getValue().getData().getRegionPositions().hasEntered(p.getUniqueId(), e.getTo())) {
                     me.getValue().getData().sendRegionMessage(p);
+                }
             }
         }
     }

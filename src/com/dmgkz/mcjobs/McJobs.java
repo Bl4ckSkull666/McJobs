@@ -53,7 +53,7 @@ public class McJobs extends JavaPlugin {
     private static WorldGuardPlugin _wgp = null;
     private static Economy _economy = null;
     
-    public static final int _VERSION = 3200; 
+    public static final int _VERSION = 3800; 
     
     private GetLanguage _language;
     private BlockLoggers _blocklogger;

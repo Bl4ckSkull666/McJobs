@@ -27,5 +27,12 @@ public class SubCommandInfo {
         }
         
         PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().display().showPlayerJob(p, p.getUniqueId());
+        PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().display().showJob(p);
+        
+        /*if(PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getRegionSpigotMessage() != null)
+            PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getRegionSpigotMessage().saveMessage(null, "");
+        
+        if(PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getSignSpigotMessage() != null)
+            PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getSignSpigotMessage().saveMessage(null, "");*/
     }
 }

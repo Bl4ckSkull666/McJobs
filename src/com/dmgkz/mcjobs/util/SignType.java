@@ -13,6 +13,8 @@ public enum SignType {
     JOIN("join"),
     LEAVE("leave"),
     INFO("info"),
+    NPC("npc"),
+    REGION("region"),
     NONE("none");
         
     private final String _name;

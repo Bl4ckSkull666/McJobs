@@ -1,11 +1,11 @@
 name: mcjobs
 main: com.dmgkz.mcjobs.McJobs
 version: 3.2.0
-author: RathelmMC
+authors: [RathelmMC, Bl4ckSkull666]
 website: http://dev.bukkit.org/server-mods/mcjobs/
 dev-url: http://dev.bukkit.org/server-mods/mcjobs/
 depend: [Vault]
-softdepend: [Mu1ti1ingu41,mcMMO,WorldGuard,LogBlock,Citizens]
+softdepend: [Mu1ti1ingu41,mcMMO,WorldGuard,LogBlock,Citizens,WorldEdit]
 commands:
     mcjobs:
         aliases: [jobs,mcj]

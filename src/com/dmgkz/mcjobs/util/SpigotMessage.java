@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dmgkz.mcjobs.util;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -42,11 +41,11 @@ public class SpigotMessage {
             if(tc == null)
                 tc = new TextComponent("");
             
-            TextComponent tmp = new TextComponent(cs.getString("message"));
+            TextComponent tmp = new TextComponent(colorTrans(cs.getString("message")));
             if(cs.isString("hover-msg")) {
                 HoverEvent hoverev = new HoverEvent(
                     getHoverAction(cs.getString("hover-type", "text")), 
-                    new ComponentBuilder(cs.getString("hover-msg")).create()
+                    new ComponentBuilder(colorTrans(cs.getString("hover-msg"))).create()
                 );
                 tmp.setHoverEvent(hoverev);
             }
@@ -88,5 +87,55 @@ public class SpigotMessage {
         if(ClickEvent.Action.valueOf(str.toUpperCase()) != null)
             return ClickEvent.Action.valueOf(str.toUpperCase());
         return ClickEvent.Action.RUN_COMMAND;
+    }
+    
+    private String colorTrans(String msg) {
+        return ChatColor.translateAlternateColorCodes('&', msg);
+    } 
+    
+    public List<TextComponent> getMessage() {
+        return _messages;
+    }
+    
+    public void saveMessage(ConfigurationSection conf, String basePath) {
+        McJobs.getPlugin().getLogger().info("============= START TC ==============");
+        for(TextComponent tc: _messages) {
+            McJobs.getPlugin().getLogger().info("============= NEW TC ==============");
+            if(tc.getExtra() != null && !tc.getExtra().isEmpty()) {
+                moreMessageDetails(tc.getExtra());
+            }
+            McJobs.getPlugin().getLogger().info("============= END TC ==============");
+        }
+        McJobs.getPlugin().getLogger().info("============= STOP TC ==============");
+    }
+    
+    private void moreMessageDetails(List<BaseComponent> list) {
+        for(BaseComponent bc: list) {
+            McJobs.getPlugin().getLogger().info(bc.toLegacyText());
+            McJobs.getPlugin().getLogger().log(Level.INFO, "MoreExtras - Has Hover? {0}", (bc.getHoverEvent() != null));
+            McJobs.getPlugin().getLogger().log(Level.INFO, "MoreExtras - Has Click? {0}", (bc.getClickEvent() != null));
+            if(bc.getExtra() != null && !bc.getExtra().isEmpty()) {
+                McJobs.getPlugin().getLogger().log(Level.INFO, "Has More Extras? {0}", true);
+                moreMessageDetails(bc.getExtra());
+            }
+            
+            if(bc.getHoverEvent() != null)
+                HoverDetails(bc.getHoverEvent());
+            
+            if(bc.getClickEvent() != null)
+                ClickDetails(bc.getClickEvent());
+        }
+    }
+    
+    private void HoverDetails(HoverEvent e) {
+        McJobs.getPlugin().getLogger().log(Level.INFO, "HoverEvent Action: {0}", e.getAction().name());
+        for(BaseComponent bc: e.getValue()) {
+            McJobs.getPlugin().getLogger().log(Level.INFO, "HoverEvent Text: {0}", bc.toLegacyText());
+        }
+    }
+    
+    private void ClickDetails(ClickEvent e) {
+        McJobs.getPlugin().getLogger().log(Level.INFO, "ClickEvent Action: {0}", e.getAction().name());
+        McJobs.getPlugin().getLogger().log(Level.INFO, "ClickEvent Text: {0}", e.getValue());
     }
 }

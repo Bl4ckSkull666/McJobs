@@ -22,15 +22,16 @@ public class initListener {
         getServer().getPluginManager().registerEvents(new Crafting(), plugin);
         getServer().getPluginManager().registerEvents(new Enchanting(), plugin);
         getServer().getPluginManager().registerEvents(new Fishing(), plugin);
-        //McmmoRepairListener registed in mcjobs
+
         getServer().getPluginManager().registerEvents(new MobKill(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerInteract(), plugin);
-        getServer().getPluginManager().registerEvents(new OnPlayerInteractEntity(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerLogins(), plugin);
-        getServer().getPluginManager().registerEvents(new OnPlayerMove(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerQuit(), plugin);
         getServer().getPluginManager().registerEvents(new ShearEvent(), plugin);
         
         getServer().getPluginManager().registerEvents(new JobChangeListener(), plugin);
+        
+        getServer().getPluginManager().registerEvents(new OnPlayerInteractEntity(), plugin);
+        getServer().getPluginManager().registerEvents(new OnPlayerMove(), plugin);
     }
 }

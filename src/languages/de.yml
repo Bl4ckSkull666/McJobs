@@ -1,0 +1,748 @@
+jobs:
+  description:
+    kumpel: 
+      message: Grabe dich tief in die Erde mit der Spitzhacke und Sammel Steine und Erze.
+      no-prefix: true
+    graeber: 
+      message: Grab mit der Schaufel die Erde und den Sand um fuer dein Taeglich Brot.
+    erbauer: 
+      message: Verbaue wertvolle Materialen um so dein Geld fuer den taeglichen Bedarf zu decken.
+    zimmermann: 
+      message: Erstelle und verbaue Stein und Holzgegenstaende.
+    jaeger: 
+      message: Saeubere die Wildnis von Monstern aller Art.
+    bastler: 
+      message: Baue einfache oder auch Komplexe Schaltungen.
+    holzfaeller: 
+      message: Faelle Baeume, sammel Laub und pflanze neue Baeume.
+    farmer: 
+      message: Toete Tiere, sammel und pflanze Ackergut.
+    werkzeugmacher: 
+      message: Erstelle Steinwerkzeuge und hoeherwertige Werkzeuge.
+    schmied: 
+      message: Stelle Ruestungen und Waffen her fuer Tapfere Kaempfer.
+    fischer: 
+      message: Setze dich gemuetlich an ein Gewaesser und angel fleissig Fische.
+    baecker: 
+      message: Erstelle tolle und suesse Leckereien.
+    alchimist: 
+      message: Braue maechtige Traenke um das Boese zu besiegen.
+    hexe: 
+      message: Du braust Boese und Schaedliche Traenke, um diese gegen das Gute auf dieser Welt zu verwenden.
+    verzauberer: 
+      message: Mache maechtige Waffen noch maechtiger mit einem Zauber.
+    magier: 
+      message: Verstaerke kraeftige Ruestungen mit noch kraeftigeren Maechten.
+    beschwoerer: 
+      message: Verzaubere Werkzeuge um diese noch Kraftvoller und Haltbarer zu machen.
+    koch: 
+      message: Koche daeftige Mahlzeiten zum Mittags.- und Abendstisch.
+    bahner: 
+      message: Verlege Schienen und erstelle Zuege.
+    schaefer: 
+      message: Verdient sein Geld mit dem Verarbeiten von Wolle
+  name:
+    kumpel: 
+      message: Kumpel
+    graeber: 
+      message: Graeber
+    erbauer: 
+      message: Erbauer
+    zimmermann: 
+      message: Zimmermann
+    jaeger: 
+      message: Jaeger
+    bastler: 
+      message: Bastler
+    holzfaeller: 
+      message: Holzfaeller
+    farmer: 
+      message: Farmer
+    werkzeugmacher: 
+      message: Werkzeugmacher
+    schmied: 
+      message: Schmied
+    fischer: 
+      message: Fischer
+    baecker: 
+      message: Baecker
+    alchimist: 
+      message: Alchemist
+    hexe: 
+      message: Hexenmeister
+    verzauberer: 
+      message: Verzauberer
+    magier: 
+      message: Magier
+    beschwoerer: 
+      message: Beschwoerer
+    koch: 
+      message: Koch
+    bahner: 
+      message: Bahner
+    schaefer: 
+      message: Schaefer
+  rank:
+    anfaenger: Anfaenger
+    praktikant: Praktikant
+    azubi: Azubi
+    geselle: Geselle
+    veteran: Veteran
+    experte: Experte
+    meister: Meister
+    grossmeister: GrossMeister
+jobscommand:
+  playeronly: Kann nur ein Spieler machen!
+  permission: '&6%p&c Du hast keine Berechtigung das zu machen!'
+  args: '&6%p&c Du hast zuviele Argumente gegeben!'
+  exist: '&cDer Job &6%j&c existiert nicht!'
+  rejoin: '&7Du kannst wieder den Job &6%j&7 auswaehlen.'
+  show: '&7Jetzt wird Dir die Einzelzahlung fuer den Job &6%j&7 angezeigt.'
+  hide: '&7Jetzt wird die Einzelzahlung fuer den Job &6%j&7 ausgeblendet.'
+  available_langs: 'Die folgenden Sprachen fuer McJobs sind verfuegbar : &6%g'
+  wrong_lang: Die Sprache &l%g &r&cist nicht verfuegbar.
+  success_lang: Sprache erfolgreich zu &l%g &r&2gewechselt.
+  missingjob: Der gewuenschte Beruf ist nicht verfuegbar.
+jobsnotify:
+  and: und
+  hours: Stunden
+  hour: Stunde
+  minutes: Minuten
+  minute: Minute
+  days: Tage
+  day: Tag
+  weeks: Wochen
+  week: Woche
+  months: Monate
+  month: Monat
+  message: '&aDeine &6MC Jobs&a haben Dir in den letzten &c%g&a &6%j&a Coins eingebracht.'
+  overpay: '&e%p&a, Du bist erschoepft und kannst eine Weile nichts durch Deinen &6MC
+    Jobs&a verdienen.'
+jobsdisplay:
+  employed: --   &cAngestellt
+  unemployed: -- &9Erwerbslos
+  default: --  &3Standard
+  basepay: Grundgehalt
+  charge: Gebuehr
+  pay: Gehalt
+  level: Level
+  rank: Rang
+  exp: XP
+  break: Abbauen
+  place: Platzieren
+  defeat: Besiegen
+  fishing: Angeln
+  craft: Herstellen
+  repair: Reparieren
+  enchant: Verzaubern
+  potions: Traenke
+  tier: 'Stufe '
+jobsjoin:
+  have: Du hast bereits den Job &6%j&c!
+  join: '%p ist jetzt &9%j&7.'
+  toomany: '&6%p&c Du hast zuviele Jobs.  Um einen neuen Job zu waehlen:'
+  command: /jobs leave [job]
+  jobperm: '&6%p&7 Du hast keine Berechtigung um &9%j&7 zu waehlen'
+  timer: '&7Du kannst &6%j&7 fuer die naechsten &c%g&7 nicht waehlen.'
+jobsleave:
+  quit: Du hast &6%j&7 aufgegeben.
+  donthave: Du hast den Job &6%j&c nicht.
+  leavedefault: Du kannst &6%j&c nicht aufgeben, denn es ist ein Standardjob.
+jobslist:
+  available: '&e%p&2, Deine verfuegbaren Jobs sind:'
+  jobsin: Jobs in &crot&2 hast Du schon.
+  nojob: Jobs in &8dunkelgrau&2 sind fuer Dich nicht verfuegbar.
+  defaultjob: Jobs in &3dunkelblau&2 sind Standardjobs.
+  specific: 'Um etwas ueber den Job zu erfahren schreibe: &e/jobs [Job Name]'
+  jobs: 'Berufe:'
+jobshelp:
+  page: Seite
+  '1':
+    line1: '&7   Willkommen zu &3MC Jobs&c.  &3MC Jobs&7 ist ein Mod, der es Dir erlaubt,'
+    line2: '&7Geld mit den ausgewaehlten Jobs auf diesem Server zu verdienen'
+    line3: ''
+    line4: '&c Hier nun die wichtigsten Informationen zu den Jobs:'
+    line5: '&c1. &7Anzeige aller Jobs: &6/jobs list'
+    line6: '&c2. &7Einen Job auswaehlen: &6/jobs join [Job Name]'
+    line7: '&c3. &7Einen Job verlassen: &6/jobs leave [Job Name]'
+    line8: '&c4. &7Du kannst maximal 3 Jobs auf diesem Server haben:'
+    line9: '&c5. &7Je hoeher die Gehaltsstufe, umso hoeher ist der Lohn'
+    line10: '&c6. &7Lohn wird nach &65 Minuten &7ausgezahlt'
+    line11: '&c7. &7Um fuer jede einzelne Aktivitaet den Lohn zu sehen: &6/jobs show
+      [Job Name]'
+    line12: '&c8. &7Um das auszublenden, schreibe: &6/jobs hide [Job Name]'
+  '2':
+    line1: ''
+    line2: ''
+    line3: ''
+    line4: ''
+    line5: '&7Fuer noch mehr Infos schaue doch mal hier vorbei:'
+    line6: '&6www.craft-my-life.de/jobs'
+    line7: ''
+    line8: ''
+    line9: ''
+    line10: ''
+    line11: ''
+    line12: '&cENDE DER HILFEDATEI'
+  endofpage: '&7Weiter zur Seite %g'
+  command: '&6/jobs help %g'
+  finish: '&7ENDE DER HILFEDATEI'
+  nohelp: '&7%g&c ist keine Seite der Hilfe!'
+admincommand:
+  permission: '&6%p&c Du hast keine Berechtigung das zu machen!'
+  failedreload: '&cNeuladen das Plugins fehlgeschlagen!'
+  succeedreload: '&6MC Jobs&c wurde neugestartet!'
+  defaults: '&7Standardwerte wurden der config.yml Datei hinzugefuegt.'
+  args: '&cZuviele Argumente fuer &e/jadm&c.  Das ist das Ende, wir testen einen sehr
+    lange Zeichenkette.'
+  exist: '&6%j&c existiert nicht!'
+adminadd:
+  args: '&cFalsches Argument:  &e/jadm add [player/group] [job_name]'
+  offline: '&6%p&c Gruppe existiert nicht, oder ist ein Spieler der nicht gesehen
+    wurde.!'
+  novault: '&6%p&c ist kein bekannter Spieler!'
+  hasjob: '&6%p&7 hat schon den Job &9%j&7.'
+  empty: '&7es sind keine Spieler &eplayers&7 aus der Gruppe &6%p&7 online.'
+  added: '&6%p&7 wurde hinzugefuegt zu &9%j&7.'
+  padded: '&6%p&2 Du hast durch einen Admin den &9%j&2 erlernt.'
+adminremove:
+  args: '&cFalsches Argument:  &e/jadm remove [player/group] [job_name]'
+  nojob: '&6%p&7 hat den Job &9%j&7 nicht.'
+  nodefault: '&6%p&c Du hast keine Berechtigung &3Standardjobs&c zu entfernen!'
+  removed: '&6%p&7 wurde aus dem Job &9%j&7 entlassen.'
+  premoved: '&6%p&2 Du wurdest beim Job &9%j&2 durch einen Admin entlassen.'
+adminlist:
+  args: '&cFalsches Argument:  &e/jadm list [player/group]'
+  playerlist: '&2%p&7: %g'
+  nojobs: '&2%p&c hat keine Jobs.'
+  wrongpage: '&e%g ist keine gueltige Seitenzahl. Benutze Seite 1.'
+pitch:
+  line0: 'Dieser Server lauft so:'
+  line1: '&aDie verfuegbaren Jobs sieht man mit: &e/jobs list'
+  line2: '&aUm einen Job zu erlernen: &e/jobs join [job_name]'
+  line3: '&aSpiele, &2verdiene Geld&a, und habe Spass!'
+onadminlogin:
+  toolow: '&eYour pay scale is too low for an &6XP&e based economy.  Consider switching
+    &2pay_scale&e to high in the config.yml file.'
+  outofdate: '&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without
+    reloading the config file.'
+  bankisempty: '&eDas Bank Account Guthaben ist beinahe aufgebraucht.'
+experience:
+  level: '&eDu hast jetzt Level &6%g&e beim &6%j&e.'
+  reset: '&eDein Level beim &6%j&e wurde auf &c0&e gesetzt.'
+  rank: '&eDu hast jetzt den Rang &6%g&e beim &6%j&e.'
+  added_lvl: '&7Du hast &6%p &a%g&7 Level beim &6%j&7 bekommen.'
+  padded_lvl: '&7Du hast &a%g&7 Level beim &6%j&7 von einem Admin bekommen.'
+  added_xp: '&7Du hast &6%p &a%g&7 Erfahrung beim &6%j&7 bekommen.'
+  padded_xp: '&7Du hast &a%g&7 Erfahrung beim &6%j&7 von einem Admin bekommen.'
+  nojob: '&6%p&c hat den Job &6%j&c nicht.'
+payment:
+  pay: '&aDer Job &6%j&a hat Dir &6%g&a Coins &aeingebracht.'
+  payxp: '&aDer Job &6%j&a hat Dir &6%g&a Erfahrung eingebracht.'
+  charge: '&aDer Job &6%j&a hat Dich &c%g&a %p gekostet.'
+  chargexp: '&aDer Job &6%j&a hat Dich &c%g&a Erfahrung gekostet.'
+  currency_single: Coin
+  currency_plural: Coins
+spaces:
+  jobslist: 16
+  display: 4
+  displaytwo: 8
+  displaythree: 4
+  chargelen: 7
+  numhelp: 8
+  '0': '0'
+entities:
+  blaze: Lohe
+  cow: Kuh
+  cave_spider: Hoehlenspinne
+  chicken: Huhn
+  creeper: Creeper
+  dropped_item: Fisch
+  ender_dragon: Enderdrache
+  enderman: Endermann
+  ghast: Ghast
+  giant: Riese
+  iron_golem: Eisengolem
+  magma_cube: Magma Wuerfel
+  mushroom_cow: Pilzkuh
+  npc: NPC
+  ocelot: Ocelot
+  pig: Schwein
+  pig_zombie: Schweinezombie
+  player: Spieler
+  sheep: Schaf
+  silverfish: Silberfisch
+  skeleton: Skelett
+  slime: Schleim
+  snowman: Schneemann
+  spider: Spinne
+  squid: Tintenfisch
+  villager: Dorfbewohner
+  wolf: Wolf
+  zombie: Zombie
+  horse: Pferd
+  entitiehorse: Pferd
+  endermite: Endermilbe
+  witch: Hexe
+  guardian: Waechter
+potions:
+  water: '&2Wasser'
+  awkward: '&3Seltsamer Trank'
+  thick: '&6Dickfluessiger Trank'
+  mundane: '&7Gewoehnlicher Trank'
+  mundane_ext: '&7Gewoehnlicher Trank (verlaengert)'
+  regen: '&9Trank der Regeneration'
+  regen_ext: '&9Regenerations Trank (verlaengert)'
+  regen_two: '&9Regenerations Trank 2'
+  regen_two_ext: '&9Wurftrank der Regeneration 2 (verlaengert)'
+  regen_spl: '&9Wurftrank der Regeneration'
+  regen_ext_spl: '&9Wurftrank der Regeneration (verlaengert)'
+  regen_two_spl: '&9Wurftrank der Regeneration 2'
+  swift: '&aTrank der Schnelligkeit'
+  swift_ext: '&aTrank der Schnelligkeit (verlaengert)'
+  swift_two: '&aTrank der Schnelligkeit 2'
+  swift_two_ext: '&aTrank der Schnelligkeit 2 (verlaengert)'
+  swift_spl: '&aWurftrank der Schnelligkeit'
+  swift_ext_spl: '&aWurftrank der Schnelligkeit (verlaengert)'
+  swift_two_spl: '&aWurftrank der Schnelligkeit 2'
+  fire_res: '&bTrank der Feuerresistenz'
+  fire_res_ext: '&bTrank der Feuerresistenz (verlaengert)'
+  fire_res_spl: '&bTrank der Feuerresistenz Wurf'
+  fire_res_ext_spl: '&bTrank der Feuerresistenz Wurf (verlaengert)'
+  poison: '&cTrank der Vergiftung'
+  poison_ext: '&cTrank der Vergiftung (verlaengert)'
+  poison_two: '&cTrank der Vergiftung 2'
+  poison_two_ext: '&cTrank der Vergiftung 2 (verlaengert)'
+  poison_spl: '&cWurftrank der Vergiftung'
+  poison_ext_spl: '&cWurftrank der Vergiftung (verlaengert)'
+  poison_two_spl: '&cWurftrank der Vergiftung 2'
+  health: '&dTrank der Heilung'
+  health_two: '&dTrank der Heilung 2'
+  health_spl: '&dWurftrank der Heilung'
+  health_two_spl: '&dWurftrank der Heilung 2'
+  weak: '&eTrank der Schwaeche'
+  weak_ext: '&eTrank der Schwaeche (verlaengert)'
+  weak_two: '&eTrank der Schwaeche 2'
+  weak_spl: '&eTrank der Schwaeche'
+  weak_ext_spl: '&eWurftrank der Schwaeche (verlaengert)'
+  weak_two_spl: '&eWurftrank der Schwaeche 2'
+  strength: '&fTrank der Staerke'
+  strength_ext: '&fTrank der Staerke (verlaengert)'
+  strength_two: '&fTrank der Staerke 2'
+  strength_two_ext: '&fTrank der Staerke 2 (verlaengert)'
+  strength_spl: '&fWurftrank der Staerke'
+  strength_ext_spl: '&fWurftrank der Staerke (verlaengert)'
+  strength_two_spl: '&fWurftrank der Staerke 2'
+  slow: '&2Trank der Langsamkeit'
+  slow_ext: '&2Trank der Langsamkeit (verlaengert)'
+  slow_two: '&2Trank der Langsamkeit 2'
+  slow_spl: '&2Wurftrank der Langsamkeit'
+  slow_ext_spl: '&2Wurftrank der Langsamkeit (verlaengert)'
+  slow_two_spl: '&2Wurftrank der Langsamkeit 2'
+  harm: '&3Trank des Schaden'
+  harm_two: '&3Trank des Schaden 2'
+  harm_spl: '&3Wurftrank des Schadens'
+  harm_two_spl: '&3Wurftrank des Schadens 2'
+  rev_fire_res: '&bTrank der Feuerresistenz'
+  rev_slow: '&2Trank der Langsamkeit'
+  rev_health: '&dTrank der Heilung'
+  rev_harm: '&3Trank des Schadens'
+  rev_weak: '&eTrank der Schwaeche'
+enchant:
+  arrow_dmg_1: '&7Staerke &c1'
+  arrow_dmg_2: '&7Staerke &92'
+  arrow_dmg_3: '&7Staerke &63'
+  arrow_dmg_4: '&7Staerke &24'
+  arrow_dmg_5: '&7Staerke &35'
+  arrow_fire: '&7Flamme &c1'
+  arrow_inf: '&7Unendlichkeit &c1'
+  arrow_knock_1: '&7Schlag &c1'
+  arrow_knock_2: '&7Schlag &92'
+  sharp_1: '&7Schaerfe &c1'
+  sharp_2: '&7Schaerfe &92'
+  sharp_3: '&7Schaerfe &63'
+  sharp_4: '&7Schaerfe &24'
+  sharp_5: '&7Schaerfe &35'
+  boa_1: '&7Nemesis der Gliederfuesser &c1'
+  boa_2: '&7Nemesis der Gliederfuesser &92'
+  boa_3: '&7Nemesis der Gliederfuesser &63'
+  boa_4: '&7Nemesis der Gliederfuesser &24'
+  boa_5: '&7Nemesis der Gliederfuesser &35'
+  dmg_undead_1: '&7Bann &c1'
+  dmg_undead_2: '&7Bann &92'
+  dmg_undead_3: '&7Bann &63'
+  dmg_undead_4: '&7Bann &24'
+  dmg_undead_5: '&7Bann &35'
+  efficiency_1: '&7Effizienz &c1'
+  efficiency_2: '&7Effizienz &92'
+  efficiency_3: '&7Effizienz &63'
+  efficiency_4: '&7Effizienz &24'
+  efficiency_5: '&7Effizienz &35'
+  unbreaking_1: '&7Haltbarkeit &c1'
+  unbreaking_2: '&7Haltbarkeit &92'
+  unbreaking_3: '&7Haltbarkeit &63'
+  unbreaking_4: '&7Haltbarkeit &24'
+  unbreaking_5: '&7Haltbarkeit &35'
+  fire_aspect_1: '&7Verbrennung &c1'
+  fire_aspect_2: '&7Verbrennung &92'
+  knockback_1: '&7Rueckstoss &c1'
+  knockback_2: '&7Rueckstoss &92'
+  fortune_1: '&7Glueck &c1'
+  fortune_2: '&7Glueck &92'
+  fortune_3: '&7Glueck &63'
+  looting_1: '&7Pluenderung &c1'
+  looting_2: '&7Pluenderung &92'
+  looting_3: '&7Pluenderung &63'
+  respiration_1: '&7Atmung &c1'
+  respiration_2: '&7Atmung &92'
+  respiration_3: '&7Atmung &63'
+  protection_1: '&7Schutz &c1'
+  protection_2: '&7Schutz &92'
+  protection_3: '&7Schutz &63'
+  protection_4: '&7Schutz &24'
+  blast_prot_1: '&7Explosionsschutz &c1'
+  blast_prot_2: '&7Explosionsschutz &92'
+  blast_prot_3: '&7Explosionsschutz &63'
+  blast_prot_4: '&7Explosionsschutz &24'
+  feather_fall_1: '&7Federfall &c1'
+  feather_fall_2: '&7Federfall &92'
+  feather_fall_3: '&7Federfall &63'
+  feather_fall_4: '&7Federfall &24'
+  fire_prot_1: '&7Feuerschutz &c1'
+  fire_prot_2: '&7Feuerschutz &92'
+  fire_prot_3: '&7Feuerschutz &63'
+  fire_prot_4: '&7Feuerschutz &24'
+  proj_prot_1: '&7Schusssicher &c1'
+  proj_prot_2: '&7Schusssicher &92'
+  proj_prot_3: '&7Schusssicher &63'
+  proj_prot_4: '&7Schusssicher &24'
+  silk_touch: '&7Behutsamkeit &c1'
+  aqua_affinity: '&7Wasseraffinitaet &c1'
+materials:
+  activator_rail: Aktivierungsschiene
+  air: Luft
+  apple: Apfel
+  arrow: Pfeil
+  beacon: Leuchtfeuer
+  bed: Bett
+  bed_block: Bett Block
+  bedrock: Grundgestein
+  birch_wood_stairs: Birkenholztreppe
+  blaze_powder: Lohenstaub
+  blaze_rod: Lohenrute
+  boat: Boot
+  bone: Knochen
+  book: Buch
+  book_and_quill: Buch und Feder
+  bookshelf: Buecherregal
+  bow: Bogen
+  bowl: Schuessel
+  bread: Brot
+  brewing_stand: Braustand
+  brewing_stand_item: Braustand
+  brick: Ziegel
+  brick_stairs: Ziegeltreppe
+  brown_mushroom: Brauner Pilz
+  bucket: Eimer
+  burning_furnace: Ofen
+  cactus: Kaktus
+  cake: Kuchen
+  cake_block: Kuchen Block
+  cauldron: Kessel
+  cauldron_item: Kessel
+  chainmail_boots: Kettenstiefel
+  chainmail_chestplate: Kettenhemd
+  chainmail_helmet: Kettenhaube
+  chainmail_leggings: Kettengamaschen
+  chest: Truhe
+  clay: Ton
+  clay_ball: Lehmkugel
+  clay_brick: Ziegel
+  coal: Kohle
+  carrot_stick: Karottenrute
+  coal_ore: Kohleerz
+  cobblestone: Pflasterstein
+  cobblestone_stairs: Pflastersteintreppe
+  cocoa: Kakao
+  compass: Kompass
+  cooked_beef: Steak
+  cooked_chicken: Gegrilltes Huehnchen
+  cooked_fish: Gebratener Fisch
+  cookie: Keks
+  crops: Weizensamen
+  dead_bush: Toter Busch
+  daylight_detector: Tageslichtsensor
+  detector_rail: Sensorschiene
+  diamond: Diamant
+  diamond_axe: Diamantaxt
+  diamond_block: Diamantblock
+  diamond_boots: Diamantstiefel
+  diamond_chestplate: Diamantbrustpanzer
+  diamond_helmet: Diamanthelm
+  diamond_hoe: Diamanthacke
+  diamond_leggings: Diamanthose
+  diamond_ore: Diamanterz
+  diamond_pickaxe: Diamantspitzhacke
+  diamond_spade: Diamantschaufel
+  diamond_sword: Diamantschwert
+  diode: Redstone Verstaerker
+  diode_block_off: Redstone Verstaerker
+  diode_block_on: Redstone Verstaerker
+  dirt: Erde
+  dispenser: Werfer
+  double_step: Doppel Stufe
+  dragon_egg: Drachenei
+  explosive_minecart: TNT-Lore
+  egg: Ei
+  emerald: Smaragd
+  emerald_block: Smaragdblock
+  emerald_ore: Smaragderz
+  enchantment_table: Zaubertisch
+  ender_chest: Endertruhe
+  ender_pearl: Enderperle
+  ender_portal: Endportal
+  ender_portal_frame: Endportal Block
+  ender_stone: Endstein
+  exp_bottle: Erfahrungsflaeschchen
+  eye_of_ender: Enderauge
+  feather: Feder
+  fence: Zaun
+  fence_gate: Zauntor
+  fermented_spider_eye: Fermentiertes Spinnenauge
+  fire: Feuer
+  fireball: Feuerball
+  fishing_rod: Angel
+  flint: Feuerstein
+  flint_and_steel: Feuerzeug
+  furnace: Ofen
+  ghast_tear: Ghasttraene
+  glass: Glas
+  glass_bottle: Flasche
+  glowing_redstone_ore: Redstoneerz
+  glowstone: Glowstone
+  glowstone_dust: Glowstonestaub
+  gold_axe: Goldaxt
+  gold_plate: Gewichtete Druckplatte (leicht)
+  gold_block: Goldblock
+  gold_boots: Goldstiefel
+  gold_chestplate: Goldbrustpanzer
+  gold_helmet: Goldhelm
+  gold_hoe: Goldhacke
+  gold_ingot: Goldbarren
+  gold_leggings: Goldhose
+  gold_nugget: Goldnugget
+  gold_ore: Golderz
+  gold_pickaxe: Goldspitzhacke
+  gold_record: Schallplatte - 13
+  gold_spade: Goldschaufel
+  gold_sword: Goldschwert
+  golden_apple: Goldener Apfel
+  grass: Erde
+  gravel: Kies
+  green_record: Schallplatte - Katze
+  grilled_pork: Gebratenes Schweinefleisch
+  hopper_minecart: Trichterlore
+  huge_mushroom_1: Riesiger Pilz
+  huge_mushroom_2: Riesiger Pilz
+  ice: Eis
+  ink_sack: Tintensack
+  iron_plate: Gewichtete Druckplatte (schwer)
+  iron_axe: Eisenaxt
+  iron_block: Eisenblock
+  iron_boots: Eisenstiefel
+  iron_chestplate: Eisenbrustpanzer
+  iron_door: Eisentuer
+  iron_door_block: Eisentuer Block
+  iron_fence: Eisengitter
+  iron_helmet: Eisenhelm
+  iron_hoe: Eisenhacke
+  iron_ingot: Eisenbarren
+  iron_leggings: Eisenhose
+  iron_ore: Eisenerz
+  iron_pickaxe: Eisenspitzhacke
+  iron_spade: Eisenschaufel
+  iron_sword: Eisenschwert
+  jack_o_lantern: Kuerbislaterne
+  jukebox: Plattenspieler
+  jungle_wood_stairs: Tropenholztreppe
+  ladder: Leiter
+  lapis_block: Lapislazuli Block
+  lapis_ore: Lapislazuli Erz
+  lava: Lava
+  lava_bucket: Lava Eimer
+  leather: Leder
+  leather_boots: Lederstiefel
+  leather_chestplate: Lederbrustpanzer
+  leather_helmet: Lederhelm
+  leather_leggings: Lederhose
+  leaves: Laub
+  lever: Hebel
+  locked_chest: Verschlossene Truhe
+  log: Holz
+  long_grass: Hohes Gras
+  magma_cream: Magmacreme
+  map: Karte
+  melon: Melonenscheibe
+  melon_block: Melone
+  melon_seeds: Melonenkerne
+  melon_stem: Melonenpflanze
+  milk_bucket: Milch Eimer
+  minecart: Lore
+  mob_spawner: Monsterspawner
+  monster_egg: Spawner-Ei
+  monster_eggs: Silberfischblock
+  mossy_cobblestone: Bemooster Stein
+  mushroom_soup: Pilzsuppe
+  mycel: Myzel
+  nether_brick: Netherziegel
+  netherbrick: Netherziegel
+  nether_brick_stairs: Netherziegelstufe
+  nether_fence: Netherzaun
+  nether_stalk: Netherwarze
+  nether_warts: Netherwarze
+  netherrack: Netherstein
+  note_block: Notenblock
+  obsidian: Obsidian
+  painting: Gemaelde
+  paper: Papier
+  piston_base: Kolben
+  piston_extension: Kolben
+  piston_moving_piece: Kolben
+  piston_sticky_base: Klebriger Kolben
+  pork: Rohes Schweinefleisch
+  portal: Portal
+  potion: Trank
+  powered_minecart: Angetriebene Lore
+  powered_rail: Antriebsschiene
+  pumpkin: Kuerbis
+  pumpkin_seeds: Kuerbissamen
+  pumpkin_stem: Kuerbispflanze
+  rails: Schiene
+  raw_beef: Rohes Rindfleisch
+  raw_chicken: Rohes Huehnchen
+  raw_fish: Roher Fisch
+  record_10: Schallplatte - ward
+  record_11: Schallplatte - 11
+  record_3: Schallplatte - blocks
+  record_4: Schallplatte - chirp
+  record_5: Schallplatte - far
+  record_6: Schallplatte - mall
+  record_7: Schallplatte - mellohi
+  record_8: Schallplatte - stal
+  record_9: Schallplatte - strad
+  red_mushroom: Roter Pilz
+  red_rose: Rote Rose
+  redstone: Redstone Staub
+  redstone_lamp_off: Redstone Lampe
+  redstone_lamp_on: Redstone Lampe
+  redstone_ore: Redstone Erz
+  redstone_torch_off: Redstone Fackel
+  redstone_torch_on: Redstone Fackel
+  redstone_wire: Redstone Staub
+  rotten_flesh: Verrottetes Fleisch
+  saddle: Sattel
+  sand: Sand
+  sandstone: Sandstein
+  sandstone_stairs: Sandsteinstufen
+  sapling: Setzling
+  seeds: Weizensamen
+  shears: Schere
+  sign: Schild
+  sign_post: Schild
+  slime_ball: Schleimball
+  smooth_brick: Steinziegel
+  smooth_stairs: Steinziegeltreppe
+  snow: Schnee
+  snow_ball: Schneeball
+  snow_block: Schneeblock
+  soil: Ackerboden
+  soul_sand: Seelensand
+  speckled_melon: Funkelnde Melone
+  spider_eye: Spinnenauge
+  sponge: Schwamm
+  spruce_wood_stairs: Fichtenholztreppe
+  stationary_lava: Lava
+  stationary_water: Wasser
+  step: Stufe
+  stick: Stock
+  stone: Stein
+  stone_axe: Steinaxt
+  stone_button: Knopf
+  stone_hoe: Steinhacke
+  stone_pickaxe: Steinspitzhacke
+  stone_plate: Steindruckplatte
+  stone_spade: Steinschaufel
+  stone_sword: Steinschwert
+  storage_minecart: Gueterlore
+  string: Faden
+  sugar: Zucker
+  sugar_cane: Zuckerrohr
+  sugar_cane_block: Zuckerrohr
+  sulphur: Schwarzpulver
+  thin_glass: Glasscheibe
+  tnt: TNT
+  torch: Fackel
+  trap_door: Falltuer
+  tripwire: Stolperdraht
+  tripwire_hook: Haken
+  vine: ranke
+  wall_sign: Schild
+  watch: Uhr
+  water: Wasser
+  water_bucket: Wasser Eimer
+  water_lily: Seerose
+  web: Spinnweben
+  wheat: Weizen
+  wood: Holz
+  wood_axe: Holzaxt
+  wood_door: Holztuer
+  wood_double_step: Doppelte Holzstufe
+  wood_hoe: Holzhacke
+  wood_pickaxe: Holzspitzhacke
+  wood_plate: Holzdruckplatte
+  wood_spade: Holzschaufel
+  wood_stairs: Holztreppen
+  wood_step: Holzstufe
+  wood_sword: Holzschwert
+  wooden_door: Holztuer
+  wool: Wolle
+  workbench: Werkbank
+  written_book: Geschriebenes Buch
+  yellow_flower: Loewenzahn
+  potato: Kartoffel
+  potato_item: Kartoffel
+  baked_potato: Gebackene Kartoffeln
+  pumpkin_pie: Kuerbiskuchen
+  golden_carrot: Goldene Karotte
+  carrot_item: Karotte
+  carrot: Karotte
+  quartz_ore: Netherquarzerz
+  hay_block: Strohballen
+  quartz_block: Quarzblock
+  quartz_stairs: Quarztreppe
+  stained_Clay: Gefärbter Lehm
+  coal_block: Kohleblock
+  hard_clay: Gebrannter Lehm
+  carpet: Teppich
+  hopper: Trichter
+  iron_barding: Eiserne Pferderuestung
+  gold_barding: Goldene Pferderuestung
+  diamond_barding: Diamantene Pferderuestung
+  horse_monster_egg: Pferde Spawn Ei
+  leash: Leine
+  name_tag: Namensschild
+  red_sandstone: Roter Sandstein
+  stained_glass_pane: Gefaerbtes Glas
+  packed_ice: Eis
+  sea_lantern: Seelaterne
+  prismarine: Prismarinscherbe
+  banner: Banner
+  armor_stand: Ruestungsstaender
+  dark_oak_door: Schwarzeichenholztuer
+  spruce_door: Fichtenholztuer
+  birch_door: Birkenholztuer
+  jungle_door: Tropenholztuer
+  acacia_door: Akazienholztuer
+  cooked_rabbit: Gebratenes Kaninchen
+  rabbit_stew: Kaninchenragout
+  rabbit: Kaninchen

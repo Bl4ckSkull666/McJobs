@@ -85,8 +85,7 @@ public final class SignManager {
             
             Location loc = new Location(w, conf.getInt(k + ".x"), conf.getInt(k + ".y"), conf.getInt(k + ".z"));
             Block b = loc.getBlock();
-            if(!(b instanceof Sign)) {
-                McJobs.getPlugin().getLogger().log(Level.WARNING, "Sign on position X:{0}, Y:{1}, Z:{2} on World {3} can''t found.", new Object[] {loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), w.getName()});
+            if(!(b.getState() instanceof Sign)) {
                 continue;
             }
             _signs.put(loc, js);

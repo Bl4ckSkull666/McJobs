@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dmgkz.mcjobs.util;
 
 import java.util.ArrayList;
@@ -22,7 +17,7 @@ public class RegionPositions {
     private Location _Pos2 = null;
     
     private boolean _setNextPos = true;
-    private List<UUID> _inside = new ArrayList<>();
+    private final List<UUID> _inside = new ArrayList<>();
     
     public void setPosition(Location loc) {
         if(_setNextPos) {
@@ -35,14 +30,14 @@ public class RegionPositions {
         
         if(_Pos1 != null && _Pos2 != null) {
             World w = _Pos1.getWorld();
-            double x1 = Math.min(_Pos1.getX(), _Pos2.getX());
-            double x2 = Math.max(_Pos1.getX(), _Pos2.getX());
+            int x1 = Math.min(_Pos1.getBlockX(), _Pos2.getBlockX());
+            int x2 = Math.max(_Pos1.getBlockX(), _Pos2.getBlockX());
             
-            double y1 = Math.min(_Pos1.getY(), _Pos2.getY());
-            double y2 = Math.max(_Pos1.getY(), _Pos2.getY());
+            int y1 = Math.min(_Pos1.getBlockY(), _Pos2.getBlockY());
+            int y2 = Math.max(_Pos1.getBlockY(), _Pos2.getBlockY());
             
-            double z1 = Math.min(_Pos1.getZ(), _Pos2.getZ());
-            double z2 = Math.max(_Pos1.getZ(), _Pos2.getZ());
+            int z1 = Math.min(_Pos1.getBlockZ(), _Pos2.getBlockZ());
+            int z2 = Math.max(_Pos1.getBlockZ(), _Pos2.getBlockZ());
             
             _Pos1 = new Location(w, x1, y1, z1);
             _Pos2 = new Location(w, x2, y2, z2);
@@ -62,24 +57,27 @@ public class RegionPositions {
             return false;
         
         if(_inside.contains(uuid)) {
-            if(loc.getX() < _Pos1.getX() || loc.getX() > _Pos2.getX()) {
+            if(loc.getBlockX() < _Pos1.getBlockX() || loc.getBlockX() > _Pos2.getBlockX()) {
                 _inside.remove(uuid);
                 return false;
             }
             
-            if(loc.getY() < _Pos1.getY() || loc.getY() > _Pos2.getY()) {
+            if(loc.getBlockY() < _Pos1.getBlockY() || loc.getBlockY() > _Pos2.getBlockY()) {
                 _inside.remove(uuid);
                 return false;
             }
             
-            if(loc.getZ() < _Pos1.getZ() || loc.getZ() > _Pos2.getZ()) {
+            if(loc.getBlockZ() < _Pos1.getBlockZ() || loc.getBlockZ() > _Pos2.getBlockZ()) {
                 _inside.remove(uuid);
                 return false;
             }
+            /* Is already in Region and is in Region, message was send, don't send again */
+            return false;
         } else {
-            if(loc.getX() >= _Pos1.getX() && loc.getX() <= _Pos2.getX()) {
-                if(loc.getY() >= _Pos1.getY() && loc.getY() <= _Pos2.getY()) {
-                    if(loc.getZ() >= _Pos1.getZ() && loc.getZ() <= _Pos2.getZ()) {
+            if(loc.getBlockX() >= _Pos1.getBlockX() && loc.getBlockX() <= _Pos2.getBlockX()) {
+                if(loc.getBlockY() >= _Pos1.getBlockY() && loc.getBlockY() <= _Pos2.getBlockY()) {
+                    if(loc.getBlockZ() >= _Pos1.getBlockZ() && loc.getBlockZ() <= _Pos2.getBlockZ()) {
+                        /* Player is new in Region, send Message */
                         _inside.add(uuid);
                         return true;
                     }
@@ -87,7 +85,7 @@ public class RegionPositions {
             }
         }
         
-        if(_inside.equals(uuid))
+        if(_inside.contains(uuid))
             _inside.remove(uuid);
         return false;
     }
@@ -112,17 +110,16 @@ public class RegionPositions {
             return null;
         
         if(cs.isConfigurationSection("pos1")) {
-            if(!cs.isDouble("pos1.x") || !cs.isDouble("pos1.y") || !cs.isDouble("pos1.z"))
+            if(!cs.isInt("pos1.x") || !cs.isInt("pos1.y") || !cs.isInt("pos1.z"))
                 return null;
         }  
-        Location pos1 = new Location(w, cs.getDouble("pos1.x"), cs.getDouble("pos1.y"), cs.getDouble("pos1.z"));
-
-         
+        Location pos1 = new Location(w, cs.getInt("pos1.x"), cs.getInt("pos1.y"), cs.getInt("pos1.z"));
+        
         if(cs.isConfigurationSection("pos2")) {
-            if(!cs.isDouble("pos2.x") || !cs.isDouble("pos2.y") || !cs.isDouble("pos2.z"))
+            if(!cs.isInt("pos2.x") || !cs.isInt("pos2.y") || !cs.isInt("pos2.z"))
                 return null;
         }
-        Location pos2 = new Location(w, cs.getDouble("pos2.x"), cs.getDouble("pos2.y"), cs.getDouble("pos2.z"));
+        Location pos2 = new Location(w, cs.getInt("pos2.x"), cs.getInt("pos2.y"), cs.getInt("pos2.z"));
         
         RegionPositions rp = new RegionPositions();
         rp.setPosition(pos1);

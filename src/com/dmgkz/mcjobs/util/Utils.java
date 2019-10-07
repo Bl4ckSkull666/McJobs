@@ -19,6 +19,14 @@ import org.bukkit.inventory.ItemStack;
  * @author PapaHarni
  */
 public class Utils {
+    public static String getListToString(List<String> arr, String seperator) {
+        String tmp = "";
+        for(String a: arr) {
+            tmp += seperator + a;
+        }
+        return tmp.substring(seperator.length());
+    }
+    
     public static boolean isMaterial(String strMat) {
         try {
             Material mat = Material.valueOf(strMat.toUpperCase());

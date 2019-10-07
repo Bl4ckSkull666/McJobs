@@ -45,7 +45,7 @@ public class JobsData{
     
     protected RegionPositions _jobInfoZone;
     protected List<String> _jobInfoZoneMessage = new ArrayList<>();
-    protected SpigotMessage _spigotMessage;
+    protected SpigotMessage _jobInfoZoneSpigotMessage;
     protected List<String> _signStringMessage = new ArrayList<>();
     protected SpigotMessage _signSpigotMessage;
 
@@ -124,14 +124,35 @@ public class JobsData{
         return McJobs.getPlugin().getLanguage().getJobDesc(_sJobName, uuid);
     }
     
-    public boolean getCostPay(boolean isPay){
+    public boolean getCostPay(boolean isPay) {
         if(isPay)
             return _bCP[0];
         else
             return _bCP[1];
     }
-    public boolean getShow(int i){
+    
+    public boolean getShow(int i) {
         return _bShow[i];
+    }
+    
+    public boolean getShow(String block) {
+        if(block.equalsIgnoreCase("break"))
+            return _bShow[0];
+        else if(block.equalsIgnoreCase("place"))
+            return _bShow[1];
+        else if(block.equalsIgnoreCase("defeat"))
+            return _bShow[2];
+        else if(block.equalsIgnoreCase("craft"))
+            return _bShow[3];
+        else if(block.equalsIgnoreCase("repair"))
+            return _bShow[4];
+        else if(block.equalsIgnoreCase("fishing"))
+            return _bShow[5];
+        else if(block.equalsIgnoreCase("enchant"))
+            return _bShow[6];
+        else if(block.equalsIgnoreCase("potion"))
+            return _bShow[7];
+        return false;
     }
 
     public HashMap<String, Boolean> getTierPays() {
@@ -146,10 +167,14 @@ public class JobsData{
         }
     }
     
+    public SpigotMessage getRegionSpigotMessage() {
+        return _jobInfoZoneSpigotMessage;
+    }
+    
     public void sendRegionMessage(Player p) {
         try {
-            if(_spigotMessage != null)
-                _spigotMessage.sendMessage(p);
+            if(_jobInfoZoneSpigotMessage != null)
+                _jobInfoZoneSpigotMessage.sendMessage(p);
             else {
                 for(String msg: _jobInfoZoneMessage)
                     p.sendMessage(msg);
@@ -160,7 +185,11 @@ public class JobsData{
         }
     }
     
-    public void sensSignMessage(Player p) {
+    public SpigotMessage getSignSpigotMessage() {
+        return _signSpigotMessage;
+    }
+    
+    public void sendSignMessage(Player p) {
         try {
             if(_signSpigotMessage != null)
                 _signSpigotMessage.sendMessage(p);

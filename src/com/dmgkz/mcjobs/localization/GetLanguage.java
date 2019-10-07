@@ -28,7 +28,9 @@ public final class GetLanguage {
 
     public GetLanguage() {
         try {
-            _useMultilingual = McJobs.getPlugin().getServer().getPluginManager().isPluginEnabled("Mu1ti1ingu41");
+            if(McJobs.getPlugin().getConfig().getBoolean("use-mu1ti1ingu41", false))
+                _useMultilingual = McJobs.getPlugin().getServer().getPluginManager().isPluginEnabled("Mu1ti1ingu41");
+            
             if(!_useMultilingual)
                 loadLanguage();
             else
@@ -153,7 +155,7 @@ public final class GetLanguage {
     }
   
     public Integer getSpaces(String subSection, UUID uuid) {
-        return getIntegerSection("spaces", "0", uuid);
+        return getIntegerSection("spaces", subSection, uuid);
     }
     
     public String getJobNameInLang(String subSection, UUID uuid) {
@@ -193,25 +195,25 @@ public final class GetLanguage {
     
     private Integer getIntegerSection(String s, String n, UUID uuid) {
         if(_useMultilingual) {
-            String str = Language.getMessage(McJobs.getPlugin(), uuid, s + "." + n, n);
+            String str = Language.getText(McJobs.getPlugin(), uuid, s + "." + n, n);
             if(Utils.isInt(str))
                 return Integer.parseInt(str);
-            return Integer.parseInt(n);
+            return 0;
         }
         
         String lang = PlayerData.getLang(uuid);
         if(!getLangFile(lang).isConfigurationSection(s))
-            return Integer.parseInt(n);
+            return 0;
         ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
         String str = getValue(section, n);
         if(Utils.isInt(str))
             return Integer.parseInt(str);
-        return Integer.parseInt(n);
+        return 0;
     }
         
     private String getSection(String s, String n, UUID uuid) {
         if(_useMultilingual)
-            return Language.getMessage(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n);
+            return Language.getText(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n);
         
         String lang = PlayerData.getLang(uuid);
         if(!getLangFile(lang).isConfigurationSection(s))
@@ -222,7 +224,7 @@ public final class GetLanguage {
     
     private AddTextVariables getATVSection(String s, String n, UUID uuid) {
         if(_useMultilingual)
-            return new AddTextVariables(Language.getMessage(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n));
+            return new AddTextVariables(Language.getText(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n));
         
         String lang = PlayerData.getLang(uuid);
         if(!getLangFile(lang).isConfigurationSection(s))

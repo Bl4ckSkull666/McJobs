@@ -9,28 +9,27 @@ import com.dmgkz.mcjobs.playerjobs.data.JobsData;
 public class PlayerJobs {
 
     private static Integer percentCost = 100;
-	
-	private static HashMap<String, PlayerJobs> joblist = new HashMap<String, PlayerJobs>();
+    private static final HashMap<String, PlayerJobs> joblist = new HashMap<>();
    
-    private JobsData data;
+    private final JobsData data;
     
-    public PlayerJobs(){
+    public PlayerJobs() {
     	data = new JobsData();
     }
 
-    public static HashMap<String, PlayerJobs> getJobsList(){
+    public static HashMap<String, PlayerJobs> getJobsList() {
     	return joblist;
     }
     
-    public JobsData getData(){
+    public JobsData getData() {
     	return this.data;
     }
 
-	public static void setPercent(int i){
-		PlayerJobs.percentCost = i;
-	}
+    public static void setPercent(int i){
+        PlayerJobs.percentCost = i;
+    }
 	
-	public static Integer getPercent(){
-		return PlayerJobs.percentCost;
-	}
+    public static Integer getPercent() {
+        return PlayerJobs.percentCost;
+    }
 }

@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.playerjobs.data;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.ArrayList;
 
 import org.bukkit.Material;
@@ -81,7 +82,7 @@ public class LoadJob {
     *             l4:
     *                 message: 'Das ist Line 2'
     */
-    public void setupJob(ConfigurationSection section){
+    public void setupJob(ConfigurationSection section) {
         for(String key: section.getKeys(false)) {
             if(key.equalsIgnoreCase("basepay")){
                 setBasePay(section.getDouble(key));
@@ -100,6 +101,29 @@ public class LoadJob {
             
             if(key.equalsIgnoreCase("default")){
                 setDefault(section.getBoolean(key));
+                continue;
+            }
+            
+            if(key.equalsIgnoreCase("job-info-zone")) {
+                if(section.isConfigurationSection(key + ".region"))
+                    _jobsdata._jobInfoZone = RegionPositions.getRP(section.getConfigurationSection(key + ".region"));
+                else
+                    _jobsdata._jobInfoZone = null;
+ 
+                _jobsdata._jobInfoZoneMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("\\|")));
+                if(Bukkit.getServer().getVersion().toLowerCase().contains("spigot"))
+                    _jobsdata._jobInfoZoneSpigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
+                else
+                    _jobsdata._jobInfoZoneSpigotMessage = null;
+                continue;
+            } 
+            
+            if(key.equalsIgnoreCase("entity-sign")) {
+                _jobsdata._signStringMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("\\|")));
+                if(Bukkit.getServer().getVersion().toLowerCase().contains("spigot"))
+                    _jobsdata._signSpigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
+                else
+                    _jobsdata._signSpigotMessage = null;
                 continue;
             }
             
@@ -153,25 +177,6 @@ public class LoadJob {
                             }
                             setEnchants(key, tier, temp);
                         }
-                    } else if(key.equalsIgnoreCase("job-info-zone")) {
-                        if(section.isConfigurationSection(key + ".region"))
-                            _jobsdata._jobInfoZone = RegionPositions.getRP(section.getConfigurationSection(key + ".region"));
-                        else
-                            _jobsdata._jobInfoZone = null;
-
-                        _jobsdata._jobInfoZoneMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("|")));
-
-                        if(Bukkit.getServer().getVersion().contains("spigot"))
-                            _jobsdata._spigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
-                        else
-                            _jobsdata._spigotMessage = null;
-                    } else if(key.equalsIgnoreCase("entity-sign")) {
-                        _jobsdata._signStringMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("|")));
-
-                        if(Bukkit.getServer().getVersion().contains("spigot"))
-                            _jobsdata._signSpigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
-                        else
-                            _jobsdata._signSpigotMessage = null;
                     }
                 }
             }
@@ -210,7 +215,7 @@ public class LoadJob {
         _jobsdata.getEnchantHash().get(action).put(key, tier);
     }
     
-    private void setTierPays(String key, Boolean isPays){
+    private void setTierPays(String key, Boolean isPays) {
         _jobsdata.getTierPays().put(key, isPays);
     }
     
@@ -239,7 +244,7 @@ public class LoadJob {
         _jobsdata._bDefaultJob = bDefaultJob;
     }
     
-    public void setHide(String block, boolean isHide){
+    public void setHide(String block, boolean isHide) {
         if(block.equalsIgnoreCase("break"))
             _jobsdata._bShow[0] = isHide;
         else if(block.equalsIgnoreCase("place"))

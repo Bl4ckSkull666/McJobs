@@ -10,6 +10,7 @@ import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.JobSign;
 import com.dmgkz.mcjobs.util.SignType;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,13 +50,13 @@ public class SubCommandSign {
             return;
         }
         
-        if(!PlayerJobs.getJobsList().containsKey(a[2])) {
+        if(!PlayerJobs.getJobsList().containsKey(a[1])) {
             str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-job", p.getUniqueId()).addVariables("", p.getName(), l);
             text.formatPlayerText(str, p);                    
             return;
         }
         
-        SignType siType = SignType.getByName(a[3]);
+        SignType siType = SignType.getByName(a[2]);
         if(siType == SignType.NONE) {
             str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-signtype", p.getUniqueId()).addVariables("", p.getName(), l);
             text.formatPlayerText(str, p);                    
@@ -63,18 +64,16 @@ public class SubCommandSign {
         }
         
         Set<Material> search = new HashSet<>();
-        search.add(Material.SIGN);
-        search.add(Material.SIGN_POST);
-        search.add(Material.WALL_SIGN);
+        search.addAll(Arrays.asList(Material.values()));
         List<Block> bList = p.getLineOfSight(search, 7);
         
         Sign tmp = null;
         double dist = 10.0;
         for(Block b: bList) {
-            if(!(b instanceof Sign))
+            if(!(b.getState() instanceof Sign))
                 continue;
             
-            Sign si = (Sign)b;
+            Sign si = (Sign)b.getState();
             if(tmp == null || dist > p.getLocation().distance(b.getLocation())) {
                 tmp = si;
                 dist = p.getLocation().distance(b.getLocation());
@@ -93,7 +92,7 @@ public class SubCommandSign {
             return;
         }
         
-        JobSign js = new JobSign(a[2], siType);
+        JobSign js = new JobSign(a[1], siType);
         McJobs.getPlugin().getSignManager().addSign(tmp.getLocation(), js);
         str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-successfull-registed", p.getUniqueId()).addVariables("", p.getName(), l);
         text.formatPlayerText(str, p);                    
