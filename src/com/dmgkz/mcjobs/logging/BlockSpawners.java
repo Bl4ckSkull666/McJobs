@@ -1,6 +1,7 @@
 package com.dmgkz.mcjobs.logging;
 
 
+import com.dmgkz.mcjobs.util.ConfigMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -22,7 +23,7 @@ public class BlockSpawners {
                 for(int z = z_start ; z < (z_start + operate) ; z++){
                     Block blockToCheck = world.getBlockAt(x, y, z);
                     
-                    if(blockToCheck.getType() == Material.MOB_SPAWNER)
+                    if(blockToCheck.getType() == ConfigMaterials.getMaterial("MOB_SPAWNER"))
                         return true;
                 }
             }

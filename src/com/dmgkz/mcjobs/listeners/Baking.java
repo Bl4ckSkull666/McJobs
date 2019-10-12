@@ -20,6 +20,7 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import org.bukkit.GameMode;
+import org.bukkit.event.inventory.InventoryType;
 
 public class Baking implements Listener {
     private final HashMap<InventoryHolder, Player> _hFurnaces = new HashMap<>();
@@ -29,13 +30,14 @@ public class Baking implements Listener {
         SlotType entFurn = event.getSlotType();
         Integer slotID = event.getSlot();
         InventoryHolder furnace;
-        if(entFurn == SlotType.CONTAINER && slotID == 0 && event.getInventory().getName().equalsIgnoreCase("container.furnace")){
+        //if(entFurn == SlotType.CONTAINER && slotID == 0 && event.getInventory().getName().equalsIgnoreCase("container.furnace")){
+        if(entFurn == SlotType.CONTAINER && slotID == 0 && event.getInventory().getType().equals(InventoryType.FURNACE)) {
             Player play = (Player) event.getWhoClicked();
             ItemStack itemPlaced = event.getCursor();
 
             furnace = event.getInventory().getHolder();
 
-            if(itemPlaced.getType() != Material.AIR){
+            if(itemPlaced != null && !itemPlaced.getType().equals(Material.AIR)) {
                 _hFurnaces.put(furnace, play);                 
             }
         }

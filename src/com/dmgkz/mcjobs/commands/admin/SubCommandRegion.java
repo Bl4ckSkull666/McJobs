@@ -8,6 +8,7 @@ package com.dmgkz.mcjobs.commands.admin;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,6 +32,18 @@ public class SubCommandRegion {
                 text.formatPlayerText(str, (Player)s);
                 return;
             }
+        } else {
+            s.sendMessage("Please run this command from ingame!");
+            return;
         }
+        
+        if(!Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-worldedit", uuid).addVariables("", name, l);
+            text.formatPlayerText(str, (Player)s);
+            return;
+        }
+        
+        //Location[] selection = WESelection.getSelection(_plugin, player);
+        //Selection selection = WorldEdit.getInstance().getSession((Player)s);
     }
 }

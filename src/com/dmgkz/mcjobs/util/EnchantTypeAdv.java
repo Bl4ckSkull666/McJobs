@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -37,7 +38,7 @@ public class EnchantTypeAdv {
         if(!f.exists()) {
             for(Enchantment en: Enchantment.values()) {
                 for(int i = en.getStartLevel(); i <= en.getMaxLevel(); i++) {
-                    fc.set(en.getName() + "." + i, en.getName().toUpperCase() + "_" + i);
+                    fc.set(en.getKey().getKey() + "." + i, en.getKey().getKey().toUpperCase() + "_" + i);
                 }
             }
             try {
@@ -48,7 +49,7 @@ public class EnchantTypeAdv {
         }
         
         for(String k: fc.getKeys(false)) {
-            Enchantment ench = Enchantment.getByName(k.toUpperCase());
+            Enchantment ench = Enchantment.getByKey(NamespacedKey.minecraft(k));
             if(ench == null) {
                 McJobs.getPlugin().getLogger().log(Level.INFO, "Can't find Enchantment " + k);
                 continue;

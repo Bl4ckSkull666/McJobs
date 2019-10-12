@@ -22,6 +22,7 @@ import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryType;
 
 public class Brewing implements Listener{
     private final HashMap<InventoryHolder, Player> hBrewStands = new HashMap<>();
@@ -86,7 +87,8 @@ public class Brewing implements Listener{
         if(event.isCancelled())
             return;
                 
-        if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getName().equalsIgnoreCase("container.brewing")){
+        //if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getName().equalsIgnoreCase("container.brewing")) {
+        if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getType().equals(InventoryType.BREWING)) {
             InventoryHolder brewStand = event.getInventory().getHolder();
             hBrewStands.put(brewStand, play);
         }

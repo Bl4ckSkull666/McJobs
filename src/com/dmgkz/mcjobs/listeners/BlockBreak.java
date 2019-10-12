@@ -19,6 +19,11 @@ import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.MatClass;
 import com.dmgkz.mcjobs.util.Utils;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 
 import de.diddiz.LogBlock.QueryParams.BlockChangeType;
@@ -51,16 +56,18 @@ public class BlockBreak implements Listener{
             text.formatPlayerText(str, play);
             return;
         } 
+        
         MatClass block = new MatClass(event.getBlock().getType());
-        if(event.getBlock().getState().getData().toItemStack(1).getDurability() > 0) {
+        /*if(event.getBlock().getState().getData().toItemStack(1).getDurability() > 0) {
             block.setWorth(event.getBlock().getState().getData().toItemStack(1).getDurability());
-        }
+        }*/
         
         Location loc = event.getBlock().getLocation();
         Integer timer = MCListeners.getTimeInMins();
 
         if(MCListeners.isWorldGuard()) {
-            if(!McJobs.getWorldGuard().canBuild(play, loc))
+            RegionQuery rq = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
+            if(!rq.testState(BukkitAdapter.adapt(loc), WorldGuardPlugin.inst().wrapPlayer(play), Flags.BUILD))
                 return;
         }
         

@@ -30,6 +30,7 @@ import com.dmgkz.mcjobs.scheduler.McJobsNotify;
 import com.dmgkz.mcjobs.scheduler.McJobsComp;
 import com.dmgkz.mcjobs.scheduler.McJobsPreComp;
 import com.dmgkz.mcjobs.scheduler.McJobsRemovePerm;
+import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
@@ -105,6 +106,7 @@ public class McJobs extends JavaPlugin {
         }
         
         if(!_bQuit) {
+            ConfigMaterials.load(this.getConfig());
             PlayerData.loadPlayerPerms();
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsRemovePerm(), 1200L, 1200L);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsPreComp(), 200L, 200L);

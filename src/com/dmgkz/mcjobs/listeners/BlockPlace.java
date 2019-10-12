@@ -16,7 +16,13 @@ import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.dmgkz.mcjobs.util.MatClass;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 import de.diddiz.LogBlock.QueryParams.BlockChangeType;
 
@@ -26,9 +32,8 @@ public class BlockPlace implements Listener {
     public void blockPlace(BlockPlaceEvent event) {
         if(event.isCancelled())
             return;
+        
         if(!event.canBuild())
-            return;
-        if(event.getBlock().getType() == null)
             return;
         
         Player play = event.getPlayer();
@@ -38,19 +43,20 @@ public class BlockPlace implements Listener {
         Integer timer = MCListeners.getTimeInMins();
                 
 
-        if((block == Material.DIODE_BLOCK_OFF || 
-                block == Material.REDSTONE_TORCH_OFF || 
-                block == Material.RAILS || 
-                block == Material.DETECTOR_RAIL || 
-                block == Material.POWERED_RAIL) && 
-                (replaced == Material.WATER || 
-                replaced == Material.STATIONARY_WATER || 
-                replaced == Material.LAVA || 
-                replaced == Material.STATIONARY_LAVA))
+        if((block == ConfigMaterials.getMaterial("DIODE_BLOCK_OFF") || 
+                block == ConfigMaterials.getMaterial("REDSTONE_TORCH_OFF") || 
+                block == ConfigMaterials.getMaterial("RAILS") || 
+                block == ConfigMaterials.getMaterial("DETECTOR_RAIL") || 
+                block == ConfigMaterials.getMaterial("POWERED_RAIL")) && 
+                (replaced == ConfigMaterials.getMaterial("WATER") || 
+                replaced == ConfigMaterials.getMaterial("STATIONARY_WATER") || 
+                replaced == ConfigMaterials.getMaterial("LAVA") || 
+                replaced == ConfigMaterials.getMaterial("STATIONARY_LAVA")))
             return;
         
-        if(MCListeners.isWorldGuard()){
-            if(!McJobs.getWorldGuard().canBuild(play, loc))
+        if(MCListeners.isWorldGuard()) {
+            RegionQuery rq = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
+            if(!rq.testState(BukkitAdapter.adapt(loc), WorldGuardPlugin.inst().wrapPlayer(play), Flags.BUILD))
                 return;
         }
 
@@ -65,9 +71,9 @@ public class BlockPlace implements Listener {
         }
         
         MatClass MatBlock = new MatClass(event.getBlock().getType());
-        if(event.getBlock().getState().getData().toItemStack().getDurability() > 0) {
+        /*if(event.getBlock().getState().getData().toItemStack().getDurability() > 0) {
             MatBlock.setWorth(event.getBlock().getState().getData().toItemStack().getDurability());
-        }
+        }*/
         
         for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
             String sJob = pair.getKey();
