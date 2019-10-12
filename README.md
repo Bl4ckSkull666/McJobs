@@ -31,16 +31,15 @@
 * Region Message ( coming soon in the Wiki )
 
 # Information about
-* Potion Configuration
-* Enchantment Configuration
-* Job Configuration
+* [Potion Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Potion-Configuration) | [Available Potion Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)
+* [Enchantment Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Enchant-Configuration) | [Available Enchant Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html)
+* [Job Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Job-File)
 * Config File
 
 
 ####################################################
 
 [*If you like the work, you can spend my kids a Icecream*](https://www.tipeeestream.com/bl4ckskull666/donation)
-
 *( PayPal/PaySafeCard & more )*
 
 ## IceCream Spend List:
