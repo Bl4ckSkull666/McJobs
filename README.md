@@ -19,22 +19,22 @@
 * MySQL ( incl. Maria DB )
 
 # Commands
-[User Commands](https://github.com/Bl4ckSkull666/McJobs/wiki/User-Commands)
-[Admin Commands](https://github.com/Bl4ckSkull666/McJobs/wiki/Admin-Commands)
+* [User Commands](https://github.com/Bl4ckSkull666/McJobs/wiki/User-Commands)
+* [Admin Commands](https://github.com/Bl4ckSkull666/McJobs/wiki/Admin-Commands)
 
 # Permission
 [All Permissions at a glance](https://github.com/Bl4ckSkull666/McJobs/wiki/Permissions)
 
 # New Setting up's
-NPC Talk ( coming soon in the Wiki )
-Job Signs ( coming soon in the Wiki )
-Region Message ( coming soon in the Wiki )
+* NPC Talk ( coming soon in the Wiki )
+* Job Signs ( coming soon in the Wiki )
+* Region Message ( coming soon in the Wiki )
 
 # Information about
-Potion Configuration
-Enchantment Configuration
-Job Configuration
-Config File
+* Potion Configuration
+* Enchantment Configuration
+* Job Configuration
+* Config File
 
 
 ####################################################
