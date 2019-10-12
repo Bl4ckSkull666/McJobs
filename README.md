@@ -23,7 +23,7 @@
 * [Admin Commands](https://github.com/Bl4ckSkull666/McJobs/wiki/Admin-Commands)
 
 # Permission
-[All Permissions at a glance](https://github.com/Bl4ckSkull666/McJobs/wiki/Permissions)
+* [All Permissions at a glance](https://github.com/Bl4ckSkull666/McJobs/wiki/Permissions)
 
 # New Setting up's
 * NPC Talk ( coming soon in the Wiki )
@@ -35,6 +35,10 @@
 * [Enchantment Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Enchant-Configuration) | [Available Enchant Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html)
 * [Job Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Job-File)
 * Config File
+
+
+# Download last Build
+* [Last Official File](https://dev.bukkit.org/projects/mcjobs/files/latest)
 
 
 ####################################################
