@@ -6,7 +6,7 @@ authors: [RathelmMC, Bl4ckSkull666]
 website: https://www.survival-piraten.de
 dev-url: http://dev.bukkit.org/server-mods/mcjobs/
 depend: [Vault]
-softdepend: [Mu1ti1ingu41,mcMMO,WorldGuard,LogBlock,Citizens,WorldEdit]
+softdepend: [mcMMO,WorldGuard,LogBlock,Citizens,WorldEdit]
 commands:
     mcjobs:
         aliases: [jobs,mcj]

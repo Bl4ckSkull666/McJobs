@@ -33,7 +33,7 @@ backend:
   port: 3306
 
 advanced:
-  language: english
+  language: en
   usePerms: false
   multiWorld: false
   payment_type: money
@@ -48,13 +48,13 @@ advanced:
   version: 3800
   
 materials:
-  mob_spawner: MOB_SPAWNER
+  mob_spawner: SPAWNER
   diode_block_off: DIODE_BLOCK_OFF
   redstone_torch_off: REDSTONE_TORCH_OFF
   rails: RAILS 
   detector_rail: DETECTOR_RAIL 
   powered_rail: POWERED_RAIL 
   water: WATER 
-  stationary_water: STATIONARY_WATER 
+  stationary_water: WATER 
   lava: LAVA 
-  stationary_lava: STATIONARY_LAVA
+  stationary_lava: LAVA

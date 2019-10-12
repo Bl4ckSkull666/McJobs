@@ -31,12 +31,15 @@ import com.dmgkz.mcjobs.scheduler.McJobsComp;
 import com.dmgkz.mcjobs.scheduler.McJobsPreComp;
 import com.dmgkz.mcjobs.scheduler.McJobsRemovePerm;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
+import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PlayerUtils;
+import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import java.io.IOException;
 import java.util.logging.Level;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 
 
@@ -45,7 +48,7 @@ public class McJobs extends JavaPlugin {
     private Long _time = 72000L;
     private Long _notify= 72000L;
     private Integer _version = 0;
-    private String _localization = "english";
+    private String _localization = "en";
     
     private boolean _bLogBlock = false;
     private boolean _bPrune = false;
@@ -150,7 +153,6 @@ public class McJobs extends JavaPlugin {
         }
         
         _localization = config.getString("advanced.language");
-        _language.loadLanguage();
         if(_localization.isEmpty() || !_language.getLanguages().containsKey(_localization)) {
             getLogger().log(Level.INFO, "Cant find default language in config.yml!! Stop Plugin.");
             getServer().getPluginManager().disablePlugin(this);
@@ -221,6 +223,11 @@ public class McJobs extends JavaPlugin {
         //Load SignManager
         _signManager = new SignManager();
         
+        //Load Potions
+        PotionTypeAdv.load();
+        
+        //load Enchantments
+        EnchantTypeAdv.load();
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsNotify(), _notify, _notify);
     }
     
