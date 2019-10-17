@@ -1,0 +1,10 @@
+basepay: 3.0
+exp: 5
+pvp:
+  pays: true
+  hide: false
+  1: 1
+  2: 25
+  3: 75
+  4: 150
+  5: 300

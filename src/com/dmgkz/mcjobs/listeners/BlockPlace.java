@@ -17,7 +17,6 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
-import com.dmgkz.mcjobs.util.MatClass;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -25,6 +24,7 @@ import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 import de.diddiz.LogBlock.QueryParams.BlockChangeType;
+import java.util.ArrayList;
 
 public class BlockPlace implements Listener {
     
@@ -70,13 +70,8 @@ public class BlockPlace implements Listener {
                 return;
         }
         
-        MatClass MatBlock = new MatClass(event.getBlock().getType());
-        /*if(event.getBlock().getState().getData().toItemStack().getDurability() > 0) {
-            MatBlock.setWorth(event.getBlock().getState().getData().toItemStack().getDurability());
-        }*/
-        
-        for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = pair.getKey();
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("place");
+        for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
 
                 if(McJobs.getPlugin().isLogBlock()){
@@ -88,7 +83,7 @@ public class BlockPlace implements Listener {
                         return;
                 }
 
-                CompCache comp = new CompCache(sJob, loc, play, MatBlock, "place");
+                CompCache comp = new CompCache(sJob, loc, play, event.getBlock().getType(), "place");
                 CompData.getCompCache().add(comp);
             }
         }

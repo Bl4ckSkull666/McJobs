@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import java.util.ArrayList;
 import org.bukkit.GameMode;
 import org.bukkit.event.inventory.InventoryType;
 
@@ -65,8 +67,8 @@ public class Baking implements Listener {
                     return;
             }
 
-            for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-                String sJob = pair.getKey();
+            ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+            for(String sJob: jobs) {
                 if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                     CompCache comp = new CompCache(sJob, play.getLocation(), play, event.getResult(), "craft");
                     CompData.getCompCache().add(comp);                

@@ -1,6 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
-import java.util.Map;
+import com.dmgkz.mcjobs.McJobs;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,10 +10,9 @@ import org.bukkit.event.player.PlayerShearEntityEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import java.util.ArrayList;
 import org.bukkit.GameMode;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
 
 public class ShearEvent implements Listener {
@@ -39,16 +38,11 @@ public class ShearEvent implements Listener {
         }
         
         Sheep theSheep = (Sheep)event.getEntity();
-        for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = pair.getKey();
-            
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("shear");
+        for(String sJob: jobs) {            
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
                 CompCache comp = new CompCache(sJob, theSheep, play, "shear");
                 CompData.getCompCache().add(comp);
-                
-//                if(PlayerJobs.joblist.get(sJob).getData().compJob().compEntity(mob, play, "defeat")){
-//                    play.sendMessage("You killed him!");
-//                }
             }
         }
         

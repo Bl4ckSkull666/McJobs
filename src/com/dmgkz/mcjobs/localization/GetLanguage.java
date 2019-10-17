@@ -5,9 +5,9 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.prettytext.AddTextVariables;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.ResourceList;
+import com.dmgkz.mcjobs.util.SpigotMessage;
 import de.bl4ckskull666.mu1ti1ingu41.Language;
 import de.bl4ckskull666.mu1ti1ingu41.Mu1ti1ingu41;
-import de.diddiz.util.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,12 +24,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public final class GetLanguage {
     private boolean _useMultilingual = false;
     private final HashMap<String, FileConfiguration> _languages = new HashMap<>();
+    //HashMap<Language String, HashMap<YAML Key String, SpigotMessage>
+    private final HashMap<String, HashMap<String, SpigotMessage>> _spMessages = new HashMap<>();
+    
     private String _avaLangs = "";
     private String _defaultLang = "";
 
     public GetLanguage() {
         try {
-            if(McJobs.getPlugin().getConfig().getBoolean("use-mu1ti1ingu41", false))
+            if(McJobs.getPlugin().getConfig().getBoolean("use-mu1ti1ingu41", false) && Bukkit.getPluginManager().isPluginEnabled("Mu1ti1ingu41"))
                 _useMultilingual = McJobs.getPlugin().getServer().getPluginManager().isPluginEnabled("Mu1ti1ingu41");
             
             if(!_useMultilingual)
@@ -87,11 +91,15 @@ public final class GetLanguage {
     }
   
     public String getPotion(String n, UUID uuid) {
-        return getSection("potions", n, uuid);
+        return getSection("potion", n, uuid);
     }
   
     public String getEnchant(String n, UUID uuid) {
         return getSection("enchant", n, uuid);
+    }
+    
+    public String getColor(String n, UUID uuid) {
+        return getSection("color", n, uuid);
     }
   
     public AddTextVariables getJobCommand(String subSection, UUID uuid) {
@@ -158,6 +166,10 @@ public final class GetLanguage {
         return getIntegerSection("spaces", subSection, uuid);
     }
     
+    public String getJobName(String jobname, UUID uuid) {
+        return getSection("jobs.name", jobname, uuid);
+    }
+    
     public String getJobNameInLang(String subSection, UUID uuid) {
         return getSection("jobs.name", subSection, uuid);
     }
@@ -194,21 +206,22 @@ public final class GetLanguage {
     }
     
     private Integer getIntegerSection(String s, String n, UUID uuid) {
+        String str;
         if(_useMultilingual) {
-            String str = Language.getText(McJobs.getPlugin(), uuid, s + "." + n, n);
-            if(Utils.isInt(str))
-                return Integer.parseInt(str);
-            return 0;
+            str = Language.getText(McJobs.getPlugin(), uuid, s + "." + n, n);
+        } else {
+            String lang = PlayerData.getLang(uuid);
+            if(!getLangFile(lang).isConfigurationSection(s))
+                return 0;
+            ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
+            str = getValue(section, n);
         }
         
-        String lang = PlayerData.getLang(uuid);
-        if(!getLangFile(lang).isConfigurationSection(s))
-            return 0;
-        ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
-        String str = getValue(section, n);
-        if(Utils.isInt(str))
+        try {
             return Integer.parseInt(str);
-        return 0;
+        } catch(Exception ex) {
+            return 0;
+        }
     }
         
     private String getSection(String s, String n, UUID uuid) {
@@ -232,58 +245,6 @@ public final class GetLanguage {
         ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
         return new AddTextVariables(getSubString(section, n));
     }
-
-    public void loadLanguage() throws InvalidConfigurationException {
-        if(!McJobs.getPlugin().getDataFolder().exists())
-            McJobs.getPlugin().getDataFolder().mkdir();
-        
-        File lFold = new File(McJobs.getPlugin().getDataFolder(), "languages");
-        if(!lFold.exists())
-            lFold.mkdir();
-        
-        if(McJobs.hasYAMLFiles(lFold.listFiles()) == 0) {
-            for(String srcFile: ResourceList.getResources("languages")) {
-                String name = "";
-                try {
-                    InputStream in = McJobs.getPlugin().getResource(srcFile);
-                    String msg = "";
-                    int c = -1;
-                    while((c = in.read()) != -1)
-                        msg += String.valueOf((char)c);
-                    
-                    File spLang = new File(McJobs.getPlugin().getDataFolder(), srcFile);
-                    
-                    name = spLang.getName();
-                    int pos = name.lastIndexOf(".");
-                    if (pos > 0)
-                        name = name.substring(0, pos);
-                    
-                    FileConfiguration fcLang = YamlConfiguration.loadConfiguration(spLang);
-                    fcLang.loadFromString(msg);
-                    fcLang.save(spLang);
-                    
-                    _languages.put(name, fcLang);
-                    McJobs.getPlugin().getLogger().log(Level.INFO, "Language {0} has been loaded and saved.", name);
-                } catch (IOException | InvalidConfigurationException ex) {
-                    McJobs.getPlugin().getLogger().log(Level.SEVERE, "Error on loading default language " + name, ex);
-                }
-            }
-        } else {
-            for(File lang: lFold.listFiles()) {
-                if(!lang.getName().endsWith(".yml"))
-                    continue;
-                
-                String name = lang.getName();
-                int pos = name.lastIndexOf(".");
-                if (pos > 0)
-                    name = name.substring(0, pos);
-                        
-                FileConfiguration fcLang = YamlConfiguration.loadConfiguration(lang);
-                _languages.put(name, fcLang);
-                McJobs.getPlugin().getLogger().log(Level.INFO, "Language {0} has been loaded.", name);
-            }
-        }
-    }
     
     private String getValue(ConfigurationSection cs, String ss) {
         String name = cs.getString(ss.toLowerCase(), "Unknown value: " + ss);
@@ -297,5 +258,113 @@ public final class GetLanguage {
     
     private void loadMu1ti1ingu41DefaultFiles() {
         Mu1ti1ingu41.loadExternalDefaultLanguage(McJobs.getPlugin(), "languages");
+    }
+    
+    public void loadLanguage() throws InvalidConfigurationException {
+        if(!McJobs.getPlugin().getDataFolder().exists())
+            McJobs.getPlugin().getDataFolder().mkdir();
+        
+        File lFold = new File(McJobs.getPlugin().getDataFolder(), "languages");
+        if(!lFold.exists())
+            lFold.mkdir();
+        
+        if(McJobs.hasYAMLFiles(lFold.listFiles()) == 0) {
+            loadDefaultFiles("languages", lFold);
+        }
+        
+        for(File lang: lFold.listFiles()) {
+            if(!lang.getName().endsWith(".yml"))
+                continue;
+                
+            String name = lang.getName();
+            int pos = name.lastIndexOf(".");
+            if (pos > 0)
+                name = name.substring(0, pos);
+                        
+            FileConfiguration fcLang = YamlConfiguration.loadConfiguration(lang);
+            _languages.put(name, fcLang);
+            McJobs.getPlugin().getLogger().log(Level.INFO, "Language {0} has been loaded.", name);
+        }
+        
+        loadSpigotMessages();
+    }
+    
+    private void loadSpigotMessages() {
+        if(!McJobs.getPlugin().getDataFolder().exists())
+            McJobs.getPlugin().getDataFolder().mkdir();
+        
+        File lFold = new File(McJobs.getPlugin().getDataFolder(), "spigot_lang");
+        if(!lFold.exists())
+            lFold.mkdir();
+        
+        lFold = new File(lFold, "english");
+        if(!lFold.exists())
+            lFold.mkdir();
+        
+        if(McJobs.hasYAMLFiles(lFold.listFiles()) == 0) {
+            loadDefaultFiles("spigotlang", lFold);
+        }
+        
+        int t = 0;
+        
+        for(File lang: lFold.listFiles()) {
+            if(!lang.isDirectory())
+                continue;
+            
+            for(File f: lang.listFiles()) {
+                if(!f.getName().endsWith(".yml"))
+                    continue;
+                
+                String name = f.getName();
+                int pos = name.lastIndexOf(".");
+                if (pos > 0)
+                    name = name.substring(0, pos);
+
+                FileConfiguration fc = YamlConfiguration.loadConfiguration(lang);
+                SpigotMessage sp = new SpigotMessage(fc);
+                
+                if(!sp.getMessage().isEmpty())
+                    continue;
+                
+                if(_spMessages.get(lang.getName()).containsKey(name))
+                    McJobs.getPlugin().getLogger().warning("Duplicate of key " + name + " in " + lang.getName() + " found!");
+                else
+                    _spMessages.get(lang.getName()).put(name, sp);
+                
+                t++;
+            }
+        }
+        McJobs.getPlugin().getLogger().log(Level.INFO, "Loaded {0} Spigot messages total.", t);
+    }
+    
+    private void loadDefaultFiles(String resPath, File safeDir) {
+        for(String srcFile: ResourceList.getResources(resPath)) {
+            String name = "";
+            try {
+                //Load text from Resource File in resPath
+                InputStream in = McJobs.getPlugin().getResource(srcFile);
+                String msg = "";
+                int c = -1;
+                while((c = in.read()) != -1)
+                    msg += String.valueOf((char)c);
+                
+                //Create File to write text from Resouce file.
+                File spLang = new File(safeDir, new File(srcFile).getName());
+                    
+                //Create language name from Filname
+                name = spLang.getName();
+                int pos = name.lastIndexOf(".");
+                if (pos > 0)
+                    name = name.substring(0, pos);
+                
+                //Let us save the text local now.
+                FileConfiguration fcLang = YamlConfiguration.loadConfiguration(spLang);
+                fcLang.loadFromString(msg);
+                fcLang.save(spLang);
+                McJobs.getPlugin().getLogger().log(Level.INFO, "Loaded {0} files from resource and save it local.", name);
+            } catch (IOException | InvalidConfigurationException ex) {
+                McJobs.getPlugin().getLogger().log(Level.SEVERE, "Error on loading default file " + name, ex);
+            }
+        }
     }
 }

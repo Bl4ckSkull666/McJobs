@@ -1,234 +1,168 @@
 water:
-    type: water
-    extended: false
-    upgraded: false
-    order: 0
-    result:
-        GUNPOWDER: splash_water
-        DRAGON_BREATH: lingering_water
-        RABBIT_FOOT: mundane
-        BLAZE_POWDER: mundane
-        SPIDER_EYE: mundane
-        GHAST_TEAR: mundane
-        GLISTERING_MELON_SLICE: mundane
-        SUGAR: mundane
-        NETHER_WART: awkward
-        GLOWSTONE_DUST: think
-        FERMENTED_SPIDER_EYE: weakness
-        REDSTONE: mundane
-        MAGMA_CREAM: mundane
-mundane:
-    type: mundane
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        GUNPOWDER: splash_mundane
-        DRAGON_BREATH: lingering_mundane
-thick:
-    type: thick
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        GUNPOWDER: splash_thick
-        DRAGON_BREATH: lingering_thick
+  type: water
+  extended: false
+  upgraded: false
+  order: 0
+  result:
+    GUNPOWDER: splash_water
+    NETHER_WART: awkward
+    GLOWSTONE_DUST: think
+    FERMENTED_SPIDER_EYE: weakness
+    SPIDER_EYE: mundane
+    GHAST_TEAR: mundane
+    RABBIT_FOOT: mundane
+    BLAZE_POWDER: mundane
+    GLISTERING_MELON_SLICE: mundane
+    SUGAR: mundane
+    MAGMA_CREAM: mundane
+    REDSTONE: mundane
+
 awkward: 
-    type: awkward
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        GUNPOWDER: splash_awkward
-        DRAGON_BREATH: lingering_awkward
-        RABBIT_FOOT: jump
-        BLAZE_POWDER: strength
-        PUFFERFISH: water_breathing
-        SPIDER_EYE: poison
-        GHAST_TEAR: regeneration
-        GOLDEN_CARROT: nightvision
-        GLISTERING_MELON_SLICE: instant_heal
-        SUGAR: speed
-        MAGMA_CREAM: fireresist
-nightvision:
-    type: night_vision
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_nightvision
-        DRAGON_BREATH: lingering_nightvision
-        FERMENTED_SPIDER_EYE: invis
-        REDSTONE: nightvision_ext
-nightvision_ext:
-    type: night_vision
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_nightvision_ext
-        DRAGON_BREATH: lingering_nightvision_ext
-        FERMENTED_SPIDER_EYE: invis_ext
-invis:
-    type: invisibility
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_invis
-        DRAGON_BREATH: lingering_invis
-        REDSTONE: invis_ext
-invis_ext:
-    type: invisibility
-    extended: true
-    upgraded: false
-    order: 3
-    result: 
-        GUNPOWDER: splash_invis_ext
-        DRAGON_BREATH: lingering_invis_ext
-jump:
-    type: jump
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_jump
-        DRAGON_BREATH: lingering_jump
-        GLOWSTONE_DUST: jump_upg
-        REDSTONE: jump_ext
-        FERMENTED_SPIDER_EYE: slowness
-jump_ext:
-    type: jump
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_jump_ext
-        DRAGON_BREATH: lingering_jump_ext
-        FERMENTED_SPIDER_EYE: slowness_ext
-jump_upg:
-    type: jump
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_jump_upg
-        DRAGON_BREATH: lingering_jump_upg
-fireresist:
-    type: fire_resistance
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_fireresist
-        DRAGON_BREATH: lingering_fireresist
-        REDSTONE: fireresist_ext
-fireresist_ext:
-    type: fire_resistance
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_fireresist_ext
-        DRAGON_BREATH: lingering_fireresist_ext
+  type: awkward
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    SUGAR: speed
+    RABBIT_FOOT: jump
+    BLAZE_POWDER: strength
+    GLISTERING_MELON_SLICE: healing
+    SPIDER_EYE: poison
+    GHAST_TEAR: regeneration
+    MAGMA_CREAM: fire_resistance
+    PUFFERFISH: water_breathing
+    GOLDEN_CARROT: nightvision
+    TURTLE_HELMET: turtlemaster
+    PHANTOM_MEMBRANE: soft_fall
+    GUNPOWDER: splash_awkward
+    
 speed:
-    type: speed
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_speed
-        DRAGON_BREATH: lingering_speed
-        FERMENTED_SPIDER_EYE: slowness
-        REDSTONE: speed_ext
-        GLOWSTONE_DUST: speed_upg
+  type: speed
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GLOWSTONE_DUST: speed_upg
+    REDSTONE: speed_ext
+    FERMENTED_SPIDER_EYE: slowness
+    GUNPOWDER: splash_speed
+    
 speed_ext:
-    type: speed
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_speed_ext
-        DRAGON_BREATH: lingering_speed_ext
-        FERMENTED_SPIDER_EYE: slowness_ext
+  type: speed
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_speed_ext
+    FERMENTED_SPIDER_EYE: slowness_ext
+
 speed_upg:
-    type: speed
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_speed_upg
-        DRAGON_BREATH: lingering_speed_upg
+  type: speed
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_speed_upg
+
+jump:
+  type: jump
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    REDSTONE: jump_ext
+    GLOWSTONE_DUST: jump_upg
+    FERMENTED_SPIDER_EYE: slowness
+    GUNPOWDER: splash_jump
+
+jump_ext:
+  type: jump
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    FERMENTED_SPIDER_EYE: slowness_ext
+    GUNPOWDER: splash_jump_ext
+
+jump_upg:
+  type: jump
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_jump_upg
+
 slowness:
-    type: slowness
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_slowness
-        DRAGON_BREATH: lingering_slowness
-        REDSTONE: slowness_ext
+  type: slowness
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_slowness
+    REDSTONE: slowness_ext
+    GLOWSTONE_DUST: slowness_upg
+        
 slowness_ext:
-    type: slowness
-    extended: ture
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_slowness_ext
-        DRAGON_BREATH: lingering_slowness_ext
-water_breathing:
-    type: water_breathing
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_water_breathing
-        DRAGON_BREATH: lingering_water_breathing
-        REDSTONE: water_breathing_ext
-water_breathing_ext:
-    type: water_breathing
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_water_breathing_ext
-        DRAGON_BREATH: lingering_water_breathing_ext
-instant_heal:
-    type: instant_heal
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_instant_heal
-        DRAGON_BREATH: lingering_instant_heal
-        GLOWSTONE_DUST: instant_heal_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
-instant_heal_upg:
-    type: instant_heal
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_instant_heal_upg
-        DRAGON_BREATH: lingering_instant_heal_upg
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
-instant_dmg:
-    type: instant_damage
-    extended: false
-    upgraded: false
-    order: 2
-    result: 
-        GUNPOWDER: splash_instant_dmg
-        DRAGON_BREATH: lingering_instant_dmg
-        GLOWSTONE_DUST: instant_dmg_upg
-instant_dmg_upg:
-    type: instant_damage
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_instant_dmg_upg
-        DRAGON_BREATH: lingering_instant_dmg_upg
+  type: slowness
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    GUNPOWDER: splash_slowness_ext
+        
+slowness_upg:
+  type: slowness
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    GUNPOWDER: splash_slowness_upg
+        
+strength: 
+  type: strength
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_strength
+    REDSTONE: strength_ext
+    GLOWSTONE_DUST: strength_upg
+
+strength_ext:
+  type: strength
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_strength_ext
+
+strength_upg:
+  type: strength
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_strength_upg
+  
+healing:
+  type: instant_heal
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_healing
+    GLOWSTONE_DUST: healing_upg
+    FERMENTED_SPIDER_EYE: damage
+
+healing_upg:
+  type: instant_heal
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_healing_upg
+    FERMENTED_SPIDER_EYE: damage_upg
+
 poison:
     type: poison
     extended: false
@@ -236,27 +170,44 @@ poison:
     order: 2
     result:
         GUNPOWDER: splash_poison
-        DRAGON_BREATH: lingering_poison
         REDSTONE: poison_ext
         GLOWSTONE_DUST: poison_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
+        FERMENTED_SPIDER_EYE: damage
+
 poison_ext:
-    type: poison
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_poison_ext
-        DRAGON_BREATH: lingering_poison_ext
+  type: poison
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_poison_ext
+
 poison_upg:
-    type: poison
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_poison_upg
-        DRAGON_BREATH: lingering_poison_upg
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
+  type: poison
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_poison_upg
+    FERMENTED_SPIDER_EYE: damage_upg
+
+damage:
+  type: instant_damage
+  extended: false
+  upgraded: false
+  order: 3
+  result: 
+    GUNPOWDER: splash_damage
+    GLOWSTONE_DUST: damage_upg
+
+damage_upg:
+  type: instant_damage
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    GUNPOWDER: splash_damage_upg
+
 regeneration:
     type: regen
     extended: false
@@ -264,9 +215,9 @@ regeneration:
     order: 2
     result:
         GUNPOWDER: splash_regeneration
-        DRAGON_BREATH: lingering_regeneration
         REDSTONE: regeneration_ext
         GLOWSTONE_DUST: regeneration_upg
+
 regeneration_ext:
     type: regen
     extended: true
@@ -274,7 +225,7 @@ regeneration_ext:
     order: 3
     result:
         GUNPOWDER: splash_regeneration_ext
-        DRAGON_BREATH: lingering_regeneration_ext
+
 regeneration_upg:
     type: regen
     extended: false
@@ -282,603 +233,859 @@ regeneration_upg:
     order: 3
     result:
         GUNPOWDER: splash_regeneration_upg
-        DRAGON_BREATH: lingering_regeneration_upg
-strength: 
-    type: strength
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_strength
-        DRAGON_BREATH: lingering_strength
-        REDSTONE: strength_ext
-        GLOWSTONE_DUST: strength_upg
-strength_ext:
-    type: strength
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_strength_ext
-        DRAGON_BREATH: lingering_strength_ext
-strength_upg:
-    type: strength
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_strength_upg
-        DRAGON_BREATH: lingering_strength_upg
+     
+fire_resistance:
+  type: fire_resistance
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_fire_resistance
+    REDSTONE: fire_resistance_ext
+
+fire_resistance_ext:
+  type: fire_resistance
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_fire_resistance_ext
+
+water_breathing:
+  type: water_breathing
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_water_breathing
+    REDSTONE: water_breathing_ext
+        
+water_breathing_ext:
+  type: water_breathing
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_water_breathing_ext
+
+nightvision:
+  type: night_vision
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_nightvision
+    FERMENTED_SPIDER_EYE: invisible
+    REDSTONE: nightvision_ext
+
+nightvision_ext:
+  type: night_vision
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_nightvision_ext
+    FERMENTED_SPIDER_EYE: invisible_ext
+
+invisible:
+  type: invisibility
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_invisible
+    REDSTONE: invisible_ext
+
+invisible_ext:
+  type: invisibility
+  extended: true
+  upgraded: false
+  order: 4
+  result: 
+    GUNPOWDER: splash_invisible_ext
+     
+turtlemaster:
+  type: turtle_master
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    REDSTONE: turtlemaster_ext
+    GLOWSTONE_DUST: turtlemaster_upg
+    GUNPOWDER: splash_turtlemaster
+
+turtlemaster_ext:
+  type: turtle_master
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_turtlemaster_ext
+
+turtlemaster_upg:
+  type: turtle_master
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_turtlemaster_upg
+
+soft_fall:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    REDSTONE: soft_fall_ext
+    GUNPOWDER: splash_soft_fall
+
+soft_fall_ext:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_soft_fall_ext
+
 weakness:  
-    type: weakness 
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_weakness
-        DRAGON_BREATH: lingering_weakness
-        redstone: weakness_ext
+  type: weakness 
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    GUNPOWDER: splash_weakness
+    REDSTONE: weakness_ext
+
 weakness_ext:
-    type: weakness
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_weakness_ext
-        DRAGON_BREATH: lingering_weakness_ext
-luck: 
-    type: luck
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_luck
-        DRAGON_BREATH: lingering_luck
-splash_water:
-    type: water
-    extended: false
-    upgraded: false
-    order: 0
-    result:
-        DRAGON_BREATH: lingering_water
-        RABBIT_FOOT: mundane
-        BLAZE_POWDER: mundane
-        SPIDER_EYE: mundane
-        GHAST_TEAR: mundane
-        GLISTERING_MELON_SLICE: mundane
-        SUGAR: mundane
-        NETHER_WART: awkward
-        GLOWSTONE_DUST: think
-        FERMENTED_SPIDER_EYE: weakness
-        REDSTONE: mundane
-        MAGMA_CREAM: mundane
-splash_mundane:
+  type: weakness
+  extended: true
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_weakness_ext
+
+mundane:
     type: mundane
     extended: false
     upgraded: false
     order: 1
     result:
+        GUNPOWDER: splash_mundane
+        
+thick:
+    type: thick
+    extended: false
+    upgraded: false
+    order: 1
+    result:
+        GUNPOWDER: splash_thick
+
+################# END OF NORMAL POTION
+################# START OF SPLASH POTION
+
+splash_water:
+  type: water
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    DRAGON_BREATH: lingering_water
+    NETHER_WART: splash_awkward
+    GLOWSTONE_DUST: splash_think
+    FERMENTED_SPIDER_EYE: splash_weakness
+    SPIDER_EYE: splash_mundane
+    GHAST_TEAR: splash_mundane
+    RABBIT_FOOT: splash_mundane
+    BLAZE_POWDER: splash_mundane
+    GLISTERING_MELON_SLICE: splash_mundane
+    SUGAR: splash_mundane
+    MAGMA_CREAM: splash_mundane
+    REDSTONE: splash_mundane
+
+splash_awkward: 
+  type: awkward
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    SUGAR: splash_speed
+    RABBIT_FOOT: splash_jump
+    BLAZE_POWDER: splash_strength
+    GLISTERING_MELON_SLICE: splash_healing
+    SPIDER_EYE: splash_poison
+    GHAST_TEAR: splash_regeneration
+    MAGMA_CREAM: splash_fire_resistance
+    PUFFERFISH: splash_water_breathing
+    GOLDEN_CARROT: splash_nightvision
+    TURTLE_HELMET: splash_turtlemaster
+    PHANTOM_MEMBRANE: splash_soft_fall
+    DRAGON_BREATH: lingering_awkward
+    
+splash_speed:
+  type: speed
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    GLOWSTONE_DUST: splash_speed_upg
+    REDSTONE: splash_speed_ext
+    FERMENTED_SPIDER_EYE: splash_slowness
+    DRAGON_BREATH: lingering_speed
+    
+splash_speed_ext:
+  type: speed
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_speed_ext
+    FERMENTED_SPIDER_EYE: splash_slowness_ext
+
+splash_speed_upg:
+  type: speed
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_speed_upg
+
+splash_jump:
+  type: jump
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    REDSTONE: splash_jump_ext
+    GLOWSTONE_DUST: splash_jump_upg
+    FERMENTED_SPIDER_EYE: splash_slowness
+    DRAGON_BREATH: lingering_jump
+
+splash_jump_ext:
+  type: jump
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    FERMENTED_SPIDER_EYE: splash_slowness_ext
+    DRAGON_BREATH: lingering_jump_ext
+
+splash_jump_upg:
+  type: jump
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_jump_upg
+
+splash_slowness:
+  type: slowness
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_slowness
+    REDSTONE: splash_slowness_ext
+    GLOWSTONE_DUST: splash_slowness_upg
+
+splash_slowness_ext:
+  type: slowness
+  extended: true
+  upgraded: false
+  order: 5
+  result:
+    DRAGON_BREATH: lingering_slowness_ext
+        
+splash_slowness_upg:
+  type: slowness
+  extended: false
+  upgraded: true
+  order: 5
+  result:
+    DRAGON_BREATH: lingering_slowness_upg
+        
+splash_strength: 
+  type: strength
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_strength
+    REDSTONE: splash_strength_ext
+    GLOWSTONE_DUST: splash_strength_upg
+
+splash_strength_ext:
+  type: strength
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_strength_ext
+
+splash_strength_upg:
+  type: strength
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_strength_upg
+  
+splash_healing:
+  type: instant_heal
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_healing
+    GLOWSTONE_DUST: splash_healing_upg
+    FERMENTED_SPIDER_EYE: splash_damage
+
+splash_healing_upg:
+  type: instant_heal
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_healing_upg
+    FERMENTED_SPIDER_EYE: splash_damage_upg
+
+splash_poison:
+    type: poison
+    extended: false
+    upgraded: false
+    order: 3
+    result:
+        DRAGON_BREATH: lingering_poison
+        REDSTONE: splash_poison_ext
+        GLOWSTONE_DUST: splash_poison_upg
+        FERMENTED_SPIDER_EYE: splash_damage
+
+splash_poison_ext:
+  type: poison
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_poison_ext
+
+splash_poison_upg:
+  type: poison
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_poison_upg
+    FERMENTED_SPIDER_EYE: splash_damage_upg
+
+splash_damage:
+  type: instant_damage
+  extended: false
+  upgraded: false
+  order: 4
+  result: 
+    DRAGON_BREATH: lingering_damage
+    GLOWSTONE_DUST: splash_damage_upg
+
+splash_damage_upg:
+  type: instant_damage
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_damage_upg
+
+splash_regeneration:
+  type: regen
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_regeneration
+    REDSTONE: splash_regeneration_ext
+    GLOWSTONE_DUST: splash_regeneration_upg
+
+splash_regeneration_ext:
+  type: regen
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_regeneration_ext
+
+splash_regeneration_upg:
+  type: regen
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_regeneration_upg
+     
+splash_fire_resistance:
+  type: fire_resistance
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_fire_resistance
+    REDSTONE: splash_fire_resistance_ext
+
+splash_fire_resistance_ext:
+  type: fire_resistance
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_fire_resistance_ext
+
+splash_water_breathing:
+  type: water_breathing
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_water_breathing
+    REDSTONE: splash_water_breathing_ext
+        
+splash_water_breathing_ext:
+  type: water_breathing
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_water_breathing_ext
+
+splash_nightvision:
+  type: night_vision
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_nightvision
+    FERMENTED_SPIDER_EYE: splash_invisible
+    REDSTONE: splash_nightvision_ext
+
+splash_nightvision_ext:
+  type: night_vision
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_nightvision_ext
+    FERMENTED_SPIDER_EYE: splash_invisible_ext
+
+splash_invisible:
+  type: invisibility
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_invisible
+    REDSTONE: splash_invisible_ext
+
+splash_invisible_ext:
+  type: invisibility
+  extended: true
+  upgraded: false
+  order: 5
+  result: 
+    DRAGON_BREATH: lingering_invisible_ext
+     
+splash_turtlemaster:
+  type: turtle_master
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    REDSTONE: splash_turtlemaster_ext
+    GLOWSTONE_DUST: splash_turtlemaster_upg
+    DRAGON_BREATH: lingering_turtlemaster
+
+splash_turtlemaster_ext:
+  type: turtle_master
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_turtlemaster_ext
+
+splash_turtlemaster_upg:
+  type: turtle_master
+  extended: false
+  upgraded: true
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_turtlemaster_upg
+
+splash_soft_fall:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    REDSTONE: splash_soft_fall_ext
+    DRAGON_BREATH: lingering_soft_fall
+
+splash_soft_fall_ext:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    DRAGON_BREATH: lingering_soft_fall_ext
+
+splash_weakness:  
+  type: weakness 
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    DRAGON_BREATH: lingering_weakness
+    REDSTONE: splash_weakness_ext
+
+splash_weakness_ext:
+  type: weakness
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_weakness_ext
+
+splash_mundane:
+    type: mundane
+    extended: false
+    upgraded: false
+    order: 2
+    result:
         DRAGON_BREATH: lingering_mundane
-splash_thick: 
+        
+splash_thick:
     type: thick
     extended: false
     upgraded: false
     order: 1
     result:
         DRAGON_BREATH: lingering_thick
-splash_awkward:
-    type: awkward
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        DRAGON_BREATH: lingering_awkward
-        RABBIT_FOOT: jump
-        BLAZE_POWDER: strength
-        PUFFERFISH: water_breathing
-        SPIDER_EYE: poison
-        GHAST_TEAR: regeneration
-        GOLDEN_CARROT: nightvision
-        GLISTERING_MELON_SLICE: instant_heal
-        SUGAR: speed
-        MAGMA_CREAM: fireresist
-splash_nightvision:
-    type: night_vision
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_nightvision
-        FERMENTED_SPIDER_EYE: invis
-        REDSTONE: nightvision_ext
-splash_nightvision_ext:
-    type: night_vision
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_nightvision_ext
-        FERMENTED_SPIDER_EYE: invis_ext
-splash_invis:
-    type: invisibility
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_invis
-        REDSTONE: invis_ext
-splash_invis_ext:
-    type: invisibility
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_invis_ext
-splash_jump:
-    type: jump
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_jump
-        GLOWSTONE_DUST: jump_upg
-        REDSTONE: jump_ext
-        FERMENTED_SPIDER_EYE: slowness
-splash_jump_ext:
-    type: jump
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_jump_ext
-        FERMENTED_SPIDER_EYE: slowness_ext
-splash_jump_upg:
-    type: jump
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_jump_upg
-splash_fireresist:
-    type: fire_resistance
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_fireresist
-        REDSTONE: fireresist_ext
-splash_fireresist_ext:
-    type: fire_resistance
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_fireresist_ext
-splash_speed:
-    type: speed
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_speed
-        FERMENTED_SPIDER_EYE: slowness
-        REDSTONE: speed_ext
-        GLOWSTONE_DUST: speed_upg
-splash_speed_ext:
-    type: speed
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_speed_ext
-        FERMENTED_SPIDER_EYE: slowness_ext
-splash_speed_upg:
-    type: speed
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_speed_upg
-splash_slowness:
-    type: slowness
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_slowness
-        REDSTONE: slowness_ext
-splash_slowness_ext:
-    type: slowness
-    extended: ture
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_slowness_ext
-splash_water_breathing:
-    type: water_breathing
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_water_breathing
-        REDSTONE: water_breathing_ext
-splash_water_breathing_ext:
-    type: water_breathing
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_water_breathing_ext
-splash_instant_heal:
-    type: instant_heal
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_instant_heal
-        GLOWSTONE_DUST: instant_heal_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
-splash_instant_heal_upg:
-    type: instant_heal
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_instant_heal_upg
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
-splash_instant_dmg:
-    type: instant_damage
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_instant_dmg
-        GLOWSTONE_DUST: instant_dmg_upg
-splash_instant_dmg_upg:
-    type: instant_damage
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_instant_dmg_upg
-splash_poison:
-    type: poison
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_poison
-        REDSTONE: poison_ext
-        GLOWSTONE_DUST: poison_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
-splash_poison_ext:
-    type: poison
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_poison_ext
-splash_poison_upg:
-    type: poison
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_poison_upg
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
-splash_regeneration:
-    type: regen
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_regeneration
-        REDSTONE: regeneration_ext
-        GLOWSTONE_DUST: regeneration_upg
-splash_regeneration_ext:
-    type: regen
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_regeneration_ext
-splash_regeneration_upg:
-    type: regen
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_regeneration_upg
-splash_strength: 
-    type: strength
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_strength
-        REDSTONE: strength_ext
-        GLOWSTONE_DUST: strength_upg
-splash_strength_ext:
-    type: strength
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_strength_ext
-splash_strength_upg:
-    type: strength
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_strength_upg
-splash_weakness:  
-    type: weakness 
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_weakness
-        redstone: weakness_ext
-splash_weakness_ext:
-    type: weakness
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_weakness_ext
-splash_luck: 
-    type: luck
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_luck
+
+################# END OF SPLASH POTION
+################# START OF LINGERING POTION
+
 lingering_water:
-    type: water
-    extended: false
-    upgraded: false
-    order: 0
-    result:
-        RABBIT_FOOT: mundane
-        BLAZE_POWDER: mundane
-        SPIDER_EYE: mundane
-        GHAST_TEAR: mundane
-        GLISTERING_MELON_SLICE: mundane
-        SUGAR: mundane
-        NETHER_WART: awkward
-        GLOWSTONE_DUST: think
-        FERMENTED_SPIDER_EYE: weakness
-        REDSTONE: mundane
-        MAGMA_CREAM: mundane
-lingering_mundane:
-    type: mundane
-    extended: false
-    upgraded: false
-    order: 1
-lingering_thick: 
-    type: thick
-    extended: false
-    upgraded: false
-    order: 1
+  type: water
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    NETHER_WART: lingering_awkward
+    GLOWSTONE_DUST: lingering_think
+    FERMENTED_SPIDER_EYE: lingering_weakness
+    SPIDER_EYE: lingering_mundane
+    GHAST_TEAR: lingering_mundane
+    RABBIT_FOOT: lingering_mundane
+    BLAZE_POWDER: lingering_mundane
+    GLISTERING_MELON_SLICE: lingering_mundane
+    SUGAR: lingering_mundane
+    MAGMA_CREAM: lingering_mundane
+    REDSTONE: lingering_mundane
+
 lingering_awkward: 
-    type: awkward
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        RABBIT_FOOT: jump
-        BLAZE_POWDER: strength
-        PUFFERFISH: water_breathing
-        SPIDER_EYE: poison
-        GHAST_TEAR: regeneration
-        GOLDEN_CARROT: nightvision
-        GLISTERING_MELON_SLICE: instant_heal
-        SUGAR: speed
-        MAGMA_CREAM: fireresist
-lingering_nightvision:
-    type: night_vision
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        FERMENTED_SPIDER_EYE: invis
-        REDSTONE: nightvision_ext
-lingering_nightvision_ext:
-    type: night_vision
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        FERMENTED_SPIDER_EYE: invis_ext
-lingering_invis:
-    type: invisibility
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: invis_ext
-lingering_invis_ext:
-    type: invisibility
-    extended: true
-    upgraded: false
-    order: 3
-lingering_jump:
-    type: jump
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GLOWSTONE_DUST: jump_upg
-        REDSTONE: jump_ext
-        FERMENTED_SPIDER_EYE: slowness
-lingering_jump_ext:
-    type: jump
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        FERMENTED_SPIDER_EYE: slowness_ext
-lingering_jump_upg:
-    type: jump
-    extended: false
-    upgraded: true
-    order: 3
-lingering_fireresist:
-    type: fire_resistance
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: fireresist_ext
-lingering_fireresist_ext:
-    type: fire_resistance
-    extended: true
-    upgraded: false
-    order: 3
+  type: awkward
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    SUGAR: lingering_speed
+    RABBIT_FOOT: lingering_jump
+    BLAZE_POWDER: lingering_strength
+    GLISTERING_MELON_SLICE: lingering_healing
+    SPIDER_EYE: lingering_poison
+    GHAST_TEAR: lingering_regeneration
+    MAGMA_CREAM: lingering_fire_resistance
+    PUFFERFISH: lingering_water_breathing
+    GOLDEN_CARROT: lingering_nightvision
+    TURTLE_HELMET: lingering_turtlemaster
+    PHANTOM_MEMBRANE: lingering_soft_fall
+    
 lingering_speed:
-    type: speed
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        FERMENTED_SPIDER_EYE: slowness
-        REDSTONE: speed_ext
-        GLOWSTONE_DUST: speed_upg
+  type: speed
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    GLOWSTONE_DUST: lingering_speed_upg
+    REDSTONE: lingering_speed_ext
+    FERMENTED_SPIDER_EYE: lingering_slowness
+    
 lingering_speed_ext:
-    type: speed
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        FERMENTED_SPIDER_EYE: slowness_ext
+  type: speed
+  extended: true
+  upgraded: false
+  order: 5
+  result:
+    FERMENTED_SPIDER_EYE: lingering_slowness_ext
+
 lingering_speed_upg:
-    type: speed
-    extended: false
-    upgraded: true
-    order: 3
+  type: speed
+  extended: false
+  upgraded: true
+  order: 5
+
+lingering_jump:
+  type: jump
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_jump_ext
+    GLOWSTONE_DUST: lingering_jump_upg
+    FERMENTED_SPIDER_EYE: lingering_slowness
+
+lingering_jump_ext:
+  type: jump
+  extended: true
+  upgraded: false
+  order: 5
+  result:
+    FERMENTED_SPIDER_EYE: lingering_slowness_ext
+
+lingering_jump_upg:
+  type: jump
+  extended: false
+  upgraded: true
+  order: 5
+
 lingering_slowness:
-    type: slowness
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: slowness_ext
+  type: slowness
+  extended: false
+  upgraded: false
+  order: 5
+  result:
+    REDSTONE: lingering_slowness_ext
+    GLOWSTONE_DUST: lingering_slowness_upg
+
 lingering_slowness_ext:
-    type: slowness
-    extended: ture
-    upgraded: false
-    order: 3
-lingering_water_breathing:
-    type: water_breathing
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: water_breathing_ext
-lingering_water_breathing_ext:
-    type: water_breathing
-    extended: true
-    upgraded: false
-    order: 3
-lingering_instant_heal:
-    type: instant_heal
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GLOWSTONE_DUST: instant_heal_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
-lingering_instant_heal_upg:
-    type: instant_heal
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
-lingering_instant_dmg:
-    type: instant_damage
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GLOWSTONE_DUST: instant_dmg_upg
-lingering_instant_dmg_upg:
-    type: instant_damage
-    extended: false
-    upgraded: true
-    order: 3
+  type: slowness
+  extended: true
+  upgraded: false
+  order: 6
+        
+lingering_slowness_upg:
+  type: slowness
+  extended: false
+  upgraded: true
+  order: 6
+        
+lingering_strength: 
+  type: strength
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_strength_ext
+    GLOWSTONE_DUST: lingering_strength_upg
+
+lingering_strength_ext:
+  type: strength
+  extended: true
+  upgraded: false
+  order: 5
+
+lingering_strength_upg:
+  type: strength
+  extended: false
+  upgraded: true
+  order: 5
+  
+lingering_healing:
+  type: instant_heal
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    GLOWSTONE_DUST: lingering_healing_upg
+    FERMENTED_SPIDER_EYE: lingering_damage
+
+lingering_healing_upg:
+  type: instant_heal
+  extended: false
+  upgraded: true
+  order: 5
+  result:
+    FERMENTED_SPIDER_EYE: lingering_damage_upg
+
 lingering_poison:
     type: poison
     extended: false
     upgraded: false
-    order: 2
+    order: 4
     result:
-        REDSTONE: poison_ext
-        GLOWSTONE_DUST: poison_upg
-        FERMENTED_SPIDER_EYE: instant_dmg
+        REDSTONE: lingering_poison_ext
+        GLOWSTONE_DUST: lingering_poison_upg
+        FERMENTED_SPIDER_EYE: lingering_damage
+
 lingering_poison_ext:
-    type: poison
-    extended: true
-    upgraded: false
-    order: 3
+  type: poison
+  extended: true
+  upgraded: false
+  order: 5
+
 lingering_poison_upg:
-    type: poison
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        FERMENTED_SPIDER_EYE: instant_dmg_upg
+  type: poison
+  extended: false
+  upgraded: true
+  order: 5
+  result:
+    FERMENTED_SPIDER_EYE: lingering_damage_upg
+
+lingering_damage:
+  type: instant_damage
+  extended: false
+  upgraded: false
+  order: 5
+  result:
+    GLOWSTONE_DUST: lingering_damage_upg
+
+lingering_damage_upg:
+  type: instant_damage
+  extended: false
+  upgraded: true
+  order: 5
+
 lingering_regeneration:
-    type: regen
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: regeneration_ext
-        GLOWSTONE_DUST: regeneration_upg
-lingering_regeneration_ext:
-    type: regen
-    extended: true
-    upgraded: false
-    order: 3
-lingering_regeneration_upg:
-    type: regen
-    extended: false
-    upgraded: true
-    order: 3
-lingering_strength: 
-    type: strength
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        REDSTONE: strength_ext
-        GLOWSTONE_DUST: strength_upg
-lingering_strength_ext:
-    type: strength
-    extended: true
-    upgraded: false
-    order: 3
-lingering_strength_upg:
-    type: strength
-    extended: false
-    upgraded: true
-    order: 3
+  type: regen
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_regeneration_ext
+    GLOWSTONE_DUST: lingering_regeneration_upg
+
+splash_regeneration_ext:
+  type: regen
+  extended: true
+  upgraded: false
+  order: 5
+
+splash_regeneration_upg:
+  type: regen
+  extended: false
+  upgraded: true
+  order: 5
+     
+lingering_fire_resistance:
+  type: fire_resistance
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_fire_resistance_ext
+
+lingering_fire_resistance_ext:
+  type: fire_resistance
+  extended: true
+  upgraded: false
+  order: 5
+
+lingering_water_breathing:
+  type: water_breathing
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_water_breathing_ext
+        
+lingering_water_breathing_ext:
+  type: water_breathing
+  extended: true
+  upgraded: false
+  order: 5
+
+lingering_nightvision:
+  type: night_vision
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    FERMENTED_SPIDER_EYE: lingering_invisible
+    REDSTONE: lingering_nightvision_ext
+
+lingering_nightvision_ext:
+  type: night_vision
+  extended: true
+  upgraded: false
+  order: 4
+  result:
+    FERMENTED_SPIDER_EYE: lingering_invisible_ext
+
+lingering_invisible:
+  type: invisibility
+  extended: false
+  upgraded: false
+  order: 5
+  result:
+    REDSTONE: lingering_invisible_ext
+
+lingering_invisible_ext:
+  type: invisibility
+  extended: true
+  upgraded: false
+  order: 6
+     
+lingering_turtlemaster:
+  type: turtle_master
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_turtlemaster_ext
+    GLOWSTONE_DUST: lingering_turtlemaster_upg
+
+lingering_turtlemaster_ext:
+  type: turtle_master
+  extended: true
+  upgraded: false
+  order: 5
+
+lingering_turtlemaster_upg:
+  type: turtle_master
+  extended: false
+  upgraded: true
+  order: 5
+
+lingering_soft_fall:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_soft_fall_ext
+
+lingering_soft_fall_ext:
+  type: slow_falling
+  extended: false
+  upgraded: false
+  order: 5
+
 lingering_weakness:  
-    type: weakness 
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        redstone: weakness_ext
+  type: weakness 
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    REDSTONE: lingering_weakness_ext
+
 lingering_weakness_ext:
-    type: weakness
-    extended: true
+  type: weakness
+  extended: true
+  upgraded: false
+  order: 4
+
+lingering_mundane:
+    type: mundane
+    extended: false
     upgraded: false
     order: 3
-lingering_luck: 
-    type: luck
+        
+lingering_thick:
+    type: thick
     extended: false
     upgraded: false
-    order: 2
+    order: 3

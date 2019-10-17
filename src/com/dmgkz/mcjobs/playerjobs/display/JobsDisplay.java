@@ -7,15 +7,16 @@ import com.dmgkz.mcjobs.playerjobs.data.JobsData;
 import com.dmgkz.mcjobs.playerjobs.levels.Leveler;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.EnchantTypeAdv;
-import com.dmgkz.mcjobs.util.MatClass;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import java.util.HashMap;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -41,7 +42,7 @@ public class JobsDisplay {
         String sJob = null;
         String sCost = "";
         String sPays = "";
-        String sJobName = _jobsdata.getName();
+        String sJobName = _jobsdata.getName(uuid);
         String payscale = _jobsdata.getBasePay().toString();
         PrettyText text = new PrettyText();
         String pName = "N/A";
@@ -110,7 +111,9 @@ public class JobsDisplay {
         GetLanguage modText = McJobs.getPlugin().getLanguage();
         showPlayerJob(p, p.getUniqueId());
 
-        if(!_jobsdata.compJob().getMatTypeTiers("break").isEmpty() && !getHide("break")){
+        McJobs.getPlugin().getLogger().info("Starte showJob....");
+        if(!_jobsdata.compJob().getMatTypeTiers("break").isEmpty() && !getHide("break")) {
+            McJobs.getPlugin().getLogger().info("Hat Break....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("break", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -118,7 +121,8 @@ public class JobsDisplay {
             this.buildMatTiers(_jobsdata.compJob().getMatTypeTiers("break"), p);
         }
 
-        if(!_jobsdata.compJob().getMatTypeTiers("place").isEmpty() && !getHide("place")){
+        if(!_jobsdata.compJob().getMatTypeTiers("place").isEmpty() && !getHide("place")) {
+            McJobs.getPlugin().getLogger().info("Hat Place....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("place", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -126,7 +130,8 @@ public class JobsDisplay {
             buildMatTiers(_jobsdata.compJob().getMatTypeTiers("place"), p);
         }
         
-        if(!_jobsdata.compJob().getEntTypeTiers("defeat").isEmpty() && !getHide("defeat")){
+        if(!_jobsdata.compJob().getEntTypeTiers("defeat").isEmpty() && !getHide("defeat")) {
+            McJobs.getPlugin().getLogger().info("Hat Defeat....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("defeat", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -134,7 +139,8 @@ public class JobsDisplay {
             buildEntTiers(_jobsdata.compJob().getEntTypeTiers("defeat"), p);
 
         }
-        if(!_jobsdata.compJob().getEntTypeTiers("fishing").isEmpty() && !getHide("fishing")){
+        if(!_jobsdata.compJob().getEntTypeTiers("fishing").isEmpty() && !getHide("fishing")) {
+            McJobs.getPlugin().getLogger().info("Hat Fishing....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("fishing", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -142,40 +148,62 @@ public class JobsDisplay {
             buildEntTiers(_jobsdata.compJob().getEntTypeTiers("fishing"), p);
 
         }
-        if(!_jobsdata.compJob().getMatTypeTiers("craft").isEmpty() && !getHide("craft")){
+        if(!_jobsdata.compJob().getMatTypeTiers("craft").isEmpty() && !getHide("craft")) {
+            McJobs.getPlugin().getLogger().info("Hat Craft....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("craft", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
             
             buildMatTiers(_jobsdata.compJob().getMatTypeTiers("craft"), p);
         }
-        if(!_jobsdata.compJob().getMatTypeTiers("repair").isEmpty() && !getHide("repair")){
+        if(!_jobsdata.compJob().getMatTypeTiers("repair").isEmpty() && !getHide("repair")) {
+            McJobs.getPlugin().getLogger().info("Hat Repair....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("repair", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
             
             buildMatTiers(_jobsdata.compJob().getMatTypeTiers("repair"), p);
         }
-        if(!_jobsdata.compJob().getPotTypeTiers("potion").isEmpty() && !getHide("potion")){
+        if(!_jobsdata.compJob().getPotTypeTiers("potion").isEmpty() && !getHide("potion")) {
+            McJobs.getPlugin().getLogger().info("Hat Potion....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("potion", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
             
             buildPotTiers(_jobsdata.compJob().getPotTypeTiers("potion"), p);
         }
-        if(!_jobsdata.compJob().getEnchantTypeTiers("enchant").isEmpty() && !getHide("enchant")){
+        if(!_jobsdata.compJob().getEnchantTypeTiers("enchant").isEmpty() && !getHide("enchant")) {
+            McJobs.getPlugin().getLogger().info("Hat Enchant....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("enchant", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
             
             buildEnchantTiers(_jobsdata.compJob().getEnchantTypeTiers("enchant"), p);
         }
+        
+        if(!_jobsdata.compJob().getColorTiers("shear").isEmpty() && !getHide("shear")) {
+            McJobs.getPlugin().getLogger().info("Hat Shear....");
+            p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
+            p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("shear", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
+            p.sendMessage("");
+            
+            buildColorTiers(_jobsdata.compJob().getColorTiers("shear"), p);
+        }
+        
+        if(!_jobsdata.compJob().getPvpTiers("pvp").isEmpty() && !getHide("pvp")) {
+            McJobs.getPlugin().getLogger().info("Hat PvP....");
+            p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
+            p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("pvp", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
+            p.sendMessage("");
+            
+            buildPvPTiers(_jobsdata.compJob().getPvpTiers("pvp"), p);
+        }
     }
     
-    private void buildMatTiers(HashMap<Integer, ArrayList<MatClass>> it, Player p){
+    private void buildMatTiers(HashMap<Integer, List<Material>> it, Player p){
         PrettyText text = new PrettyText();
         
-        for(Map.Entry<Integer, ArrayList<MatClass>> me: it.entrySet()) {
+        for(Map.Entry<Integer, List<Material>> me: it.entrySet()) {
             String data = null;
             String str = null;
             
@@ -187,10 +215,10 @@ public class JobsDisplay {
 
     }
 
-    private void buildEntTiers(HashMap<Integer, ArrayList<EntityType>> it, Player p) {
+    private void buildEntTiers(HashMap<Integer, List<EntityType>> it, Player p) {
         PrettyText text = new PrettyText();
         
-        for(Map.Entry<Integer, ArrayList<EntityType>> me: it.entrySet()) {
+        for(Map.Entry<Integer, List<EntityType>> me: it.entrySet()) {
             String data = null;
             String str = null;
             
@@ -202,10 +230,10 @@ public class JobsDisplay {
 
     }
 
-    private void buildPotTiers(HashMap<Integer, ArrayList<PotionTypeAdv>> it, Player p) {
+    private void buildPotTiers(HashMap<Integer, List<PotionTypeAdv>> it, Player p) {
         PrettyText text = new PrettyText();
         
-        for(Map.Entry<Integer, ArrayList<PotionTypeAdv>> me: it.entrySet()) {
+        for(Map.Entry<Integer, List<PotionTypeAdv>> me: it.entrySet()) {
             String data = null;
             String str = null;
             
@@ -216,14 +244,46 @@ public class JobsDisplay {
         }
     }
 
-    private void buildEnchantTiers(HashMap<Integer, ArrayList<EnchantTypeAdv>> it, Player p) {
+    private void buildEnchantTiers(HashMap<Integer, List<EnchantTypeAdv>> it, Player p) {
         PrettyText text = new PrettyText();
         
-        for(Map.Entry<Integer, ArrayList<EnchantTypeAdv>> me: it.entrySet()) {
+        for(Map.Entry<Integer, List<EnchantTypeAdv>> me: it.entrySet()) {
             String data = null;
             String str = null;
             
             data = text.formatEnchantTiers(me.getValue(), ChatColor.DARK_GREEN, p.getUniqueId());
+            str = ChatColor.GOLD + McJobs.getPlugin().getLanguage().getJobDisplay("tier", p.getUniqueId()).addVariables("", p.getName(), "") + me.getKey().toString() + ": " + ChatColor.DARK_GREEN + data + ChatColor.GRAY + "." + ChatColor.DARK_GREEN;
+            
+            text.formatPlayerText(str, p);
+        }
+
+    }
+    
+    
+    private void buildColorTiers(HashMap<Integer, List<DyeColor>> it, Player p) {
+        PrettyText text = new PrettyText();
+        
+        for(Map.Entry<Integer, List<DyeColor>> me: it.entrySet()) {
+            String data = null;
+            String str = null;
+            
+            data = text.formatColorTiers(me.getValue(), ChatColor.DARK_GREEN, p.getUniqueId());
+            str = ChatColor.GOLD + McJobs.getPlugin().getLanguage().getJobDisplay("tier", p.getUniqueId()).addVariables("", p.getName(), "") + me.getKey().toString() + ": " + ChatColor.DARK_GREEN + data + ChatColor.GRAY + "." + ChatColor.DARK_GREEN;
+            
+            text.formatPlayerText(str, p);
+        }
+
+    }
+    
+    
+    private void buildPvPTiers(HashMap<Integer, Integer> it, Player p) {
+        PrettyText text = new PrettyText();
+        
+        for(Map.Entry<Integer, Integer> me: it.entrySet()) {
+            String data = null;
+            String str = null;
+            
+            data = McJobs.getPlugin().getLanguage().getJobDisplay("pvptier", p.getUniqueId()).addVariables("", p.getName(), me.getValue().toString());  //ttext.formatEnchantTiers(me.getValue(), ChatColor.DARK_GREEN, p.getUniqueId());
             str = ChatColor.GOLD + McJobs.getPlugin().getLanguage().getJobDisplay("tier", p.getUniqueId()).addVariables("", p.getName(), "") + me.getKey().toString() + ": " + ChatColor.DARK_GREEN + data + ChatColor.GRAY + "." + ChatColor.DARK_GREEN;
             
             text.formatPlayerText(str, p);
@@ -246,8 +306,12 @@ public class JobsDisplay {
             return _jobsdata.getShow(5);
         else if(block.equalsIgnoreCase("enchant"))
             return _jobsdata.getShow(6);
-        else if(block.equalsIgnoreCase("potions"))
+        else if(block.equalsIgnoreCase("potion"))
             return _jobsdata.getShow(7);
+        else if(block.equalsIgnoreCase("shear"))
+            return _jobsdata.getShow(8);
+        else if(block.equalsIgnoreCase("pvp"))
+            return _jobsdata.getShow(9);
         else return false;
     }
 }

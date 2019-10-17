@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -12,10 +13,10 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import com.dmgkz.mcjobs.logging.BlockSpawners;
 import com.dmgkz.mcjobs.playerdata.CompCache;
-import com.dmgkz.mcjobs.playerdata.PlayerCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import java.util.ArrayList;
 import org.bukkit.GameMode;
 
 public class MobKill implements Listener {
@@ -43,9 +44,8 @@ public class MobKill implements Listener {
         
         if(event.getEntity() instanceof Player) {
             Player killed = (Player)event.getEntity();
-            for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-                String sJob = pair.getKey();
-
+            ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("pvp");
+            for(String sJob: jobs) {
                 if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                     CompCache comp = new CompCache(sJob, mob.getLocation(), play, killed, "pvp");
                     CompData.getCompCache().add(comp);
@@ -56,9 +56,8 @@ public class MobKill implements Listener {
                 return;
             }
 
-            for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-                String sJob = pair.getKey();
-
+            ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("defeat");
+            for(String sJob: jobs) {
                 if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                     CompCache comp = new CompCache(sJob, mob.getLocation(), play, mob.getType(), "defeat");
                     CompData.getCompCache().add(comp);

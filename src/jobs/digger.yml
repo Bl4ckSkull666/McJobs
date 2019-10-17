@@ -3,7 +3,6 @@ exp: 0.25
 break:
   pays: true
   hide: false
-  tier:
-    1: dirt sand grass
-    2: gravel clay
-    4: soul_sand mycel
+  1: dirt sand grass
+  2: gravel clay
+  4: soul_sand MYCELIUM

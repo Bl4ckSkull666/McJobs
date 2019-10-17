@@ -1,6 +1,5 @@
 package com.dmgkz.mcjobs.playerdata;
 
-import com.dmgkz.mcjobs.util.MatClass;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class CompCache {
     private final Location loc;
     private final Player player;
     private Player killed;
-    private MatClass block;
+    private Material block;
     private EntityType entity;
     private PotionTypeAdv potion;
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
@@ -31,7 +30,7 @@ public class CompCache {
     /*
     * Cache for Break/Place
     */
-    public CompCache(String sJob, Location loc, Player play, MatClass block, String action) {
+    public CompCache(String sJob, Location loc, Player play, Material block, String action) {
         this.job = sJob;
         this.loc = loc;
         this.player = play;
@@ -121,7 +120,7 @@ public class CompCache {
         return killed;
     }
 
-    public MatClass getMaterial() {
+    public Material getMaterial() {
         return block;
     }
 

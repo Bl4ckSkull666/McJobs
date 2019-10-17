@@ -17,7 +17,6 @@ import com.dmgkz.mcjobs.playerjobs.PitchJobs;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
-import com.dmgkz.mcjobs.util.MatClass;
 import com.dmgkz.mcjobs.util.Utils;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
@@ -27,6 +26,7 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 
 import de.diddiz.LogBlock.QueryParams.BlockChangeType;
+import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 
@@ -56,11 +56,6 @@ public class BlockBreak implements Listener{
             text.formatPlayerText(str, play);
             return;
         } 
-        
-        MatClass block = new MatClass(event.getBlock().getType());
-        /*if(event.getBlock().getState().getData().toItemStack(1).getDurability() > 0) {
-            block.setWorth(event.getBlock().getState().getData().toItemStack(1).getDurability());
-        }*/
         
         Location loc = event.getBlock().getLocation();
         Integer timer = MCListeners.getTimeInMins();
@@ -92,8 +87,8 @@ public class BlockBreak implements Listener{
                 PitchJobs.pitchJobs(play);
         }
         
-        for(Map.Entry<String, PlayerJobs> me: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = me.getKey();
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("break");
+        for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
                 if(!Utils.hasNeededTool(play, sJob, "break"))
                     continue;
@@ -106,7 +101,7 @@ public class BlockBreak implements Listener{
                         return;
                 }
                 
-                CompCache comp = new CompCache(sJob, loc, play, block, "break");
+                CompCache comp = new CompCache(sJob, loc, play, event.getBlock().getType(), "break");
                 CompData.getCompCache().add(comp);
             }
         }

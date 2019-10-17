@@ -32,14 +32,18 @@ public class McJobsComp implements Runnable {
                             McJobs.getPlugin().getBlockLogging().addPlayer(cc.getLocation(), cc.getPlayer(), cc.getAction().equalsIgnoreCase("break"));
                     }
                 }
-            } else if(cc.getAction().equalsIgnoreCase("defeat") || cc.getAction().equalsIgnoreCase("fishing") || cc.getAction().equalsIgnoreCase("mate"))
+            } else if(cc.getAction().equalsIgnoreCase("defeat") || cc.getAction().equalsIgnoreCase("fishing"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compEntity(cc.getEntity(), cc.getPlayer(), cc.getAction(), _aPayer);
-            else if(cc.getAction().equalsIgnoreCase("potions"))
+            else if(cc.getAction().equalsIgnoreCase("potion"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compPotions(cc.getPotion(), cc.getPlayer(), cc.getAction(), _aPayer);
             else if(cc.getAction().equalsIgnoreCase("enchant"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compEnchant(cc.getEnchants(), cc.getPlayer(), cc.getAction(), _aPayer);
             else if(cc.getAction().equalsIgnoreCase("craft") || cc.getAction().equalsIgnoreCase("repair"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compBlock(cc.getMaterial(), cc.getPlayer(), cc.getAction(), _aPayer);
+            else if(cc.getAction().equalsIgnoreCase("shear"))
+                PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compShear(cc.getColor(), cc.getPlayer(), cc.getAction(), _aPayer);
+            else if(cc.getAction().equalsIgnoreCase("pvp"))
+                PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compPvP(cc.getKilled(), cc.getPlayer(), cc.getAction(), _aPayer);
         }
         
         for(PaymentCache pc: _aPayer) {

@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -11,10 +12,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
-import com.dmgkz.mcjobs.playerdata.PlayerCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import java.util.ArrayList;
 import org.bukkit.GameMode;
 
 public class Fishing implements Listener {
@@ -39,9 +40,8 @@ public class Fishing implements Listener {
                 return;
         }
         
-        for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = pair.getKey();
-
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("fishing");
+        for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                 CompCache comp = new CompCache(sJob, play.getLocation(), play, fish, "fishing");
                 CompData.getCompCache().add(comp);

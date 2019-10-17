@@ -20,6 +20,7 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
+import java.util.ArrayList;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
@@ -54,16 +55,19 @@ public class Brewing implements Listener{
                 return;
         }
         
-        for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = pair.getKey();
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("potion");
+        for(String sJob: jobs) {
             ItemStack ingred = event.getContents().getIngredient();
             ItemStack item = null;
             
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
+                if(!PlayerJobs.getJobsList().get(sJob).getData().getPotHash().containsKey("potion"))
+                    continue;
+                
                 while((item = event.getContents().iterator().next()) != null) {
-                    if(item != null && item.getData().getItemType().equals(Material.POTION)){
-                        Short sPotion = item.getDurability();
-                        PotionTypeAdv potion = PotionTypeAdv.getNewPotion(item, ingred.getType());
+                    if(item != null && item.getType().equals(Material.POTION)) {
+                        String sPotion = item.getItemMeta().getDisplayName();
+                        PotionTypeAdv potion = McJobs.getPlugin().getHolder().getPotions().getPotion(item).getResultPotion(ingred.getType());
 
                         if(McJobs.getPlugin().getConfig().getBoolean("advanced.debug")){
                             if(potion == null){
@@ -72,7 +76,7 @@ public class Brewing implements Listener{
                                 play.sendMessage("PotionType = " + sPotion.toString() + " ingredient = " + ingred.getType().toString() + " Result = " + potion.toString());
                         }
 
-                        CompCache comp = new CompCache(sJob, play.getLocation(), play, potion, "potions");
+                        CompCache comp = new CompCache(sJob, play.getLocation(), play, potion, "potion");
                         CompData.getCompCache().add(comp);
                     }
                 }

@@ -1,12 +1,11 @@
 basepay: 2.0
 show_every_time: true
 exp: 5
-potions:
+potion:
   pays: true
   hide: false
-  tier:
-    1: mundane mundane_ext thick
-    2: poison weak
-    3: slow harm poison_spl poison_ext poison_two weak_spl weak_ext
-    4: slow_ext slow_spl harm_spl harm_two poison_ext_spl poison_two_spl weak_ext_spl
-    5: slow_ext_spl harm_two_spl 
+  1: mundane mundane_ext thick
+  2: poison weakness
+  3: slowness damage splash_poison poison_ext poison_upg splash_weakness weakness_ext
+  4: slowness_ext splash_slowness splash_damage damage_upg splash_poison_ext splash_poison_upg splash_weakness_ext
+  5: splash_slowness_ext splash_damage_upg 
