@@ -1,8 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
 import com.dmgkz.mcjobs.McJobs;
-import java.util.Iterator;
-import java.util.Map;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,23 +11,27 @@ import org.bukkit.event.player.PlayerFishEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Item;
+import org.bukkit.event.player.PlayerFishEvent.State;
 
 public class Fishing implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
-    public void fishEvent(PlayerFishEvent event){
-        Player play = event.getPlayer();
+    public void fishEvent(PlayerFishEvent e) {
+        Player play = e.getPlayer();
         EntityType fish;
 
-        if(event.getCaught() != null)
-            fish = event.getCaught().getType();
-        else
+        if(!e.getState().equals(State.CAUGHT_ENTITY) && !e.getState().equals(State.CAUGHT_FISH))
             return;
-
+        
+        if(!(e.getCaught() instanceof Item)) {
+            Item item = (Item)e.getCaught();
+            play.sendMessage("You have caught a " + item.getItemStack().getType().name());
+        }
+        
         if(MCListeners.isMultiWorld()){
             if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))
                 return;
@@ -40,15 +42,12 @@ public class Fishing implements Listener {
                 return;
         }
         
+        Item item = (Item)e.getCaught();
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("fishing");
         for(String sJob: jobs) {
-            if(PlayerData.hasJob(play.getUniqueId(), sJob)){
-                CompCache comp = new CompCache(sJob, play.getLocation(), play, fish, "fishing");
+            if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
+                CompCache comp = new CompCache(sJob, play.getLocation(), play, item.getItemStack().getType(), "fishing");
                 CompData.getCompCache().add(comp);
-
-//                if(PlayerJobs.joblist.get(sJob).getData().compJob().compEntity(fish, play, "fishing")){
-//                    play.sendMessage("You killed him!");
-//                } 
             } 
         }
     }

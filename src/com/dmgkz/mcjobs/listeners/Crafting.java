@@ -28,7 +28,7 @@ public class Crafting implements Listener{
     private static final HashMap<Player, Material> hRepair = new HashMap<>();
     
     @EventHandler(priority = EventPriority.LOW)
-    public void craftEvent(CraftItemEvent event){
+    public void craftEvent(CraftItemEvent event) {
         if(event.isCancelled())
             return;
         
@@ -41,6 +41,7 @@ public class Crafting implements Listener{
                 return;
         }
 
+        
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
@@ -68,7 +69,7 @@ public class Crafting implements Listener{
             return;
         if(event.getRecipe() == null)
             return;
-            
+        
         List<HumanEntity> playlist = event.getViewers();
         Iterator<HumanEntity> it = playlist.iterator();
         Material mat = event.getRecipe().getResult().getType();

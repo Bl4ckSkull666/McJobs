@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionType;
 public class PotionTypeAdv {
     private final String _name;
     private final PotionType _type;
+    private final Material _material;
     private final boolean _extended;
     private final boolean _upgraded;
     private final int _order;
@@ -21,6 +22,12 @@ public class PotionTypeAdv {
         if(_type == null)
             _status = false;
         _name = name;
+        if(!cs.isString("material") || !Utils.isMaterial(cs.getString("material"))) {
+            McJobs.getPlugin().getLogger().warning("Missing Material in " + name + " PotionTypeAdv");
+            _material = Material.AIR;
+        } else {
+            _material = Material.valueOf(cs.getString("material").toUpperCase());
+        }
         _extended = cs.getBoolean("extended", false);
         _upgraded = cs.getBoolean("upgraded", false);
         _order = cs.getInt("order", 0);
@@ -39,6 +46,10 @@ public class PotionTypeAdv {
     
     public boolean getStatus() {
         return _status;
+    }
+    
+    public Material getMaterial() {
+        return _material;
     }
     
     public boolean isExtended() {

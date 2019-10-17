@@ -49,9 +49,9 @@ advanced:
   
 materials:
   mob_spawner: SPAWNER
-  diode_block_off: DIODE_BLOCK_OFF
-  redstone_torch_off: REDSTONE_TORCH_OFF
-  rails: RAILS 
+  diode_block_off: REPEATER
+  redstone_torch_off: REDSTONE_TORCH
+  rails: RAIL
   detector_rail: DETECTOR_RAIL 
   powered_rail: POWERED_RAIL 
   water: WATER 

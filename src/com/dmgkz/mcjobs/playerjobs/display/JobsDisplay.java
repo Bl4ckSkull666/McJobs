@@ -139,13 +139,13 @@ public class JobsDisplay {
             buildEntTiers(_jobsdata.compJob().getEntTypeTiers("defeat"), p);
 
         }
-        if(!_jobsdata.compJob().getEntTypeTiers("fishing").isEmpty() && !getHide("fishing")) {
+        if(!_jobsdata.compJob().getMatTypeTiers("fishing").isEmpty() && !getHide("fishing")) {
             McJobs.getPlugin().getLogger().info("Hat Fishing....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("fishing", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
             
-            buildEntTiers(_jobsdata.compJob().getEntTypeTiers("fishing"), p);
+            buildMatTiers(_jobsdata.compJob().getMatTypeTiers("fishing"), p);
 
         }
         if(!_jobsdata.compJob().getMatTypeTiers("craft").isEmpty() && !getHide("craft")) {

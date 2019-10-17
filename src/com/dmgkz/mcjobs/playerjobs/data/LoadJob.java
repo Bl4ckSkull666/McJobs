@@ -143,7 +143,7 @@ public class LoadJob {
                         _jobsdata.setPvPInterval(section.getLong(key + "." + key2, 30));
                     } else if(StringToNumber.isPositiveNumber(key2)) {
                         int tier = Integer.parseInt(key2);
-                        if(key.equalsIgnoreCase("break") || key.equalsIgnoreCase("place") || key.equalsIgnoreCase("craft") || key.equalsIgnoreCase("repair")) {
+                        if(key.equalsIgnoreCase("break") || key.equalsIgnoreCase("place") || key.equalsIgnoreCase("craft") || key.equalsIgnoreCase("repair") || key.equalsIgnoreCase("fishing")) {
                             McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
                             List<Material> temp = new ArrayList<>();
                             List<String> matList = new ArrayList<>();
@@ -177,7 +177,7 @@ public class LoadJob {
                                 s = "";
                             }
                             setMat(key, tier, temp);
-                        } else if(key.equalsIgnoreCase("defeat") || key.equalsIgnoreCase("fishing")) {
+                        } else if(key.equalsIgnoreCase("defeat")) {
                             McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
                             List<EntityType> temp = new ArrayList<>();
                             List<String> entList = new ArrayList<>();

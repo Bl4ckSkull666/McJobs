@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -93,9 +94,12 @@ public class Holder {
         public PotionTypeAdv getPotion(ItemStack item) {
             if(!item.hasItemMeta() && !(item.getItemMeta() instanceof PotionMeta))
                 return null;
-
+            
             PotionMeta pm = (PotionMeta)item.getItemMeta();
             for(Map.Entry<String, PotionTypeAdv> me: _potions.entrySet()) {
+                if(!item.getType().equals(me.getValue().getMaterial()))
+                    continue;
+                
                 if(!pm.getBasePotionData().getType().equals(me.getValue().getType()))
                     continue;
 

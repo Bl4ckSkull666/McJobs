@@ -11,10 +11,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
+import com.dmgkz.mcjobs.util.Utils;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Sheep;
 
 public class CompCache {
+    private final int rndNumber;
     private final String job;
     private final String action;
     private final Location loc;
@@ -35,7 +37,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.block = block;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
 
     /*
@@ -46,7 +49,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.entity = mob;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
     
     /*
@@ -57,7 +61,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.killed = killed;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
 
     /*
@@ -68,7 +73,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.potion = potion;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
 
     /*
@@ -79,7 +85,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.enchantments.putAll(enchantments);
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
 
     /*
@@ -90,7 +97,8 @@ public class CompCache {
         this.loc = loc;
         this.player = play;
         this.items = items;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
     
     /*
@@ -101,7 +109,8 @@ public class CompCache {
         this.loc = ent.getLocation();
         this.color = ent.getColor();
         this.player = play;
-        this.action = action;        
+        this.action = action;
+        this.rndNumber = Utils.getRandomNumber();
     }
 
     public String getJob() {

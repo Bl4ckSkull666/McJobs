@@ -1,7 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.bukkit.entity.Player;
@@ -10,35 +9,45 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import java.util.ArrayList;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.block.BrewingStand;
+import org.bukkit.inventory.BrewerInventory;
 
+
+/*
+* Slot 0 Potion Left CRAFTING
+* Slot 1 Potion Middle CRAFTING
+* Slot 2 Potion Right CRAFTING
+* Slot 3 Zutat FUEL
+* Slot 4 Burning CRAFTING
+*/
 public class Brewing implements Listener{
-    private final HashMap<InventoryHolder, Player> hBrewStands = new HashMap<>();
+    private final HashMap<Location, Player> hBrewStands = new HashMap<>();
     private final Logger log = McJobs.getPlugin().getLogger();
     
+    /*
+    * Löst aus wenn fertig gestellt.
+    */
     @EventHandler(priority = EventPriority.LOW)
-    public void brewing(BrewEvent event) {
-        if(event.isCancelled())
+    public void brewing(BrewEvent e) {
+        if(e.isCancelled())
             return;
         
-        InventoryHolder brewStand = event.getContents().getHolder();
+        BrewingStand bStand = e.getContents().getHolder();
         Player play = null;
         
-        if(hBrewStands.containsKey(brewStand))
-            play = hBrewStands.get(brewStand);
+        if(hBrewStands.containsKey(bStand.getLocation()))
+            play = hBrewStands.get(bStand.getLocation());
         else
             return;
         
@@ -55,46 +64,63 @@ public class Brewing implements Listener{
                 return;
         }
         
+        ItemStack ingred = e.getContents().getIngredient();
+        int amount = 0;
+        ItemStack item = null;
+        for(int i = 0; i <= 2; i++) {
+            ItemStack tmpItem = e.getContents().getItem(i);
+            if(tmpItem == null || (!tmpItem.getType().equals(Material.POTION) && !!tmpItem.getType().equals(Material.SPLASH_POTION) && !tmpItem.getType().equals(Material.LINGERING_POTION)))
+                continue;
+                   
+            item = tmpItem;
+            amount++;
+        }
+                
+        if(item == null)
+            return;
+                
+        PotionTypeAdv potion = McJobs.getPlugin().getHolder().getPotions().getPotion(item);
+        if(potion == null)
+            return;
+                    
+        potion = potion.getResultPotion(ingred.getType());
+        if(potion == null)
+            return;
+        
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("potion");
         for(String sJob: jobs) {
-            ItemStack ingred = event.getContents().getIngredient();
-            ItemStack item = null;
-            
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
-                if(!PlayerJobs.getJobsList().get(sJob).getData().getPotHash().containsKey("potion"))
-                    continue;
-                
-                while((item = event.getContents().iterator().next()) != null) {
-                    if(item != null && item.getType().equals(Material.POTION)) {
-                        String sPotion = item.getItemMeta().getDisplayName();
-                        PotionTypeAdv potion = McJobs.getPlugin().getHolder().getPotions().getPotion(item).getResultPotion(ingred.getType());
-
-                        if(McJobs.getPlugin().getConfig().getBoolean("advanced.debug")){
-                            if(potion == null){
-                                play.sendMessage("This potion does not exist: " + sPotion.toString() + " " + ingred.getType().toString()); 
-                            } else
-                                play.sendMessage("PotionType = " + sPotion.toString() + " ingredient = " + ingred.getType().toString() + " Result = " + potion.toString());
-                        }
-
-                        CompCache comp = new CompCache(sJob, play.getLocation(), play, potion, "potion");
-                        CompData.getCompCache().add(comp);
-                    }
+                for(int i = 0; i < amount; i++) {
+                    CompCache comp = new CompCache(sJob, play.getLocation(), play, potion, "potion");
+                    CompData.getCompCache().add(comp);
                 }
             }
         }
+        hBrewStands.remove(bStand.getLocation());
     }
     
     @EventHandler(priority = EventPriority.LOW)
-    public void getBrewStand(InventoryClickEvent event){
-        Player play = (Player) event.getWhoClicked();
+    public void getBrewStand(InventoryClickEvent e) {
+        Player play = (Player) e.getWhoClicked();
         
-        if(event.isCancelled())
+        if(e.isCancelled())
             return;
-                
+        
         //if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getName().equalsIgnoreCase("container.brewing")) {
-        if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getType().equals(InventoryType.BREWING)) {
-            InventoryHolder brewStand = event.getInventory().getHolder();
-            hBrewStands.put(brewStand, play);
+        if(e.getInventory() instanceof BrewerInventory) {
+            BrewerInventory binv = (BrewerInventory)e.getInventory();
+            ItemStack potionL = binv.getItem(0);
+            ItemStack potionM = binv.getItem(1);
+            ItemStack potionR = binv.getItem(2);
+            
+            if((potionL != null || potionM != null || potionR != null) && binv.getIngredient() != null) {
+                BrewingStand bStand = binv.getHolder();
+                if(bStand.getFuelLevel() == 0 || bStand.getBrewingTime() <= 0)
+                    return;
+                
+                if(!hBrewStands.containsKey(bStand.getLocation()))
+                    hBrewStands.put(bStand.getLocation(), play);
+            }
         }
     }
 }

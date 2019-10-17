@@ -8,6 +8,7 @@ package com.dmgkz.mcjobs.util;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import java.util.List;
+import java.util.Random;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -17,6 +18,11 @@ import org.bukkit.entity.Player;
  * @author PapaHarni
  */
 public class Utils {
+    public static int getRandomNumber() {
+        Random rnd = new Random();
+        return rnd.nextInt(Integer.MAX_VALUE);
+    }
+    
     public static String getListToString(List<String> arr, String seperator) {
         String tmp = "";
         for(String a: arr) {

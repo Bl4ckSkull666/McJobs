@@ -1,5 +1,6 @@
 water:
   type: water
+  material: POTION
   extended: false
   upgraded: false
   order: 0
@@ -19,6 +20,7 @@ water:
 
 awkward: 
   type: awkward
+  material: POTION
   extended: false
   upgraded: false
   order: 1
@@ -38,6 +40,7 @@ awkward:
     
 speed:
   type: speed
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -49,6 +52,7 @@ speed:
     
 speed_ext:
   type: speed
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -58,6 +62,7 @@ speed_ext:
 
 speed_upg:
   type: speed
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -66,6 +71,7 @@ speed_upg:
 
 jump:
   type: jump
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -77,6 +83,7 @@ jump:
 
 jump_ext:
   type: jump
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -86,6 +93,7 @@ jump_ext:
 
 jump_upg:
   type: jump
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -94,6 +102,7 @@ jump_upg:
 
 slowness:
   type: slowness
+  material: POTION
   extended: false
   upgraded: false
   order: 3
@@ -104,6 +113,7 @@ slowness:
         
 slowness_ext:
   type: slowness
+  material: POTION
   extended: true
   upgraded: false
   order: 4
@@ -112,6 +122,7 @@ slowness_ext:
         
 slowness_upg:
   type: slowness
+  material: POTION
   extended: false
   upgraded: true
   order: 4
@@ -120,6 +131,7 @@ slowness_upg:
         
 strength: 
   type: strength
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -130,6 +142,7 @@ strength:
 
 strength_ext:
   type: strength
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -138,6 +151,7 @@ strength_ext:
 
 strength_upg:
   type: strength
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -146,6 +160,7 @@ strength_upg:
   
 healing:
   type: instant_heal
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -156,6 +171,7 @@ healing:
 
 healing_upg:
   type: instant_heal
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -164,18 +180,20 @@ healing_upg:
     FERMENTED_SPIDER_EYE: damage_upg
 
 poison:
-    type: poison
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_poison
-        REDSTONE: poison_ext
-        GLOWSTONE_DUST: poison_upg
-        FERMENTED_SPIDER_EYE: damage
+  type: poison
+  material: POTION
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_poison
+    REDSTONE: poison_ext
+    GLOWSTONE_DUST: poison_upg
+    FERMENTED_SPIDER_EYE: damage
 
 poison_ext:
   type: poison
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -184,6 +202,7 @@ poison_ext:
 
 poison_upg:
   type: poison
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -193,6 +212,7 @@ poison_upg:
 
 damage:
   type: instant_damage
+  material: POTION
   extended: false
   upgraded: false
   order: 3
@@ -202,6 +222,7 @@ damage:
 
 damage_upg:
   type: instant_damage
+  material: POTION
   extended: false
   upgraded: true
   order: 4
@@ -209,33 +230,37 @@ damage_upg:
     GUNPOWDER: splash_damage_upg
 
 regeneration:
-    type: regen
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        GUNPOWDER: splash_regeneration
-        REDSTONE: regeneration_ext
-        GLOWSTONE_DUST: regeneration_upg
+  type: regen
+  material: POTION
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    GUNPOWDER: splash_regeneration
+    REDSTONE: regeneration_ext
+    GLOWSTONE_DUST: regeneration_upg
 
 regeneration_ext:
-    type: regen
-    extended: true
-    upgraded: false
-    order: 3
-    result:
-        GUNPOWDER: splash_regeneration_ext
+  type: regen
+  material: POTION
+  extended: true
+  upgraded: false
+  order: 3
+  result:
+    GUNPOWDER: splash_regeneration_ext
 
 regeneration_upg:
-    type: regen
-    extended: false
-    upgraded: true
-    order: 3
-    result:
-        GUNPOWDER: splash_regeneration_upg
+  type: regen
+  material: POTION
+  extended: false
+  upgraded: true
+  order: 3
+  result:
+    GUNPOWDER: splash_regeneration_upg
      
 fire_resistance:
   type: fire_resistance
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -245,6 +270,7 @@ fire_resistance:
 
 fire_resistance_ext:
   type: fire_resistance
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -253,6 +279,7 @@ fire_resistance_ext:
 
 water_breathing:
   type: water_breathing
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -262,6 +289,7 @@ water_breathing:
         
 water_breathing_ext:
   type: water_breathing
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -270,6 +298,7 @@ water_breathing_ext:
 
 nightvision:
   type: night_vision
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -280,6 +309,7 @@ nightvision:
 
 nightvision_ext:
   type: night_vision
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -289,6 +319,7 @@ nightvision_ext:
 
 invisible:
   type: invisibility
+  material: POTION
   extended: false
   upgraded: false
   order: 3
@@ -298,6 +329,7 @@ invisible:
 
 invisible_ext:
   type: invisibility
+  material: POTION
   extended: true
   upgraded: false
   order: 4
@@ -306,6 +338,7 @@ invisible_ext:
      
 turtlemaster:
   type: turtle_master
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -316,6 +349,7 @@ turtlemaster:
 
 turtlemaster_ext:
   type: turtle_master
+  material: POTION
   extended: true
   upgraded: false
   order: 3
@@ -324,6 +358,7 @@ turtlemaster_ext:
 
 turtlemaster_upg:
   type: turtle_master
+  material: POTION
   extended: false
   upgraded: true
   order: 3
@@ -332,6 +367,7 @@ turtlemaster_upg:
 
 soft_fall:
   type: slow_falling
+  material: POTION
   extended: false
   upgraded: false
   order: 2
@@ -341,6 +377,7 @@ soft_fall:
 
 soft_fall_ext:
   type: slow_falling
+  material: POTION
   extended: false
   upgraded: false
   order: 3
@@ -358,6 +395,7 @@ weakness:
 
 weakness_ext:
   type: weakness
+  material: POTION
   extended: true
   upgraded: false
   order: 2
@@ -365,26 +403,29 @@ weakness_ext:
     GUNPOWDER: splash_weakness_ext
 
 mundane:
-    type: mundane
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        GUNPOWDER: splash_mundane
+  type: mundane
+  material: POTION
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    GUNPOWDER: splash_mundane
         
 thick:
-    type: thick
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        GUNPOWDER: splash_thick
+  type: thick
+  material: POTION
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    GUNPOWDER: splash_thick
 
 ################# END OF NORMAL POTION
 ################# START OF SPLASH POTION
 
 splash_water:
   type: water
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 1
@@ -404,6 +445,7 @@ splash_water:
 
 splash_awkward: 
   type: awkward
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 2
@@ -423,6 +465,7 @@ splash_awkward:
     
 splash_speed:
   type: speed
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -434,6 +477,7 @@ splash_speed:
     
 splash_speed_ext:
   type: speed
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -443,6 +487,7 @@ splash_speed_ext:
 
 splash_speed_upg:
   type: speed
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -451,6 +496,7 @@ splash_speed_upg:
 
 splash_jump:
   type: jump
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -462,6 +508,7 @@ splash_jump:
 
 splash_jump_ext:
   type: jump
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -471,6 +518,7 @@ splash_jump_ext:
 
 splash_jump_upg:
   type: jump
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -479,6 +527,7 @@ splash_jump_upg:
 
 splash_slowness:
   type: slowness
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 4
@@ -489,6 +538,7 @@ splash_slowness:
 
 splash_slowness_ext:
   type: slowness
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 5
@@ -497,6 +547,7 @@ splash_slowness_ext:
         
 splash_slowness_upg:
   type: slowness
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 5
@@ -505,6 +556,7 @@ splash_slowness_upg:
         
 splash_strength: 
   type: strength
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -515,6 +567,7 @@ splash_strength:
 
 splash_strength_ext:
   type: strength
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -523,6 +576,7 @@ splash_strength_ext:
 
 splash_strength_upg:
   type: strength
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -531,6 +585,7 @@ splash_strength_upg:
   
 splash_healing:
   type: instant_heal
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -541,6 +596,7 @@ splash_healing:
 
 splash_healing_upg:
   type: instant_heal
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -549,18 +605,20 @@ splash_healing_upg:
     FERMENTED_SPIDER_EYE: splash_damage_upg
 
 splash_poison:
-    type: poison
-    extended: false
-    upgraded: false
-    order: 3
-    result:
-        DRAGON_BREATH: lingering_poison
-        REDSTONE: splash_poison_ext
-        GLOWSTONE_DUST: splash_poison_upg
-        FERMENTED_SPIDER_EYE: splash_damage
+  type: poison
+  material: SPLASH_POTION
+  extended: false
+  upgraded: false
+  order: 3
+  result:
+    DRAGON_BREATH: lingering_poison
+    REDSTONE: splash_poison_ext
+    GLOWSTONE_DUST: splash_poison_upg
+    FERMENTED_SPIDER_EYE: splash_damage
 
 splash_poison_ext:
   type: poison
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -569,6 +627,7 @@ splash_poison_ext:
 
 splash_poison_upg:
   type: poison
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -578,6 +637,7 @@ splash_poison_upg:
 
 splash_damage:
   type: instant_damage
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 4
@@ -587,6 +647,7 @@ splash_damage:
 
 splash_damage_upg:
   type: instant_damage
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -595,6 +656,7 @@ splash_damage_upg:
 
 splash_regeneration:
   type: regen
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -605,6 +667,7 @@ splash_regeneration:
 
 splash_regeneration_ext:
   type: regen
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -613,6 +676,7 @@ splash_regeneration_ext:
 
 splash_regeneration_upg:
   type: regen
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -621,6 +685,7 @@ splash_regeneration_upg:
      
 splash_fire_resistance:
   type: fire_resistance
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -630,6 +695,7 @@ splash_fire_resistance:
 
 splash_fire_resistance_ext:
   type: fire_resistance
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -638,6 +704,7 @@ splash_fire_resistance_ext:
 
 splash_water_breathing:
   type: water_breathing
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -647,6 +714,7 @@ splash_water_breathing:
         
 splash_water_breathing_ext:
   type: water_breathing
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -655,6 +723,7 @@ splash_water_breathing_ext:
 
 splash_nightvision:
   type: night_vision
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -665,6 +734,7 @@ splash_nightvision:
 
 splash_nightvision_ext:
   type: night_vision
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -674,6 +744,7 @@ splash_nightvision_ext:
 
 splash_invisible:
   type: invisibility
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 4
@@ -683,6 +754,7 @@ splash_invisible:
 
 splash_invisible_ext:
   type: invisibility
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 5
@@ -691,6 +763,7 @@ splash_invisible_ext:
      
 splash_turtlemaster:
   type: turtle_master
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -701,6 +774,7 @@ splash_turtlemaster:
 
 splash_turtlemaster_ext:
   type: turtle_master
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 4
@@ -709,6 +783,7 @@ splash_turtlemaster_ext:
 
 splash_turtlemaster_upg:
   type: turtle_master
+  material: SPLASH_POTION
   extended: false
   upgraded: true
   order: 4
@@ -717,6 +792,7 @@ splash_turtlemaster_upg:
 
 splash_soft_fall:
   type: slow_falling
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 3
@@ -726,6 +802,7 @@ splash_soft_fall:
 
 splash_soft_fall_ext:
   type: slow_falling
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 4
@@ -733,7 +810,8 @@ splash_soft_fall_ext:
     DRAGON_BREATH: lingering_soft_fall_ext
 
 splash_weakness:  
-  type: weakness 
+  type: weakness
+  material: SPLASH_POTION
   extended: false
   upgraded: false
   order: 2
@@ -743,6 +821,7 @@ splash_weakness:
 
 splash_weakness_ext:
   type: weakness
+  material: SPLASH_POTION
   extended: true
   upgraded: false
   order: 3
@@ -750,26 +829,29 @@ splash_weakness_ext:
     DRAGON_BREATH: lingering_weakness_ext
 
 splash_mundane:
-    type: mundane
-    extended: false
-    upgraded: false
-    order: 2
-    result:
-        DRAGON_BREATH: lingering_mundane
+  type: mundane
+  material: SPLASH_POTION
+  extended: false
+  upgraded: false
+  order: 2
+  result:
+    DRAGON_BREATH: lingering_mundane
         
 splash_thick:
-    type: thick
-    extended: false
-    upgraded: false
-    order: 1
-    result:
-        DRAGON_BREATH: lingering_thick
+  type: thick
+  material: SPLASH_POTION
+  extended: false
+  upgraded: false
+  order: 1
+  result:
+    DRAGON_BREATH: lingering_thick
 
 ################# END OF SPLASH POTION
 ################# START OF LINGERING POTION
 
 lingering_water:
   type: water
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 2
@@ -788,6 +870,7 @@ lingering_water:
 
 lingering_awkward: 
   type: awkward
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 3
@@ -806,6 +889,7 @@ lingering_awkward:
     
 lingering_speed:
   type: speed
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -816,6 +900,7 @@ lingering_speed:
     
 lingering_speed_ext:
   type: speed
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
@@ -824,12 +909,14 @@ lingering_speed_ext:
 
 lingering_speed_upg:
   type: speed
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
 
 lingering_jump:
   type: jump
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -840,6 +927,7 @@ lingering_jump:
 
 lingering_jump_ext:
   type: jump
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
@@ -848,12 +936,14 @@ lingering_jump_ext:
 
 lingering_jump_upg:
   type: jump
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
 
 lingering_slowness:
   type: slowness
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 5
@@ -863,18 +953,21 @@ lingering_slowness:
 
 lingering_slowness_ext:
   type: slowness
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 6
         
 lingering_slowness_upg:
   type: slowness
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 6
         
 lingering_strength: 
   type: strength
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -884,18 +977,21 @@ lingering_strength:
 
 lingering_strength_ext:
   type: strength
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 lingering_strength_upg:
   type: strength
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
   
 lingering_healing:
   type: instant_heal
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -905,6 +1001,7 @@ lingering_healing:
 
 lingering_healing_upg:
   type: instant_heal
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
@@ -912,23 +1009,26 @@ lingering_healing_upg:
     FERMENTED_SPIDER_EYE: lingering_damage_upg
 
 lingering_poison:
-    type: poison
-    extended: false
-    upgraded: false
-    order: 4
-    result:
-        REDSTONE: lingering_poison_ext
-        GLOWSTONE_DUST: lingering_poison_upg
-        FERMENTED_SPIDER_EYE: lingering_damage
+  type: poison
+  material: LINGERING_POTION
+  extended: false
+  upgraded: false
+  order: 4
+  result:
+    REDSTONE: lingering_poison_ext
+    GLOWSTONE_DUST: lingering_poison_upg
+    FERMENTED_SPIDER_EYE: lingering_damage
 
 lingering_poison_ext:
   type: poison
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 lingering_poison_upg:
   type: poison
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
@@ -937,6 +1037,7 @@ lingering_poison_upg:
 
 lingering_damage:
   type: instant_damage
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 5
@@ -945,12 +1046,14 @@ lingering_damage:
 
 lingering_damage_upg:
   type: instant_damage
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
 
 lingering_regeneration:
   type: regen
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -960,18 +1063,21 @@ lingering_regeneration:
 
 splash_regeneration_ext:
   type: regen
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 splash_regeneration_upg:
   type: regen
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
      
 lingering_fire_resistance:
   type: fire_resistance
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -980,12 +1086,14 @@ lingering_fire_resistance:
 
 lingering_fire_resistance_ext:
   type: fire_resistance
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 lingering_water_breathing:
   type: water_breathing
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -994,12 +1102,14 @@ lingering_water_breathing:
         
 lingering_water_breathing_ext:
   type: water_breathing
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 lingering_nightvision:
   type: night_vision
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 3
@@ -1009,6 +1119,7 @@ lingering_nightvision:
 
 lingering_nightvision_ext:
   type: night_vision
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 4
@@ -1017,6 +1128,7 @@ lingering_nightvision_ext:
 
 lingering_invisible:
   type: invisibility
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 5
@@ -1025,12 +1137,14 @@ lingering_invisible:
 
 lingering_invisible_ext:
   type: invisibility
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 6
      
 lingering_turtlemaster:
   type: turtle_master
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -1040,18 +1154,21 @@ lingering_turtlemaster:
 
 lingering_turtlemaster_ext:
   type: turtle_master
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 5
 
 lingering_turtlemaster_upg:
   type: turtle_master
+  material: LINGERING_POTION
   extended: false
   upgraded: true
   order: 5
 
 lingering_soft_fall:
   type: slow_falling
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 4
@@ -1060,12 +1177,14 @@ lingering_soft_fall:
 
 lingering_soft_fall_ext:
   type: slow_falling
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 5
 
 lingering_weakness:  
   type: weakness 
+  material: LINGERING_POTION
   extended: false
   upgraded: false
   order: 3
@@ -1074,18 +1193,21 @@ lingering_weakness:
 
 lingering_weakness_ext:
   type: weakness
+  material: LINGERING_POTION
   extended: true
   upgraded: false
   order: 4
 
 lingering_mundane:
-    type: mundane
-    extended: false
-    upgraded: false
-    order: 3
+  type: mundane
+  material: LINGERING_POTION
+  extended: false
+  upgraded: false
+  order: 3
         
 lingering_thick:
-    type: thick
-    extended: false
-    upgraded: false
-    order: 3
+  type: thick
+  material: LINGERING_POTION
+  extended: false
+  upgraded: false
+  order: 3

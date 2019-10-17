@@ -4,7 +4,7 @@ exp: 5
 potion:
   pays: true
   hide: false
-  1: mundane mundane_ext thick
+  1: mundane thick
   2: poison weakness
   3: slowness damage splash_poison poison_ext poison_upg splash_weakness weakness_ext
   4: slowness_ext splash_slowness splash_damage damage_upg splash_poison_ext splash_poison_upg splash_weakness_ext
