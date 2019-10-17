@@ -3,16 +3,38 @@ exp: 1
 break:
   pays: true
   hide: false
-  tier:
-    1: leaves
-    4: log
+  1:
+  - ACACIA_LEAVES
+  - BIRCH_LEAVES
+  - DARK_OAK_LEAVES
+  - JUNGLE_LEAVES
+  - OAK_LEAVES
+  - SPRUCE_LEAVES
+  4:
+  - ACACIA_LOG
+  - BIRCH_LOG
+  - DARK_OAK_LOG
+  - JUNGLE_LOG
+  - OAK_LOG
+  - SPRUCE_LOG
 place:
   pays: true
   hide: false
-  tier:
-    2: sapling
+  2:
+  - ACACIA_SAPLING
+  - BIRCH_SAPLING
+  - DARK_OAK_SAPLING
+  - JUNGLE_SAPLING
+  - OAK_SAPLING
+  - SPRUCE_SAPLING
 craft:
   pays: true
   hide: false
-  tier:
-    1: stick wood_axe wood_spade wood_hoe wood_pickaxe fishing_rod bowl
+  1: 
+  - stick 
+  - WOODEN_AXE
+  - WOODEN_SHOVEL
+  - WOODEN_HOE
+  - WOODEN_PICKAXE
+  - fishing_rod 
+  - bowl

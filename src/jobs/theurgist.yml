@@ -4,9 +4,8 @@ exp: 10
 enchant:
   pays: true
   hide: false
-  tier:
-    1: respiration_1 protection_1 blast_prot_1 feather_fall_1 fire_prot_1 proj_prot_1
-    2: respiration_2 protection_2 blast_prot_2 feather_fall_2 fire_prot_2 proj_prot_2
-    3: respiration_3 protection_3 blast_prot_3 feather_fall_3 fire_prot_3 proj_prot_3
-    4: protection_4 blast_prot_4 feather_fall_4 fire_prot_4 proj_prot_4
-    5: aqua_affinity
+  1: OXYGEN_1 PROTECTION_ENVIRONMENTAL_1 PROTECTION_EXPLOSIONS_1 PROTECTION_FALL_1 PROTECTION_FIRE_1 PROTECTION_PROJECTILE_1
+  2: OXYGEN_2 PROTECTION_ENVIRONMENTAL_2 PROTECTION_EXPLOSIONS_2 PROTECTION_FALL_2 PROTECTION_FIRE_2 PROTECTION_PROJECTILE_2
+  3: OXYGEN_3 PROTECTION_ENVIRONMENTAL_3 PROTECTION_EXPLOSIONS_3 PROTECTION_FALL_3 PROTECTION_FIRE_3 PROTECTION_PROJECTILE_3
+  4: PROTECTION_ENVIRONMENTAL_4 PROTECTION_EXPLOSIONS_4 PROTECTION_FALL_4 PROTECTION_FIRE_4 PROTECTION_PROJECTILE_4
+  5: WATER_WORKER_1

@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,7 @@ import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
+import java.util.ArrayList;
 
 public class Crafting implements Listener{
 
@@ -39,9 +41,8 @@ public class Crafting implements Listener{
                 return;
         }
 
-        for(Map.Entry<String, PlayerJobs> pair: PlayerJobs.getJobsList().entrySet()) {
-            String sJob = pair.getKey();
-            
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+        for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                 if(hRepair.containsKey(play)){
                     if(hRepair.get(play).equals(item)){

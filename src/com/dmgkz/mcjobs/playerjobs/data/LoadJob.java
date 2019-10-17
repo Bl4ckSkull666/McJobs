@@ -10,13 +10,15 @@ import org.bukkit.entity.EntityType;
 import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.StringToNumber;
-import com.dmgkz.mcjobs.util.MatClass;
 import com.dmgkz.mcjobs.util.RegionPositions;
 import com.dmgkz.mcjobs.util.SpigotMessage;
 import com.dmgkz.mcjobs.util.Utils;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
 
 public class LoadJob {
     private final JobsData _jobsdata;
@@ -137,45 +139,150 @@ public class LoadJob {
                     } else if(key2.equalsIgnoreCase("need-tool")) {
                         for(String s: section.getString(key + "." + key2).split(" "))
                             setTools(key, s);
+                    } else if(key.equalsIgnoreCase("pvp") && key2.equalsIgnoreCase("kill-interval")) {
+                        _jobsdata.setPvPInterval(section.getLong(key + "." + key2, 30));
                     } else if(StringToNumber.isPositiveNumber(key2)) {
                         int tier = Integer.parseInt(key2);
                         if(key.equalsIgnoreCase("break") || key.equalsIgnoreCase("place") || key.equalsIgnoreCase("craft") || key.equalsIgnoreCase("repair")) {
-                            ArrayList<MatClass> temp = new ArrayList<>();
-                            for(String s: section.getString(key + "." + key2).split(" ")) {
-                                String[] mats = s.split(":");
-                                if(!Utils.isMaterial(mats[0]))
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            List<Material> temp = new ArrayList<>();
+                            List<String> matList = new ArrayList<>();
+                            if(section.isList(key + "." + key2)) {
+                                matList.addAll((List<String>)section.getList(key + "." + key2));
+                            } else {
+                                matList.addAll(Arrays.asList(section.getString(key + "." + key2).split(" ")));
+                            }
+                            
+                            for(String s: matList) {
+                                if(!Utils.isMaterial(s)) {
+                                    McJobs.getPlugin().getLogger().warning("Can't found Material " + s + " on " + key + " in Job " + _jobsdata.getName());
                                     continue;
+                                }
                                 
-                                MatClass mc = new MatClass(Material.valueOf(mats[0].toUpperCase()));
-                                if(mats.length == 2 && StringToNumber.isPositiveNumber(mats[1]))
-                                    mc.setWorth(Integer.parseInt(mats[1]));
-                                temp.add(mc);
+                                try {
+                                    Material tmpMat = Material.valueOf(s.toUpperCase());
+                                    if(tmpMat == null) {
+                                        McJobs.getPlugin().getLogger().warning("Material " + s + " on " + key + " in Job " + _jobsdata.getName() + " is null!!!!!");
+                                        continue;
+                                    }
+
+                                    if(!temp.add(tmpMat)) {
+                                        McJobs.getPlugin().getLogger().warning("Duplicate Material " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                        continue;
+                                    }
+                                    tmpMat = null;
+                                } catch(Exception ex) {
+                                    McJobs.getPlugin().getLogger().log(Level.WARNING, "Exception in JobLoad Material Type: ", ex);
+                                }
+                                s = "";
                             }
                             setMat(key, tier, temp);
                         } else if(key.equalsIgnoreCase("defeat") || key.equalsIgnoreCase("fishing")) {
-                            ArrayList<EntityType> temp = new ArrayList<>();
-                            for(String s: section.getString(key + "." + key2).split(" ")) {
-                                if(!Utils.isEntity(s))
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            List<EntityType> temp = new ArrayList<>();
+                            List<String> entList = new ArrayList<>();
+                            if(section.isList(key + "." + key2)) {
+                                entList.addAll((List<String>)section.getList(key + "." + key2));
+                            } else {
+                                entList.addAll(Arrays.asList(section.getString(key + "." + key2).split(" ")));
+                            }
+                            
+                            for(String s: entList) {
+                                if(!Utils.isEntity(s)) {
+                                    McJobs.getPlugin().getLogger().warning("Can't found EntityType " + s + " on " + key + " in Job " + _jobsdata.getName());
                                     continue;
-                                temp.add(EntityType.valueOf(s.toUpperCase()));
+                                }
+                                
+                                EntityType entTmp = EntityType.valueOf(s.toUpperCase());
+                                if(!temp.add(entTmp)) {
+                                    McJobs.getPlugin().getLogger().warning("Duplicate EntityType " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                    continue;
+                                }
+                                
+                                s = "";
+                                entTmp = null;
                             }
                             setEntity(key, tier, temp);
                         } else if(key.equalsIgnoreCase("potion")) {
-                            ArrayList<PotionTypeAdv> temp = new ArrayList<>();
-                            for(String s: section.getString(key + "." + key2).split(" ")) {
-                                if(!Utils.isPotionTypeAdv(s))
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            List<PotionTypeAdv> temp = new ArrayList<>();
+                            List<String> potList = new ArrayList<>();
+                            if(section.isList(key + "." + key2)) {
+                                potList.addAll((List<String>)section.getList(key + "." + key2));
+                            } else {
+                                potList.addAll(Arrays.asList(section.getString(key + "." + key2).split(" ")));
+                            }
+                            
+                            for(String s: potList) {
+                                if(!Utils.isPotionTypeAdv(s)) {
+                                    McJobs.getPlugin().getLogger().warning("Can't found PotionTypeAdv " + s + " on " + key + " in Job " + _jobsdata.getName());
                                     continue;
-                                temp.add(PotionTypeAdv._potions.get(s.toUpperCase()));
+                                }
+                                
+                                PotionTypeAdv potTmp = McJobs.getPlugin().getHolder().getPotions().getPotion(s);
+                                if(!temp.add(potTmp)) {
+                                    McJobs.getPlugin().getLogger().warning("Duplicate PotionTypeAdv " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                    continue;
+                                }
+                                
+                                s = "";
+                                potTmp = null;
                             }
                             setPotions(key, tier, temp);
                         } else if(key.equalsIgnoreCase("enchant")) {
-                            ArrayList<EnchantTypeAdv> temp = new ArrayList<>();
-                            for(String s: section.getString(key + "." + key2).split(" ")) {
-                                if(!Utils.isEnchantTypeAdv(s))
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            List<EnchantTypeAdv> temp = new ArrayList<>();
+                            List<String> enchList = new ArrayList<>();
+                            if(section.isList(key + "." + key2)) {
+                                enchList.addAll((List<String>)section.getList(key + "." + key2));
+                            } else {
+                                enchList.addAll(Arrays.asList(section.getString(key + "." + key2).split(" ")));
+                            }
+                            
+                            for(String s: enchList) {
+                                if(!Utils.isEnchantTypeAdv(s)) {
+                                    McJobs.getPlugin().getLogger().warning("Can't found Enchant " + s + " on " + key + " in Job " + _jobsdata.getName());
                                     continue;
-                                temp.add(EnchantTypeAdv.getEnchantAdv(s.toUpperCase()));
+                                }
+                                
+                                EnchantTypeAdv enchTmp = McJobs.getPlugin().getHolder().getEnchants().getEnchantAdv(s);
+                                if(!temp.add(enchTmp)) {
+                                    McJobs.getPlugin().getLogger().warning("Duplicate EnchantTypeAdv " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                    continue;
+                                }
+                                
+                                s = "";
+                                enchTmp = null;
                             }
                             setEnchants(key, tier, temp);
+                        } else if(key.equalsIgnoreCase("shear")) {
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            List<DyeColor> temp = new ArrayList<>();
+                            List<String> colList = new ArrayList<>();
+                            if(section.isList(key + "." + key2)) {
+                                colList.addAll((List<String>)section.getList(key + "." + key2));
+                            } else {
+                                colList.addAll(Arrays.asList(section.getString(key + "." + key2).split(" ")));
+                            }
+                            
+                            for(String s: colList) {
+                                if(DyeColor.valueOf(s) == null) {
+                                    McJobs.getPlugin().getLogger().warning("Can't found DyeColor " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                    continue;
+                                }
+                                
+                                if(!temp.add(DyeColor.valueOf(s))) {
+                                    McJobs.getPlugin().getLogger().warning("Duplicate DyeColor " + s + " on " + key + " in Job " + _jobsdata.getName());
+                                    continue;
+                                }
+                                
+                                s = "";
+                            }
+                            setDyeColors(key, tier, temp);
+                        } else if(key.equalsIgnoreCase("pvp")) {
+                            McJobs.getPlugin().getHolder().getJobsHolder().addJob(key, _jobsdata.getName());
+                            if(section.isInt(key + "." + key2))
+                                setPvPs(key, tier, section.getInt(key + "." + key2));
                         }
                     }
                 }
@@ -191,28 +298,40 @@ public class LoadJob {
         _jobsdata._exp_modifier = exp;
     }
     
-    private void setMat(String action, int key, ArrayList<MatClass> tier){
+    private void setMat(String action, int key, List<Material> tier){
         if(!_jobsdata.getMatHash().containsKey(action))
             _jobsdata.getMatHash().put(action, new HashMap<>());
         _jobsdata.getMatHash().get(action).put(key, tier);
     }
 
-    private void setEntity(String action, int key, ArrayList<EntityType> tier){
+    private void setEntity(String action, int key, List<EntityType> tier){
         if(!_jobsdata.getEntHash().containsKey(action))
             _jobsdata.getEntHash().put(action, new HashMap<>());
         _jobsdata.getEntHash().get(action).put(key, tier);
     }
     
-    private void setPotions(String action, int key, ArrayList<PotionTypeAdv> tier){
+    private void setPotions(String action, int key, List<PotionTypeAdv> tier){
         if(!_jobsdata.getPotHash().containsKey(action))
             _jobsdata.getPotHash().put(action, new HashMap<>());
         _jobsdata.getPotHash().get(action).put(key, tier);
     }
     
-    private void setEnchants(String action, int key, ArrayList<EnchantTypeAdv> tier) {
+    private void setEnchants(String action, int key, List<EnchantTypeAdv> tier) {
         if(!_jobsdata.getEnchantHash().containsKey(action))
             _jobsdata.getEnchantHash().put(action, new HashMap<>());
         _jobsdata.getEnchantHash().get(action).put(key, tier);
+    }
+    
+    private void setDyeColors(String action, int key, List<DyeColor> tier) {
+        if(!_jobsdata.getColorHash().containsKey(action))
+            _jobsdata.getColorHash().put(action, new HashMap<>());
+        _jobsdata.getColorHash().get(action).put(key, tier);
+    }
+    
+    private void setPvPs(String action, int key, int tier) {
+        if(!_jobsdata.getPvPHash().containsKey(action))
+            _jobsdata.getPvPHash().put(action, new HashMap<>());
+        _jobsdata.getPvPHash().get(action).put(key, tier);
     }
     
     private void setTierPays(String key, Boolean isPays) {
@@ -261,5 +380,9 @@ public class LoadJob {
             _jobsdata._bShow[6] = isHide;
         else if(block.equalsIgnoreCase("potion"))
             _jobsdata._bShow[7] = isHide;
+        else if(block.equalsIgnoreCase("shear"))
+            _jobsdata._bShow[8] = isHide;
+        else if(block.equalsIgnoreCase("pvp"))
+            _jobsdata._bShow[9] = isHide;
     }
 }

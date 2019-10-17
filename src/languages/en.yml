@@ -1,321 +1,125 @@
 jobs:
-  descriptions:
-    digger: 
-      message: 'The digger earns money by breaking blocks with the shovel.'
-      no-prefix: true
-    miner: 
-      message: 'The miner earns money by breaking blocks with the pick axe.'
-      no-prefix: true
-    builder: 
-      message: 'The builder earns money by placing construction blocks.'
-      no-prefix: true
-    carpenter: 
-      message: 'The carpenter earns money for crafting wooden and stone objects.'
-      no-prefix: true
-    soldier: 
-      message: 'A soldier earns cash by clearing the wilderness of monsters.'
-      no-prefix: true
-    tinkerer: 
-      message: 'Earns money by laying and crafting electrical components.'
-      no-prefix: true
-    woodsman: 
-      message: 'Earns money by chopping trees and crafting wood items.'
-      no-prefix: true
-    farmer: 
-      message: 'Slaughtering animals and cultivating crops pays this job.'
-      no-prefix: true
-    toolmaker: 
-      message: 'Earns money by making stone tools and higher.'
-      no-prefix: true
-    weaponsmith: 
-      message: 'Earns money by crafting and repairing weaponery.'
-      no-prefix: true
-    armorer: 
-      message: 'Crafting and repairing armor earns money.'
-      no-prefix: true
-    fisherman: 
-      message: 'Earn money for catching fish.'
-      no-prefix: true
-    baker: 
-      message: 'Cooking foods and food based potion items pays the baker.'
-      no-prefix: true
-    alchemist: 
-      message: 'Crafting defensive potoins pays the alchemist.'
-      no-prefix: true
-    brewer: 
-      message: 'Brewing offensive potions pays the brewer.'
-      no-prefix: true
-    enchanter: 
-      message: 'Invoking spells to weapons pays the enchanter.'
-      no-prefix: true
-    theurgist: 
-      message: 'Enchanting armor objects pays the theurgist.'
-      no-prefix: true
-    conjurer: 
-      message: 'Applying conjurations to tools pays the conjurer.'
-      no-prefix: true
-    bulldozer: 
-      message: 'Its expensive to break down the world of minecraft.'
-      no-prefix: true
-    taxes: 
-      message: 'In this world nothing can be said to be certain, except death and taxes.'
-      no-prefix: true
+  description:
+    digger: 'The digger earns money by breaking blocks with the shovel.' 
+    miner: 'The miner earns money by breaking blocks with the pick axe.'
+    builder: 'The builder earns money by placing construction blocks.'
+    carpenter: 'The carpenter earns money for crafting wooden and stone objects.' 
+    soldier: 'A soldier earns cash by clearing the wilderness of monsters.'
+    tinkerer: 'Earns money by laying and crafting electrical components.'
+    woodsman: 'Earns money by chopping trees and crafting wood items.' 
+    farmer: 'Slaughtering animals and cultivating crops pays this job.' 
+    toolmaker: 'Earns money by making stone tools and higher.'
+    weaponsmith: 'Earns money by crafting and repairing weaponery.' 
+    armorer: 'Crafting and repairing armor earns money.' 
+    fisherman: 'Earn money for catching fish.'
+    baker: 'Cooking foods and food based potion items pays the baker.' 
+    alchemist: 'Crafting defensive potoins pays the alchemist.' 
+    brewer: 'Brewing offensive potions pays the brewer.'
+    enchanter: 'Invoking spells to weapons pays the enchanter.'
+    theurgist: 'Enchanting armor objects pays the theurgist.'
+    conjurer: 'Applying conjurations to tools pays the conjurer.'
+    bulldozer: 'Its expensive to break down the world of minecraft.'
+    taxes: 'In this world nothing can be said to be certain, except death and taxes.'
+    hunter: 'Hunt Players and earn Money with it.'
+    brewer: 'Brew Potions to earn your daily money.'
       
   name:
-    digger: 
-      message: 'Digger'
-      no-prefix: true
-    miner: 
-      message: 'Miner'
-      no-prefix: true
-    builder: 
-      message: 'Builder'
-      no-prefix: true
-    carpenter: 
-      message: 'Carpenter'
-      no-prefix: true
-    soldier: 
-      message: 'Soldier'
-      no-prefix: true
-    tinkerer: 
-      message: 'tinkerer'
-      no-prefix: true
-    woodsman: 
-      message: 'Woodsman'
-      no-prefix: true
-    farmer: 
-      message: 'Farmer'
-      no-prefix: true
-    toolmaker: 
-      message: 'Toolmaker'
-      no-prefix: true
-    weaponsmith: 
-      message: 'Weaponsmith'
-      no-prefix: true
-    armorer: 
-      message: 'Armorer'
-      no-prefix: true
-    fisherman: 
-      message: 'Fisherman'
-      no-prefix: true
-    baker: 
-      message: 'Baker'
-      no-prefix: true
-    alchemist: 
-      message: 'Alchemist'
-      no-prefix: true
-    brewer: 
-      message: 'Brewer'
-      no-prefix: true
-    enchanter: 
-      message: 'Enchanter'
-      no-prefix: true
-    theurgist: 
-      message: 'Theurgist'
-      no-prefix: true
-    conjurer: 
-      message: 'Conjurer'
-      no-prefix: true
-    bulldozer: 
-      message: 'Bulldozer'
-      no-prefix: true
-    taxes: 
-      message: 'Taxes'
-      no-prefix: true
-      
+    digger: 'Digger'
+    miner: 'Miner'
+    builder: 'Builder'
+    carpenter: 'Carpenter'
+    soldier: 'Soldier'
+    tinkerer: 'tinkerer'
+    woodsman: 'Woodsman'
+    farmer: 'Farmer'
+    toolmaker: 'Toolmaker'
+    weaponsmith: 'Weaponsmith'
+    armorer: 'Armorer'
+    fisherman: 'Fisherman'
+    baker: 'Baker'
+    alchemist: 'Alchemist'
+    brewer: 'Brewer'
+    enchanter: 'Enchanter'
+    theurgist: 'Theurgist'
+    conjurer: 'Conjurer'
+    bulldozer: 'Bulldozer'
+    taxes: 'Taxes'
+    hunter: 'Hunter'
+    
 jobscommand:
-    playeronly: 
-      message: 'Can only be done by a player!'
-      no-prefix: true
-    permission: 
-      message: '&cYou do not have permission to do this!'
-      no-prefix: true
-    args: 
-      message: '&cYou gave too many arguments!'
-      no-prefix: true
-    exist: 
-      message: '&cThe job &6%j&c does not exist!'
-      no-prefix: true
-    rejoin: 
-      message: '&7You can now rejoin the &6%j&7 job.'
-      no-prefix: true
-    show: 
-      message: '&7Now &ashowing&7 pay messages for the &6%j&7 job.'
-      no-prefix: true
-    hide: 
-      message: '&7Now &chiding&7 pay messages for the &6%j&7 job.'
-      no-prefix: true
-    join: 
-      message: '&6You have learned the job %j successful.'
-      no-prefix: true
-    nojob: 
-      message: "&cThe wished Job don't exist."
-      no-prefix: true
-    donthave: 
-      message: "&cYou don't habe the job %j."
-      no-prefix: true
-    have: 
-      message: '&cYou have already the wished job.'
-      no-prefix: true
-    language:
-      top: 
-        message: '&ePress on the wished Language to change:'
-        no-prefix: true
-      en: 
-        message: English
-        no-prefix: true
+  playeronly: 'Can only be done by a player!'
+  permission: '&cYou do not have permission to do this!'
+  args: '&cYou gave too many arguments!'
+  exist: '&cThe job &6%j&c does not exist!'
+  rejoin: '&7You can now rejoin the &6%j&7 job.'
+  show: '&7Now &ashowing&7 pay messages for the &6%j&7 job.'
+  hide: '&7Now &chiding&7 pay messages for the &6%j&7 job.'
+  join: '&6You have learned the job %j successful.'
+  nojob: "&cThe wished Job don't exist."
+  donthave: "&cYou don't habe the job %j."
+  have: '&cYou have already the wished job.'
+  language:
+    top: '&ePress on the wished Language to change:'
+    en: English
 jobsnotify:
-    and:
-      message: and
-      no-prefix: true
-    hours: 
-      message: hours
-      no-prefix: true
-    hour: 
-      message: hour
-      no-prefix: true
-    minutes: 
-      message: minutes
-      no-prefix: true
-    minute: 
-      message: minute
-      no-prefix: true
-    days: 
-      message: days
-      no-prefix: true
-    day: 
-      message: day
-      no-prefix: true
-    weeks: 
-      message: weeks
-      no-prefix: true
-    week: 
-      message: week
-      no-prefix: true
-    months: 
-      message: months
-      no-prefix: true
-    month: 
-      message: month
-      no-prefix: true
-    message: 
-      message: '&aYour &6MC Jobs&a have earned you &6%j&a in the past &c%g&a.'
-      no-prefix: true
-    overpay: 
-      message: "&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile."
-      no-prefix: true
+  and: and
+  hours: hours
+  hour: hour
+  minutes: minutes
+  minute: minute
+  days: days
+  day: day
+  weeks: weeks
+  week: week
+  months: months
+  month:  month 
+  message: '&aYour &6MC Jobs&a have earned you &6%j&a in the past &c%g&a.'
+  overpay: "&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile."
 
 jobsdisplay:
-    employed: 
-      message: "--   &cEmployed"
-      no-prefix: true
-    unemployed: 
-      message: "-- &9Unemployed"
-      no-prefix: true
-    default: 
-      message: "--    &3Default"
-      no-prefix: true
-    basepay: 
-      message: Base Pay
-      no-prefix: true
-    charge: 
-      message: CHARGE
-      no-prefix: true
-    pay: 
-      message: PAY
-      no-prefix: true
-    level: 
-      message: LEVEL
-      no-prefix: true
-    rank: 
-      message: RANK
-      no-prefix: true
-    exp: 
-      message: XP
-      no-prefix: true
-    break: 
-      message: BREAK
-      no-prefix: true
-    place: 
-      message: PLACE
-      no-prefix: true
-    defeat: 
-      message: DEFEAT
-      no-prefix: true
-    fishing: 
-      message: FISHING
-      no-prefix: true
-    craft: 
-      message: CRAFT
-      no-prefix: true
-    repair: 
-      message: REPAIR
-      no-prefix: true
-    enchant: 
-      message: ENCHANT
-      no-prefix: true
-    potions: 
-      message: POTIONS
-      no-prefix: true
-    tier: 
-      message: TIER
-      no-prefix: true
-
+  employed: "--   &cEmployed"
+  unemployed: "-- &9Unemployed"
+  default: "--    &3Default"
+  basepay: Base Pay
+  charge: CHARGE
+  pay: PAY
+  level: LEVEL
+  rank: RANK
+  exp: XP
+  break: BREAK
+  place: PLACE
+  defeat: DEFEAT
+  fishing: FISHING
+  craft: CRAFT
+  repair: REPAIR
+  enchant: ENCHANT
+  potions: POTIONS
+  tier: TIER
+  pvp: PvP
+  shear: SHEAR
+  pvptier: Requires more than %g kills from same player
 jobsjoin:
-    have: 
-      message: "You already have &6%j&c!"
-      no-prefix: true
-    join: 
-      message: "%p has joined &9%j&7."
-      no-prefix: true
-    toomany: 
-      message: "&6%p&c you have too many jobs.  To join a new job:"
-      no-prefix: true
-    command: 
-      message: "/jobs leave [job]"
-      no-prefix: true
-    jobperm: 
-      message: "&6%p&7 You don't have permission to join &9%j&7"
-      no-prefix: true
-    timer: 
-      message: "&7You cannot join &6%j&7 for another &c%g&7."
-      no-prefix: true
+  have: "You already have &6%j&c!"
+  join: "%p has joined &9%j&7."
+  toomany: "&6%p&c you have too many jobs.  To join a new job:"
+  command: "/jobs leave [job]"
+  jobperm: "&6%p&7 You don't have permission to join &9%j&7"
+  timer: "&7You cannot join &6%j&7 for another &c%g&7."
  
 jobsleave:
-    quit: 
-      message: "You have quit &6%j&7."
-      no-prefix: true
-    donthave: 
-      message: "You do not have the &6%j&c job."
-      no-prefix: true
-    leavedefault: 
-      message: "You cannot leave &6%j&c because it is a default job."
-      no-prefix: true
+  quit: "You have quit &6%j&7."
+  donthave: "You do not have the &6%j&c job."
+  leavedefault: "You cannot leave &6%j&c because it is a default job."
 
 jobslist:
-    available: 
-      message: "&e%p&2, available jobs are:"
-      no-prefix: true
-    jobsin: 
-      message: "Jobs in &cred&2 you already have."
-      no-prefix: true
-    nojob: 
-      message: "Jobs in &8dark grey&2 are unavailable to you."
-      no-prefix: true
-    defaultjob: 
-      message: "Jobs in &3dark aqua&2 are default jobs."
-      no-prefix: true
-    specific: 
-      message: "To learn about a specific job type: &e/jobs [job name]" 
-      no-prefix: true   
-    jobs: 
-      message: "JOBS:"
-      no-prefix: true
-
+  available:  "&e%p&2, available jobs are:"
+  jobsin:  "Jobs in &cred&2 you already have."
+  nojob:  "Jobs in &8dark grey&2 are unavailable to you."
+  defaultjob:  "Jobs in &3dark aqua&2 are default jobs."
+  specific:  "To learn about a specific job type: &e/jobs [job name]"    
+  jobs:  "JOBS:"
 jobshelp:
-  page: 
-    message: PAGE
-    no-prefix: true
+  page: PAGE
   1:
     1: "&7   Welcome to &3MC Jobs&7.  &3MC Jobs&7 is a mod designed to allow you"
     2: "&7to earn money doing various activities on the server based"
@@ -428,160 +232,68 @@ jobshelp:
     11: ""
     12: "&7More info at:&6 http://dev.bukkit.org/server-mods/mcjobs/"
     13: '--'
-  endofpage: 
-    message: "&7Continue on Page %g"
-    no-prefix: true
-  command: 
-    message: "&6/jobs help %g"
-    no-prefix: true
-  finish: 
-    message: "&7END OF HELP FILE"
-    no-prefix: true
-  nohelp: 
-    message: "&7%g&c is not a help page!"
-    no-prefix: true
+  endofpage: "&7Continue on Page %g"
+  command: "&6/jobs help %g"
+  finish: "&7END OF HELP FILE"
+  nohelp: "&7%g&c is not a help page!"
 
 admincommand:
-  permission: 
-    message: "&6%p&c you do not have permission to do this!"
-    no-prefix: true
-  failedreload: 
-    message: "&cFailed to reload the plugin!"
-    no-prefix: true
-  succeedreload: 
-    message: "&6MC Jobs&c has been reloaded!"
-    no-prefix: true
-  defaults: 
-    message: "&7Defaults have been added to the config.yml file."
-    no-prefix: true
-  args: 
-    message: "&cToo many arguments for &e/jadm&c.  So this is the end, we're going to test a ridiculously long string."
-    no-prefix: true
-  exist: 
-    message: "&6%j&c does not exist!"
-    no-prefix: true
+  permission: "&6%p&c you do not have permission to do this!"
+  failedreload: "&cFailed to reload the plugin!"
+  succeedreload: "&6MC Jobs&c has been reloaded!"
+  defaults: "&7Defaults have been added to the config.yml file."
+  args: "&cToo many arguments for &e/jadm&c.  So this is the end, we're going to test a ridiculously long string."
+  exist: "&6%j&c does not exist!"
 
 adminadd:
-  args: 
-    message: "&cWrong arguments:  &e/jadm add [player/group] [job_name]"
-    no-prefix: true
-  offline: 
-    message: "&6%p&c group doesn't exist or isn't a player that has been seen!"
-    no-prefix: true
-  novault: 
-    message: "&6%p&c is not a known player!"
-    no-prefix: true
-  hasjob: 
-    message: "&6%p&7 already has the &9%j&7 job."
-    no-prefix: true
-  empty: 
-    message: "&7There are no &eplayers&7 online in the &6%p&7 group."
-    no-prefix: true
-  added: 
-    message: "&6%p&7 has been added to &9%j&7."
-    no-prefix: true
-  padded: 
-    message: "&6%p&2 you have been added to the &9%j&2 job by a server admin."
-    no-prefix: true
+  args: "&cWrong arguments: &e/jadm add [player/group] [job_name]"
+  offline: "&6%p&c group doesn't exist or isn't a player that has been seen!"
+  novault: "&6%p&c is not a known player!"
+  hasjob: "&6%p&7 already has the &9%j&7 job."
+  empty: "&7There are no &eplayers&7 online in the &6%p&7 group."
+  added: "&6%p&7 has been added to &9%j&7."
+  padded: "&6%p&2 you have been added to the &9%j&2 job by a server admin."
 
 adminremove:
-  args: 
-    message: "&cWrong arguments:  &e/jadm remove [player/group] [job_name]"
-    no-prefix: true
-  nojob: 
-    message: "&6%p&7 does not have the &9%j&7 job."
-    no-prefix: true
-  nodefault: 
-    message: "&6%p&c you do not have permission to remove &3default&c jobs!"
-    no-prefix: true
-  removed: 
-    message: "&6%p&7 has been removed from &9%j&7."
-    no-prefix: true
-  premoved: 
-    message: "&6%p&2 you have been removed from the &9%j&2 job by a server admin."
-    no-prefix: true
+  args: "&cWrong arguments: &e/jadm remove [player/group] [job_name]"
+  nojob: "&6%p&7 does not have the &9%j&7 job."
+  nodefault: "&6%p&c you do not have permission to remove &3default&c jobs!"
+  removed: "&6%p&7 has been removed from &9%j&7."
+  premoved: "&6%p&2 you have been removed from the &9%j&2 job by a server admin."
 
 adminlist:
-  args: 
-    message: "&cWrong arguments:  &e/jadm list [player/group]"
-    no-prefix: true
-  playerlist: 
-    message: "&2%p&7: %g"
-    no-prefix: true
-  nojobs: 
-    message: "&2%p&c has no jobs."
-    no-prefix: true
-  wrongpage: 
-    message: "&e%g is not a proper page number.  Using page 1 instead."
-    no-prefix: true
+  args: "&cWrong arguments: &e/jadm list [player/group]"
+  playerlist: "&2%p&7: %g"
+  nojobs: "&2%p&c has no jobs."
+  wrongpage: "&e%g is not a proper page number.  Using page 1 instead."
 
 pitch:
-  line0: 
-    message: "This server runs:"
-    no-prefix: true
-  line1: 
-    message: "&aTo see what jobs are available type: &e/jobs list"
-    no-prefix: true
-  line2: 
-    message: "&aTo join a job type: &e/jobs join [job_name]"
-    no-prefix: true
-  line3: 
-    message: "&aPlay, &2earn money&a, and have fun!"
-    no-prefix: true
+  line0: "This server runs:"
+  line1: "&aTo see what jobs are available type: &e/jobs list"
+  line2: "&aTo join a job type: &e/jobs join [job_name]"
+  line3: "&aPlay, &2earn money&a, and have fun!"
     
 onadminlogin:
-  toolow: 
-    message: "&eYour pay scale is too low for an &6XP&e based economy.  Consider switching &2pay_scale&e to high in the config.yml file."
-    no-prefix: true
-  outofdate: 
-    message: "&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without reloading the config file."
-    no-prefix: true
+  toolow: "&eYour pay scale is too low for an &6XP&e based economy.  Consider switching &2pay_scale&e to high in the config.yml file."
+  outofdate: "&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without reloading the config file."
 
 experience:
-  level: 
-    message: "&eYou are now level &6%g&e in &6%j&e."
-    no-prefix: true
-  reset: 
-    message: "&eYour level in &6%j&e has been reset to &c0&e."
-    no-prefix: true
-  rank: 
-    message: "&eYou are now rank &6%g&e in &6%j&e."
-    no-prefix: true
-  added_lvl: 
-    message: "&7You have given &6%p &a%g&7 levels in &6%j&7."
-    no-prefix: true
-  padded_lvl: 
-    message: "&7You have been given &a%g&7 levels in &6%j&7 by a system admin."
-    no-prefix: true
-  added_xp: 
-    message: "&7You have given &6%p &a%g&7 experience in &6%j&7."
-    no-prefix: true
-  padded_xp: 
-    message: "&7You have been given &a%g&7 experience in &6%j&7 by a system admin."
-    no-prefix: true
-  nojob: 
-    message: "&6%p&c doesn't have the &6%j&c job."
-    no-prefix: true
+  level: "&eYou are now level &6%g&e in &6%j&e."
+  reset: "&eYour level in &6%j&e has been reset to &c0&e."
+  rank: "&eYou are now rank &6%g&e in &6%j&e."
+  added_lvl: "&7You have given &6%p &a%g&7 levels in &6%j&7."
+  padded_lvl: "&7You have been given &a%g&7 levels in &6%j&7 by a system admin."
+  added_xp: "&7You have given &6%p &a%g&7 experience in &6%j&7."
+  padded_xp: "&7You have been given &a%g&7 experience in &6%j&7 by a system admin."
+  nojob: "&6%p&c doesn't have the &6%j&c job."
 
 payment:
-  pay: 
-    message: "&aThe &6%j&a job has paid you &6%g&a %p."
-    no-prefix: true
-  payxp: 
-    message: "&aThe &6%j&a job has earned you &6%g&a experience."
-    no-prefix: true
-  charge: 
-    message: "&aThe &6%j&a job has cost you &c%g&a %p."
-    no-prefix: true
-  chargexp: 
-    message: "&aThe &6%j&a job has taken &c%g&a experience."
-    no-prefix: true
-  currency_single: 
-    message: dollar
-    no-prefix: true
-  currency_plural: 
-    message: dollars
-    no-prefix: true
+  pay: "&aThe &6%j&a job has paid you &6%g&a %p."
+  payxp: "&aThe &6%j&a job has earned you &6%g&a experience."
+  charge: "&aThe &6%j&a job has cost you &c%g&a %p."
+  chargexp: "&aThe &6%j&a job has taken &c%g&a experience."
+  currency_single: dollar
+  currency_plural: dollars
     
 spaces:
   jobslist: 16
@@ -592,1329 +304,466 @@ spaces:
   numhelp: 8
 
 entities:
-  blaze:        
-    message: Blaze
-    no-prefix: true
-  cow:          
-    message: Cow
-    no-prefix: true
-  cave_spider:  
-    message: Cave Spider
-    no-prefix: true
-  chicken:      
-    message: Chicken
-    no-prefix: true
-  creeper:      
-    message: Creeper
-    no-prefix: true
-  dropped_item: 
-    message: Fish
-    no-prefix: true
-  ender_dragon: 
-    message: Ender Dragon
-    no-prefix: true
-  enderman:     
-    message: Ender Man
-    no-prefix: true
-  ghast:        
-    message: Ghast
-    no-prefix: true
-  giant:        
-    message: Giant
-    no-prefix: true
-  iron_golem:   
-    message: Iron Golem
-    no-prefix: true
-  magma_cube:   
-    message: Magma Cube
-    no-prefix: true
-  mushroom_cow: 
-    message: Mooshroom Cow
-    no-prefix: true
-  npc:          
-    message: NPC
-    no-prefix: true
-  ocelot:       
-    message: Ocelot
-    no-prefix: true
-  pig:          
-    message: Pig
-    no-prefix: true
-  pig_zombie:   
-    message: Pig Zombie
-    no-prefix: true
-  player:       
-    message: Player
-    no-prefix: true
-  sheep:        
-    message: Sheep
-    no-prefix: true
-  silverfish:   
-    message: Silverfish
-    no-prefix: true
-  skeleton:     
-    message: Skeleton
-    no-prefix: true
-  slime:        
-    message: Slime
-    no-prefix: true
-  snowman:      
-    message: Snowman
-    no-prefix: true
-  spider:       
-    message: Spider
-    no-prefix: true
-  squid:        
-    message: Squid
-    no-prefix: true
-  villager:     
-    message: Villager
-    no-prefix: true
-  wolf:         
-    message: Wolf
-    no-prefix: true
-  zombie:       
-    message: Zombie
-    no-prefix: true
+  blaze:        Blaze
+  cow:          Cow
+  cave_spider:  Cave Spider
+  chicken:      Chicken
+  creeper:      Creeper
+  dropped_item: Fish
+  ender_dragon: Ender Dragon
+  enderman:     Ender Man
+  ghast:        Ghast
+  giant:        Giant
+  iron_golem:   Iron Golem
+  magma_cube:   Magma Cube
+  mushroom_cow: Mooshroom Cow
+  npc:          NPC
+  ocelot:       Ocelot
+  pig:          Pig
+  pig_zombie:   Pig Zombie
+  player:       Player
+  sheep:        Sheep
+  silverfish:   Silverfish
+  skeleton:     Skeleton
+  slime:        Slime
+  snowman:      Snowman
+  spider:       Spider
+  squid:        Squid
+  villager:     Villager
+  wolf:         Wolf
+  zombie:       Zombie
 
-potions:
-  water:            
-    message: Water
-    no-prefix: true
-  awkward:          
-    message: Awkward
-    no-prefix: true
-  thick:            
-    message: Thick
-    no-prefix: true
-  mundane:          
-    message: Mundane
-    no-prefix: true
-  mundane_ext:      
-    message: Mundane Extend
-    no-prefix: true
-  regen:            
-    message: Regen
-    no-prefix: true
-  regen_ext:        
-    message: Regen Extend
-    no-prefix: true
-  regen_two:        
-    message: Regen II
-    no-prefix: true
-  regen_two_ext:    
-    message: Regen II Extend
-    no-prefix: true
-  regen_spl:        
-    message: Regen Splash
-    no-prefix: true
-  regen_ext_spl:    
-    message: Regen Extend Splash
-    no-prefix: true
-  regen_two_spl:    
-    message: Regen II Splash
-    no-prefix: true
-  swift:            
-    message: Swift
-    no-prefix: true
-  swift_ext:        
-    message: Swift Extend
-    no-prefix: true
-  swift_two:        
-    message: Swift II
-    no-prefix: true
-  swift_two_ext:    
-    message: Swift II Extend
-    no-prefix: true
-  swift_spl:        
-    message: Swift Splash
-    no-prefix: true
-  swift_ext_spl:    
-    message: Swift Extend Splash
-    no-prefix: true
-  swift_two_spl:    
-    message: Swift II Splash
-    no-prefix: true
-  fire_res:         
-    message: Fire Resist
-    no-prefix: true
-  fire_res_ext:     
-    message: Fire Resist Extend
-    no-prefix: true
-  fire_res_spl:     
-    message: Fire Resist Splash
-    no-prefix: true
-  fire_res_ext_spl: 
-    message: Fire Resist Extend Splash
-    no-prefix: true
-  poison:           
-    message: Poison
-    no-prefix: true
-  poison_ext:       
-    message: Poison Extend
-    no-prefix: true
-  poison_two:       
-    message: Poison II
-    no-prefix: true
-  poison_two_ext:   
-    message: Poison II Extend
-    no-prefix: true
-  poison_spl:       
-    message: Poison Splash
-    no-prefix: true
-  poison_ext_spl:   
-    message: Poison Extend Splash
-    no-prefix: true
-  poison_two_spl:   
-    message: Poison II Splash
-    no-prefix: true
-  health:           
-    message: Healing
-    no-prefix: true
-  health_two:       
-    message: Healing II
-    no-prefix: true
-  health_spl:       
-    message: Healing Splash
-    no-prefix: true
-  health_two_spl:   
-    message: Healing II Splash
-    no-prefix: true
-  weak:             
-    message: Weak
-    no-prefix: true
-  weak_ext:         
-    message: Weak Extend
-    no-prefix: true
-  weak_two:         
-    message: Weak II
-    no-prefix: true
-  weak_spl:         
-    message: Weak Splash
-    no-prefix: true
-  weak_ext_spl:     
-    message: Weak Extend Splash
-    no-prefix: true
-  weak_two_spl:     
-    message: Weak II Splash
-    no-prefix: true
-  strength:         
-    message: Strength
-    no-prefix: true
-  strength_ext:     
-    message: Strength Extend
-    no-prefix: true
-  strength_two:     
-    message: Strength II
-    no-prefix: true
-  strength_two_ext: 
-    message: Strength II Extend
-    no-prefix: true
-  strength_spl:     
-    message: Strength Splash
-    no-prefix: true
-  strength_ext_spl: 
-    message: Strength Extend Splash
-    no-prefix: true
-  strength_two_spl: 
-    message: Strength II Splash
-    no-prefix: true
-  slow:             
-    message: Slow
-    no-prefix: true
-  slow_ext:         
-    message: Slow Extend
-    no-prefix: true
-  slow_two:         
-    message: Slow II
-    no-prefix: true
-  slow_spl:         
-    message: Slow Splash
-    no-prefix: true
-  slow_ext_spl:     
-    message: Slow Extend Splash
-    no-prefix: true
-  slow_two_spl:     
-    message: Slow II Splash
-    no-prefix: true
-  harm:             
-    message: Harm
-    no-prefix: true
-  harm_two:         
-    message: Harm II
-    no-prefix: true
-  harm_spl:         
-    message: Harm Splash
-    no-prefix: true
-  harm_two_spl:     
-    message: Harm II Splash
-    no-prefix: true
-  rev_fire_res:     
-    message: Fire Resist
-    no-prefix: true
-  rev_slow:         
-    message: Slow
-    no-prefix: true
-  rev_health:       
-    message: Healing
-    no-prefix: true
-  rev_harm:         
-    message: Harm
-    no-prefix: true
-  rev_weak:         
-    message: Weak
-    no-prefix: true
+potion:
+  water:            Water
+  awkward:          Awkward
+  thick:            Thick
+  mundane:          Mundane
+  mundane_ext:      Mundane Extend
+  regen:            Regen
+  regen_ext:        Regen Extend
+  regen_two:        Regen II
+  regen_two_ext:    Regen II Extend
+  regen_spl:        Regen Splash
+  regen_ext_spl:    Regen Extend Splash
+  regen_two_spl:    Regen II Splash
+  swift:            Swift
+  swift_ext:        Swift Extend
+  swift_two:        Swift II
+  swift_two_ext:    Swift II Extend
+  swift_spl:        Swift Splash
+  swift_ext_spl:    Swift Extend Splash
+  swift_two_spl:    Swift II Splash
+  fire_res:         Fire Resist
+  fire_res_ext:     Fire Resist Extend
+  fire_res_spl:     Fire Resist Splash
+  fire_res_ext_spl: Fire Resist Extend Splash
+  poison:           Poison
+  poison_ext:       Poison Extend
+  poison_two:       Poison II
+  poison_two_ext:   Poison II Extend
+  poison_spl:       Poison Splash
+  poison_ext_spl:   Poison Extend Splash
+  poison_two_spl:   Poison II Splash
+  health:           Healing
+  health_two:       Healing II
+  health_spl:       Healing Splash
+  health_two_spl:   Healing II Splash
+  weak:             Weak
+  weak_ext:         Weak Extend
+  weak_two:         Weak II
+  weak_spl:         Weak Splash
+  weak_ext_spl:     Weak Extend Splash
+  weak_two_spl:     Weak II Splash
+  strength:         Strength
+  strength_ext:     Strength Extend
+  strength_two:     Strength II
+  strength_two_ext: Strength II Extend
+  strength_spl:     Strength Splash
+  strength_ext_spl: Strength Extend Splash
+  strength_two_spl: Strength II Splash
+  slow:             Slow
+  slow_ext:         Slow Extend
+  slow_two:         Slow II
+  slow_spl:         Slow Splash
+  slow_ext_spl:     Slow Extend Splash
+  slow_two_spl:     Slow II Splash
+  harm:             Harm
+  harm_two:         Harm II
+  harm_spl:         Harm Splash
+  harm_two_spl:     Harm II Splash
+  rev_fire_res:     Fire Resist
+  rev_slow:         Slow
+  rev_health:       Healing
+  rev_harm:         Harm
+  rev_weak:         Weak
 
 enchant:
-  arrow_dmg_1:      
-    message: Arrow Damage I
-    no-prefix: true
-  arrow_dmg_2:      
-    message: Arrow Damage II
-    no-prefix: true
-  arrow_dmg_3:      
-    message: Arrow Damage III
-    no-prefix: true
-  arrow_dmg_4:      
-    message: Arrow Damage IV
-    no-prefix: true
-  arrow_dmg_5:      
-    message: Arrow Damage V
-    no-prefix: true
-  arrow_fire:       
-    message: Flame Arrows
-    no-prefix: true
-  arrow_inf:        
-    message: Infinite Arrows
-    no-prefix: true
-  arrow_knock_1:    
-    message: Arrow Knockback I
-    no-prefix: true
-  arrow_knock_2:    
-    message: Arrow Knockback II
-    no-prefix: true
-  sharp_1:          
-    message: Sharpness I
-    no-prefix: true
-  sharp_2:          
-    message: Sharpness II
-    no-prefix: true
-  sharp_3:          
-    message: Sharpness III
-    no-prefix: true
-  sharp_4:          
-    message: Sharpness IV
-    no-prefix: true
-  sharp_5:          
-    message: Sharpness V
-    no-prefix: true
-  boa_1:            
-    message: Bane of Anthropods I
-    no-prefix: true
-  boa_2:            
-    message: Bane of Anthropods II
-    no-prefix: true
-  boa_3:            
-    message: Bane of Anthropods III
-    no-prefix: true
-  boa_4:            
-    message: Bane of Anthropods IV
-    no-prefix: true
-  boa_5:            
-    message: Bane of Anthropods V
-    no-prefix: true
-  dmg_undead_1:     
-    message: Smite I
-    no-prefix: true
-  dmg_undead_2:     
-    message: Smite II
-    no-prefix: true
-  dmg_undead_3:     
-    message: Smite III
-    no-prefix: true
-  dmg_undead_4:     
-    message: Smite IV
-    no-prefix: true
-  dmg_undead_5:     
-    message: Smite V
-    no-prefix: true
-  efficiency_1:     
-    message: Efficiency I
-    no-prefix: true
-  efficiency_2:     
-    message: Efficiency II
-    no-prefix: true
-  efficiency_3:     
-    message: Efficiency III
-    no-prefix: true
-  efficiency_4:     
-    message: Efficiency IV
-    no-prefix: true
-  efficiency_5:     
-    message: Efficiency V
-    no-prefix: true
-  unbreaking_1:     
-    message: Durability I
-    no-prefix: true
-  unbreaking_2:     
-    message: Durability II
-    no-prefix: true
-  unbreaking_3:     
-    message: Durability III
-    no-prefix: true
-  unbreaking_4:     
-    message: Durability IV
-    no-prefix: true
-  unbreaking_5:     
-    message: Durability V
-    no-prefix: true
-  fire_aspect_1:    
-    message: Fire Aspect I
-    no-prefix: true
-  fire_aspect_2:    
-    message: Fire Aspect II
-    no-prefix: true
-  knockback_1:      
-    message: Knockback I
-    no-prefix: true
-  knockback_2:      
-    message: Knockback II
-    no-prefix: true
-  fortune_1:        
-    message: Fortune I
-    no-prefix: true
-  fortune_2:        
-    message: Fortune II
-    no-prefix: true
-  fortune_3:        
-    message: Fortune III
-    no-prefix: true
-  looting_1:        
-    message: Looting I
-    no-prefix: true
-  looting_2:        
-    message: Looting II
-    no-prefix: true
-  looting_3:        
-    message: Looting III
-    no-prefix: true
-  respiration_1:    
-    message: Respiration I
-    no-prefix: true
-  respiration_2:    
-    message: Respiration II
-    no-prefix: true
-  respiration_3:    
-    message: Respiration III
-    no-prefix: true
-  protection_1:     
-    message: Protection I
-    no-prefix: true
-  protection_2:     
-    message: Protection II
-    no-prefix: true
-  protection_3:     
-    message: Protection III
-    no-prefix: true
-  protection_4:     
-    message: Protection IV
-    no-prefix: true
-  blast_prot_1:     
-    message: Blast Protection I
-    no-prefix: true
-  blast_prot_2:     
-    message: Blast Protection II
-    no-prefix: true
-  blast_prot_3:     
-    message: Blast Protection III
-    no-prefix: true
-  blast_prot_4:     
-    message: Blast Protection IV
-    no-prefix: true
-  feather_fall_1:   
-    message: Feather Fall I
-    no-prefix: true
-  feather_fall_2:   
-    message: Feather Fall II
-    no-prefix: true
-  feather_fall_3:   
-    message: Feather Fall III
-    no-prefix: true
-  feather_fall_4:   
-    message: Feather Fall IV
-    no-prefix: true
-  fire_prot_1:      
-    message: Fire Protection I
-    no-prefix: true
-  fire_prot_2:      
-    message: Fire Protection II
-    no-prefix: true
-  fire_prot_3:      
-    message: Fire Protection III
-    no-prefix: true
-  fire_prot_4:      
-    message: Fire Protection IV
-    no-prefix: true
-  proj_prot_1:      
-    message: Projectile Protection I
-    no-prefix: true
-  proj_prot_2:      
-    message: Projectile Protection II
-    no-prefix: true
-  proj_prot_3:      
-    message: Projectile Protection III
-    no-prefix: true
-  proj_prot_4:      
-    message: Projectile Protection IV
-    no-prefix: true
-  silk_touch:       
-    message: Silk Touch
-    no-prefix: true
-  aqua_affinity:    
-    message: Aqua Affinity
-    no-prefix: true
+  arrow_dmg_1:      Arrow Damage I
+  arrow_dmg_2:      Arrow Damage II
+  arrow_dmg_3:      Arrow Damage III
+  arrow_dmg_4:      Arrow Damage IV
+  arrow_dmg_5:      Arrow Damage V
+  arrow_fire:       Flame Arrows
+  arrow_inf:        Infinite Arrows
+  arrow_knock_1:    Arrow Knockback I
+  arrow_knock_2:    Arrow Knockback II
+  sharp_1:          Sharpness I
+  sharp_2:          Sharpness II
+  sharp_3:          Sharpness III
+  sharp_4:          Sharpness IV
+  sharp_5:          Sharpness V
+  boa_1:            Bane of Anthropods I
+  boa_2:            Bane of Anthropods II
+  boa_3:            Bane of Anthropods III
+  boa_4:            Bane of Anthropods IV
+  boa_5:            Bane of Anthropods V
+  dmg_undead_1:     Smite I
+  dmg_undead_2:     Smite II
+  dmg_undead_3:     Smite III
+  dmg_undead_4:     Smite IV
+  dmg_undead_5:     Smite V
+  efficiency_1:     Efficiency I
+  efficiency_2:     Efficiency II
+  efficiency_3:     Efficiency III
+  efficiency_4:     Efficiency IV
+  efficiency_5:     Efficiency V
+  unbreaking_1:     Durability I
+  unbreaking_2:     Durability II
+  unbreaking_3:     Durability III
+  unbreaking_4:     Durability IV
+  unbreaking_5:     Durability V
+  fire_aspect_1:    Fire Aspect I
+  fire_aspect_2:    Fire Aspect II
+  knockback_1:      Knockback I
+  knockback_2:      Knockback II
+  fortune_1:        Fortune I
+  fortune_2:        Fortune II
+  fortune_3:        Fortune III
+  looting_1:        Looting I
+  looting_2:        Looting II
+  looting_3:        Looting III
+  respiration_1:    Respiration I
+  respiration_2:    Respiration II
+  respiration_3:    Respiration III
+  protection_1:     Protection I
+  protection_2:     Protection II
+  protection_3:     Protection III
+  protection_4:     Protection IV
+  blast_prot_1:     Blast Protection I
+  blast_prot_2:     Blast Protection II
+  blast_prot_3:     Blast Protection III
+  blast_prot_4:     Blast Protection IV
+  feather_fall_1:   Feather Fall I
+  feather_fall_2:   Feather Fall II
+  feather_fall_3:   Feather Fall III
+  feather_fall_4:   Feather Fall IV
+  fire_prot_1:      Fire Protection I
+  fire_prot_2:      Fire Protection II
+  fire_prot_3:      Fire Protection III
+  fire_prot_4:      Fire Protection IV
+  proj_prot_1:      Projectile Protection I
+  proj_prot_2:      Projectile Protection II
+  proj_prot_3:      Projectile Protection III
+  proj_prot_4:      Projectile Protection IV
+  silk_touch:       Silk Touch
+  aqua_affinity:    Aqua Affinity
     
 materials:
-  air:                  
-    message: Air
-    no-prefix: true
-  apple:                
-    message: Apple
-    no-prefix: true
-  arrow:                
-    message: Arrow
-    no-prefix: true
-  bed:                  
-    message: Bed
-    no-prefix: true
-  bed_block:            
-    message: Bed
-    no-prefix: true
-  bedrock:              
-    message: Bedrock
-    no-prefix: true
-  birch_wood_stairs:    
-    message: Birch Wood Stairs
-    no-prefix: true
-  blaze_powder:         
-    message: Blaze Powder
-    no-prefix: true
-  blaze_rod:            
-    message: Blaze Rod
-    no-prefix: true
-  boat:                 
-    message: Boat
-    no-prefix: true
-  bone:                 
-    message: Bone
-    no-prefix: true
-  book:                 
-    message: Book
-    no-prefix: true
-  book_and_quill:       
-    message: Book and Quill
-    no-prefix: true
-  bookshelf:            
-    message: Bookshelf
-    no-prefix: true
-  bow:                  
-    message: Bow
-    no-prefix: true
-  bowl:                 
-    message: Bowl
-    no-prefix: true
-  bread:                
-    message: Bread
-    no-prefix: true
-  brewing_stand:        
-    message: Brewing Stand
-    no-prefix: true
-  brewing_stand_item:   
-    message: Brewing Stand
-    no-prefix: true
-  brick:                
-    message: Brick
-    no-prefix: true
-  brick_stairs:         
-    message: Brick Stairs
-    no-prefix: true
-  brown_mushroom:       
-    message: Brown Mushroom
-    no-prefix: true
-  bucket:               
-    message: Iron Bucket
-    no-prefix: true
-  burning_furnace:      
-    message: Furnace
-    no-prefix: true
-  cactus:               
-    message: Cactus
-    no-prefix: true
-  cake:                 
-    message: Cake
-    no-prefix: true
-  cake_block:           
-    message: Cake
-    no-prefix: true
-  cauldron:             
-    message: Cauldron
-    no-prefix: true
-  cauldron_item:        
-    message: Cauldron
-    no-prefix: true
-  chainmail_boots:      
-    message: Chainmail Boots
-    no-prefix: true
-  chainmail_chestplate: 
-    message: Chainmail Tunic
-    no-prefix: true
-  chainmail_helmet:     
-    message: Chainmail Coif
-    no-prefix: true
-  chainmail_leggings:   
-    message: Chainmail Leggings
-    no-prefix: true
-  chest:                
-    message: Chest
-    no-prefix: true
-  clay:                 
-    message: Clay
-    no-prefix: true
-  clay_ball:            
-    message: Clay Ball
-    no-prefix: true
-  clay_brick:           
-    message: Clay Brick
-    no-prefix: true
-  coal:                 
-    message: Coal
-    no-prefix: true
-  coal_ore:             
-    message: Coal Ore
-    no-prefix: true
-  cobblestone:          
-    message: Cobblestone
-    no-prefix: true
-  cobblestone_stairs:  
-    message: Cobblestone Stairs
-    no-prefix: true
-  cocoa:                
-    message: Cocoa
-    no-prefix: true
-  compass:              
-    message: Compass
-    no-prefix: true
-  cooked_beef:          
-    message: Steak
-    no-prefix: true
-  cooked_chicken:       
-    message: Grilled Chicken
-    no-prefix: true
-  cooked_fish:          
-    message: Fried Fish
-    no-prefix: true
-  cookie:               
-    message: Cookie
-    no-prefix: true
-  crops:                
-    message: Crops
-    no-prefix: true
-  dead_bush:            
-    message: Dead Bush
-    no-prefix: true
-  detector_rail:        
-    message: Detector Rail
-    no-prefix: true
-  diamond:              
-    message: Diamond
-    no-prefix: true
-  diamond_axe:          
-    message: Diamond Axe
-    no-prefix: true
-  diamond_block:        
-    message: Block of Diamond
-    no-prefix: true
-  diamond_boots:        
-    message: Diamond Greaves
-    no-prefix: true
-  diamond_chestplate:   
-    message: Diamond Chestpiece
-    no-prefix: true
-  diamond_helmet:       
-    message: Diamond Helm
-    no-prefix: true
-  diamond_hoe:          
-    message: Diamond Hoe
-    no-prefix: true
-  diamond_leggings:     
-    message: Diamond Legs
-    no-prefix: true
-  diamond_ore:          
-    message: Rough Diamond
-    no-prefix: true
-  diamond_pickaxe:      
-    message: Diamond Pickaxe
-    no-prefix: true
-  diamond_spade:        
-    message: Diamond Shovel
-    no-prefix: true
-  diamond_sword:        
-    message: Diamond Sword
-    no-prefix: true
-  diode:                
-    message: Redstone Repeater
-    no-prefix: true
-  diode_block_off:      
-    message: Redstone Repeater
-    no-prefix: true
-  diode_block_on:       
-    message: Redstone Repeater
-    no-prefix: true
-  dirt:                 
-    message: Dirt
-    no-prefix: true
-  dispenser:            
-    message: Dispenser
-    no-prefix: true
-  double_step:          
-    message: Double Step
-    no-prefix: true
-  dragon_egg:           
-    message: Dragon Egg
-    no-prefix: true
-  egg:                  
-    message: Egg
-    no-prefix: true
-  emerald:              
-    message: Emerald
-    no-prefix: true
-  emerald_block:        
-    message: Block of Emerald
-    no-prefix: true
-  emerald_ore:          
-    message: Emerald Ore
-    no-prefix: true
-  enchantment_table:    
-    message: Enchantment Table
-    no-prefix: true
-  ender_chest:          
-    message: Ender Chest
-    no-prefix: true
-  ender_pearl:          
-    message: Ender Pearl
-    no-prefix: true
-  ender_portal:         
-    message: Ender Portal
-    no-prefix: true
-  ender_portal_frame:   
-    message: Ender Portal Frame
-    no-prefix: true
-  ender_stone:          
-    message: Ender Stone
-    no-prefix: true
-  exp_bottle:           
-    message: Experience Bottle
-    no-prefix: true
-  eye_of_ender:         
-    message: Eye of Ender
-    no-prefix: true
-  feather:              
-    message: Feather
-    no-prefix: true
-  fence:                
-    message: Fence
-    no-prefix: true
-  fence_gate:           
-    message: Fence Gate
-    no-prefix: true
-  fermented_spider_eye: 
-    message: Fermented Spider Eye
-    no-prefix: true
-  fire:                 
-    message: Fire
-    no-prefix: true
-  fireball:             
-    message: Fireball
-    no-prefix: true
-  fishing_rod:          
-    message: Fishing Pole
-    no-prefix: true
-  flint:                
-    message: Flint
-    no-prefix: true
-  flint_and_steel:      
-    message: Flint and Steel
-    no-prefix: true
-  furnace:              
-    message: Furnace
-    no-prefix: true
-  ghast_tear:           
-    message: Ghast Tear
-    no-prefix: true
-  glass:                
-    message: Glass
-    no-prefix: true
-  glass_bottle:         
-    message: Bottle
-    no-prefix: true
-  glowing_redstone_ore: 
-    message: Redstone Ore
-    no-prefix: true
-  glowstone:            
-    message: Glowstone
-    no-prefix: true
-  glowstone_dust:       
-    message: Glowstone Dust
-    no-prefix: true
-  gold_axe:             
-    message: Gold Axe
-    no-prefix: true
-  gold_block:           
-    message: Block of Gold
-    no-prefix: true
-  gold_boots:           
-    message: Gold Slippers
-    no-prefix: true
-  gold_chestplate:      
-    message: Gold Breastplate
-    no-prefix: true
-  gold_helmet:          
-    message: Gold Helm
-    no-prefix: true
-  gold_hoe:             
-    message: Gold Hoe
-    no-prefix: true
-  gold_ingot:           
-    message: Gold Ingot
-    no-prefix: true
-  gold_leggings:        
-    message: Gold Skirt
-    no-prefix: true
-  gold_nugget:          
-    message: Gold Nugget
-    no-prefix: true
-  gold_ore:             
-    message: Gold Ore
-    no-prefix: true
-  gold_pickaxe:         
-    message: Gold Pickaxe
-    no-prefix: true
-  gold_record:          
-    message: Record c418 - 13
-    no-prefix: true
-  gold_spade:           
-    message: Gold Shovel
-    no-prefix: true
-  gold_sword:           
-    message: Gold Sword
-    no-prefix: true
-  golden_apple:         
-    message: Golden Apple
-    no-prefix: true
-  grass:                
-    message: Dirt
-    no-prefix: true
-  gravel:               
-    message: Gravel
-    no-prefix: true
-  green_record:         
-    message: Record c418 - cat
-    no-prefix: true
-  grilled_pork:         
-    message: Baby Back Ribs
-    no-prefix: true
-  huge_mushroom_1:      
-    message: Giant Mushroom
-    no-prefix: true
-  huge_mushroom_2:      
-    message: Giant Mushroom
-    no-prefix: true
-  ice:                  
-    message: Ice
-    no-prefix: true
-  ink_sack:             
-    message: Squid Ink
-    no-prefix: true
-  iron_axe:             
-    message: Iron Axe
-    no-prefix: true
-  iron_block:           
-    message: Block of Iron
-    no-prefix: true
-  iron_boots:           
-    message: Iron Greaves
-    no-prefix: true
-  iron_chestplate:      
-    message: Iron Chestplate
-    no-prefix: true
-  iron_door:            
-    message: Iron Door
-    no-prefix: true
-  iron_door_block:      
-    message: Iron Door
-    no-prefix: true
-  iron_fence:           
-    message: Iron Fence
-    no-prefix: true
-  iron_helmet:          
-    message: Iron Helm
-    no-prefix: true
-  iron_hoe:             
-    message: Iron Hoe
-    no-prefix: true
-  iron_ingot:           
-    message: Iron Ingot
-    no-prefix: true
-  iron_leggings:        
-    message: Iron Leggings
-    no-prefix: true
-  iron_ore:             
-    message: Iron Ore
-    no-prefix: true
-  iron_pickaxe:         
-    message: Iron Pickaxe
-    no-prefix: true
-  iron_spade:           
-    message: Iron Shovel
-    no-prefix: true
-  iron_sword:           
-    message: Iron Sword
-    no-prefix: true
-  jack_o_lantern:       
-    message: Jack O' Lantern
-    no-prefix: true
-  jukebox:              
-    message: Jukebox
-    no-prefix: true
-  jungle_wood_stairs:   
-    message: Jungle Wood Stairs
-    no-prefix: true
-  ladder:               
-    message: Ladder
-    no-prefix: true
-  lapis_block:          
-    message: Block of Lapis
-    no-prefix: true
-  lapis_ore:            
-    message: Lapis Ore
-    no-prefix: true
-  lava:                 
-    message: Lava
-    no-prefix: true
-  lava_bucket:          
-    message: Bucket Full of Lava
-    no-prefix: true
-  leather:              
-    message: Strip of Leather
-    no-prefix: true
-  leather_boots:        
-    message: Leather Shoes
-    no-prefix: true
-  leather_chestplate:   
-    message: Leather Vest
-    no-prefix: true
-  leather_helmet:       
-    message: Leather Cap
-    no-prefix: true
-  leather_leggings:     
-    message: Leather Pants
-    no-prefix: true
-  leaves:               
-    message: Leaves
-    no-prefix: true
-  lever:                
-    message: Lever
-    no-prefix: true
-  locked_chest:         
-    message: Locked Chest
-    no-prefix: true
-  log:                  
-    message: Tree Log
-    no-prefix: true
-  long_grass:           
-    message: Weeds
-    no-prefix: true
-  magma_cream:          
-    message: Magma Cream
-    no-prefix: true
-  map:                  
-    message: Map
-    no-prefix: true
-  melon:                
-    message: Watermelon Slice
-    no-prefix: true
-  melon_block:          
-    message: Watermelon
-    no-prefix: true
-  melon_seeds:          
-    message: Watermelon Seeds
-    no-prefix: true
-  melon_stem:           
-    message: Watermelon Plant
-    no-prefix: true
-  milk_bucket:          
-    message: Bucket Full of Milk
-    no-prefix: true
-  minecart:             
-    message: Minecart
-    no-prefix: true
-  mob_spawner:          
-    message: Mob Spawner
-    no-prefix: true
-  monster_egg:          
-    message: Monster Egg
-    no-prefix: true
-  monster_eggs:         
-    message: Silverfish Block
-    no-prefix: true
-  mossy_cobblestone:    
-    message: Mossy Cobblestone
-    no-prefix: true
-  mushroom_soup:        
-    message: Bowl of Mushroom Soup
-    no-prefix: true
-  mycel:                
-    message: Mycel
-    no-prefix: true
-  nether_brick:         
-    message: Nether Brick
-    no-prefix: true
-  nether_brick_stairs:  
-    message: Nether Brick Stairs
-    no-prefix: true
-  nether_fence:         
-    message: Nether Fence
-    no-prefix: true
-  nether_stalk:         
-    message: Nether Warts
-    no-prefix: true
-  nether_warts:         
-    message: Nether Warts
-    no-prefix: true
-  netherrack:           
-    message: Netherrack
-    no-prefix: true
-  note_block:           
-    message: Note Block
-    no-prefix: true
-  obsidian:             
-    message: Obsidian
-    no-prefix: true
-  painting:             
-    message: Painting
-    no-prefix: true
-  paper:                
-    message: Paper
-    no-prefix: true
-  piston_base:          
-    message: Piston
-    no-prefix: true
-  piston_extension:     
-    message: Piston
-    no-prefix: true
-  piston_moving_piece:  
-    message: Piston
-    no-prefix: true
-  piston_sticky_base:   
-    message: Sticky Piston
-    no-prefix: true
-  pork:                 
-    message: Raw Pork
-    no-prefix: true
-  portal:               
-    message: Portal
-    no-prefix: true
-  potion:               
-    message: Potion
-    no-prefix: true
-  powered_minecart:     
-    message: Powered Minecart
-    no-prefix: true
-  powered_rail:         
-    message: Powered Rail
-    no-prefix: true
-  pumpkin:              
-    message: Pumpkin
-    no-prefix: true
-  pumpkin_seeds:        
-    message: Pumpkin Seeds
-    no-prefix: true
-  pumpkin_stem:         
-    message: Pumpkin Plant
-    no-prefix: true
-  rails:                
-    message: Train Tracks
-    no-prefix: true
-  raw_beef:             
-    message: Raw Steak
-    no-prefix: true
-  raw_chicken:          
-    message: Raw Chicken
-    no-prefix: true
-  raw_fish:             
-    message: Raw Fish
-    no-prefix: true
-  record_10:            
-    message: Record c418 - ward
-    no-prefix: true
-  record_11:            
-    message: Record c418 - 11
-    no-prefix: true
-  record_3:             
-    message: Record c418 - blocks
-    no-prefix: true
-  record_4:             
-    message: Record c418 - chirp
-    no-prefix: true
-  record_5:             
-    message: Record c418 - far
-    no-prefix: true
-  record_6:             
-    message: Record c418 - mall
-    no-prefix: true
-  record_7:             
-    message: Record c418 - mellohi
-    no-prefix: true
-  record_8:             
-    message: Record c418 - stal
-    no-prefix: true
-  record_9:             
-    message: Record c418 - strad
-    no-prefix: true
-  red_mushroom:         
-    message: Red Mushroom
-    no-prefix: true
-  red_rose:             
-    message: Red Rose
-    no-prefix: true
-  redstone:             
-    message: Redstone Dust
-    no-prefix: true
-  redstone_lamp_off:    
-    message: Redstone Lamp
-    no-prefix: true
-  redstone_lamp_on:     
-    message: Redstone Lamp
-    no-prefix: true
-  redstone_ore:         
-    message: Redstone Ore
-    no-prefix: true
-  redstone_torch_off:   
-    message: Redstone Torch
-    no-prefix: true
-  redstone_torch_on:    
-    message: Redstone Torch
-    no-prefix: true
-  redstone_wire:        
-    message: Redstone Dust
-    no-prefix: true
-  rotten_flesh:         
-    message: Zombie Flesh
-    no-prefix: true
-  saddle:               
-    message: Saddle
-    no-prefix: true
-  sand:                 
-    message: Sand
-    no-prefix: true
-  sandstone:            
-    message: Sandstone Brick
-    no-prefix: true
-  sandstone_stairs:     
-    message: Sandstone Stairs
-    no-prefix: true
-  sapling:              
-    message: Tree Sapling
-    no-prefix: true
-  seeds: 
-    message: Seeds
-    no-prefix: true
-  shears:
-    message: Shears
-    no-prefix: true
-  sign: 
-    message: Wood Sign
-    no-prefix: true
-  sign_post:
-    message: Wood Sign
-    no-prefix: true
-  slime_ball:
-    message: Slime Ball
-    no-prefix: true
-  smooth_brick:
-    message: Smooth Brick
-    no-prefix: true
-  smooth_stairs:
-    message: Smooth Brick Stairs
-    no-prefix: true
-  snow:
-    message: Snow
-    no-prefix: true
-  snow_ball:
-    message: Snow Ball
-    no-prefix: true
-  snow_block:
-    message: Snow Block
-    no-prefix: true
-  soil: 
-    message: Soil
-    no-prefix: true
-  soul_sand:
-    message: Soul Sand
-    no-prefix: true
-  speckled_melon: 
-    message: Speckled Melon
-    no-prefix: true
-  spider_eye: 
-    message: Spider Eye
-    no-prefix: true
-  sponge:
-    message: Sponge
-    no-prefix: true
-  spruce_wood_stairs:
-    message: Spruce Wood Stairs
-    no-prefix: true
-  stationary_lava:
-    message: Lava
-    no-prefix: true
-  stationary_water:
-    message: Water
-    no-prefix: true
-  step:
-    message: Step
-    no-prefix: true
-  stick: 
-    message: Stick
-    no-prefix: true
-  stone:
-    message: Stone
-    no-prefix: true
-  stone_axe: 
-    message: Stone Axe
-    no-prefix: true
-  stone_button: 
-    message: Stone Button
-    no-prefix: true
-  stone_hoe: 
-    message: Stone Hoe
-    no-prefix: true
-  stone_pickaxe:
-    message: Stone Pickaxe
-    no-prefix: true
-  stone_plate:
-    message: Stone Pressure Plate
-    no-prefix: true
-  stone_spade:
-    message: Stone Shovel
-    no-prefix: true
-  stone_sword:
-    message: Stone Sword
-    no-prefix: true
-  storage_minecart: 
-    message: Storage Minecart
-    no-prefix: true
-  string:
-    message: String
-    no-prefix: true
-  sugar:
-    message: Sugar
-    no-prefix: true
-  sugar_cane: 
-    message: Sugar Cane
-    no-prefix: true
-  sugar_cane_block: 
-    message: Sugar Cane
-    no-prefix: true
-  sulphur: 
-    message: Gunpowder
-    no-prefix: true
-  thin_glass: 
-    message: Glass Panes
-    no-prefix: true
-  tnt: 
-    message: TNT
-    no-prefix: true
-  torch:
-    message: Torch
-    no-prefix: true
-  trap_door: 
-    message: Trap Door
-    no-prefix: true
-  tripwire: 
-    message: Trip Wire
-    no-prefix: true
-  tripwire_hook: 
-    message: Trip Wire Hook
-    no-prefix: true
-  vine: 
-    message: Vine
-    no-prefix: true
-  wall_sign: 
-    message: Wood Sign
-    no-prefix: true
-  watch: 
-    message: Watch
-    no-prefix: true
-  water: 
-    message: Water
-    no-prefix: true
-  water_bucket: 
-    message: Bucket Full of Water
-    no-prefix: true
-  water_lily: 
-    message: Water Lily
-    no-prefix: true
-  web: 
-    message: Web
-    no-prefix: true
-  wheat: 
-    message: Wheat
-    no-prefix: true
-  wood: 
-    message: Wood
-    no-prefix: true
-  wood_axe: 
-    message: Wood Axe
-    no-prefix: true
-  wood_door: 
-    message: Wooden Door
-    no-prefix: true
-  wood_double_step: 
-    message: Wooden Step
-    no-prefix: true
-  wood_hoe: 
-    message: Wood Hoe
-    no-prefix: true
-  wood_pickaxe: 
-    message: Wood Pickaxe
-    no-prefix: true
-  wood_plate: 
-    message: Wood Pressure Plate
-    no-prefix: true
-  wood_spade: 
-    message: Wood Shovel
-    no-prefix: true
-  wood_stairs: 
-    message: Wooden Stairs
-    no-prefix: true
-  wood_step: 
-    message: Wood Step
-    no-prefix: true
-  wood_sword: 
-    message: Wood Sword
-    no-prefix: true
-  wooden_door: 
-    message: Wooden Door
-    no-prefix: true
-  wool: 
-    message: Wool
-    no-prefix: true
-  workbench: 
-    message: Workbench
-    no-prefix: true
-  written_book: 
-    message: Written Book
-    no-prefix: true
-  yellow_flower: 
-    message: Yellow Flower
-    no-prefix: true
+  air:                  Air
+  apple:                Apple
+  arrow:                Arrow
+  bed:                  Bed
+  bed_block:            Bed
+  bedrock:              Bedrock
+  birch_wood_stairs:    Birch Wood Stairs
+  blaze_powder:         Blaze Powder
+  blaze_rod:            Blaze Rod
+  boat:                 Boat
+  bone:                 Bone
+  book:                 Book
+  book_and_quill:       Book and Quill
+  bookshelf:            Bookshelf
+  bow:                  Bow
+  bowl:                 Bowl
+  bread:                Bread
+  brewing_stand:        Brewing Stand
+  brewing_stand_item:   Brewing Stand
+  brick:                Brick
+  brick_stairs:         Brick Stairs
+  brown_mushroom:       Brown Mushroom
+  bucket:               Iron Bucket
+  burning_furnace:      Furnace
+  cactus:               Cactus
+  cake:                 Cake
+  cake_block:           Cake
+  cauldron:             Cauldron
+  cauldron_item:        Cauldron
+  chainmail_boots:      Chainmail Boots
+  chainmail_chestplate: Chainmail Tunic
+  chainmail_helmet:     Chainmail Coif
+  chainmail_leggings:   Chainmail Leggings
+  chest:                Chest
+  clay:                 Clay
+  clay_ball:            Clay Ball
+  clay_brick:           Clay Brick
+  coal:                 Coal
+  coal_ore:             Coal Ore
+  cobblestone:          Cobblestone
+  cobblestone_stairs:  Cobblestone Stairs
+  cocoa:                Cocoa
+  compass:              Compass
+  cooked_beef:          Steak
+  cooked_chicken:       Grilled Chicken
+  cooked_fish:          Fried Fish
+  cookie:               Cookie
+  crops:                Crops
+  dead_bush:            Dead Bush
+  detector_rail:        Detector Rail
+  diamond:              Diamond
+  diamond_axe:          Diamond Axe
+  diamond_block:        Block of Diamond
+  diamond_boots:        Diamond Greaves
+  diamond_chestplate:   Diamond Chestpiece
+  diamond_helmet:       Diamond Helm
+  diamond_hoe:          Diamond Hoe
+  diamond_leggings:     Diamond Legs
+  diamond_ore:          Rough Diamond
+  diamond_pickaxe:      Diamond Pickaxe
+  diamond_spade:        Diamond Shovel
+  diamond_sword:        Diamond Sword
+  diode:                Redstone Repeater
+  diode_block_off:      Redstone Repeater
+  diode_block_on:       Redstone Repeater
+  dirt:                 Dirt
+  dispenser:            Dispenser
+  double_step:          Double Step
+  dragon_egg:           Dragon Egg
+  egg:                  Egg
+  emerald:              Emerald
+  emerald_block:        Block of Emerald
+  emerald_ore:          Emerald Ore
+  enchantment_table:    Enchantment Table
+  ender_chest:          Ender Chest
+  ender_pearl:          Ender Pearl
+  ender_portal:         Ender Portal
+  ender_portal_frame:   Ender Portal Frame
+  ender_stone:          Ender Stone
+  exp_bottle:           Experience Bottle
+  eye_of_ender:         Eye of Ender
+  feather:              Feather
+  fence:                Fence
+  fence_gate:           Fence Gate
+  fermented_spider_eye: Fermented Spider Eye
+  fire:                 Fire
+  fireball:             Fireball
+  fishing_rod:          Fishing Pole
+  flint:                Flint
+  flint_and_steel:      Flint and Steel
+  furnace:              Furnace
+  ghast_tear:           Ghast Tear
+  glass:                Glass
+  glass_bottle:         Bottle
+  glowing_redstone_ore: Redstone Ore
+  glowstone:            Glowstone
+  glowstone_dust:       Glowstone Dust
+  gold_axe:             Gold Axe
+  gold_block:           Block of Gold
+  gold_boots:           Gold Slippers
+  gold_chestplate:      Gold Breastplate
+  gold_helmet:          Gold Helm
+  gold_hoe:             Gold Hoe
+  gold_ingot:           Gold Ingot
+  gold_leggings:        Gold Skirt
+  gold_nugget:          Gold Nugget
+  gold_ore:             Gold Ore
+  gold_pickaxe:         Gold Pickaxe
+  gold_record:          Record c418 - 13
+  gold_spade:           Gold Shovel
+  gold_sword:           Gold Sword
+  golden_apple:         Golden Apple
+  grass:                Dirt
+  gravel:               Gravel
+  green_record:         Record c418 - cat
+  grilled_pork:         Baby Back Ribs
+  huge_mushroom_1:      Giant Mushroom
+  huge_mushroom_2:      Giant Mushroom
+  ice:                  Ice
+  ink_sack:             Squid Ink
+  iron_axe:             Iron Axe
+  iron_block:           Block of Iron
+  iron_boots:           Iron Greaves
+  iron_chestplate:      Iron Chestplate
+  iron_door:            Iron Door
+  iron_door_block:      Iron Door
+  iron_fence:           Iron Fence
+  iron_helmet:          Iron Helm
+  iron_hoe:             Iron Hoe
+  iron_ingot:           Iron Ingot
+  iron_leggings:        Iron Leggings
+  iron_ore:             Iron Ore
+  iron_pickaxe:         Iron Pickaxe
+  iron_spade:           Iron Shovel
+  iron_sword:           Iron Sword
+  jack_o_lantern:       Jack O' Lantern
+  jukebox:              Jukebox
+  jungle_wood_stairs:   Jungle Wood Stairs
+  ladder:               Ladder
+  lapis_block:          Block of Lapis
+  lapis_ore:            Lapis Ore
+  lava:                 Lava
+  lava_bucket:          Bucket Full of Lava
+  leather:              Strip of Leather
+  leather_boots:        Leather Shoes
+  leather_chestplate:   Leather Vest
+  leather_helmet:       Leather Cap
+  leather_leggings:     Leather Pants
+  leaves:               Leaves
+  lever:                Lever
+  locked_chest:         Locked Chest
+  log:                  Tree Log
+  long_grass:           Weeds
+  magma_cream:          Magma Cream
+  map:                  Map
+  melon:                Watermelon Slice
+  melon_block:          Watermelon
+  melon_seeds:          Watermelon Seeds
+  melon_stem:           Watermelon Plant
+  milk_bucket:          Bucket Full of Milk
+  minecart:             Minecart
+  mob_spawner:          Mob Spawner
+  monster_egg:          Monster Egg
+  monster_eggs:         Silverfish Block
+  mossy_cobblestone:    Mossy Cobblestone
+  mushroom_soup:        Bowl of Mushroom Soup
+  mycel:                Mycel
+  nether_brick:         Nether Brick
+  nether_brick_stairs:  Nether Brick Stairs
+  nether_fence:         Nether Fence
+  nether_stalk:         Nether Warts
+  nether_warts:         Nether Warts
+  netherrack:           Netherrack
+  note_block:           Note Block
+  obsidian:             Obsidian
+  painting:             Painting
+  paper:                Paper
+  piston_base:          Piston
+  piston_extension:     Piston
+  piston_moving_piece:  Piston
+  piston_sticky_base:   Sticky Piston
+  pork:                 Raw Pork
+  portal:               Portal
+  potion:               Potion
+  powered_minecart:     Powered Minecart
+  powered_rail:         Powered Rail
+  pumpkin:              Pumpkin
+  pumpkin_seeds:        Pumpkin Seeds
+  pumpkin_stem:         Pumpkin Plant
+  rails:                Train Tracks
+  raw_beef:             Raw Steak
+  raw_chicken:          Raw Chicken
+  raw_fish:             Raw Fish
+  record_10:            Record c418 - ward
+  record_11:            Record c418 - 11
+  record_3:             Record c418 - blocks
+  record_4:             Record c418 - chirp
+  record_5:             Record c418 - far
+  record_6:             Record c418 - mall
+  record_7:             Record c418 - mellohi
+  record_8:             Record c418 - stal
+  record_9:             Record c418 - strad
+  red_mushroom:         Red Mushroom
+  red_rose:             Red Rose
+  redstone:             Redstone Dust
+  redstone_lamp_off:    Redstone Lamp
+  redstone_lamp_on:     Redstone Lamp
+  redstone_ore:         Redstone Ore
+  redstone_torch_off:   Redstone Torch
+  redstone_torch_on:    Redstone Torch
+  redstone_wire:        Redstone Dust
+  rotten_flesh:         Zombie Flesh
+  saddle: Saddle
+  sand: Sand
+  sandstone: Sandstone Brick
+  sandstone_stairs: Sandstone Stairs
+  sapling: Tree Sapling
+  seeds: Seeds
+  shears: Shears
+  sign: Wood Sign
+  sign_post: Wood Sign
+  slime_ball: Slime Ball
+  smooth_brick: Smooth Brick
+  smooth_stairs: Smooth Brick Stairs
+  snow: Snow
+  snow_ball: Snow Ball
+  snow_block: Snow Block
+  soil: Soil
+  soul_sand: Soul Sand
+  speckled_melon: Speckled Melon
+  spider_eye: Spider Eye
+  sponge: Sponge
+  spruce_wood_stairs: Spruce Wood Stairs
+  stationary_lava: Lava
+  stationary_water: Water
+  step: Step
+  stick: Stick
+  stone: Stone
+  stone_axe: Stone Axe
+  stone_button: Stone Button
+  stone_hoe: Stone Hoe
+  stone_pickaxe: Stone Pickaxe
+  stone_plate: Stone Pressure Plate
+  stone_spade: Stone Shovel
+  stone_sword: Stone Sword
+  storage_minecart: Storage Minecart
+  string: String
+  sugar: Sugar
+  sugar_cane: Sugar Cane
+  sugar_cane_block: Sugar Cane
+  sulphur: Gunpowder
+  thin_glass: Glass Panes
+  tnt: TNT
+  torch: Torch
+  trap_door: Trap Door
+  tripwire: Trip Wire
+  tripwire_hook: Trip Wire Hook
+  vine: Vine
+  wall_sign: Wood Sign
+  watch: Watch
+  water: Water
+  water_bucket: Bucket Full of Water
+  water_lily: Water Lily
+  web: Web
+  wheat: Wheat
+  wood: Wood
+  wood_axe: Wood Axe
+  wood_door: Wooden Door
+  wood_double_step: Wooden Step
+  wood_hoe: Wood Hoe
+  wood_pickaxe: Wood Pickaxe
+  wood_plate: Wood Pressure Plate
+  wood_shovel: Wood Shovel
+  wood_stairs: Wooden Stairs
+  wood_step: Wood Step
+  wood_sword: Wood Sword
+  wooden_door: Wooden Door
+  wool: Wool
+  workbench: Workbench
+  written_book: Written Book
+  yellow_flower: Yellow Flower
+color:
+  black: Black Sheep
+  blue: Blue Sheep
+  brown: Brown Sheep
+  cyan: Cyan Sheep
+  gray: Gray Sheep
+  green: Green Sheep
+  light_blue: Light Blue Sheep
+  light_gray: Light Gray Sheep
+  lime: Lime Sheep
+  magenta: Magenta Sheep
+  orange: Orange Sheep
+  pink: Pink Sheep
+  purple: Purple Sheep
+  red: Red Sheep
+  white: White Sheep
+  yellow: Yellow Sheep

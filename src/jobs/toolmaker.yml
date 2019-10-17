@@ -3,15 +3,13 @@ exp: 5
 craft:
   pays: true
   hide: false
-  tier:
-    1: stone_axe stone_spade stone_hoe stone_pickaxe
-    2: gold_axe gold_spade gold_hoe gold_pickaxe
-    3: iron_axe iron_spade iron_hoe iron_pickaxe compass
-    4: diamond_axe diamond_spade diamond_hoe diamond_pickaxe
+  1: stone_axe STONE_SHOVEL stone_hoe stone_pickaxe
+  2: GOLDEN_AXE GOLDEN_SHOVEL GOLDEN_HOE GOLDEN_PICKAXE
+  3: iron_axe IRON_SHOVEL iron_hoe iron_pickaxe compass
+  4: diamond_axe DIAMOND_SHOVEL diamond_hoe diamond_pickaxe
 repair:
   pays: true
   hide: false
-  tier:
-    1: stone_axe stone_spade stone_hoe stone_pickaxe
-    2: gold_axe iron_axe gold_spade iron_spade gold_hoe iron_hoe gold_pickaxe iron_pickaxe
-    3: diamond_axe diamond_spade diamond_hoe diamond_pickaxe
+  1: stone_axe STONE_SHOVEL stone_hoe stone_pickaxe
+  2: GOLDEN_AXE iron_axe GOLDEN_SHOVEL IRON_SHOVEL GOLDEN_HOE iron_hoe GOLDEN_PICKAXE iron_pickaxe
+  3: diamond_axe DIAMOND_SHOVEL diamond_hoe diamond_pickaxe

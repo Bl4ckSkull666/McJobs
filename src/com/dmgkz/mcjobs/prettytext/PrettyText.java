@@ -3,7 +3,6 @@ package com.dmgkz.mcjobs.prettytext;
 //import java.util.logging.Logger;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,9 +11,10 @@ import org.bukkit.entity.Player;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.util.EnchantTypeAdv;
-import com.dmgkz.mcjobs.util.MatClass;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
+import java.util.List;
 import java.util.UUID;
+import org.bukkit.DyeColor;
 import org.bukkit.command.CommandSender;
 
 public class PrettyText {
@@ -40,8 +40,8 @@ public class PrettyText {
         int unew = 0;
         int maxlen = LENGTH;
 
-        while(num < str.length()){
-            while(str.charAt(num) != ' '){
+        while(num < str.length()) {
+            while(str.charAt(num) != ' ') {
                 if(str.charAt(num) == cc){
                     maxlen = maxlen + 2;
                     pCC = Character.toString(cc) + Character.toString(str.charAt(num + 1));
@@ -54,7 +54,7 @@ public class PrettyText {
                     break;
             }
             ulet = unew + ulet;
-            while(ulet >= 6 && stopper < 2){
+            while(ulet >= 6 && stopper < 2) {
                 if(ulet >= 6){
                     maxlen = maxlen + 2;
                     ulet = ulet - 6;
@@ -63,11 +63,10 @@ public class PrettyText {
             }
             stopper = 0;
 
-            if(sTempHolder.length() + sLine.length() < maxlen - 1){
+            if(sTempHolder.length() + sLine.length() < maxlen - 1) {
                 sLine = sLine.concat(sTempHolder + " ");
                 sTempHolder = "";
-            }
-            else if(sTempHolder.length() + sLine.length() == maxlen || sTempHolder.length() + sLine.length() == maxlen - 1){
+            } else if(sTempHolder.length() + sLine.length() == maxlen || sTempHolder.length() + sLine.length() == maxlen - 1){
                 sLine = sLine.concat(sTempHolder);
                 if(sLine.endsWith(" "))
                     sLine = sLine.substring(0, sLine.length() - 1);
@@ -76,8 +75,7 @@ public class PrettyText {
                 sLine = "";
                 maxlen = LENGTH;
                 ulet = 0;
-            }
-            else{
+            } else {
                 if(sLine.endsWith(" "))
                     sLine = sLine.substring(0, sLine.length() - 1);
                 sFormat.add(sLine);
@@ -90,6 +88,7 @@ public class PrettyText {
             num++;
             unew = 0;
         }
+        
         if(!sLine.isEmpty())
             sFormat.add(sLine);
 
@@ -97,55 +96,73 @@ public class PrettyText {
     }
 
     
-    public String formatMaterialTiers(ArrayList<MatClass> material, ChatColor cc, UUID uuid){
+    public String formatMaterialTiers(List<Material> material, ChatColor cc, UUID uuid) {
         String str = "";
         String end =  ChatColor.GRAY + "," + cc + " ";
-        for(MatClass mc: material){
-            Material test = mc.getMaterial();
-
-            if(!str.contains(McJobs.getPlugin().getLanguage().getMaterial(test.toString() + ":" + mc.getWorth(), uuid)))
-                str = str.concat(McJobs.getPlugin().getLanguage().getMaterial(test.toString() + ":" + mc.getWorth(), uuid) + end);
-            else if(!str.contains(McJobs.getPlugin().getLanguage().getMaterial(test.toString(), uuid)))
-                str = str.concat(McJobs.getPlugin().getLanguage().getMaterial(test.toString(), uuid) + end);
+        for(Material mc: material) {
+            if(!str.isEmpty())
+                str += end;
+            
+            str += McJobs.getPlugin().getLanguage().getMaterial(mc.getKey().getKey(), uuid);
         }
-        str = str.substring(0, str.length() - 6);
-        str = str + cc;
+        
+        str += cc;
         return str;
     }
     
-    public String formatEntityTiers(ArrayList<EntityType> entity, ChatColor cc, UUID uuid){
+    public String formatEntityTiers(List<EntityType> entity, ChatColor cc, UUID uuid) {
         String str = "";
         String end =  ChatColor.GRAY + "," + cc + " ";
-        for(EntityType test: entity){
-            str = str.concat(McJobs.getPlugin().getLanguage().getEntity(test.toString(), uuid) + end);
+        for(EntityType test: entity) {
+            if(!str.isEmpty())
+                str += end;
+            
+            str += McJobs.getPlugin().getLanguage().getEntity(test.name(), uuid);
         }
 
-        str = str.substring(0, str.length() - 6);
-        str = str + cc;
+        str += cc;
         return str;
     }
 
-    public String formatPotionTiers(ArrayList<PotionTypeAdv> potion, ChatColor cc, UUID uuid){
+    public String formatPotionTiers(List<PotionTypeAdv> potion, ChatColor cc, UUID uuid){
         String str = "";
         String end =  ChatColor.GRAY + "," + cc + " ";
         for(PotionTypeAdv test: potion) {
-            str = str.concat(McJobs.getPlugin().getLanguage().getPotion(test.toString(), uuid) + end);
+            if(!str.isEmpty())
+                str += end;
+            
+            str += McJobs.getPlugin().getLanguage().getPotion(test.getName(), uuid);
         }
-
-        str = str.substring(0, str.length() - 6);
-        str = str + cc;
+        
+        str += cc;
         return str;
     }
     
-    public String formatEnchantTiers(ArrayList<EnchantTypeAdv> enchant, ChatColor cc, UUID uuid){
+    public String formatEnchantTiers(List<EnchantTypeAdv> enchant, ChatColor cc, UUID uuid) {
         String str = "";
         String end =  ChatColor.GRAY + ","+ cc + " ";
         for(EnchantTypeAdv test: enchant) {
-            str = str.concat(McJobs.getPlugin().getLanguage().getEnchant(test.toString(), uuid) + end);
+            if(!str.isEmpty())
+                str += end;
+            
+            str += McJobs.getPlugin().getLanguage().getEnchant(test.getName(), uuid);
         }
 
-        str = str.substring(0, str.length() - 6);
-        str = str + cc;
+        str += cc;
+        return str;
+    }
+    
+    public String formatColorTiers(List<DyeColor> colors, ChatColor cc, UUID uuid) {
+        String str = "";
+        String end =  ChatColor.GRAY + ","+ cc + " ";
+        for(DyeColor test: colors) {
+            if(!str.isEmpty())
+                str += end;
+
+            str += McJobs.getPlugin().getLanguage().getColor(test.name(), uuid);
+        }
+
+        str += cc;
         return str;
     }
     
@@ -154,21 +171,15 @@ public class PrettyText {
             p.sendMessage(st);
     }
 
-    public static String colorText(String str){
-        String sWorking = null;
-        
-        if(str == null)
-            return null;
-        
-        sWorking = str.replaceAll("&([0-9a-f])", ChatColor.COLOR_CHAR + "$1");
-        return sWorking;
+    public static String colorText(String str) {
+        return ChatColor.translateAlternateColorCodes('&', str);
     }
     
-    public static String addSpaces(int i){
+    public static String addSpaces(int i) {
         String str = "";
         
-        for(int it = 0; it < i; it++){
-            str = str.concat(" ");
+        for(int it = 0; it < i; it++) {
+            str += " ";
         }
         
         return str;

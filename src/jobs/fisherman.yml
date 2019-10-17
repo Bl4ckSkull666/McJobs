@@ -4,5 +4,4 @@ exp: 2
 fishing:
   pays: true
   hide: false
-  tier:
-    1: dropped_item
+  1: dropped_item

@@ -5,12 +5,18 @@ default: true
 break:
   pays: false
   hide: false
-  tier:
-    1: sapling melon_stem pumpkin_stem
+  1:
+  - ACACIA_SAPLING 
+  - BIRCH_SAPLING
+  - DARK_OAK_SAPLING
+  - JUNGLE_SAPLING
+  - OAK_SAPLING
+  - SPRUCE_SAPLING
+  - melon_stem
+  - pumpkin_stem
 place:
   pays: false
   hide: false
-  tier:
-    1: coal_ore iron_ore gold_ore yellow_flower red_rose brown_mushroom red_mushroom crops cactus sugar_cane_block pumpkin melon_block
-    4: obsidian lapis_ore diamond_ore
-    5: tnt
+  1: coal_ore iron_ore gold_ore DANDELION POPPY brown_mushroom red_mushroom WHEAT_SEEDS cactus sugar_cane PUMPKIN_SEEDS MELON_SEEDS
+  4: obsidian lapis_ore diamond_ore
+  5: tnt

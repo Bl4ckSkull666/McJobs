@@ -5,6 +5,7 @@ import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.localization.GetLanguage;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.levels.Leveler;
+import com.dmgkz.mcjobs.util.PlayerKills;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import com.dmgkz.mcjobs.util.UpperCaseFirst;
 import java.io.File;
@@ -41,6 +42,7 @@ public class PlayerData {
     public boolean _seenPitch;
     public Date _dateModified;
     public String _playerLang;
+    public PlayerKills _killManager;
     
     public PlayerData(String pName, UUID uuid, ArrayList<String> jobs, HashMap<String, Integer> rejoin, HashMap<String, Boolean> show, HashMap<String, Double> exp, HashMap<String, Integer> level, int lastSave, double earnedIncome, boolean seenPitch, long dateModified, String lang) {
         _lastName = pName;
@@ -66,6 +68,7 @@ public class PlayerData {
         _seenPitch = seenPitch;
         _dateModified = new Date(dateModified);
         _playerLang = lang;
+        _killManager = new PlayerKills(_uuid);
     }
     
     
@@ -388,6 +391,7 @@ public class PlayerData {
         PlayerData checkPlayer = getPlayerData(uuid);
 
         checkPlayer._dateModified = new Date();
+        checkPlayer._killManager.save();
         Database.savePlayer(uuid);
         return true;
     }
@@ -434,6 +438,12 @@ public class PlayerData {
         } catch (Exception e) {
             McJobs.getPlugin().getLogger().info("Unable to save perms.yml!");
         }
+    }
+
+    public static PlayerKills getPlayerKills(UUID uuid) {
+        if(_playerdatas.containsKey(uuid))
+            return _playerdatas.get(uuid)._killManager;
+        return null;
     }
   
     public static void removePlayerCache(UUID uuid) {

@@ -4,9 +4,8 @@ exp: 10
 enchant:
   pays: true
   hide: false
-  tier:
-    1: arrow_dmg_1 arrow_fire arrow_inf arrow_knock_1 sharp_1 boa_1 dmg_undead_1 fire_aspect_1 knockback_1 looting_1
-    2: arrow_dmg_2 arrow_knock_2 sharp_2 boa_2 dmg_undead_2 fire_aspect_2 knockback_2 looting_2
-    3: arrow_dmg_3 sharp_3 boa_3 dmg_undead_3 looting_3
-    4: arrow_dmg_4 sharp_4 boa_4 dmg_undead_4
-    5: arrow_dmg_5 sharp_5 boa_5 dmg_undead_5
+  1: ARROW_DAMAGE_1 ARROW_FIRE_1 ARROW_INFINITE_1 ARROW_KNOCKBACK_1 DAMAGE_ALL_1 DAMAGE_ARTHROPODS_1 DAMAGE_UNDEAD_1 FIRE_ASPECT_1 ARROW_KNOCKBACK_1 LUCK_1
+  2: ARROW_DAMAGE_2 ARROW_KNOCKBACK_2 DAMAGE_ALL_2 DAMAGE_ARTHROPODS_2 DAMAGE_UNDEAD_2 FIRE_ASPECT_2 ARROW_KNOCKBACK_2 LUCK_2
+  3: ARROW_DAMAGE_3 DAMAGE_ALL_3 DAMAGE_ARTHROPODS_3 DAMAGE_UNDEAD_3 LUCK_3
+  4: ARROW_DAMAGE_4 DAMAGE_ALL_4 DAMAGE_ARTHROPODS_4 DAMAGE_UNDEAD_4
+  5: ARROW_DAMAGE_5 DAMAGE_ALL_5 DAMAGE_ARTHROPODS_5 DAMAGE_UNDEAD_5

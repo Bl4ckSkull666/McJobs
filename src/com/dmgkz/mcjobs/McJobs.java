@@ -31,15 +31,13 @@ import com.dmgkz.mcjobs.scheduler.McJobsComp;
 import com.dmgkz.mcjobs.scheduler.McJobsPreComp;
 import com.dmgkz.mcjobs.scheduler.McJobsRemovePerm;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
-import com.dmgkz.mcjobs.util.EnchantTypeAdv;
+import com.dmgkz.mcjobs.util.Holder;
 import com.dmgkz.mcjobs.util.PlayerUtils;
-import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import java.io.IOException;
 import java.util.logging.Level;
-import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 
 
@@ -62,13 +60,15 @@ public class McJobs extends JavaPlugin {
     private GetLanguage _language;
     private BlockLoggers _blocklogger;
     private SignManager _signManager;
+    private Holder _holder;
     
     @Override
     public void onEnable() {        
         _mcJobs = this;
         _language = new GetLanguage();
         _blocklogger = new BlockLoggers();
-
+        _holder = new Holder();
+        
         getCommand("mcjobs").setExecutor(new JobsCommand());
         getCommand("mcjobsadmin").setExecutor(new AdminCommand());
 
@@ -107,7 +107,7 @@ public class McJobs extends JavaPlugin {
             Bukkit.getServer().getPluginManager().disablePlugin(this);
             _bQuit = true;
         }
-        
+
         if(!_bQuit) {
             ConfigMaterials.load(this.getConfig());
             PlayerData.loadPlayerPerms();
@@ -192,7 +192,7 @@ public class McJobs extends JavaPlugin {
             BlockLoggers.setTimer(_time);
             MCListeners.setTimeInMins(config.getInt("timers.time_interval"));
         }
-        
+
         if(config.getLong("timers.show_interval") < 1) {
             _notify = 1200L;
             McJobsNotify.setTime(1);
@@ -222,12 +222,6 @@ public class McJobs extends JavaPlugin {
         
         //Load SignManager
         _signManager = new SignManager();
-        
-        //Load Potions
-        PotionTypeAdv.load();
-        
-        //load Enchantments
-        EnchantTypeAdv.load();
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsNotify(), _notify, _notify);
     }
     
@@ -254,9 +248,9 @@ public class McJobs extends JavaPlugin {
                     fcLang.loadFromString(msg);
                     fcLang.save(spLang);
 
-                    getLogger().log(Level.INFO, "Default Language {0} has been loaded and saved.", name);
+                    getLogger().log(Level.INFO, "Default Job {0} has been loaded and saved.", name);
                 } catch (IOException | InvalidConfigurationException ex) {
-                    getLogger().log(Level.SEVERE, "Error on loading default language " + name, ex);
+                    getLogger().log(Level.SEVERE, "Error on loading default Job " + name, ex);
                 }
             }
         }
@@ -369,5 +363,9 @@ public class McJobs extends JavaPlugin {
 
     public Integer getVersion(){
         return _version;
+    }
+    
+    public Holder getHolder() {
+        return _holder;
     }
 }

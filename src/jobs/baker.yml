@@ -4,9 +4,8 @@ exp: 1
 craft:
   pays: true
   hide: false
-  tier:
-    1: cooked_fish bread sugar
-    2: cooked_beef cooked_chicken grilled_pork
-    3: cookie mushroom_soup fermented_spider_eye
-    4: cake speckled_melon
-    5: golden_apple
+  1: cooked_cod cooked_salmon bread sugar
+  2: cooked_beef cooked_chicken cooked_beef cooked_chicken cooked_mutton cooked_rabbit
+  3: cookie mushroom_stew fermented_spider_eye
+  4: cake GLISTERING_MELON_SLICE
+  5: golden_apple

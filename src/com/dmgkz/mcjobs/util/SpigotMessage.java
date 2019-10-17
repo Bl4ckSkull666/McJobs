@@ -22,8 +22,8 @@ public class SpigotMessage {
     
     /*
     * cs = ConfigurationSection("spigot-messages");
-    * spigot-messages:
-    *     1:
+    * spigot-message:
+    *     1: <-- is only a placeholder key
     *         message: 'Hallo ich bin ein Test.'
     *         hover-type: 'achievement|entity|item|text'
     *         hover-message: ''
@@ -71,10 +71,47 @@ public class SpigotMessage {
             _messages.add(tc);
     }
     
+    /*
+    * Send the Message like it build after load.
+    */
     public void sendMessage(Player p) {
         for(TextComponent tc: _messages) {
             p.spigot().sendMessage(tc);
         }
+    }
+    
+    /*
+    * Send Message with set before some variables in text.
+    */
+    public void sendMessage(Player p, String jobName, String playerName, String generic) {
+        List<TextComponent> tmp = new ArrayList<>();
+        tmp.addAll(_messages);
+        for(TextComponent tc: tmp) {
+            tc.setText(replaceAll(tc.getText(), jobName, playerName, generic));
+            if(tc.getHoverEvent() != null) {
+                HoverEvent he = tc.getHoverEvent();
+                String txt = "";
+                for(BaseComponent bc: he.getValue()) {
+                    txt += replaceAll(bc.toLegacyText(), jobName, playerName, generic);
+                }
+                tc.setHoverEvent(new HoverEvent(he.getAction(), new ComponentBuilder(txt).create()));
+            }
+            
+            if(tc.getClickEvent() != null) {
+                ClickEvent ce = tc.getClickEvent();
+                tc.setClickEvent(new ClickEvent(ce.getAction(), replaceAll(ce.getValue(), jobName, playerName, generic)));
+            }
+            p.spigot().sendMessage(tc);
+        }
+    }
+    
+    private String replaceAll(String msg, String jobName, String playerName, String generic) {
+        if(msg == null)
+            return "";
+        
+        msg = msg.replaceAll("%j", jobName);
+        msg = msg.replaceAll("%p", playerName);
+        return msg.replaceAll("%g", generic);
     }
     
     private net.md_5.bungee.api.chat.HoverEvent.Action getHoverAction(String str) {

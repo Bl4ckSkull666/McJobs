@@ -26,7 +26,6 @@ public class SubCommandInfo {
             return;
         }
         
-        PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().display().showPlayerJob(p, p.getUniqueId());
         PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().display().showJob(p);
         
         /*if(PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getRegionSpigotMessage() != null)
