@@ -27,7 +27,7 @@
 
 # New Setting up's
 * NPC Talk ( coming soon in the Wiki )
-* Job Signs ( coming soon in the Wiki )
+* [Job Signs](https://github.com/Bl4ckSkull666/McJobs/wiki/Jobs-Signs)
 * Region Message ( coming soon in the Wiki )
 
 # Information about
