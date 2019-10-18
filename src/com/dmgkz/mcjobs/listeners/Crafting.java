@@ -2,7 +2,6 @@ package com.dmgkz.mcjobs.listeners;
 
 import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -11,95 +10,86 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class Crafting implements Listener {
-
-    private static final HashMap<Player, Material> hCraft = new HashMap<>();
-    private static final HashMap<Player, Material> hRepair = new HashMap<>();
+    private final HashMap<Location, MyCraft> _hCraft = new HashMap<>();
     
     @EventHandler(priority = EventPriority.LOW)
-    public void craftEvent(CraftItemEvent event) {
-        if(event.isCancelled())
-            return;
-        
-        McJobs.getPlugin().getLogger().info("Starting CraftItem Event");
-        HumanEntity crafter = event.getWhoClicked();
-        Player play = (Player) crafter;
-        Material item = event.getCurrentItem().getType();
-        
-        if(MCListeners.isMultiWorld()){
-            if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))
-                return;
+    public void CraftItem(CraftItemEvent e) {
+        /*if(e.getCurrentItem() != null) {
+            ItemStack item = e.getCurrentItem();
+            McJobs.getPlugin().getLogger().info("CurrentItem " + item.getType().name() + " has " + item.getAmount());
         }
-
         
-        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
-        for(String sJob: jobs) {
-            if(PlayerData.hasJob(play.getUniqueId(), sJob)){
-                if(hRepair.containsKey(play)){
-                    if(hRepair.get(play).equals(item)){
-                        CompCache comp = new CompCache(sJob, play.getLocation(), play, event.getCurrentItem(), "repair");
-                        CompData.getCompCache().add(comp);                   
-                    }
+        if(e.getRecipe().getResult() != null) {
+            ItemStack item =  e.getRecipe().getResult();
+            McJobs.getPlugin().getLogger().info("Recipe Item " + item.getType().name() + " has " + item.getAmount());
+        }*/
+
+        if(_hCraft.containsKey(e.getInventory().getLocation())) {
+            MyCraft mc = _hCraft.get(e.getInventory().getLocation());
+            //McJobs.getPlugin().getLogger().info("MyCraft saved " + mc.getResult().name() + " with amount of " + mc.getAmount());
+            
+            List<HumanEntity> pList = e.getViewers();
+            ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+            for(HumanEntity he: pList) {
+                if(!(he instanceof Player))
+                    continue;
+
+                Player p = (Player)he;
+                if(MCListeners.isMultiWorld()) {
+                    if(!p.hasPermission("mcjobs.world.all") && !p.hasPermission("mcjobs.world." + p.getWorld().getName()))
+                        continue;
                 }
-                if(hCraft.containsKey(play)){
-                    if(hCraft.get(play).equals(item)){
-                        CompCache comp = new CompCache(sJob, play.getLocation(), play, event.getCurrentItem(), "craft");
+
+                if(p.getGameMode() == GameMode.CREATIVE) {
+                    if(!p.hasPermission("mcjobs.paycreative"))
+                        continue;
+                }
+
+                for(String sJob: jobs) {
+                    if(PlayerData.hasJob(p.getUniqueId(), sJob)) {
+                        CompCache comp = new CompCache(sJob, e.getInventory().getLocation(), p, mc.getResult(), "craft");
                         CompData.getCompCache().add(comp);
                     }
                 }
             }
+            _hCraft.remove(e.getInventory().getLocation());
         }
-        hRepair.remove(play);
-        hCraft.remove(play);
     }
         
     @EventHandler(priority = EventPriority.LOW)
-    public void preCraftEvent(PrepareItemCraftEvent event) {
-        McJobs.getPlugin().getLogger().info("Starting PrepareCraftItem Event");
-        if(event.getViewers() == null)
-            return;
-        if(event.getRecipe() == null)
-            return;
-        
-        List<HumanEntity> playlist = event.getViewers();
-        Iterator<HumanEntity> it = playlist.iterator();
-        Material mat = event.getRecipe().getResult().getType();
-        while(it.hasNext()) {
-            HumanEntity he = it.next();
-            if(he instanceof Player) {
-                Player play = (Player)he;
-                if(event.isRepair())
-                    hRepair.put(play, mat);
-                else
-                    hCraft.put(play, mat);
-            }
-        }
+    public void preCraftEvent(PrepareItemCraftEvent e) {
+        ItemStack result = e.getInventory().getItem(0);
+        if(result != null)
+            _hCraft.put(e.getInventory().getLocation(), new MyCraft(result.getType(), result.getAmount()));
     }
     
-    @EventHandler(priority = EventPriority.LOW)
-    public void invCloseEvent(InventoryCloseEvent event) {
-        Player play = (Player) event.getPlayer();
-        if(hRepair.containsKey(play))
-            hRepair.remove(play);
-        if(hCraft.containsKey(play))
-            hCraft.remove(play);
-    }
-
-    public static HashMap<Player, Material> getRepair() {
-        return hRepair;
-    }
-
-    public static HashMap<Player, Material> getCraft() {
-        return hCraft;
+    private class MyCraft {
+        private final Material _result;
+        private final int _amount;
+        
+        public MyCraft(Material mat, int amount) {
+           _result = mat;
+           _amount = amount;
+        }
+        
+        public Material getResult() {
+            return _result;
+        }
+        
+        public int getAmount() {
+            return _amount;
+        }
     }
 }

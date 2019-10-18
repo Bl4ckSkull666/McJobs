@@ -2,7 +2,6 @@ package com.dmgkz.mcjobs.listeners;
 
 import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
-import java.util.Map;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Furnace;
@@ -18,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
 import org.bukkit.GameMode;

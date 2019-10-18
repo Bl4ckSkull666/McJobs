@@ -22,15 +22,11 @@ public class Fishing implements Listener {
     @EventHandler(priority = EventPriority.LOW)
     public void fishEvent(PlayerFishEvent e) {
         Player play = e.getPlayer();
-        EntityType fish;
-
         if(!e.getState().equals(State.CAUGHT_ENTITY) && !e.getState().equals(State.CAUGHT_FISH))
             return;
         
-        if(!(e.getCaught() instanceof Item)) {
-            Item item = (Item)e.getCaught();
-            play.sendMessage("You have caught a " + item.getItemStack().getType().name());
-        }
+        if(!(e.getCaught() instanceof Item))
+            return;
         
         if(MCListeners.isMultiWorld()){
             if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))

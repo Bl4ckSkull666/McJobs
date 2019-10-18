@@ -385,7 +385,8 @@ soft_fall_ext:
     GUNPOWDER: splash_soft_fall_ext
 
 weakness:  
-  type: weakness 
+  type: weakness
+  material: POTION
   extended: false
   upgraded: false
   order: 1

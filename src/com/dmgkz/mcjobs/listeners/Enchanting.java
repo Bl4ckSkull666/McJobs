@@ -45,10 +45,6 @@ public class Enchanting implements Listener{
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
                 CompCache comp = new CompCache(sJob, play.getLocation(), play, enchantments, "enchant");
                 CompData.getCompCache().add(comp);
-        
-//                if(PlayerJobs.joblist.get(sJob).getData().compJob().compEnchant(enchantments, play, "enchant")){        
-//                    play.sendMessage("You enchanted " + ChatColor.DARK_GREEN + enchantments.keySet().toString() + ChatColor.WHITE + ".");
-//                }
             }
         }        
     }

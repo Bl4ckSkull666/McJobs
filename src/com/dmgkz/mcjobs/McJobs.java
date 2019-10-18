@@ -129,13 +129,11 @@ public class McJobs extends JavaPlugin {
             saveConfig();            
         }            
 
-        ConfigurationSection section = config.getConfigurationSection("backend");
-        section = config.getConfigurationSection("advanced");
-        
-        if(section.getKeys(false).contains("version"))
+        ConfigurationSection section = config.getConfigurationSection("advanced");
+        if(section.isInt("version"))
             _version = section.getInt("version");
 
-        if(_version != _VERSION || !section.getKeys(false).contains("version")){
+        if(!section.isInt("version") || _version != _VERSION) {
             getLogger().severe("IF YOU'RE UPGRADING FROM MC JOBS 2.8.X or 3.0.X THIS WILL BREAK YOUR DATA'S USER FILES!!!");
             getLogger().severe("THEY WILL HAVE TO START OVER!");
             getLogger().info("Config.yml is out of date.  Delete config.yml to build a new one.");
