@@ -113,7 +113,6 @@ public class JobsDisplay {
 
         McJobs.getPlugin().getLogger().info("Starte showJob....");
         if(!_jobsdata.compJob().getMatTypeTiers("break").isEmpty() && !getHide("break")) {
-            McJobs.getPlugin().getLogger().info("Hat Break....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("break", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -122,7 +121,6 @@ public class JobsDisplay {
         }
 
         if(!_jobsdata.compJob().getMatTypeTiers("place").isEmpty() && !getHide("place")) {
-            McJobs.getPlugin().getLogger().info("Hat Place....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("place", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -131,7 +129,6 @@ public class JobsDisplay {
         }
         
         if(!_jobsdata.compJob().getEntTypeTiers("defeat").isEmpty() && !getHide("defeat")) {
-            McJobs.getPlugin().getLogger().info("Hat Defeat....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("defeat", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -140,7 +137,6 @@ public class JobsDisplay {
 
         }
         if(!_jobsdata.compJob().getMatTypeTiers("fishing").isEmpty() && !getHide("fishing")) {
-            McJobs.getPlugin().getLogger().info("Hat Fishing....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("fishing", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -149,7 +145,6 @@ public class JobsDisplay {
 
         }
         if(!_jobsdata.compJob().getMatTypeTiers("craft").isEmpty() && !getHide("craft")) {
-            McJobs.getPlugin().getLogger().info("Hat Craft....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("craft", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -157,7 +152,6 @@ public class JobsDisplay {
             buildMatTiers(_jobsdata.compJob().getMatTypeTiers("craft"), p);
         }
         if(!_jobsdata.compJob().getMatTypeTiers("repair").isEmpty() && !getHide("repair")) {
-            McJobs.getPlugin().getLogger().info("Hat Repair....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("repair", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -165,7 +159,6 @@ public class JobsDisplay {
             buildMatTiers(_jobsdata.compJob().getMatTypeTiers("repair"), p);
         }
         if(!_jobsdata.compJob().getPotTypeTiers("potion").isEmpty() && !getHide("potion")) {
-            McJobs.getPlugin().getLogger().info("Hat Potion....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("potion", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -173,7 +166,6 @@ public class JobsDisplay {
             buildPotTiers(_jobsdata.compJob().getPotTypeTiers("potion"), p);
         }
         if(!_jobsdata.compJob().getEnchantTypeTiers("enchant").isEmpty() && !getHide("enchant")) {
-            McJobs.getPlugin().getLogger().info("Hat Enchant....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("enchant", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -182,7 +174,6 @@ public class JobsDisplay {
         }
         
         if(!_jobsdata.compJob().getColorTiers("shear").isEmpty() && !getHide("shear")) {
-            McJobs.getPlugin().getLogger().info("Hat Shear....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("shear", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");
@@ -191,7 +182,6 @@ public class JobsDisplay {
         }
         
         if(!_jobsdata.compJob().getPvpTiers("pvp").isEmpty() && !getHide("pvp")) {
-            McJobs.getPlugin().getLogger().info("Hat PvP....");
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("pvp", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
             p.sendMessage("");

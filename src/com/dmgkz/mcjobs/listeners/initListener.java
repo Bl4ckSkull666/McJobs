@@ -22,7 +22,8 @@ public class initListener {
         getServer().getPluginManager().registerEvents(new Crafting(), plugin);
         getServer().getPluginManager().registerEvents(new Enchanting(), plugin);
         getServer().getPluginManager().registerEvents(new Fishing(), plugin);
-
+        getServer().getPluginManager().registerEvents(new Repair(), plugin);
+        
         getServer().getPluginManager().registerEvents(new MobKill(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerInteract(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerLogins(), plugin);

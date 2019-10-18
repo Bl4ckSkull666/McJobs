@@ -4,7 +4,6 @@ import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -18,11 +17,11 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
 
-public class Crafting implements Listener{
+public class Crafting implements Listener {
 
     private static final HashMap<Player, Material> hCraft = new HashMap<>();
     private static final HashMap<Player, Material> hRepair = new HashMap<>();
@@ -32,6 +31,7 @@ public class Crafting implements Listener{
         if(event.isCancelled())
             return;
         
+        McJobs.getPlugin().getLogger().info("Starting CraftItem Event");
         HumanEntity crafter = event.getWhoClicked();
         Player play = (Player) crafter;
         Material item = event.getCurrentItem().getType();
@@ -64,7 +64,8 @@ public class Crafting implements Listener{
     }
         
     @EventHandler(priority = EventPriority.LOW)
-    public void preCraftEvent(PrepareItemCraftEvent event){
+    public void preCraftEvent(PrepareItemCraftEvent event) {
+        McJobs.getPlugin().getLogger().info("Starting PrepareCraftItem Event");
         if(event.getViewers() == null)
             return;
         if(event.getRecipe() == null)
@@ -84,7 +85,7 @@ public class Crafting implements Listener{
             }
         }
     }
-
+    
     @EventHandler(priority = EventPriority.LOW)
     public void invCloseEvent(InventoryCloseEvent event) {
         Player play = (Player) event.getPlayer();

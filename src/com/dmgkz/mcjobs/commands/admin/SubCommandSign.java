@@ -95,6 +95,6 @@ public class SubCommandSign {
         JobSign js = new JobSign(a[1], siType);
         McJobs.getPlugin().getSignManager().addSign(tmp.getLocation(), js);
         str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-successfull-registed", p.getUniqueId()).addVariables("", p.getName(), l);
-        text.formatPlayerText(str, p);                    
+        text.formatPlayerText(str, p); 
     }
 }

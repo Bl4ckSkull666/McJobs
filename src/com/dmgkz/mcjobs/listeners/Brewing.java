@@ -17,6 +17,7 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import java.util.ArrayList;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -106,20 +107,41 @@ public class Brewing implements Listener{
         if(e.isCancelled())
             return;
         
-        //if(event.getSlotType() == SlotType.CRAFTING && event.getSlot() == 3 && event.getInventory().getName().equalsIgnoreCase("container.brewing")) {
         if(e.getInventory() instanceof BrewerInventory) {
             BrewerInventory binv = (BrewerInventory)e.getInventory();
+            BrewingStand bStand = binv.getHolder();
+            
+            Bukkit.getScheduler().runTaskLater(McJobs.getPlugin(), new checkBrewingStarted(bStand.getLocation(), play), 20);
+        }
+    }
+    
+    public class checkBrewingStarted implements Runnable {
+        private final Location _bStand;
+        private final Player _p;
+        
+        public checkBrewingStarted(Location bStand, Player p) {
+            _bStand = bStand;
+            _p = p;
+        }
+        
+        @Override
+        public void run() {
+            if(!(_bStand.getBlock().getState() instanceof BrewingStand))
+                return;
+            
+            BrewingStand bStand = (BrewingStand)_bStand.getBlock().getState();
+            
+            BrewerInventory binv = bStand.getSnapshotInventory();
             ItemStack potionL = binv.getItem(0);
             ItemStack potionM = binv.getItem(1);
             ItemStack potionR = binv.getItem(2);
             
             if((potionL != null || potionM != null || potionR != null) && binv.getIngredient() != null) {
-                BrewingStand bStand = binv.getHolder();
                 if(bStand.getFuelLevel() == 0 || bStand.getBrewingTime() <= 0)
                     return;
                 
-                if(!hBrewStands.containsKey(bStand.getLocation()))
-                    hBrewStands.put(bStand.getLocation(), play);
+                if(!hBrewStands.containsKey(_bStand))
+                    hBrewStands.put(_bStand, _p);
             }
         }
     }

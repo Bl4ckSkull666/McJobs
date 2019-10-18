@@ -16,7 +16,6 @@ import com.dmgkz.mcjobs.commands.AdminCommand;
 import com.dmgkz.mcjobs.commands.JobsCommand;
 import com.dmgkz.mcjobs.listeners.BlockBreak;
 import com.dmgkz.mcjobs.listeners.MCListeners;
-import com.dmgkz.mcjobs.listeners.McmmoRepairListener;
 import com.dmgkz.mcjobs.listeners.initListener;
 import com.dmgkz.mcjobs.listeners.mcjobs.JobChangeListener;
 import com.dmgkz.mcjobs.localization.GetLanguage;
@@ -73,11 +72,6 @@ public class McJobs extends JavaPlugin {
         getCommand("mcjobsadmin").setExecutor(new AdminCommand());
 
         initListener.RegisterListeners(this);
-
-        if(getServer().getPluginManager().getPlugin("mcMMO") != null) {
-            getServer().getPluginManager().registerEvents(new McmmoRepairListener(), this);
-            getLogger().info("mcMMO has been found.");
-        }
 
         if(getServer().getPluginManager().getPlugin("LogBlock") != null && getConfig().getString("advanced.log_mod").equalsIgnoreCase("logblock")) {
             _bLogBlock = true;
