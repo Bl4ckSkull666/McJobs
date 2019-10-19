@@ -22,20 +22,18 @@ import org.bukkit.GameMode;
 public class Enchanting implements Listener{
 
     @EventHandler(priority = EventPriority.LOW)
-    public void getEnchantments(EnchantItemEvent event){
-        if(event.isCancelled())
+    public void getEnchantments(EnchantItemEvent e) {
+        if(e.isCancelled())
             return;
         
-        Player play = event.getEnchanter();
-        Map<Enchantment, Integer> enchantments = event.getEnchantsToAdd();
-
-        
+        Player play = e.getEnchanter();
+        Map<Enchantment, Integer> enchantments = e.getEnchantsToAdd();
         if(MCListeners.isMultiWorld()){
             if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))
                 return;
         }
                 
-                if(play.getGameMode() == GameMode.CREATIVE){
+        if(play.getGameMode() == GameMode.CREATIVE){
             if(!play.hasPermission("mcjobs.paycreative"))
                 return;
         }

@@ -32,12 +32,8 @@ public class JobsCommand implements CommandExecutor {
         }
 
         Player p = (Player)s;
-        
         if(a.length == 0) {
-            String version = McJobs.getPlugin().getDescription().getVersion();
-            s.sendMessage(ChatColor.DARK_RED + "MC Jobs by " + ChatColor.GOLD + "RathelmMC till v" + ChatColor.GREEN + "3.1.2");
-            s.sendMessage(ChatColor.DARK_RED + "Modified & Updated by " + ChatColor.GOLD + "Bl4ckSkull666 since v3.2.0");
-            s.sendMessage(ChatColor.DARK_RED + "MC Jobs installed version " + ChatColor.GREEN + version);
+            sendDefaultMessage(p);
             return true;
         } else if(a.length == 1) {
             switch(a[0].toLowerCase()) {
@@ -56,7 +52,7 @@ public class JobsCommand implements CommandExecutor {
                         p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("nojob", p.getUniqueId()).addVariables("", p.getName(), ""));
                         return true;
                     }
-                    PlayerJobs.getJobsList().get(a[0].toLowerCase()).getData().display().showJob(p);
+                    PlayerJobs.getJobsList().get(a[0].toLowerCase()).getData().display().showPlayerJob(p, p.getUniqueId());
                     return true;
             }
         } else if(a.length == 2) {
@@ -84,13 +80,17 @@ public class JobsCommand implements CommandExecutor {
                     SubCommandInfo.command(p, a);
                     return true;
                 default:
-                    String version = McJobs.getPlugin().getDescription().getVersion();
-                    p.sendMessage(ChatColor.DARK_RED + "MC Jobs by " + ChatColor.GOLD + "RathelmMC till v" + ChatColor.GREEN + "3.1.2");
-                    p.sendMessage(ChatColor.DARK_RED + "Modified & Updated by " + ChatColor.GOLD + "Bl4ckSkull666 since v3.2.0");
-                    p.sendMessage(ChatColor.DARK_RED + "MC Jobs installed version " + ChatColor.GREEN + version);
+                    sendDefaultMessage(p);
                     return true;
             }
         }
         return true;
+    }
+    
+    private void sendDefaultMessage(Player p) {
+        String version = McJobs.getPlugin().getDescription().getVersion();
+        p.sendMessage(ChatColor.DARK_RED + "MC Jobs by " + ChatColor.GOLD + "RathelmMC till v" + ChatColor.GREEN + "3.1.2");
+        p.sendMessage(ChatColor.DARK_RED + "Modified & Updated by " + ChatColor.GOLD + "Bl4ckSkull666 since v3.2.0");
+        p.sendMessage(ChatColor.DARK_RED + "MC Jobs installed version " + ChatColor.GREEN + version);
     }
 }

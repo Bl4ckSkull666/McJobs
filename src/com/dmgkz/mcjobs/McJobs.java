@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.dmgkz.mcjobs.commands.AdminCommand;
 import com.dmgkz.mcjobs.commands.JobsCommand;
+import com.dmgkz.mcjobs.database.Database;
 import com.dmgkz.mcjobs.listeners.BlockBreak;
 import com.dmgkz.mcjobs.listeners.MCListeners;
 import com.dmgkz.mcjobs.listeners.initListener;
@@ -31,6 +32,7 @@ import com.dmgkz.mcjobs.scheduler.McJobsPreComp;
 import com.dmgkz.mcjobs.scheduler.McJobsRemovePerm;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.dmgkz.mcjobs.util.Holder;
+import com.dmgkz.mcjobs.util.LanguageCheck;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
@@ -105,6 +107,7 @@ public class McJobs extends JavaPlugin {
         if(!_bQuit) {
             ConfigMaterials.load(this.getConfig());
             PlayerData.loadPlayerPerms();
+            getServer().getScheduler().runTask(this, new LanguageCheck());
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsRemovePerm(), 1200L, 1200L);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsPreComp(), 200L, 200L);
             getLogger().info("MC Jobs has been enabled!");
@@ -210,6 +213,12 @@ public class McJobs extends JavaPlugin {
         if(!PlayerUtils.getMaxDefaults().containsKey("default")){
             getLogger().info("max_jobs corrupted.  No default value found.  Setting default to 3!");
             PlayerUtils.getMaxDefaults().put("default", 3);
+        }
+        
+        if(config.getString("database.type", "yaml").equalsIgnoreCase("mysql")) {
+            if(!Database.checkConnection()) {
+                this.getLogger().warning("ATTENTION!!!! CAN'T CONNECT TO MYSQL SERVER !!!! Using Yaml!!!!!");
+            }
         }
         
         //Load SignManager
@@ -359,5 +368,12 @@ public class McJobs extends JavaPlugin {
     
     public Holder getHolder() {
         return _holder;
+    }
+    
+    public void reloadLanguages() {
+        _language = new GetLanguage();
+        if(_localization.isEmpty() || !_language.getLanguages().containsKey(_localization)) {
+            getLogger().log(Level.INFO, "Cant find default language in config.yml!! Stop Plugin.");
+        }
     }
 }

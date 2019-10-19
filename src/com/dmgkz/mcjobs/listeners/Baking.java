@@ -19,59 +19,178 @@ import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.block.Campfire;
+import org.bukkit.event.block.BlockCookEvent;
+import org.bukkit.event.inventory.FurnaceBurnEvent;
+import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class Baking implements Listener {
-    private final HashMap<InventoryHolder, Player> _hFurnaces = new HashMap<>();
+    private final List<MyCampCook> _hBlockCook = new ArrayList<>();
     
     @EventHandler(priority = EventPriority.LOW)
-    public void getFurnaceCook(InventoryClickEvent event){
-        SlotType entFurn = event.getSlotType();
-        Integer slotID = event.getSlot();
-        InventoryHolder furnace;
-        //if(entFurn == SlotType.CONTAINER && slotID == 0 && event.getInventory().getName().equalsIgnoreCase("container.furnace")){
-        if(entFurn == SlotType.CONTAINER && slotID == 0 && event.getInventory().getType().equals(InventoryType.FURNACE)) {
-            Player play = (Player) event.getWhoClicked();
-            ItemStack itemPlaced = event.getCursor();
+    public void getFurnaceExtract(FurnaceExtractEvent e) {
+        Player p = e.getPlayer();
+        if(MCListeners.isMultiWorld()) {
+            if(!p.hasPermission("mcjobs.world.all") && !p.hasPermission("mcjobs.world." + p.getWorld().getName()))
+                return;
+        }
 
-            furnace = event.getInventory().getHolder();
+        if(p.getGameMode() == GameMode.CREATIVE) {
+            if(!p.hasPermission("mcjobs.paycreative"))
+                return;
+        }
 
-            if(itemPlaced != null && !itemPlaced.getType().equals(Material.AIR)) {
-                _hFurnaces.put(furnace, play);                 
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+        for(String sJob: jobs) {
+            if(PlayerData.hasJob(p.getUniqueId(), sJob)) {
+                for(int i = 0; i < e.getItemAmount(); i++) {
+                    CompCache comp = new CompCache(sJob, p.getLocation(), p, e.getItemType(), "craft");
+                    CompData.getCompCache().add(comp);
+                }
             }
         }
     }
-
+    
     @EventHandler(priority = EventPriority.LOW)
-    public void furnaceBurn(FurnaceSmeltEvent event){
-        Block bfurnace = event.getBlock();
-        Furnace furnace = (Furnace) bfurnace.getState();
-
-        InventoryHolder key = furnace.getInventory().getHolder();
-
-        if(_hFurnaces.containsKey(key)){
-            Player play = _hFurnaces.get(key);
-            if(!play.isOnline())
+    public void getBlockCook(BlockCookEvent e) {
+        if(!(e.getBlock().getState() instanceof Campfire))
+            return;
+        
+        Campfire cf = (Campfire)e.getBlock().getState();
+        HashMap<Integer, Material> usedSlots = new HashMap<>();
+        for(int i = 0; i < cf.getSize(); i++) {
+            ItemStack item = cf.getItem(i);
+            if(item != null) {
+                usedSlots.put(i, item.getType());
+            }
+        }
+        
+        Bukkit.getScheduler().runTaskLater(McJobs.getPlugin(), new checkCampFire(cf.getLocation(), usedSlots, e.getResult().getType()), 10);
+    }
+    
+    private class checkCampFire implements Runnable {
+        private final Location _loc;
+        private final HashMap<Integer, Material> _used;
+        private final Material _mat;
+        
+        public checkCampFire(Location loc, HashMap<Integer, Material> used, Material mat) {
+            _loc = loc;
+            _used = used;
+            _mat = mat;
+        }
+        
+        @Override
+        public void run() {
+            if(!(_loc.getBlock().getState() instanceof Campfire))
                 return;
-
-            if(MCListeners.isMultiWorld()) {
-                if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))
+            
+            Campfire cf = (Campfire)_loc.getBlock().getState();
+            for(Map.Entry<Integer,  Material> me: _used.entrySet()) {
+                ItemStack item = cf.getItem(me.getKey());
+                if(item == null) {
+                    MyCampCook mcc = getMyCampCookByLocationAndSlot(cf.getLocation(), me.getKey());
+                    if(mcc == null)
+                        continue;
+                    
+                    if(!mcc.getMaterial().equals(me.getValue()))
+                        continue;
+                    
+                    Player p = mcc.getPlayer();
+                    ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+                    for(String sJob: jobs) {
+                        if(PlayerData.hasJob(p.getUniqueId(), sJob)){
+                            CompCache comp = new CompCache(sJob, p.getLocation(), p, _mat, "craft");
+                            CompData.getCompCache().add(comp);
+                        }
+                    }
+                    _hBlockCook.remove(mcc);
                     return;
-            }
-
-            if(play.getGameMode() == GameMode.CREATIVE){
-                if(!play.hasPermission("mcjobs.paycreative"))
-                    return;
-            }
-
-            ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
-            for(String sJob: jobs) {
-                if(PlayerData.hasJob(play.getUniqueId(), sJob)){
-                    CompCache comp = new CompCache(sJob, play.getLocation(), play, event.getResult(), "craft");
-                    CompData.getCompCache().add(comp);                
                 }
             }
-        }    
+        }
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void getPlayerInteract(PlayerInteractEvent e) {
+        if(!e.hasItem())
+            return;
+        
+        if(e.getClickedBlock() == null)
+            return;
+        
+        if(!(e.getClickedBlock().getState() instanceof Campfire))
+            return;
+        
+        Campfire cf = (Campfire)e.getClickedBlock().getState();
+        int nextFreeSlot = -1;
+        for(int i = 0; i < cf.getSize(); i++) {
+            ItemStack item = cf.getItem(i);
+            if(item == null || item.getType().equals(Material.AIR)) {
+                nextFreeSlot = i;
+                break;
+            }
+        }
+        
+        if(nextFreeSlot == -1)
+            return;
+        
+        Player p = e.getPlayer();
+        if(MCListeners.isMultiWorld()){
+            if(!p.hasPermission("mcjobs.world.all") && !p.hasPermission("mcjobs.world." + p.getWorld().getName()))
+                return;
+        }
+                
+        if(p.getGameMode() == GameMode.CREATIVE){
+            if(!e.getPlayer().hasPermission("mcjobs.paycreative"))
+                return;
+        }
+
+        _hBlockCook.add(new MyCampCook(p, nextFreeSlot, e.getItem().getType(), cf.getLocation()));
+        
+    }
+    
+    private MyCampCook getMyCampCookByLocationAndSlot(Location loc, int slot) {
+        for(MyCampCook mcc: _hBlockCook) {
+            if(mcc.getLocation().equals(loc) && mcc.getSlot() == slot)
+                return mcc;
+        }
+        return null;
+    }
+    
+    private class MyCampCook {
+        private final Player _p;
+        private final int _slot;
+        private final Material _material;
+        private final Location _location;
+        
+        public MyCampCook(Player p, int s, Material m, Location loc) {
+            _p = p;
+            _slot = s;
+            _material = m;
+            _location = loc;
+        }
+        
+        public Player getPlayer() {
+            return _p;
+        }
+        
+        public int getSlot() {
+            return _slot;
+        }
+        
+        public Material getMaterial() {
+            return _material;
+        }
+        
+        public Location getLocation() {
+            return _location;
+        }
     }
 }

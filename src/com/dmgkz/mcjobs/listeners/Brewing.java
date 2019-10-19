@@ -102,6 +102,9 @@ public class Brewing implements Listener{
     
     @EventHandler(priority = EventPriority.LOW)
     public void getBrewStand(InventoryClickEvent e) {
+        if(e.getInventory().getLocation() == null)
+            return;
+        
         Player play = (Player) e.getWhoClicked();
         
         if(e.isCancelled())

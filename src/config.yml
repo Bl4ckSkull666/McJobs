@@ -24,11 +24,11 @@ ranks:
   master:       500
   grandmaster: 1000
 
-backend:
-  type: file
-  user: user
-  pass: password
-  database: sql
+database:
+  type: yaml
+  username: user
+  password: password
+  name: sql
   host: localhost
   port: 3306
 

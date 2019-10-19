@@ -19,26 +19,44 @@ import java.util.ArrayList;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Crafting implements Listener {
     private final HashMap<Location, MyCraft> _hCraft = new HashMap<>();
     
     @EventHandler(priority = EventPriority.LOW)
-    public void CraftItem(CraftItemEvent e) {
-        /*if(e.getCurrentItem() != null) {
-            ItemStack item = e.getCurrentItem();
-            McJobs.getPlugin().getLogger().info("CurrentItem " + item.getType().name() + " has " + item.getAmount());
+    public void InventoryMove(InventoryMoveItemEvent e) {
+        if(_hCraft.containsKey(e.getSource().getLocation())) {
+            MyCraft mc = _hCraft.get(e.getSource().getLocation());
+            McJobs.getPlugin().getLogger().info("InventoryMove - MC is " + mc.getResult().name() + " ( " + mc.getAmount() + " )");
+            if(e.getItem() != null)
+                McJobs.getPlugin().getLogger().info("InventoryMove - Item is " + e.getItem().getType().name() + " ( " + e.getItem().getAmount() + " )");
         }
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void InventoryClick(InventoryClickEvent e) {
+        if(_hCraft.containsKey(e.getClickedInventory().getLocation())) {
+            MyCraft mc = _hCraft.get(e.getClickedInventory().getLocation());
+            McJobs.getPlugin().getLogger().info("InventoryClick - MC is " + mc.getResult().name() + " ( " + mc.getAmount() + " )");
+            
+            if(e.getCurrentItem() != null)
+                McJobs.getPlugin().getLogger().info("InventoryClick - CurItem is " + e.getCurrentItem().getType().name() + " ( " + e.getCurrentItem().getAmount() + " )");
+            
+            if(e.getCursor() != null)
+                McJobs.getPlugin().getLogger().info("InventoryClick - Cursor is " + e.getCursor().getType().name() + " ( " + e.getCursor().getAmount() + " )");
+        }
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void CraftItem(CraftItemEvent e) {
+        if(e.getInventory().getLocation() == null)
+            return;
         
-        if(e.getRecipe().getResult() != null) {
-            ItemStack item =  e.getRecipe().getResult();
-            McJobs.getPlugin().getLogger().info("Recipe Item " + item.getType().name() + " has " + item.getAmount());
-        }*/
-
         if(_hCraft.containsKey(e.getInventory().getLocation())) {
             MyCraft mc = _hCraft.get(e.getInventory().getLocation());
-            //McJobs.getPlugin().getLogger().info("MyCraft saved " + mc.getResult().name() + " with amount of " + mc.getAmount());
             
             List<HumanEntity> pList = e.getViewers();
             ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
@@ -70,6 +88,9 @@ public class Crafting implements Listener {
         
     @EventHandler(priority = EventPriority.LOW)
     public void preCraftEvent(PrepareItemCraftEvent e) {
+        if(e.getInventory().getLocation() == null)
+            return;
+        
         ItemStack result = e.getInventory().getItem(0);
         if(result != null)
             _hCraft.put(e.getInventory().getLocation(), new MyCraft(result.getType(), result.getAmount()));

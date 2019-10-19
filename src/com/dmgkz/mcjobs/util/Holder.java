@@ -12,13 +12,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
@@ -122,9 +125,9 @@ public class Holder {
             File f = new File(McJobs.getPlugin().getDataFolder(), "enchantments.yml");
             FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
             if(!f.exists()) {
-                for(Enchantment en: Enchantment.values()) {
+                for(Enchantment en: EnchantmentWrapper.values()) {
                     for(int i = en.getStartLevel(); i <= en.getMaxLevel(); i++) {
-                        fc.set(en.getName() + "." + i, en.getName().toUpperCase() + "_" + i);
+                        fc.set(en.getKey().getKey() + "." + i, en.getKey().getKey().toUpperCase() + "_" + i);
                     }
                 }
                 try {
@@ -135,7 +138,7 @@ public class Holder {
             }
 
             for(String k: fc.getKeys(false)) {
-                Enchantment ench = Enchantment.getByName(k.toUpperCase());
+                Enchantment ench = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(k));
                 if(ench == null) {
                     McJobs.getPlugin().getLogger().log(Level.INFO, "Can't find Enchantment " + k);
                     continue;
@@ -168,7 +171,7 @@ public class Holder {
 
         public EnchantTypeAdv getEnchantAdv(Enchantment enchant, Integer value) {
             for(Map.Entry<String, EnchantTypeAdv> e : _enchants.entrySet()) {
-                if(e.getValue().getEnchant().equals(enchant) && e.getValue().getLevel().equals(value))
+                if(e.getValue().getEnchant().equals(enchant) && Objects.equals(e.getValue().getLevel(), value))
                     return e.getValue();
             }
             return null;

@@ -1,53 +1,50 @@
 jobs:
   description:
-    digger: 'The digger earns money by breaking blocks with the shovel.' 
-    miner: 'The miner earns money by breaking blocks with the pick axe.'
-    builder: 'The builder earns money by placing construction blocks.'
-    carpenter: 'The carpenter earns money for crafting wooden and stone objects.' 
-    soldier: 'A soldier earns cash by clearing the wilderness of monsters.'
-    tinkerer: 'Earns money by laying and crafting electrical components.'
-    woodsman: 'Earns money by chopping trees and crafting wood items.' 
-    farmer: 'Slaughtering animals and cultivating crops pays this job.' 
-    toolmaker: 'Earns money by making stone tools and higher.'
-    weaponsmith: 'Earns money by crafting and repairing weaponery.' 
-    armorer: 'Crafting and repairing armor earns money.' 
-    fisherman: 'Earn money for catching fish.'
-    baker: 'Cooking foods and food based potion items pays the baker.' 
-    alchemist: 'Crafting defensive potoins pays the alchemist.' 
-    brewer: 'Brewing offensive potions pays the brewer.'
-    enchanter: 'Invoking spells to weapons pays the enchanter.'
-    theurgist: 'Enchanting armor objects pays the theurgist.'
-    conjurer: 'Applying conjurations to tools pays the conjurer.'
-    bulldozer: 'Its expensive to break down the world of minecraft.'
-    taxes: 'In this world nothing can be said to be certain, except death and taxes.'
-    hunter: 'Hunt Players and earn Money with it.'
-    brewer: 'Brew Potions to earn your daily money.'
-      
+    digger: The digger earns money by breaking blocks with the shovel.
+    miner: The miner earns money by breaking blocks with the pick axe.
+    builder: The builder earns money by placing construction blocks.
+    carpenter: The carpenter earns money for crafting wooden and stone objects.
+    soldier: A soldier earns cash by clearing the wilderness of monsters.
+    tinkerer: Earns money by laying and crafting electrical components.
+    woodsman: Earns money by chopping trees and crafting wood items.
+    farmer: Slaughtering animals and cultivating crops pays this job.
+    toolmaker: Earns money by making stone tools and higher.
+    weaponsmith: Earns money by crafting and repairing weaponery.
+    armorer: Crafting and repairing armor earns money.
+    fisherman: Earn money for catching fish.
+    baker: Cooking foods and food based potion items pays the baker.
+    alchemist: Crafting defensive potoins pays the alchemist.
+    enchanter: Invoking spells to weapons pays the enchanter.
+    theurgist: Enchanting armor objects pays the theurgist.
+    conjurer: Applying conjurations to tools pays the conjurer.
+    bulldozer: Its expensive to break down the world of minecraft.
+    taxes: In this world nothing can be said to be certain, except death and taxes.
+    hunter: Hunt Players and earn Money with it.
+    brewer: Brew Potions to earn your daily money.
   name:
-    digger: 'Digger'
-    miner: 'Miner'
-    builder: 'Builder'
-    carpenter: 'Carpenter'
-    soldier: 'Soldier'
-    tinkerer: 'tinkerer'
-    woodsman: 'Woodsman'
-    farmer: 'Farmer'
-    toolmaker: 'Toolmaker'
-    weaponsmith: 'Weaponsmith'
-    armorer: 'Armorer'
-    fisherman: 'Fisherman'
-    baker: 'Baker'
-    alchemist: 'Alchemist'
-    brewer: 'Brewer'
-    enchanter: 'Enchanter'
-    theurgist: 'Theurgist'
-    conjurer: 'Conjurer'
-    bulldozer: 'Bulldozer'
-    taxes: 'Taxes'
-    hunter: 'Hunter'
-    
+    digger: Digger
+    miner: Miner
+    builder: Builder
+    carpenter: Carpenter
+    soldier: Soldier
+    tinkerer: tinkerer
+    woodsman: Woodsman
+    farmer: Farmer
+    toolmaker: Toolmaker
+    weaponsmith: Weaponsmith
+    armorer: Armorer
+    fisherman: Fisherman
+    baker: Baker
+    alchemist: Alchemist
+    brewer: Brewer
+    enchanter: Enchanter
+    theurgist: Theurgist
+    conjurer: Conjurer
+    bulldozer: Bulldozer
+    taxes: Taxes
+    hunter: Hunter
 jobscommand:
-  playeronly: 'Can only be done by a player!'
+  playeronly: Can only be done by a player!
   permission: '&cYou do not have permission to do this!'
   args: '&cYou gave too many arguments!'
   exist: '&cThe job &6%j&c does not exist!'
@@ -55,8 +52,8 @@ jobscommand:
   show: '&7Now &ashowing&7 pay messages for the &6%j&7 job.'
   hide: '&7Now &chiding&7 pay messages for the &6%j&7 job.'
   join: '&6You have learned the job %j successful.'
-  nojob: "&cThe wished Job don't exist."
-  donthave: "&cYou don't habe the job %j."
+  nojob: '&cThe wished Job don''t exist.'
+  donthave: '&cYou don''t habe the job %j.'
   have: '&cYou have already the wished job.'
   language:
     top: '&ePress on the wished Language to change:'
@@ -72,14 +69,13 @@ jobsnotify:
   weeks: weeks
   week: week
   months: months
-  month:  month 
+  month: month
   message: '&aYour &6MC Jobs&a have earned you &6%j&a in the past &c%g&a.'
-  overpay: "&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile."
-
+  overpay: '&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile.'
 jobsdisplay:
-  employed: "--   &cEmployed"
-  unemployed: "-- &9Unemployed"
-  default: "--    &3Default"
+  employed: --   &cEmployed
+  unemployed: -- &9Unemployed
+  default: --    &3Default
   basepay: Base Pay
   charge: CHARGE
   pay: PAY
@@ -99,202 +95,194 @@ jobsdisplay:
   shear: SHEAR
   pvptier: Requires more than %g kills from same player
 jobsjoin:
-  have: "You already have &6%j&c!"
-  join: "%p has joined &9%j&7."
-  toomany: "&6%p&c you have too many jobs.  To join a new job:"
-  command: "/jobs leave [job]"
-  jobperm: "&6%p&7 You don't have permission to join &9%j&7"
-  timer: "&7You cannot join &6%j&7 for another &c%g&7."
- 
+  have: You already have &6%j&c!
+  join: '%p has joined &9%j&7.'
+  toomany: '&6%p&c you have too many jobs.  To join a new job:'
+  command: /jobs leave [job]
+  jobperm: '&6%p&7 You don''t have permission to join &9%j&7'
+  timer: '&7You cannot join &6%j&7 for another &c%g&7.'
 jobsleave:
-  quit: "You have quit &6%j&7."
-  donthave: "You do not have the &6%j&c job."
-  leavedefault: "You cannot leave &6%j&c because it is a default job."
-
+  quit: You have quit &6%j&7.
+  donthave: You do not have the &6%j&c job.
+  leavedefault: You cannot leave &6%j&c because it is a default job.
 jobslist:
-  available:  "&e%p&2, available jobs are:"
-  jobsin:  "Jobs in &cred&2 you already have."
-  nojob:  "Jobs in &8dark grey&2 are unavailable to you."
-  defaultjob:  "Jobs in &3dark aqua&2 are default jobs."
-  specific:  "To learn about a specific job type: &e/jobs [job name]"    
-  jobs:  "JOBS:"
+  available: '&e%p&2, available jobs are:'
+  jobsin: Jobs in &cred&2 you already have.
+  nojob: Jobs in &8dark grey&2 are unavailable to you.
+  defaultjob: Jobs in &3dark aqua&2 are default jobs.
+  specific: 'To learn about a specific job type: &e/jobs [job name]'
+  jobs: 'JOBS:'
 jobshelp:
   page: PAGE
-  1:
-    1: "&7   Welcome to &3MC Jobs&7.  &3MC Jobs&7 is a mod designed to allow you"
-    2: "&7to earn money doing various activities on the server based"
-    3: "&7upon the jobs you choose."
-    4: ""
-    5: "&2   To get started you need to choose a job.  You can find"
-    6: "&2what jobs are available by typing &e/jobs list &2into the chat box."
-    7: ""
-    8: "&2Learn more about each job by typing into the chat box:"
-    9: "&e/jobs [job_name]"
-    10: ""
-    11: "&e[job name] &2can be any job name, for example &6digger&2."
-    12: "&e/jobs join &2and&e leave &2are explained on the next page."
-    13: '--'
-  2:
-    1: "&2You can join a job by typing the command:"
-    2: "&e/jobs join [job name]"
-    3: ""
-    4: "&2Joining a job will allow you to earn and lose money based upon"
-    5: "&2the pay tables of each job.  You are only allowed to have a"
-    6: "&2maximum of &c%j&2 jobs on this server."
-    7: ""
-    8: "&2You can leave a job by entering &e/jobs leave [job name]"
-    9: "&2Once you have the maximum number of jobs the server allows,"
-    10: "&2the only way to choose new ones is to leave an existing job."
-    11: ""
-    12: "&2To learn more about &e/jobs list&2 go to the next page."
-    13: '--'
-  3:
-    1: "&2   The list command at a quick glance gives useful"
-    2: "&2information about what jobs are available to you and what"
-    3: "&2jobs you cannot take."
-    4: ""
-    5: "&2Jobs that you have are in &cred&2.  Jobs that you can take are in"
-    6: "&6gold&2.  Jobs that are unavailable to you are in &8dark grey&2."
-    7: ""
-    8: "&2Default jobs are in &3dark aqua&2.  They are jobs that are"
-    9: "&2given to everyone logging into the server.  Only players with"
-    10: "&2the &cmcjobs.admin.leavedefault&2 perm can quit &3default&2 jobs."
-    11: ""
-    12: "&2Continue the &elist&2 command on the next page."
-    13: '--'
-  4:
-    1: "&2Lastly it tells you how many jobs you have versus the max"
-    2: "&2jobs the server allows, which is &c%j&2 on this server." 
-    3: "" 
-    4: "&2  The &e/jobs leave&2 command works the same as the &ejoin"
-    5: "&2command.  You can only leave jobs that you have already"
-    6: "&2joined.  This will allow you to pick up new jobs in case you"
-    7: "&2change your mind on what you want to be."
-    8: ""
-    9: "&2Once you leave a job you cannot rejoin it for a server"
-    10: "&2specified time frame.  The default is 1 hour."
-    11: ""
-    12: "&2To learn about &e/jobs [job name] continue to next page"
-    13: '--'
-  5:
-    1: "&2  The &e/jobs [job name]&2 command gives the player all the"
-    2: "&2information they need to know about each job."
-    3: ""
-    4: "&2The first line starts with the &3jobs name&2 and is followed by"
-    5: "&2whether you are &cemployed&2 by the job or whether you are"
-    6: "&2not part of the job.  In which case it will say &9unemployed&2."
-    7: "&2Next it tells you the &abase pay&2 of the job.  This figure is how"
-    8: "&2much money or xp &6TIER1&2 will pay you upon doing the &eaction&2."
-    9: "&2The last bit of information this line tells the player is whether"
-    10: "&2the job &apays&2 or &ccharges&2 the player for completing &eactions&2."
-    11: ""
-    12: "&2The next page will explain the subsequent lines of &e/jobs [job]"
-    13: '--'
-  6:
-    1: "&2As said a job can both &apay&2 and &ccharge&2 the player.  As an"
-    2: "&2example, the &6miner&2 job &apays&2 the player for breaking &7iron ore&2."
-    3: "&2However if you place &7iron ore&2 it will &ccharge&2 you money instead."
-    4: ""
-    5: "&2If you are currently &cemployed&2 with the job it will show you"
-    6: "&2your current &6level&2 and &6rank&2 in the job."
-    7: "&2The second line is the jobs &6description&2."
-    8: ""
-    9: "&2After the dashes is what the jobs &eactions&2 are and what blocks"
-    10: "&2or entities are used by the job."
-    11: ""
-    12: "&2The next page will explain the job &eactions&2."
-    13: '--'
-  7:
-    1: "&2The actions are: &6BREAK&2, &6PLACE&2, &6DEFEAT&2, &6CRAFT&2, &6REPAIR&2,"
-    2: "&6FISHING&2, &6POTIONS&2, and &6ENCHANT&2."
-    3: ""
-    4: "&6BREAK&2: Is the action of breaking blocks like &7dirt&2."
-    5: "&6PLACE&2: Is the action of placing blocks like &7stone stairs&2."
-    6: "&6DEFEAT&2: Is the action of killing monsters like &7spiders&2."
-    7: "&6CRAFT&2: Is the action of crafting items like &7wood sword&2."
-    8: "&6REPAIR&2: Is the action of repairing items like &7stone shovel&2."
-    9: "&2This covers both the &6mcMMO&2 repair and the vanilla repair."
-    10: "&6FISHING&2: &aPays&2 or &ccharges&2 whenever you use a fishing rod to"
-    11: "&2catch an entity or fish."
-    12: "&6Potions&2 and &6Enchants&2 are covered on the next page."
-    13: '--'
-  8:
-    1: "&6POTIONS&2: &aPays&2 or &ccharges&2 for using a brew stand to make"
-    2: "&2potions."
-    3: "&6ENCHANT&2: &aPays&2 or &ccharges&2 when the player enchants an item."
-    4: ""
-    5: "&eEnglish&c localization done by: &6RathelmMC"
-    6: "&eFrench&c localization done by: &6Monezombie"
-    7: "&eGerman&c localization done by: &6Not Implemented"
-    8: "&eNederlandse&c localization done by: &6Dreeass"
-    9: "&eRussian&c localization done by: &6&6Grim_joy"
-    10: "&eSpanish&c localization done by: &6Not Implemented"
-    11: ""
-    12: "&7More info at:&6 http://dev.bukkit.org/server-mods/mcjobs/"
-    13: '--'
-  endofpage: "&7Continue on Page %g"
-  command: "&6/jobs help %g"
-  finish: "&7END OF HELP FILE"
-  nohelp: "&7%g&c is not a help page!"
-
+  '1':
+    '1': '&7   Welcome to &3MC Jobs&7.  &3MC Jobs&7 is a mod designed to allow you'
+    '2': '&7to earn money doing various activities on the server based'
+    '3': '&7upon the jobs you choose.'
+    '4': ''
+    '5': '&2   To get started you need to choose a job.  You can find'
+    '6': '&2what jobs are available by typing &e/jobs list &2into the chat box.'
+    '7': ''
+    '8': '&2Learn more about each job by typing into the chat box:'
+    '9': '&e/jobs [job_name]'
+    '10': ''
+    '11': '&e[job name] &2can be any job name, for example &6digger&2.'
+    '12': '&e/jobs join &2and&e leave &2are explained on the next page.'
+    '13': --
+  '2':
+    '1': '&2You can join a job by typing the command:'
+    '2': '&e/jobs join [job name]'
+    '3': ''
+    '4': '&2Joining a job will allow you to earn and lose money based upon'
+    '5': '&2the pay tables of each job.  You are only allowed to have a'
+    '6': '&2maximum of &c%j&2 jobs on this server.'
+    '7': ''
+    '8': '&2You can leave a job by entering &e/jobs leave [job name]'
+    '9': '&2Once you have the maximum number of jobs the server allows,'
+    '10': '&2the only way to choose new ones is to leave an existing job.'
+    '11': ''
+    '12': '&2To learn more about &e/jobs list&2 go to the next page.'
+    '13': --
+  '3':
+    '1': '&2   The list command at a quick glance gives useful'
+    '2': '&2information about what jobs are available to you and what'
+    '3': '&2jobs you cannot take.'
+    '4': ''
+    '5': '&2Jobs that you have are in &cred&2.  Jobs that you can take are in'
+    '6': '&6gold&2.  Jobs that are unavailable to you are in &8dark grey&2.'
+    '7': ''
+    '8': '&2Default jobs are in &3dark aqua&2.  They are jobs that are'
+    '9': '&2given to everyone logging into the server.  Only players with'
+    '10': '&2the &cmcjobs.admin.leavedefault&2 perm can quit &3default&2 jobs.'
+    '11': ''
+    '12': '&2Continue the &elist&2 command on the next page.'
+    '13': --
+  '4':
+    '1': '&2Lastly it tells you how many jobs you have versus the max'
+    '2': '&2jobs the server allows, which is &c%j&2 on this server.'
+    '3': ''
+    '4': '&2  The &e/jobs leave&2 command works the same as the &ejoin'
+    '5': '&2command.  You can only leave jobs that you have already'
+    '6': '&2joined.  This will allow you to pick up new jobs in case you'
+    '7': '&2change your mind on what you want to be.'
+    '8': ''
+    '9': '&2Once you leave a job you cannot rejoin it for a server'
+    '10': '&2specified time frame.  The default is 1 hour.'
+    '11': ''
+    '12': '&2To learn about &e/jobs [job name] continue to next page'
+    '13': --
+  '5':
+    '1': '&2  The &e/jobs [job name]&2 command gives the player all the'
+    '2': '&2information they need to know about each job.'
+    '3': ''
+    '4': '&2The first line starts with the &3jobs name&2 and is followed by'
+    '5': '&2whether you are &cemployed&2 by the job or whether you are'
+    '6': '&2not part of the job.  In which case it will say &9unemployed&2.'
+    '7': '&2Next it tells you the &abase pay&2 of the job.  This figure is how'
+    '8': '&2much money or xp &6TIER1&2 will pay you upon doing the &eaction&2.'
+    '9': '&2The last bit of information this line tells the player is whether'
+    '10': '&2the job &apays&2 or &ccharges&2 the player for completing &eactions&2.'
+    '11': ''
+    '12': '&2The next page will explain the subsequent lines of &e/jobs [job]'
+    '13': --
+  '6':
+    '1': '&2As said a job can both &apay&2 and &ccharge&2 the player.  As an'
+    '2': '&2example, the &6miner&2 job &apays&2 the player for breaking &7iron ore&2.'
+    '3': '&2However if you place &7iron ore&2 it will &ccharge&2 you money instead.'
+    '4': ''
+    '5': '&2If you are currently &cemployed&2 with the job it will show you'
+    '6': '&2your current &6level&2 and &6rank&2 in the job.'
+    '7': '&2The second line is the jobs &6description&2.'
+    '8': ''
+    '9': '&2After the dashes is what the jobs &eactions&2 are and what blocks'
+    '10': '&2or entities are used by the job.'
+    '11': ''
+    '12': '&2The next page will explain the job &eactions&2.'
+    '13': --
+  '7':
+    '1': '&2The actions are: &6BREAK&2, &6PLACE&2, &6DEFEAT&2, &6CRAFT&2, &6REPAIR&2,'
+    '2': '&6FISHING&2, &6POTIONS&2, and &6ENCHANT&2.'
+    '3': ''
+    '4': '&6BREAK&2: Is the action of breaking blocks like &7dirt&2.'
+    '5': '&6PLACE&2: Is the action of placing blocks like &7stone stairs&2.'
+    '6': '&6DEFEAT&2: Is the action of killing monsters like &7spiders&2.'
+    '7': '&6CRAFT&2: Is the action of crafting items like &7wood sword&2.'
+    '8': '&6REPAIR&2: Is the action of repairing items like &7stone shovel&2.'
+    '9': '&2This covers both the &6mcMMO&2 repair and the vanilla repair.'
+    '10': '&6FISHING&2: &aPays&2 or &ccharges&2 whenever you use a fishing rod to'
+    '11': '&2catch an entity or fish.'
+    '12': '&6Potions&2 and &6Enchants&2 are covered on the next page.'
+    '13': --
+  '8':
+    '1': '&6POTIONS&2: &aPays&2 or &ccharges&2 for using a brew stand to make'
+    '2': '&2potions.'
+    '3': '&6ENCHANT&2: &aPays&2 or &ccharges&2 when the player enchants an item.'
+    '4': ''
+    '5': '&eEnglish&c localization done by: &6RathelmMC'
+    '6': '&eFrench&c localization done by: &6Not Implemented'
+    '7': '&eGerman&c localization done by: &6Not Implemented'
+    '8': '&eNederlandse&c localization done by: &6Not Implemented'
+    '9': '&eRussian&c localization done by: &6&6Not Implemented'
+    '10': '&eSpanish&c localization done by: &6Not Implemented'
+    '11': ''
+    '12': '&7More info at:&6 https://dev.bukkit.org/projects/mcjobs'
+    '13': --
+  endofpage: '&7Continue on Page %g'
+  command: '&6/jobs help %g'
+  finish: '&7END OF HELP FILE'
+  nohelp: '&7%g&c is not a help page!'
 admincommand:
-  permission: "&6%p&c you do not have permission to do this!"
-  failedreload: "&cFailed to reload the plugin!"
-  succeedreload: "&6MC Jobs&c has been reloaded!"
-  defaults: "&7Defaults have been added to the config.yml file."
-  args: "&cToo many arguments for &e/jadm&c.  So this is the end, we're going to test a ridiculously long string."
-  exist: "&6%j&c does not exist!"
-
+  permission: '&6%p&c you do not have permission to do this!'
+  failedreload: '&cFailed to reload the plugin!'
+  succeedreload: '&6MC Jobs&c has been reloaded!'
+  defaults: '&7Defaults have been added to the config.yml file.'
+  args: '&cToo many arguments for &e/jadm&c.  So this is the end, we''re going to
+    test a ridiculously long string.'
+  exist: '&6%j&c does not exist!'
 adminadd:
-  args: "&cWrong arguments: &e/jadm add [player/group] [job_name]"
-  offline: "&6%p&c group doesn't exist or isn't a player that has been seen!"
-  novault: "&6%p&c is not a known player!"
-  hasjob: "&6%p&7 already has the &9%j&7 job."
-  empty: "&7There are no &eplayers&7 online in the &6%p&7 group."
-  added: "&6%p&7 has been added to &9%j&7."
-  padded: "&6%p&2 you have been added to the &9%j&2 job by a server admin."
-
+  args: '&cWrong arguments: &e/jadm add [player/group] [job_name]'
+  offline: '&6%p&c group doesn''t exist or isn''t a player that has been seen!'
+  novault: '&6%p&c is not a known player!'
+  hasjob: '&6%p&7 already has the &9%j&7 job.'
+  empty: '&7There are no &eplayers&7 online in the &6%p&7 group.'
+  added: '&6%p&7 has been added to &9%j&7.'
+  padded: '&6%p&2 you have been added to the &9%j&2 job by a server admin.'
 adminremove:
-  args: "&cWrong arguments: &e/jadm remove [player/group] [job_name]"
-  nojob: "&6%p&7 does not have the &9%j&7 job."
-  nodefault: "&6%p&c you do not have permission to remove &3default&c jobs!"
-  removed: "&6%p&7 has been removed from &9%j&7."
-  premoved: "&6%p&2 you have been removed from the &9%j&2 job by a server admin."
-
+  args: '&cWrong arguments: &e/jadm remove [player/group] [job_name]'
+  nojob: '&6%p&7 does not have the &9%j&7 job.'
+  nodefault: '&6%p&c you do not have permission to remove &3default&c jobs!'
+  removed: '&6%p&7 has been removed from &9%j&7.'
+  premoved: '&6%p&2 you have been removed from the &9%j&2 job by a server admin.'
 adminlist:
-  args: "&cWrong arguments: &e/jadm list [player/group]"
-  playerlist: "&2%p&7: %g"
-  nojobs: "&2%p&c has no jobs."
-  wrongpage: "&e%g is not a proper page number.  Using page 1 instead."
-
+  args: '&cWrong arguments: &e/jadm list [player/group]'
+  playerlist: '&2%p&7: %g'
+  nojobs: '&2%p&c has no jobs.'
+  wrongpage: '&e%g is not a proper page number.  Using page 1 instead.'
 pitch:
-  line0: "This server runs:"
-  line1: "&aTo see what jobs are available type: &e/jobs list"
-  line2: "&aTo join a job type: &e/jobs join [job_name]"
-  line3: "&aPlay, &2earn money&a, and have fun!"
-    
+  line0: 'This server runs:'
+  line1: '&aTo see what jobs are available type: &e/jobs list'
+  line2: '&aTo join a job type: &e/jobs join [job_name]'
+  line3: '&aPlay, &2earn money&a, and have fun!'
 onadminlogin:
-  toolow: "&eYour pay scale is too low for an &6XP&e based economy.  Consider switching &2pay_scale&e to high in the config.yml file."
-  outofdate: "&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without reloading the config file."
-
+  toolow: '&eYour pay scale is too low for an &6XP&e based economy.  Consider switching
+    &2pay_scale&e to high in the config.yml file.'
+  outofdate: '&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without
+    reloading the config file.'
 experience:
-  level: "&eYou are now level &6%g&e in &6%j&e."
-  reset: "&eYour level in &6%j&e has been reset to &c0&e."
-  rank: "&eYou are now rank &6%g&e in &6%j&e."
-  added_lvl: "&7You have given &6%p &a%g&7 levels in &6%j&7."
-  padded_lvl: "&7You have been given &a%g&7 levels in &6%j&7 by a system admin."
-  added_xp: "&7You have given &6%p &a%g&7 experience in &6%j&7."
-  padded_xp: "&7You have been given &a%g&7 experience in &6%j&7 by a system admin."
-  nojob: "&6%p&c doesn't have the &6%j&c job."
-
+  level: '&eYou are now level &6%g&e in &6%j&e.'
+  reset: '&eYour level in &6%j&e has been reset to &c0&e.'
+  rank: '&eYou are now rank &6%g&e in &6%j&e.'
+  added_lvl: '&7You have given &6%p &a%g&7 levels in &6%j&7.'
+  padded_lvl: '&7You have been given &a%g&7 levels in &6%j&7 by a system admin.'
+  added_xp: '&7You have given &6%p &a%g&7 experience in &6%j&7.'
+  padded_xp: '&7You have been given &a%g&7 experience in &6%j&7 by a system admin.'
+  nojob: '&6%p&c doesn''t have the &6%j&c job.'
 payment:
-  pay: "&aThe &6%j&a job has paid you &6%g&a %p."
-  payxp: "&aThe &6%j&a job has earned you &6%g&a experience."
-  charge: "&aThe &6%j&a job has cost you &c%g&a %p."
-  chargexp: "&aThe &6%j&a job has taken &c%g&a experience."
+  pay: '&aThe &6%j&a job has paid you &6%g&a %p.'
+  payxp: '&aThe &6%j&a job has earned you &6%g&a experience.'
+  charge: '&aThe &6%j&a job has cost you &c%g&a %p.'
+  chargexp: '&aThe &6%j&a job has taken &c%g&a experience.'
   currency_single: dollar
   currency_plural: dollars
-    
 spaces:
   jobslist: 16
   display: 4
@@ -302,454 +290,244 @@ spaces:
   displaythree: 4
   chargelen: 7
   numhelp: 8
-
-entities:
-  blaze:        Blaze
-  cow:          Cow
-  cave_spider:  Cave Spider
-  chicken:      Chicken
-  creeper:      Creeper
-  dropped_item: Fish
-  ender_dragon: Ender Dragon
-  enderman:     Ender Man
-  ghast:        Ghast
-  giant:        Giant
-  iron_golem:   Iron Golem
-  magma_cube:   Magma Cube
-  mushroom_cow: Mooshroom Cow
-  npc:          NPC
-  ocelot:       Ocelot
-  pig:          Pig
-  pig_zombie:   Pig Zombie
-  player:       Player
-  sheep:        Sheep
-  silverfish:   Silverfish
-  skeleton:     Skeleton
-  slime:        Slime
-  snowman:      Snowman
-  spider:       Spider
-  squid:        Squid
-  villager:     Villager
-  wolf:         Wolf
-  zombie:       Zombie
-
 potion:
-  water:            Water
-  awkward:          Awkward
-  thick:            Thick
-  mundane:          Mundane
-  mundane_ext:      Mundane Extend
-  regen:            Regen
-  regen_ext:        Regen Extend
-  regen_two:        Regen II
-  regen_two_ext:    Regen II Extend
-  regen_spl:        Regen Splash
-  regen_ext_spl:    Regen Extend Splash
-  regen_two_spl:    Regen II Splash
-  swift:            Swift
-  swift_ext:        Swift Extend
-  swift_two:        Swift II
-  swift_two_ext:    Swift II Extend
-  swift_spl:        Swift Splash
-  swift_ext_spl:    Swift Extend Splash
-  swift_two_spl:    Swift II Splash
-  fire_res:         Fire Resist
-  fire_res_ext:     Fire Resist Extend
-  fire_res_spl:     Fire Resist Splash
-  fire_res_ext_spl: Fire Resist Extend Splash
-  poison:           Poison
-  poison_ext:       Poison Extend
-  poison_two:       Poison II
-  poison_two_ext:   Poison II Extend
-  poison_spl:       Poison Splash
-  poison_ext_spl:   Poison Extend Splash
-  poison_two_spl:   Poison II Splash
-  health:           Healing
-  health_two:       Healing II
-  health_spl:       Healing Splash
-  health_two_spl:   Healing II Splash
-  weak:             Weak
-  weak_ext:         Weak Extend
-  weak_two:         Weak II
-  weak_spl:         Weak Splash
-  weak_ext_spl:     Weak Extend Splash
-  weak_two_spl:     Weak II Splash
-  strength:         Strength
-  strength_ext:     Strength Extend
-  strength_two:     Strength II
-  strength_two_ext: Strength II Extend
-  strength_spl:     Strength Splash
-  strength_ext_spl: Strength Extend Splash
-  strength_two_spl: Strength II Splash
-  slow:             Slow
-  slow_ext:         Slow Extend
-  slow_two:         Slow II
-  slow_spl:         Slow Splash
-  slow_ext_spl:     Slow Extend Splash
-  slow_two_spl:     Slow II Splash
-  harm:             Harm
-  harm_two:         Harm II
-  harm_spl:         Harm Splash
-  harm_two_spl:     Harm II Splash
-  rev_fire_res:     Fire Resist
-  rev_slow:         Slow
-  rev_health:       Healing
-  rev_harm:         Harm
-  rev_weak:         Weak
-
-enchant:
-  arrow_dmg_1:      Arrow Damage I
-  arrow_dmg_2:      Arrow Damage II
-  arrow_dmg_3:      Arrow Damage III
-  arrow_dmg_4:      Arrow Damage IV
-  arrow_dmg_5:      Arrow Damage V
-  arrow_fire:       Flame Arrows
-  arrow_inf:        Infinite Arrows
-  arrow_knock_1:    Arrow Knockback I
-  arrow_knock_2:    Arrow Knockback II
-  sharp_1:          Sharpness I
-  sharp_2:          Sharpness II
-  sharp_3:          Sharpness III
-  sharp_4:          Sharpness IV
-  sharp_5:          Sharpness V
-  boa_1:            Bane of Anthropods I
-  boa_2:            Bane of Anthropods II
-  boa_3:            Bane of Anthropods III
-  boa_4:            Bane of Anthropods IV
-  boa_5:            Bane of Anthropods V
-  dmg_undead_1:     Smite I
-  dmg_undead_2:     Smite II
-  dmg_undead_3:     Smite III
-  dmg_undead_4:     Smite IV
-  dmg_undead_5:     Smite V
-  efficiency_1:     Efficiency I
-  efficiency_2:     Efficiency II
-  efficiency_3:     Efficiency III
-  efficiency_4:     Efficiency IV
-  efficiency_5:     Efficiency V
-  unbreaking_1:     Durability I
-  unbreaking_2:     Durability II
-  unbreaking_3:     Durability III
-  unbreaking_4:     Durability IV
-  unbreaking_5:     Durability V
-  fire_aspect_1:    Fire Aspect I
-  fire_aspect_2:    Fire Aspect II
-  knockback_1:      Knockback I
-  knockback_2:      Knockback II
-  fortune_1:        Fortune I
-  fortune_2:        Fortune II
-  fortune_3:        Fortune III
-  looting_1:        Looting I
-  looting_2:        Looting II
-  looting_3:        Looting III
-  respiration_1:    Respiration I
-  respiration_2:    Respiration II
-  respiration_3:    Respiration III
-  protection_1:     Protection I
-  protection_2:     Protection II
-  protection_3:     Protection III
-  protection_4:     Protection IV
-  blast_prot_1:     Blast Protection I
-  blast_prot_2:     Blast Protection II
-  blast_prot_3:     Blast Protection III
-  blast_prot_4:     Blast Protection IV
-  feather_fall_1:   Feather Fall I
-  feather_fall_2:   Feather Fall II
-  feather_fall_3:   Feather Fall III
-  feather_fall_4:   Feather Fall IV
-  fire_prot_1:      Fire Protection I
-  fire_prot_2:      Fire Protection II
-  fire_prot_3:      Fire Protection III
-  fire_prot_4:      Fire Protection IV
-  proj_prot_1:      Projectile Protection I
-  proj_prot_2:      Projectile Protection II
-  proj_prot_3:      Projectile Protection III
-  proj_prot_4:      Projectile Protection IV
-  silk_touch:       Silk Touch
-  aqua_affinity:    Aqua Affinity
-    
-materials:
-  air:                  Air
-  apple:                Apple
-  arrow:                Arrow
-  bed:                  Bed
-  bed_block:            Bed
-  bedrock:              Bedrock
-  birch_wood_stairs:    Birch Wood Stairs
-  blaze_powder:         Blaze Powder
-  blaze_rod:            Blaze Rod
-  boat:                 Boat
-  bone:                 Bone
-  book:                 Book
-  book_and_quill:       Book and Quill
-  bookshelf:            Bookshelf
-  bow:                  Bow
-  bowl:                 Bowl
-  bread:                Bread
-  brewing_stand:        Brewing Stand
-  brewing_stand_item:   Brewing Stand
-  brick:                Brick
-  brick_stairs:         Brick Stairs
-  brown_mushroom:       Brown Mushroom
-  bucket:               Iron Bucket
-  burning_furnace:      Furnace
-  cactus:               Cactus
-  cake:                 Cake
-  cake_block:           Cake
-  cauldron:             Cauldron
-  cauldron_item:        Cauldron
-  chainmail_boots:      Chainmail Boots
-  chainmail_chestplate: Chainmail Tunic
-  chainmail_helmet:     Chainmail Coif
-  chainmail_leggings:   Chainmail Leggings
-  chest:                Chest
-  clay:                 Clay
-  clay_ball:            Clay Ball
-  clay_brick:           Clay Brick
-  coal:                 Coal
-  coal_ore:             Coal Ore
-  cobblestone:          Cobblestone
-  cobblestone_stairs:  Cobblestone Stairs
-  cocoa:                Cocoa
-  compass:              Compass
-  cooked_beef:          Steak
-  cooked_chicken:       Grilled Chicken
-  cooked_fish:          Fried Fish
-  cookie:               Cookie
-  crops:                Crops
-  dead_bush:            Dead Bush
-  detector_rail:        Detector Rail
-  diamond:              Diamond
-  diamond_axe:          Diamond Axe
-  diamond_block:        Block of Diamond
-  diamond_boots:        Diamond Greaves
-  diamond_chestplate:   Diamond Chestpiece
-  diamond_helmet:       Diamond Helm
-  diamond_hoe:          Diamond Hoe
-  diamond_leggings:     Diamond Legs
-  diamond_ore:          Rough Diamond
-  diamond_pickaxe:      Diamond Pickaxe
-  diamond_spade:        Diamond Shovel
-  diamond_sword:        Diamond Sword
-  diode:                Redstone Repeater
-  diode_block_off:      Redstone Repeater
-  diode_block_on:       Redstone Repeater
-  dirt:                 Dirt
-  dispenser:            Dispenser
-  double_step:          Double Step
-  dragon_egg:           Dragon Egg
-  egg:                  Egg
-  emerald:              Emerald
-  emerald_block:        Block of Emerald
-  emerald_ore:          Emerald Ore
-  enchantment_table:    Enchantment Table
-  ender_chest:          Ender Chest
-  ender_pearl:          Ender Pearl
-  ender_portal:         Ender Portal
-  ender_portal_frame:   Ender Portal Frame
-  ender_stone:          Ender Stone
-  exp_bottle:           Experience Bottle
-  eye_of_ender:         Eye of Ender
-  feather:              Feather
-  fence:                Fence
-  fence_gate:           Fence Gate
-  fermented_spider_eye: Fermented Spider Eye
-  fire:                 Fire
-  fireball:             Fireball
-  fishing_rod:          Fishing Pole
-  flint:                Flint
-  flint_and_steel:      Flint and Steel
-  furnace:              Furnace
-  ghast_tear:           Ghast Tear
-  glass:                Glass
-  glass_bottle:         Bottle
-  glowing_redstone_ore: Redstone Ore
-  glowstone:            Glowstone
-  glowstone_dust:       Glowstone Dust
-  gold_axe:             Gold Axe
-  gold_block:           Block of Gold
-  gold_boots:           Gold Slippers
-  gold_chestplate:      Gold Breastplate
-  gold_helmet:          Gold Helm
-  gold_hoe:             Gold Hoe
-  gold_ingot:           Gold Ingot
-  gold_leggings:        Gold Skirt
-  gold_nugget:          Gold Nugget
-  gold_ore:             Gold Ore
-  gold_pickaxe:         Gold Pickaxe
-  gold_record:          Record c418 - 13
-  gold_spade:           Gold Shovel
-  gold_sword:           Gold Sword
-  golden_apple:         Golden Apple
-  grass:                Dirt
-  gravel:               Gravel
-  green_record:         Record c418 - cat
-  grilled_pork:         Baby Back Ribs
-  huge_mushroom_1:      Giant Mushroom
-  huge_mushroom_2:      Giant Mushroom
-  ice:                  Ice
-  ink_sack:             Squid Ink
-  iron_axe:             Iron Axe
-  iron_block:           Block of Iron
-  iron_boots:           Iron Greaves
-  iron_chestplate:      Iron Chestplate
-  iron_door:            Iron Door
-  iron_door_block:      Iron Door
-  iron_fence:           Iron Fence
-  iron_helmet:          Iron Helm
-  iron_hoe:             Iron Hoe
-  iron_ingot:           Iron Ingot
-  iron_leggings:        Iron Leggings
-  iron_ore:             Iron Ore
-  iron_pickaxe:         Iron Pickaxe
-  iron_spade:           Iron Shovel
-  iron_sword:           Iron Sword
-  jack_o_lantern:       Jack O' Lantern
-  jukebox:              Jukebox
-  jungle_wood_stairs:   Jungle Wood Stairs
-  ladder:               Ladder
-  lapis_block:          Block of Lapis
-  lapis_ore:            Lapis Ore
-  lava:                 Lava
-  lava_bucket:          Bucket Full of Lava
-  leather:              Strip of Leather
-  leather_boots:        Leather Shoes
-  leather_chestplate:   Leather Vest
-  leather_helmet:       Leather Cap
-  leather_leggings:     Leather Pants
-  leaves:               Leaves
-  lever:                Lever
-  locked_chest:         Locked Chest
-  log:                  Tree Log
-  long_grass:           Weeds
-  magma_cream:          Magma Cream
-  map:                  Map
-  melon:                Watermelon Slice
-  melon_block:          Watermelon
-  melon_seeds:          Watermelon Seeds
-  melon_stem:           Watermelon Plant
-  milk_bucket:          Bucket Full of Milk
-  minecart:             Minecart
-  mob_spawner:          Mob Spawner
-  monster_egg:          Monster Egg
-  monster_eggs:         Silverfish Block
-  mossy_cobblestone:    Mossy Cobblestone
-  mushroom_soup:        Bowl of Mushroom Soup
-  mycel:                Mycel
-  nether_brick:         Nether Brick
-  nether_brick_stairs:  Nether Brick Stairs
-  nether_fence:         Nether Fence
-  nether_stalk:         Nether Warts
-  nether_warts:         Nether Warts
-  netherrack:           Netherrack
-  note_block:           Note Block
-  obsidian:             Obsidian
-  painting:             Painting
-  paper:                Paper
-  piston_base:          Piston
-  piston_extension:     Piston
-  piston_moving_piece:  Piston
-  piston_sticky_base:   Sticky Piston
-  pork:                 Raw Pork
-  portal:               Portal
-  potion:               Potion
-  powered_minecart:     Powered Minecart
-  powered_rail:         Powered Rail
-  pumpkin:              Pumpkin
-  pumpkin_seeds:        Pumpkin Seeds
-  pumpkin_stem:         Pumpkin Plant
-  rails:                Train Tracks
-  raw_beef:             Raw Steak
-  raw_chicken:          Raw Chicken
-  raw_fish:             Raw Fish
-  record_10:            Record c418 - ward
-  record_11:            Record c418 - 11
-  record_3:             Record c418 - blocks
-  record_4:             Record c418 - chirp
-  record_5:             Record c418 - far
-  record_6:             Record c418 - mall
-  record_7:             Record c418 - mellohi
-  record_8:             Record c418 - stal
-  record_9:             Record c418 - strad
-  red_mushroom:         Red Mushroom
-  red_rose:             Red Rose
-  redstone:             Redstone Dust
-  redstone_lamp_off:    Redstone Lamp
-  redstone_lamp_on:     Redstone Lamp
-  redstone_ore:         Redstone Ore
-  redstone_torch_off:   Redstone Torch
-  redstone_torch_on:    Redstone Torch
-  redstone_wire:        Redstone Dust
-  rotten_flesh:         Zombie Flesh
-  saddle: Saddle
-  sand: Sand
-  sandstone: Sandstone Brick
-  sandstone_stairs: Sandstone Stairs
-  sapling: Tree Sapling
-  seeds: Seeds
-  shears: Shears
-  sign: Wood Sign
-  sign_post: Wood Sign
-  slime_ball: Slime Ball
-  smooth_brick: Smooth Brick
-  smooth_stairs: Smooth Brick Stairs
-  snow: Snow
-  snow_ball: Snow Ball
-  snow_block: Snow Block
-  soil: Soil
-  soul_sand: Soul Sand
-  speckled_melon: Speckled Melon
-  spider_eye: Spider Eye
-  sponge: Sponge
-  spruce_wood_stairs: Spruce Wood Stairs
-  stationary_lava: Lava
-  stationary_water: Water
-  step: Step
-  stick: Stick
-  stone: Stone
-  stone_axe: Stone Axe
-  stone_button: Stone Button
-  stone_hoe: Stone Hoe
-  stone_pickaxe: Stone Pickaxe
-  stone_plate: Stone Pressure Plate
-  stone_spade: Stone Shovel
-  stone_sword: Stone Sword
-  storage_minecart: Storage Minecart
-  string: String
-  sugar: Sugar
-  sugar_cane: Sugar Cane
-  sugar_cane_block: Sugar Cane
-  sulphur: Gunpowder
-  thin_glass: Glass Panes
-  tnt: TNT
-  torch: Torch
-  trap_door: Trap Door
-  tripwire: Trip Wire
-  tripwire_hook: Trip Wire Hook
-  vine: Vine
-  wall_sign: Wood Sign
-  watch: Watch
   water: Water
-  water_bucket: Bucket Full of Water
-  water_lily: Water Lily
-  web: Web
-  wheat: Wheat
-  wood: Wood
-  wood_axe: Wood Axe
-  wood_door: Wooden Door
-  wood_double_step: Wooden Step
-  wood_hoe: Wood Hoe
-  wood_pickaxe: Wood Pickaxe
-  wood_plate: Wood Pressure Plate
-  wood_shovel: Wood Shovel
-  wood_stairs: Wooden Stairs
-  wood_step: Wood Step
-  wood_sword: Wood Sword
-  wooden_door: Wooden Door
-  wool: Wool
-  workbench: Workbench
-  written_book: Written Book
-  yellow_flower: Yellow Flower
+  awkward: Awkward
+  thick: Thick
+  mundane: Mundane
+  regeneration: Regen
+  regeneration_ext: Regen Extend
+  regeneration_upg: Regen II
+  speed: Swift
+  speed_ext: Swift Extend
+  speed_upg: Swift II
+  fire_resistance: Fire Resist
+  fire_resistance_ext: Fire Resist Extend
+  poison: Poison
+  poison_ext: Poison Extend
+  poison_upg: Poison II
+  healing: Healing
+  healing_upg: Healing II
+  weakness: Weak
+  weakness_ext: Weak Extend
+  weakness_upg: Weak II
+  strength: Strength
+  strength_ext: Strength Extend
+  strength_upg: Strength II
+  slowness: Slow
+  slowness_ext: Slow Extend
+  slowness_upg: Slow II
+  damage: Harm
+  damage_upg: Harm II
+  water_breathing: Water Breathing
+  water_breathing_ext: Water Breathing Extend
+  nightvision: Night vision
+  nightvision_ext: Night vision Extend
+  invisible: Invisible
+  invisible_ext: Invisible Extend
+  turtlemaster: Turtle Master
+  turtlemaster_ext: Turtle Master Extend
+  turtlemaster_upg: Turtle Master II
+  soft_fall: Feather Fall
+  soft_fall_ext: Feather Fall Extend
+  jump: Jump
+  jump_ext: Jump Extend
+  jump_upg: Jump II
+  splash_water: Water (Splash)
+  splash_awkward: Awkward (Splash)
+  splash_thick: Thick (Splash)
+  splash_mundane: Mundane (Splash)
+  splash_regeneration: Regen (Splash)
+  splash_regeneration_ext: Regen Extend (Splash)
+  splash_regeneration_upg: Regen II (Splash)
+  splash_speed: Swift (Splash)
+  splash_speed_ext: Swift Extend (Splash)
+  splash_speed_upg: Swift II (Splash)
+  splash_fire_resistance: Fire Resist (Splash)
+  splash_fire_resistance_ext: Fire Resist Extend (Splash)
+  splash_poison: Poison (Splash)
+  splash_poison_ext: Poison Extend (Splash)
+  splash_poison_upg: Poison II (Splash)
+  splash_healing: Healing (Splash)
+  splash_healing_upg: Healing II (Splash)
+  splash_weakness: Weak (Splash)
+  splash_weakness_ext: Weak Extend (Splash)
+  splash_weakness_upg: Weak II (Splash)
+  splash_strength: Strength (Splash)
+  splash_strength_ext: Strength Extend (Splash)
+  splash_strength_upg: Strength II (Splash)
+  splash_slowness: Slow (Splash)
+  splash_slowness_ext: Slow Extend (Splash)
+  splash_slowness_upg: Slow II (Splash)
+  splash_damage: Harm (Splash)
+  splash_damage_upg: Harm II (Splash)
+  splash_water_breathing: Water Breathing (Splash)
+  splash_water_breathing_ext: Water Breathing Extend (Splash)
+  splash_nightvision: Night vision (Splash)
+  splash_nightvision_ext: Night vision Extend (Splash)
+  splash_invisible: Invisible (Splash)
+  splash_invisible_ext: Invisible Extend (Splash)
+  splash_turtlemaster: Turtle Master (Splash)
+  splash_turtlemaster_ext: Turtle Master Extend (Splash)
+  splash_turtlemaster_upg: Turtle Master II (Splash)
+  splash_soft_fall: Feather Fall (Splash)
+  splash_soft_fall_ext: Feather Fall Extend (Splash)
+  splash_jump: Jump (Splash)
+  splash_jump_ext: Jump Extend (Splash)
+  splash_jump_upg: Jump II (Splash)
+  lingering_water: Water (Lingering)
+  lingering_awkward: Awkward (Lingering)
+  lingering_thick: Thick (Lingering)
+  lingering_mundane: Mundane (Lingering)
+  lingering_regeneration: Regen (Lingering)
+  lingering_regeneration_ext: Regen Extend (Lingering)
+  lingering_regeneration_upg: Regen II (Lingering)
+  lingering_speed: Swift (Lingering)
+  lingering_speed_ext: Swift Extend (Lingering)
+  lingering_speed_upg: Swift II (Lingering)
+  lingering_fire_resistance: Fire Resist (Lingering)
+  lingering_fire_resistance_ext: Fire Resist Extend (Lingering)
+  lingering_poison: Poison (Lingering)
+  lingering_poison_ext: Poison Extend (Lingering)
+  lingering_poison_upg: Poison II (Lingering)
+  lingering_healing: Healing (Lingering)
+  lingering_healing_upg: Healing II (Lingering)
+  lingering_weakness: Weak (Lingering)
+  lingering_weakness_ext: Weak Extend (Lingering)
+  lingering_weakness_upg: Weak II (Lingering)
+  lingering_strength: Strength (Lingering)
+  lingering_strength_ext: Strength Extend (Lingering)
+  lingering_strength_upg: Strength II (Lingering)
+  lingering_slowness: Slow (Lingering)
+  lingering_slowness_ext: Slow Extend (Lingering)
+  lingering_slowness_upg: Slow II (Lingering)
+  lingering_damage: Harm (Lingering)
+  lingering_damage_upg: Harm II (Lingering)
+  lingering_water_breathing: Water Breathing (Lingering)
+  lingering_water_breathing_ext: Water Breathing Extend (Lingering)
+  lingering_nightvision: Night vision (Lingering)
+  lingering_nightvision_ext: Night vision Extend (Lingering)
+  lingering_invisible: Invisible (Lingering)
+  lingering_invisible_ext: Invisible Extend (Lingering)
+  lingering_turtlemaster: Turtle Master (Lingering)
+  lingering_turtlemaster_ext: Turtle Master Extend (Lingering)
+  lingering_turtlemaster_upg: Turtle Master II (Lingering)
+  lingering_soft_fall: Feather Fall (Lingering)
+  lingering_soft_fall_ext: Feather Fall Extend (Lingering)
+  lingering_jump: Jump (Lingering)
+  lingering_jump_ext: Jump Extend (Lingering)
+  lingering_jump_upg: Jump II (Lingering)
+enchant:
+  power_1: Arrow Damage I
+  power_2: Arrow Damage II
+  power_3: Arrow Damage III
+  power_4: Arrow Damage IV
+  power_5: Arrow Damage V
+  flame_1: Flame Arrows
+  infinity_1: Infinite Arrows
+  punch_1: Punch I
+  punch_2: Punch II
+  sharpness_1: Sharpness I
+  sharpness_2: Sharpness II
+  sharpness_3: Sharpness III
+  sharpness_4: Sharpness IV
+  sharpness_5: Sharpness V
+  bane_of_arthropods_1: Bane of Arthropods I
+  bane_of_arthropods_2: Bane of Arthropods II
+  bane_of_arthropods_3: Bane of Arthropods III
+  bane_of_arthropods_4: Bane of Arthropods IV
+  bane_of_arthropods_5: Bane of Arthropods V
+  smite_1: Smite I
+  smite_2: Smite II
+  smite_3: Smite III
+  smite_4: Smite IV
+  smite_5: Smite V
+  efficiency_1: Efficiency I
+  efficiency_2: Efficiency II
+  efficiency_3: Efficiency III
+  efficiency_4: Efficiency IV
+  efficiency_5: Efficiency V
+  unbreaking_1: Durability I
+  unbreaking_2: Durability II
+  unbreaking_3: Durability III
+  fire_aspect_1: Fire Aspect I
+  fire_aspect_2: Fire Aspect II
+  knockback_1: Knockback I
+  knockback_2: Knockback II
+  fortune_1: Fortune I
+  fortune_2: Fortune II
+  fortune_3: Fortune III
+  looting_1: Looting I
+  looting_2: Looting II
+  looting_3: Looting III
+  lure_1: Lure I
+  lure_2: Lure II
+  lure_3: Lure III
+  luck_1: Luck I
+  luck_2: Luck II
+  luck_3: Luck III
+  respiration_1: Respiration I
+  respiration_2: Respiration II
+  respiration_3: Respiration III
+  protection_1: Protection I
+  protection_2: Protection II
+  protection_3: Protection III
+  protection_4: Protection IV
+  blast_protection_1: Blast Protection I
+  blast_protection_2: Blast Protection II
+  blast_protection_3: Blast Protection III
+  blast_protection_4: Blast Protection IV
+  feather_falling_1: Feather Fall I
+  feather_falling_2: Feather Fall II
+  feather_falling_3: Feather Fall III
+  feather_falling_4: Feather Fall IV
+  fire_protection_1: Fire Protection I
+  fire_protection_2: Fire Protection II
+  fire_protection_3: Fire Protection III
+  fire_protection_4: Fire Protection IV
+  projectile_protection_1: Projectile Protection I
+  projectile_protection_2: Projectile Protection II
+  projectile_protection_3: Projectile Protection III
+  projectile_protection_4: Projectile Protection IV
+  silk_touch_1: Silk Touch
+  loyalty_1: Loyalty I
+  loyalty_2: Loyalty II
+  loyalty_3: Loyalty III
+  depth_strider_1: Depth Strider I
+  depth_strider_2: Depth Strider II
+  depth_strider_3: Depth Strider III
+  vanishing_curse_1: Curse of Vanishing
+  binding_curse_1: Curse of Binding
+  mending_1: Mending
+  frost_walker_1: Frost Walker I
+  frost_walker_2: Frost Walker II
+  piercing_1: Piercing I
+  piercing_2: Piercing II
+  piercing_3: Piercing III
+  piercing_4: Piercing IV
+  multishot_1: Multi Shot
+  channeling_1: Channeling
+  thorns_1: Thorns I
+  thorns_2: Thorns II
+  thorns_3: Thorns III
+  riptide_1: Riptide I
+  riptide_2: Riptide II
+  riptide_3: Riptide III
+  quick_charge_1: Quick Charge I
+  quick_charge_2: Quick Charge II
+  quick_charge_3: Quick Charge III
+  impaling_1: Impaling I
+  impaling_2: Impaling II
+  impaling_3: Impaling III
+  impaling_4: Impaling IV
+  impaling_5: Impaling V
+  aqua_affinity_1: Aqua affinity
+  luck_of_the_sea_1: Luck of the Sea I
+  luck_of_the_sea_2: Luck of the Sea II
+  luck_of_the_sea_3: Luck of the Sea III
+  sweeping_1: Sweeping I
+  sweeping_2: Sweeping II
+  sweeping_3: Sweeping III
 color:
   black: Black Sheep
   blue: Blue Sheep
@@ -767,3 +545,1076 @@ color:
   red: Red Sheep
   white: White Sheep
   yellow: Yellow Sheep
+entities:
+  dropped_item: DROPPED ITEM
+  experience_orb: EXPERIENCE ORB
+  area_effect_cloud: AREA EFFECT CLOUD
+  elder_guardian: ELDER GUARDIAN
+  wither_skeleton: WITHER SKELETON
+  stray: STRAY
+  egg: EGG
+  leash_hitch: LEASH HITCH
+  painting: PAINTING
+  arrow: ARROW
+  snowball: SNOWBALL
+  fireball: FIREBALL
+  small_fireball: SMALL FIREBALL
+  ender_pearl: ENDER PEARL
+  ender_signal: ENDER SIGNAL
+  splash_potion: SPLASH POTION
+  thrown_exp_bottle: THROWN EXP BOTTLE
+  item_frame: ITEM FRAME
+  wither_skull: WITHER SKULL
+  primed_tnt: PRIMED TNT
+  falling_block: FALLING BLOCK
+  firework: FIREWORK
+  husk: HUSK
+  spectral_arrow: SPECTRAL ARROW
+  shulker_bullet: SHULKER BULLET
+  dragon_fireball: DRAGON FIREBALL
+  zombie_villager: ZOMBIE VILLAGER
+  skeleton_horse: SKELETON HORSE
+  zombie_horse: ZOMBIE HORSE
+  armor_stand: ARMOR STAND
+  donkey: DONKEY
+  mule: MULE
+  evoker_fangs: EVOKER FANGS
+  evoker: EVOKER
+  vex: VEX
+  vindicator: VINDICATOR
+  illusioner: ILLUSIONER
+  minecart_command: MINECART COMMAND
+  boat: BOAT
+  minecart: MINECART
+  minecart_chest: MINECART CHEST
+  minecart_furnace: MINECART FURNACE
+  minecart_tnt: MINECART TNT
+  minecart_hopper: MINECART HOPPER
+  minecart_mob_spawner: MINECART MOB SPAWNER
+  creeper: CREEPER
+  skeleton: SKELETON
+  spider: SPIDER
+  giant: GIANT
+  zombie: ZOMBIE
+  slime: SLIME
+  ghast: GHAST
+  pig_zombie: PIG ZOMBIE
+  enderman: ENDERMAN
+  cave_spider: CAVE SPIDER
+  silverfish: SILVERFISH
+  blaze: BLAZE
+  magma_cube: MAGMA CUBE
+  ender_dragon: ENDER DRAGON
+  wither: WITHER
+  bat: BAT
+  witch: WITCH
+  endermite: ENDERMITE
+  guardian: GUARDIAN
+  shulker: SHULKER
+  pig: PIG
+  sheep: SHEEP
+  cow: COW
+  chicken: CHICKEN
+  squid: SQUID
+  wolf: WOLF
+  mushroom_cow: MUSHROOM COW
+  snowman: SNOWMAN
+  ocelot: OCELOT
+  iron_golem: IRON GOLEM
+  horse: HORSE
+  rabbit: RABBIT
+  polar_bear: POLAR BEAR
+  llama: LLAMA
+  llama_spit: LLAMA SPIT
+  parrot: PARROT
+  villager: VILLAGER
+  ender_crystal: ENDER CRYSTAL
+  turtle: TURTLE
+  phantom: PHANTOM
+  trident: TRIDENT
+  cod: COD
+  salmon: SALMON
+  pufferfish: PUFFERFISH
+  tropical_fish: TROPICAL FISH
+  drowned: DROWNED
+  dolphin: DOLPHIN
+  cat: CAT
+  panda: PANDA
+  pillager: PILLAGER
+  ravager: RAVAGER
+  trader_llama: TRADER LLAMA
+  wandering_trader: WANDERING TRADER
+  fox: FOX
+  fishing_hook: FISHING HOOK
+  lightning: LIGHTNING
+  player: PLAYER
+  unknown: UNKNOWN
+materials:
+  acacia_boat: ACACIA BOAT
+  acacia_button: ACACIA BUTTON
+  acacia_door: ACACIA DOOR
+  acacia_fence: ACACIA FENCE
+  acacia_fence_gate: ACACIA FENCE GATE
+  acacia_leaves: ACACIA LEAVES
+  acacia_log: ACACIA LOG
+  acacia_planks: ACACIA PLANKS
+  acacia_pressure_plate: ACACIA PRESSURE PLATE
+  acacia_sapling: ACACIA SAPLING
+  acacia_sign: ACACIA SIGN
+  acacia_slab: ACACIA SLAB
+  acacia_stairs: ACACIA STAIRS
+  acacia_trapdoor: ACACIA TRAPDOOR
+  acacia_wall_sign: ACACIA WALL SIGN
+  acacia_wood: ACACIA WOOD
+  activator_rail: ACTIVATOR RAIL
+  air: AIR
+  allium: ALLIUM
+  andesite: ANDESITE
+  andesite_slab: ANDESITE SLAB
+  andesite_stairs: ANDESITE STAIRS
+  andesite_wall: ANDESITE WALL
+  anvil: ANVIL
+  apple: APPLE
+  armor_stand: ARMOR STAND
+  arrow: ARROW
+  attached_melon_stem: ATTACHED MELON STEM
+  attached_pumpkin_stem: ATTACHED PUMPKIN STEM
+  azure_bluet: AZURE BLUET
+  baked_potato: BAKED POTATO
+  bamboo: BAMBOO
+  bamboo_sapling: BAMBOO SAPLING
+  barrel: BARREL
+  barrier: BARRIER
+  bat_spawn_egg: BAT SPAWN EGG
+  beacon: BEACON
+  bedrock: BEDROCK
+  beef: BEEF
+  beetroot: BEETROOT
+  beetroots: BEETROOTS
+  beetroot_seeds: BEETROOT SEEDS
+  beetroot_soup: BEETROOT SOUP
+  bell: BELL
+  birch_boat: BIRCH BOAT
+  birch_button: BIRCH BUTTON
+  birch_door: BIRCH DOOR
+  birch_fence: BIRCH FENCE
+  birch_fence_gate: BIRCH FENCE GATE
+  birch_leaves: BIRCH LEAVES
+  birch_log: BIRCH LOG
+  birch_planks: BIRCH PLANKS
+  birch_pressure_plate: BIRCH PRESSURE PLATE
+  birch_sapling: BIRCH SAPLING
+  birch_sign: BIRCH SIGN
+  birch_slab: BIRCH SLAB
+  birch_stairs: BIRCH STAIRS
+  birch_trapdoor: BIRCH TRAPDOOR
+  birch_wall_sign: BIRCH WALL SIGN
+  birch_wood: BIRCH WOOD
+  black_banner: BLACK BANNER
+  black_bed: BLACK BED
+  black_carpet: BLACK CARPET
+  black_concrete: BLACK CONCRETE
+  black_concrete_powder: BLACK CONCRETE POWDER
+  black_dye: BLACK DYE
+  black_glazed_terracotta: BLACK GLAZED TERRACOTTA
+  black_shulker_box: BLACK SHULKER BOX
+  black_stained_glass: BLACK STAINED GLASS
+  black_stained_glass_pane: BLACK STAINED GLASS PANE
+  black_terracotta: BLACK TERRACOTTA
+  black_wall_banner: BLACK WALL BANNER
+  black_wool: BLACK WOOL
+  blast_furnace: BLAST FURNACE
+  blaze_powder: BLAZE POWDER
+  blaze_rod: BLAZE ROD
+  blaze_spawn_egg: BLAZE SPAWN EGG
+  blue_banner: BLUE BANNER
+  blue_bed: BLUE BED
+  blue_carpet: BLUE CARPET
+  blue_concrete: BLUE CONCRETE
+  blue_concrete_powder: BLUE CONCRETE POWDER
+  blue_dye: BLUE DYE
+  blue_glazed_terracotta: BLUE GLAZED TERRACOTTA
+  blue_ice: BLUE ICE
+  blue_orchid: BLUE ORCHID
+  blue_shulker_box: BLUE SHULKER BOX
+  blue_stained_glass: BLUE STAINED GLASS
+  blue_stained_glass_pane: BLUE STAINED GLASS PANE
+  blue_terracotta: BLUE TERRACOTTA
+  blue_wall_banner: BLUE WALL BANNER
+  blue_wool: BLUE WOOL
+  bone: BONE
+  bone_block: BONE BLOCK
+  bone_meal: BONE MEAL
+  book: BOOK
+  bookshelf: BOOKSHELF
+  bow: BOW
+  bowl: BOWL
+  brain_coral: BRAIN CORAL
+  brain_coral_block: BRAIN CORAL BLOCK
+  brain_coral_fan: BRAIN CORAL FAN
+  brain_coral_wall_fan: BRAIN CORAL WALL FAN
+  bread: BREAD
+  brewing_stand: BREWING STAND
+  brick: BRICK
+  bricks: BRICKS
+  brick_slab: BRICK SLAB
+  brick_stairs: BRICK STAIRS
+  brick_wall: BRICK WALL
+  brown_banner: BROWN BANNER
+  brown_bed: BROWN BED
+  brown_carpet: BROWN CARPET
+  brown_concrete: BROWN CONCRETE
+  brown_concrete_powder: BROWN CONCRETE POWDER
+  brown_dye: BROWN DYE
+  brown_glazed_terracotta: BROWN GLAZED TERRACOTTA
+  brown_mushroom: BROWN MUSHROOM
+  brown_mushroom_block: BROWN MUSHROOM BLOCK
+  brown_shulker_box: BROWN SHULKER BOX
+  brown_stained_glass: BROWN STAINED GLASS
+  brown_stained_glass_pane: BROWN STAINED GLASS PANE
+  brown_terracotta: BROWN TERRACOTTA
+  brown_wall_banner: BROWN WALL BANNER
+  brown_wool: BROWN WOOL
+  bubble_column: BUBBLE COLUMN
+  bubble_coral: BUBBLE CORAL
+  bubble_coral_block: BUBBLE CORAL BLOCK
+  bubble_coral_fan: BUBBLE CORAL FAN
+  bubble_coral_wall_fan: BUBBLE CORAL WALL FAN
+  bucket: BUCKET
+  cactus: CACTUS
+  cake: CAKE
+  campfire: CAMPFIRE
+  carrot: CARROT
+  carrots: CARROTS
+  carrot_on_a_stick: CARROT ON A STICK
+  cartography_table: CARTOGRAPHY TABLE
+  carved_pumpkin: CARVED PUMPKIN
+  cat_spawn_egg: CAT SPAWN EGG
+  cauldron: CAULDRON
+  cave_air: CAVE AIR
+  cave_spider_spawn_egg: CAVE SPIDER SPAWN EGG
+  chainmail_boots: CHAINMAIL BOOTS
+  chainmail_chestplate: CHAINMAIL CHESTPLATE
+  chainmail_helmet: CHAINMAIL HELMET
+  chainmail_leggings: CHAINMAIL LEGGINGS
+  chain_command_block: CHAIN COMMAND BLOCK
+  charcoal: CHARCOAL
+  chest: CHEST
+  chest_minecart: CHEST MINECART
+  chicken: CHICKEN
+  chicken_spawn_egg: CHICKEN SPAWN EGG
+  chipped_anvil: CHIPPED ANVIL
+  chiseled_quartz_block: CHISELED QUARTZ BLOCK
+  chiseled_red_sandstone: CHISELED RED SANDSTONE
+  chiseled_sandstone: CHISELED SANDSTONE
+  chiseled_stone_bricks: CHISELED STONE BRICKS
+  chorus_flower: CHORUS FLOWER
+  chorus_fruit: CHORUS FRUIT
+  chorus_plant: CHORUS PLANT
+  clay: CLAY
+  clay_ball: CLAY BALL
+  clock: CLOCK
+  coal: COAL
+  coal_block: COAL BLOCK
+  coal_ore: COAL ORE
+  coarse_dirt: COARSE DIRT
+  cobblestone: COBBLESTONE
+  cobblestone_slab: COBBLESTONE SLAB
+  cobblestone_stairs: COBBLESTONE STAIRS
+  cobblestone_wall: COBBLESTONE WALL
+  cobweb: COBWEB
+  cocoa: COCOA
+  cocoa_beans: COCOA BEANS
+  cod: COD
+  cod_bucket: COD BUCKET
+  cod_spawn_egg: COD SPAWN EGG
+  command_block: COMMAND BLOCK
+  command_block_minecart: COMMAND BLOCK MINECART
+  comparator: COMPARATOR
+  compass: COMPASS
+  composter: COMPOSTER
+  conduit: CONDUIT
+  cooked_beef: COOKED BEEF
+  cooked_chicken: COOKED CHICKEN
+  cooked_cod: COOKED COD
+  cooked_mutton: COOKED MUTTON
+  cooked_porkchop: COOKED PORKCHOP
+  cooked_rabbit: COOKED RABBIT
+  cooked_salmon: COOKED SALMON
+  cookie: COOKIE
+  cornflower: CORNFLOWER
+  cow_spawn_egg: COW SPAWN EGG
+  cracked_stone_bricks: CRACKED STONE BRICKS
+  crafting_table: CRAFTING TABLE
+  creeper_banner_pattern: CREEPER BANNER PATTERN
+  creeper_head: CREEPER HEAD
+  creeper_spawn_egg: CREEPER SPAWN EGG
+  creeper_wall_head: CREEPER WALL HEAD
+  crossbow: CROSSBOW
+  cut_red_sandstone: CUT RED SANDSTONE
+  cut_red_sandstone_slab: CUT RED SANDSTONE SLAB
+  cut_sandstone: CUT SANDSTONE
+  cut_sandstone_slab: CUT SANDSTONE SLAB
+  cyan_banner: CYAN BANNER
+  cyan_bed: CYAN BED
+  cyan_carpet: CYAN CARPET
+  cyan_concrete: CYAN CONCRETE
+  cyan_concrete_powder: CYAN CONCRETE POWDER
+  cyan_dye: CYAN DYE
+  cyan_glazed_terracotta: CYAN GLAZED TERRACOTTA
+  cyan_shulker_box: CYAN SHULKER BOX
+  cyan_stained_glass: CYAN STAINED GLASS
+  cyan_stained_glass_pane: CYAN STAINED GLASS PANE
+  cyan_terracotta: CYAN TERRACOTTA
+  cyan_wall_banner: CYAN WALL BANNER
+  cyan_wool: CYAN WOOL
+  damaged_anvil: DAMAGED ANVIL
+  dandelion: DANDELION
+  dark_oak_boat: DARK OAK BOAT
+  dark_oak_button: DARK OAK BUTTON
+  dark_oak_door: DARK OAK DOOR
+  dark_oak_fence: DARK OAK FENCE
+  dark_oak_fence_gate: DARK OAK FENCE GATE
+  dark_oak_leaves: DARK OAK LEAVES
+  dark_oak_log: DARK OAK LOG
+  dark_oak_planks: DARK OAK PLANKS
+  dark_oak_pressure_plate: DARK OAK PRESSURE PLATE
+  dark_oak_sapling: DARK OAK SAPLING
+  dark_oak_sign: DARK OAK SIGN
+  dark_oak_slab: DARK OAK SLAB
+  dark_oak_stairs: DARK OAK STAIRS
+  dark_oak_trapdoor: DARK OAK TRAPDOOR
+  dark_oak_wall_sign: DARK OAK WALL SIGN
+  dark_oak_wood: DARK OAK WOOD
+  dark_prismarine: DARK PRISMARINE
+  dark_prismarine_slab: DARK PRISMARINE SLAB
+  dark_prismarine_stairs: DARK PRISMARINE STAIRS
+  daylight_detector: DAYLIGHT DETECTOR
+  dead_brain_coral: DEAD BRAIN CORAL
+  dead_brain_coral_block: DEAD BRAIN CORAL BLOCK
+  dead_brain_coral_fan: DEAD BRAIN CORAL FAN
+  dead_brain_coral_wall_fan: DEAD BRAIN CORAL WALL FAN
+  dead_bubble_coral: DEAD BUBBLE CORAL
+  dead_bubble_coral_block: DEAD BUBBLE CORAL BLOCK
+  dead_bubble_coral_fan: DEAD BUBBLE CORAL FAN
+  dead_bubble_coral_wall_fan: DEAD BUBBLE CORAL WALL FAN
+  dead_bush: DEAD BUSH
+  dead_fire_coral: DEAD FIRE CORAL
+  dead_fire_coral_block: DEAD FIRE CORAL BLOCK
+  dead_fire_coral_fan: DEAD FIRE CORAL FAN
+  dead_fire_coral_wall_fan: DEAD FIRE CORAL WALL FAN
+  dead_horn_coral: DEAD HORN CORAL
+  dead_horn_coral_block: DEAD HORN CORAL BLOCK
+  dead_horn_coral_fan: DEAD HORN CORAL FAN
+  dead_horn_coral_wall_fan: DEAD HORN CORAL WALL FAN
+  dead_tube_coral: DEAD TUBE CORAL
+  dead_tube_coral_block: DEAD TUBE CORAL BLOCK
+  dead_tube_coral_fan: DEAD TUBE CORAL FAN
+  dead_tube_coral_wall_fan: DEAD TUBE CORAL WALL FAN
+  debug_stick: DEBUG STICK
+  detector_rail: DETECTOR RAIL
+  diamond: DIAMOND
+  diamond_axe: DIAMOND AXE
+  diamond_block: DIAMOND BLOCK
+  diamond_boots: DIAMOND BOOTS
+  diamond_chestplate: DIAMOND CHESTPLATE
+  diamond_helmet: DIAMOND HELMET
+  diamond_hoe: DIAMOND HOE
+  diamond_horse_armor: DIAMOND HORSE ARMOR
+  diamond_leggings: DIAMOND LEGGINGS
+  diamond_ore: DIAMOND ORE
+  diamond_pickaxe: DIAMOND PICKAXE
+  diamond_shovel: DIAMOND SHOVEL
+  diamond_sword: DIAMOND SWORD
+  diorite: DIORITE
+  diorite_slab: DIORITE SLAB
+  diorite_stairs: DIORITE STAIRS
+  diorite_wall: DIORITE WALL
+  dirt: DIRT
+  dispenser: DISPENSER
+  dolphin_spawn_egg: DOLPHIN SPAWN EGG
+  donkey_spawn_egg: DONKEY SPAWN EGG
+  dragon_breath: DRAGON BREATH
+  dragon_egg: DRAGON EGG
+  dragon_head: DRAGON HEAD
+  dragon_wall_head: DRAGON WALL HEAD
+  dried_kelp: DRIED KELP
+  dried_kelp_block: DRIED KELP BLOCK
+  dropper: DROPPER
+  drowned_spawn_egg: DROWNED SPAWN EGG
+  egg: EGG
+  elder_guardian_spawn_egg: ELDER GUARDIAN SPAWN EGG
+  elytra: ELYTRA
+  emerald: EMERALD
+  emerald_block: EMERALD BLOCK
+  emerald_ore: EMERALD ORE
+  enchanted_book: ENCHANTED BOOK
+  enchanted_golden_apple: ENCHANTED GOLDEN APPLE
+  enchanting_table: ENCHANTING TABLE
+  enderman_spawn_egg: ENDERMAN SPAWN EGG
+  endermite_spawn_egg: ENDERMITE SPAWN EGG
+  ender_chest: ENDER CHEST
+  ender_eye: ENDER EYE
+  ender_pearl: ENDER PEARL
+  end_crystal: END CRYSTAL
+  end_gateway: END GATEWAY
+  end_portal: END PORTAL
+  end_portal_frame: END PORTAL FRAME
+  end_rod: END ROD
+  end_stone: END STONE
+  end_stone_bricks: END STONE BRICKS
+  end_stone_brick_slab: END STONE BRICK SLAB
+  end_stone_brick_stairs: END STONE BRICK STAIRS
+  end_stone_brick_wall: END STONE BRICK WALL
+  evoker_spawn_egg: EVOKER SPAWN EGG
+  experience_bottle: EXPERIENCE BOTTLE
+  farmland: FARMLAND
+  feather: FEATHER
+  fermented_spider_eye: FERMENTED SPIDER EYE
+  fern: FERN
+  filled_map: FILLED MAP
+  fire: FIRE
+  firework_rocket: FIREWORK ROCKET
+  firework_star: FIREWORK STAR
+  fire_charge: FIRE CHARGE
+  fire_coral: FIRE CORAL
+  fire_coral_block: FIRE CORAL BLOCK
+  fire_coral_fan: FIRE CORAL FAN
+  fire_coral_wall_fan: FIRE CORAL WALL FAN
+  fishing_rod: FISHING ROD
+  fletching_table: FLETCHING TABLE
+  flint: FLINT
+  flint_and_steel: FLINT AND STEEL
+  flower_banner_pattern: FLOWER BANNER PATTERN
+  flower_pot: FLOWER POT
+  fox_spawn_egg: FOX SPAWN EGG
+  frosted_ice: FROSTED ICE
+  furnace: FURNACE
+  furnace_minecart: FURNACE MINECART
+  ghast_spawn_egg: GHAST SPAWN EGG
+  ghast_tear: GHAST TEAR
+  glass: GLASS
+  glass_bottle: GLASS BOTTLE
+  glass_pane: GLASS PANE
+  glistering_melon_slice: GLISTERING MELON SLICE
+  globe_banner_pattern: GLOBE BANNER PATTERN
+  glowstone: GLOWSTONE
+  glowstone_dust: GLOWSTONE DUST
+  golden_apple: GOLDEN APPLE
+  golden_axe: GOLDEN AXE
+  golden_boots: GOLDEN BOOTS
+  golden_carrot: GOLDEN CARROT
+  golden_chestplate: GOLDEN CHESTPLATE
+  golden_helmet: GOLDEN HELMET
+  golden_hoe: GOLDEN HOE
+  golden_horse_armor: GOLDEN HORSE ARMOR
+  golden_leggings: GOLDEN LEGGINGS
+  golden_pickaxe: GOLDEN PICKAXE
+  golden_shovel: GOLDEN SHOVEL
+  golden_sword: GOLDEN SWORD
+  gold_block: GOLD BLOCK
+  gold_ingot: GOLD INGOT
+  gold_nugget: GOLD NUGGET
+  gold_ore: GOLD ORE
+  granite: GRANITE
+  granite_slab: GRANITE SLAB
+  granite_stairs: GRANITE STAIRS
+  granite_wall: GRANITE WALL
+  grass: GRASS
+  grass_block: GRASS BLOCK
+  grass_path: GRASS PATH
+  gravel: GRAVEL
+  gray_banner: GRAY BANNER
+  gray_bed: GRAY BED
+  gray_carpet: GRAY CARPET
+  gray_concrete: GRAY CONCRETE
+  gray_concrete_powder: GRAY CONCRETE POWDER
+  gray_dye: GRAY DYE
+  gray_glazed_terracotta: GRAY GLAZED TERRACOTTA
+  gray_shulker_box: GRAY SHULKER BOX
+  gray_stained_glass: GRAY STAINED GLASS
+  gray_stained_glass_pane: GRAY STAINED GLASS PANE
+  gray_terracotta: GRAY TERRACOTTA
+  gray_wall_banner: GRAY WALL BANNER
+  gray_wool: GRAY WOOL
+  green_banner: GREEN BANNER
+  green_bed: GREEN BED
+  green_carpet: GREEN CARPET
+  green_concrete: GREEN CONCRETE
+  green_concrete_powder: GREEN CONCRETE POWDER
+  green_dye: GREEN DYE
+  green_glazed_terracotta: GREEN GLAZED TERRACOTTA
+  green_shulker_box: GREEN SHULKER BOX
+  green_stained_glass: GREEN STAINED GLASS
+  green_stained_glass_pane: GREEN STAINED GLASS PANE
+  green_terracotta: GREEN TERRACOTTA
+  green_wall_banner: GREEN WALL BANNER
+  green_wool: GREEN WOOL
+  grindstone: GRINDSTONE
+  guardian_spawn_egg: GUARDIAN SPAWN EGG
+  gunpowder: GUNPOWDER
+  hay_block: HAY BLOCK
+  heart_of_the_sea: HEART OF THE SEA
+  heavy_weighted_pressure_plate: HEAVY WEIGHTED PRESSURE PLATE
+  hopper: HOPPER
+  hopper_minecart: HOPPER MINECART
+  horn_coral: HORN CORAL
+  horn_coral_block: HORN CORAL BLOCK
+  horn_coral_fan: HORN CORAL FAN
+  horn_coral_wall_fan: HORN CORAL WALL FAN
+  horse_spawn_egg: HORSE SPAWN EGG
+  husk_spawn_egg: HUSK SPAWN EGG
+  ice: ICE
+  infested_chiseled_stone_bricks: INFESTED CHISELED STONE BRICKS
+  infested_cobblestone: INFESTED COBBLESTONE
+  infested_cracked_stone_bricks: INFESTED CRACKED STONE BRICKS
+  infested_mossy_stone_bricks: INFESTED MOSSY STONE BRICKS
+  infested_stone: INFESTED STONE
+  infested_stone_bricks: INFESTED STONE BRICKS
+  ink_sac: INK SAC
+  iron_axe: IRON AXE
+  iron_bars: IRON BARS
+  iron_block: IRON BLOCK
+  iron_boots: IRON BOOTS
+  iron_chestplate: IRON CHESTPLATE
+  iron_door: IRON DOOR
+  iron_helmet: IRON HELMET
+  iron_hoe: IRON HOE
+  iron_horse_armor: IRON HORSE ARMOR
+  iron_ingot: IRON INGOT
+  iron_leggings: IRON LEGGINGS
+  iron_nugget: IRON NUGGET
+  iron_ore: IRON ORE
+  iron_pickaxe: IRON PICKAXE
+  iron_shovel: IRON SHOVEL
+  iron_sword: IRON SWORD
+  iron_trapdoor: IRON TRAPDOOR
+  item_frame: ITEM FRAME
+  jack_o_lantern: JACK O LANTERN
+  jigsaw: JIGSAW
+  jukebox: JUKEBOX
+  jungle_boat: JUNGLE BOAT
+  jungle_button: JUNGLE BUTTON
+  jungle_door: JUNGLE DOOR
+  jungle_fence: JUNGLE FENCE
+  jungle_fence_gate: JUNGLE FENCE GATE
+  jungle_leaves: JUNGLE LEAVES
+  jungle_log: JUNGLE LOG
+  jungle_planks: JUNGLE PLANKS
+  jungle_pressure_plate: JUNGLE PRESSURE PLATE
+  jungle_sapling: JUNGLE SAPLING
+  jungle_sign: JUNGLE SIGN
+  jungle_slab: JUNGLE SLAB
+  jungle_stairs: JUNGLE STAIRS
+  jungle_trapdoor: JUNGLE TRAPDOOR
+  jungle_wall_sign: JUNGLE WALL SIGN
+  jungle_wood: JUNGLE WOOD
+  kelp: KELP
+  kelp_plant: KELP PLANT
+  knowledge_book: KNOWLEDGE BOOK
+  ladder: LADDER
+  lantern: LANTERN
+  lapis_block: LAPIS BLOCK
+  lapis_lazuli: LAPIS LAZULI
+  lapis_ore: LAPIS ORE
+  large_fern: LARGE FERN
+  lava: LAVA
+  lava_bucket: LAVA BUCKET
+  lead: LEAD
+  leather: LEATHER
+  leather_boots: LEATHER BOOTS
+  leather_chestplate: LEATHER CHESTPLATE
+  leather_helmet: LEATHER HELMET
+  leather_horse_armor: LEATHER HORSE ARMOR
+  leather_leggings: LEATHER LEGGINGS
+  lectern: LECTERN
+  lever: LEVER
+  light_blue_banner: LIGHT BLUE BANNER
+  light_blue_bed: LIGHT BLUE BED
+  light_blue_carpet: LIGHT BLUE CARPET
+  light_blue_concrete: LIGHT BLUE CONCRETE
+  light_blue_concrete_powder: LIGHT BLUE CONCRETE POWDER
+  light_blue_dye: LIGHT BLUE DYE
+  light_blue_glazed_terracotta: LIGHT BLUE GLAZED TERRACOTTA
+  light_blue_shulker_box: LIGHT BLUE SHULKER BOX
+  light_blue_stained_glass: LIGHT BLUE STAINED GLASS
+  light_blue_stained_glass_pane: LIGHT BLUE STAINED GLASS PANE
+  light_blue_terracotta: LIGHT BLUE TERRACOTTA
+  light_blue_wall_banner: LIGHT BLUE WALL BANNER
+  light_blue_wool: LIGHT BLUE WOOL
+  light_gray_banner: LIGHT GRAY BANNER
+  light_gray_bed: LIGHT GRAY BED
+  light_gray_carpet: LIGHT GRAY CARPET
+  light_gray_concrete: LIGHT GRAY CONCRETE
+  light_gray_concrete_powder: LIGHT GRAY CONCRETE POWDER
+  light_gray_dye: LIGHT GRAY DYE
+  light_gray_glazed_terracotta: LIGHT GRAY GLAZED TERRACOTTA
+  light_gray_shulker_box: LIGHT GRAY SHULKER BOX
+  light_gray_stained_glass: LIGHT GRAY STAINED GLASS
+  light_gray_stained_glass_pane: LIGHT GRAY STAINED GLASS PANE
+  light_gray_terracotta: LIGHT GRAY TERRACOTTA
+  light_gray_wall_banner: LIGHT GRAY WALL BANNER
+  light_gray_wool: LIGHT GRAY WOOL
+  light_weighted_pressure_plate: LIGHT WEIGHTED PRESSURE PLATE
+  lilac: LILAC
+  lily_of_the_valley: LILY OF THE VALLEY
+  lily_pad: LILY PAD
+  lime_banner: LIME BANNER
+  lime_bed: LIME BED
+  lime_carpet: LIME CARPET
+  lime_concrete: LIME CONCRETE
+  lime_concrete_powder: LIME CONCRETE POWDER
+  lime_dye: LIME DYE
+  lime_glazed_terracotta: LIME GLAZED TERRACOTTA
+  lime_shulker_box: LIME SHULKER BOX
+  lime_stained_glass: LIME STAINED GLASS
+  lime_stained_glass_pane: LIME STAINED GLASS PANE
+  lime_terracotta: LIME TERRACOTTA
+  lime_wall_banner: LIME WALL BANNER
+  lime_wool: LIME WOOL
+  lingering_potion: LINGERING POTION
+  llama_spawn_egg: LLAMA SPAWN EGG
+  loom: LOOM
+  magenta_banner: MAGENTA BANNER
+  magenta_bed: MAGENTA BED
+  magenta_carpet: MAGENTA CARPET
+  magenta_concrete: MAGENTA CONCRETE
+  magenta_concrete_powder: MAGENTA CONCRETE POWDER
+  magenta_dye: MAGENTA DYE
+  magenta_glazed_terracotta: MAGENTA GLAZED TERRACOTTA
+  magenta_shulker_box: MAGENTA SHULKER BOX
+  magenta_stained_glass: MAGENTA STAINED GLASS
+  magenta_stained_glass_pane: MAGENTA STAINED GLASS PANE
+  magenta_terracotta: MAGENTA TERRACOTTA
+  magenta_wall_banner: MAGENTA WALL BANNER
+  magenta_wool: MAGENTA WOOL
+  magma_block: MAGMA BLOCK
+  magma_cream: MAGMA CREAM
+  magma_cube_spawn_egg: MAGMA CUBE SPAWN EGG
+  map: MAP
+  melon: MELON
+  melon_seeds: MELON SEEDS
+  melon_slice: MELON SLICE
+  melon_stem: MELON STEM
+  milk_bucket: MILK BUCKET
+  minecart: MINECART
+  mojang_banner_pattern: MOJANG BANNER PATTERN
+  mooshroom_spawn_egg: MOOSHROOM SPAWN EGG
+  mossy_cobblestone: MOSSY COBBLESTONE
+  mossy_cobblestone_slab: MOSSY COBBLESTONE SLAB
+  mossy_cobblestone_stairs: MOSSY COBBLESTONE STAIRS
+  mossy_cobblestone_wall: MOSSY COBBLESTONE WALL
+  mossy_stone_bricks: MOSSY STONE BRICKS
+  mossy_stone_brick_slab: MOSSY STONE BRICK SLAB
+  mossy_stone_brick_stairs: MOSSY STONE BRICK STAIRS
+  mossy_stone_brick_wall: MOSSY STONE BRICK WALL
+  moving_piston: MOVING PISTON
+  mule_spawn_egg: MULE SPAWN EGG
+  mushroom_stem: MUSHROOM STEM
+  mushroom_stew: MUSHROOM STEW
+  music_disc_11: MUSIC DISC 11
+  music_disc_13: MUSIC DISC 13
+  music_disc_blocks: MUSIC DISC BLOCKS
+  music_disc_cat: MUSIC DISC CAT
+  music_disc_chirp: MUSIC DISC CHIRP
+  music_disc_far: MUSIC DISC FAR
+  music_disc_mall: MUSIC DISC MALL
+  music_disc_mellohi: MUSIC DISC MELLOHI
+  music_disc_stal: MUSIC DISC STAL
+  music_disc_strad: MUSIC DISC STRAD
+  music_disc_wait: MUSIC DISC WAIT
+  music_disc_ward: MUSIC DISC WARD
+  mutton: MUTTON
+  mycelium: MYCELIUM
+  name_tag: NAME TAG
+  nautilus_shell: NAUTILUS SHELL
+  netherrack: NETHERRACK
+  nether_brick: NETHER BRICK
+  nether_bricks: NETHER BRICKS
+  nether_brick_fence: NETHER BRICK FENCE
+  nether_brick_slab: NETHER BRICK SLAB
+  nether_brick_stairs: NETHER BRICK STAIRS
+  nether_brick_wall: NETHER BRICK WALL
+  nether_portal: NETHER PORTAL
+  nether_quartz_ore: NETHER QUARTZ ORE
+  nether_star: NETHER STAR
+  nether_wart: NETHER WART
+  nether_wart_block: NETHER WART BLOCK
+  note_block: NOTE BLOCK
+  oak_boat: OAK BOAT
+  oak_button: OAK BUTTON
+  oak_door: OAK DOOR
+  oak_fence: OAK FENCE
+  oak_fence_gate: OAK FENCE GATE
+  oak_leaves: OAK LEAVES
+  oak_log: OAK LOG
+  oak_planks: OAK PLANKS
+  oak_pressure_plate: OAK PRESSURE PLATE
+  oak_sapling: OAK SAPLING
+  oak_sign: OAK SIGN
+  oak_slab: OAK SLAB
+  oak_stairs: OAK STAIRS
+  oak_trapdoor: OAK TRAPDOOR
+  oak_wall_sign: OAK WALL SIGN
+  oak_wood: OAK WOOD
+  observer: OBSERVER
+  obsidian: OBSIDIAN
+  ocelot_spawn_egg: OCELOT SPAWN EGG
+  orange_banner: ORANGE BANNER
+  orange_bed: ORANGE BED
+  orange_carpet: ORANGE CARPET
+  orange_concrete: ORANGE CONCRETE
+  orange_concrete_powder: ORANGE CONCRETE POWDER
+  orange_dye: ORANGE DYE
+  orange_glazed_terracotta: ORANGE GLAZED TERRACOTTA
+  orange_shulker_box: ORANGE SHULKER BOX
+  orange_stained_glass: ORANGE STAINED GLASS
+  orange_stained_glass_pane: ORANGE STAINED GLASS PANE
+  orange_terracotta: ORANGE TERRACOTTA
+  orange_tulip: ORANGE TULIP
+  orange_wall_banner: ORANGE WALL BANNER
+  orange_wool: ORANGE WOOL
+  oxeye_daisy: OXEYE DAISY
+  packed_ice: PACKED ICE
+  painting: PAINTING
+  panda_spawn_egg: PANDA SPAWN EGG
+  paper: PAPER
+  parrot_spawn_egg: PARROT SPAWN EGG
+  peony: PEONY
+  petrified_oak_slab: PETRIFIED OAK SLAB
+  phantom_membrane: PHANTOM MEMBRANE
+  phantom_spawn_egg: PHANTOM SPAWN EGG
+  pig_spawn_egg: PIG SPAWN EGG
+  pillager_spawn_egg: PILLAGER SPAWN EGG
+  pink_banner: PINK BANNER
+  pink_bed: PINK BED
+  pink_carpet: PINK CARPET
+  pink_concrete: PINK CONCRETE
+  pink_concrete_powder: PINK CONCRETE POWDER
+  pink_dye: PINK DYE
+  pink_glazed_terracotta: PINK GLAZED TERRACOTTA
+  pink_shulker_box: PINK SHULKER BOX
+  pink_stained_glass: PINK STAINED GLASS
+  pink_stained_glass_pane: PINK STAINED GLASS PANE
+  pink_terracotta: PINK TERRACOTTA
+  pink_tulip: PINK TULIP
+  pink_wall_banner: PINK WALL BANNER
+  pink_wool: PINK WOOL
+  piston: PISTON
+  piston_head: PISTON HEAD
+  player_head: PLAYER HEAD
+  player_wall_head: PLAYER WALL HEAD
+  podzol: PODZOL
+  poisonous_potato: POISONOUS POTATO
+  polar_bear_spawn_egg: POLAR BEAR SPAWN EGG
+  polished_andesite: POLISHED ANDESITE
+  polished_andesite_slab: POLISHED ANDESITE SLAB
+  polished_andesite_stairs: POLISHED ANDESITE STAIRS
+  polished_diorite: POLISHED DIORITE
+  polished_diorite_slab: POLISHED DIORITE SLAB
+  polished_diorite_stairs: POLISHED DIORITE STAIRS
+  polished_granite: POLISHED GRANITE
+  polished_granite_slab: POLISHED GRANITE SLAB
+  polished_granite_stairs: POLISHED GRANITE STAIRS
+  popped_chorus_fruit: POPPED CHORUS FRUIT
+  poppy: POPPY
+  porkchop: PORKCHOP
+  potato: POTATO
+  potatoes: POTATOES
+  potion: POTION
+  potted_acacia_sapling: POTTED ACACIA SAPLING
+  potted_allium: POTTED ALLIUM
+  potted_azure_bluet: POTTED AZURE BLUET
+  potted_bamboo: POTTED BAMBOO
+  potted_birch_sapling: POTTED BIRCH SAPLING
+  potted_blue_orchid: POTTED BLUE ORCHID
+  potted_brown_mushroom: POTTED BROWN MUSHROOM
+  potted_cactus: POTTED CACTUS
+  potted_cornflower: POTTED CORNFLOWER
+  potted_dandelion: POTTED DANDELION
+  potted_dark_oak_sapling: POTTED DARK OAK SAPLING
+  potted_dead_bush: POTTED DEAD BUSH
+  potted_fern: POTTED FERN
+  potted_jungle_sapling: POTTED JUNGLE SAPLING
+  potted_lily_of_the_valley: POTTED LILY OF THE VALLEY
+  potted_oak_sapling: POTTED OAK SAPLING
+  potted_orange_tulip: POTTED ORANGE TULIP
+  potted_oxeye_daisy: POTTED OXEYE DAISY
+  potted_pink_tulip: POTTED PINK TULIP
+  potted_poppy: POTTED POPPY
+  potted_red_mushroom: POTTED RED MUSHROOM
+  potted_red_tulip: POTTED RED TULIP
+  potted_spruce_sapling: POTTED SPRUCE SAPLING
+  potted_white_tulip: POTTED WHITE TULIP
+  potted_wither_rose: POTTED WITHER ROSE
+  powered_rail: POWERED RAIL
+  prismarine: PRISMARINE
+  prismarine_bricks: PRISMARINE BRICKS
+  prismarine_brick_slab: PRISMARINE BRICK SLAB
+  prismarine_brick_stairs: PRISMARINE BRICK STAIRS
+  prismarine_crystals: PRISMARINE CRYSTALS
+  prismarine_shard: PRISMARINE SHARD
+  prismarine_slab: PRISMARINE SLAB
+  prismarine_stairs: PRISMARINE STAIRS
+  prismarine_wall: PRISMARINE WALL
+  pufferfish: PUFFERFISH
+  pufferfish_bucket: PUFFERFISH BUCKET
+  pufferfish_spawn_egg: PUFFERFISH SPAWN EGG
+  pumpkin: PUMPKIN
+  pumpkin_pie: PUMPKIN PIE
+  pumpkin_seeds: PUMPKIN SEEDS
+  pumpkin_stem: PUMPKIN STEM
+  purple_banner: PURPLE BANNER
+  purple_bed: PURPLE BED
+  purple_carpet: PURPLE CARPET
+  purple_concrete: PURPLE CONCRETE
+  purple_concrete_powder: PURPLE CONCRETE POWDER
+  purple_dye: PURPLE DYE
+  purple_glazed_terracotta: PURPLE GLAZED TERRACOTTA
+  purple_shulker_box: PURPLE SHULKER BOX
+  purple_stained_glass: PURPLE STAINED GLASS
+  purple_stained_glass_pane: PURPLE STAINED GLASS PANE
+  purple_terracotta: PURPLE TERRACOTTA
+  purple_wall_banner: PURPLE WALL BANNER
+  purple_wool: PURPLE WOOL
+  purpur_block: PURPUR BLOCK
+  purpur_pillar: PURPUR PILLAR
+  purpur_slab: PURPUR SLAB
+  purpur_stairs: PURPUR STAIRS
+  quartz: QUARTZ
+  quartz_block: QUARTZ BLOCK
+  quartz_pillar: QUARTZ PILLAR
+  quartz_slab: QUARTZ SLAB
+  quartz_stairs: QUARTZ STAIRS
+  rabbit: RABBIT
+  rabbit_foot: RABBIT FOOT
+  rabbit_hide: RABBIT HIDE
+  rabbit_spawn_egg: RABBIT SPAWN EGG
+  rabbit_stew: RABBIT STEW
+  rail: RAIL
+  ravager_spawn_egg: RAVAGER SPAWN EGG
+  redstone: REDSTONE
+  redstone_block: REDSTONE BLOCK
+  redstone_lamp: REDSTONE LAMP
+  redstone_ore: REDSTONE ORE
+  redstone_torch: REDSTONE TORCH
+  redstone_wall_torch: REDSTONE WALL TORCH
+  redstone_wire: REDSTONE WIRE
+  red_banner: RED BANNER
+  red_bed: RED BED
+  red_carpet: RED CARPET
+  red_concrete: RED CONCRETE
+  red_concrete_powder: RED CONCRETE POWDER
+  red_dye: RED DYE
+  red_glazed_terracotta: RED GLAZED TERRACOTTA
+  red_mushroom: RED MUSHROOM
+  red_mushroom_block: RED MUSHROOM BLOCK
+  red_nether_bricks: RED NETHER BRICKS
+  red_nether_brick_slab: RED NETHER BRICK SLAB
+  red_nether_brick_stairs: RED NETHER BRICK STAIRS
+  red_nether_brick_wall: RED NETHER BRICK WALL
+  red_sand: RED SAND
+  red_sandstone: RED SANDSTONE
+  red_sandstone_slab: RED SANDSTONE SLAB
+  red_sandstone_stairs: RED SANDSTONE STAIRS
+  red_sandstone_wall: RED SANDSTONE WALL
+  red_shulker_box: RED SHULKER BOX
+  red_stained_glass: RED STAINED GLASS
+  red_stained_glass_pane: RED STAINED GLASS PANE
+  red_terracotta: RED TERRACOTTA
+  red_tulip: RED TULIP
+  red_wall_banner: RED WALL BANNER
+  red_wool: RED WOOL
+  repeater: REPEATER
+  repeating_command_block: REPEATING COMMAND BLOCK
+  rose_bush: ROSE BUSH
+  rotten_flesh: ROTTEN FLESH
+  saddle: SADDLE
+  salmon: SALMON
+  salmon_bucket: SALMON BUCKET
+  salmon_spawn_egg: SALMON SPAWN EGG
+  sand: SAND
+  sandstone: SANDSTONE
+  sandstone_slab: SANDSTONE SLAB
+  sandstone_stairs: SANDSTONE STAIRS
+  sandstone_wall: SANDSTONE WALL
+  scaffolding: SCAFFOLDING
+  scute: SCUTE
+  seagrass: SEAGRASS
+  sea_lantern: SEA LANTERN
+  sea_pickle: SEA PICKLE
+  shears: SHEARS
+  sheep_spawn_egg: SHEEP SPAWN EGG
+  shield: SHIELD
+  shulker_box: SHULKER BOX
+  shulker_shell: SHULKER SHELL
+  shulker_spawn_egg: SHULKER SPAWN EGG
+  silverfish_spawn_egg: SILVERFISH SPAWN EGG
+  skeleton_horse_spawn_egg: SKELETON HORSE SPAWN EGG
+  skeleton_skull: SKELETON SKULL
+  skeleton_spawn_egg: SKELETON SPAWN EGG
+  skeleton_wall_skull: SKELETON WALL SKULL
+  skull_banner_pattern: SKULL BANNER PATTERN
+  slime_ball: SLIME BALL
+  slime_block: SLIME BLOCK
+  slime_spawn_egg: SLIME SPAWN EGG
+  smithing_table: SMITHING TABLE
+  smoker: SMOKER
+  smooth_quartz: SMOOTH QUARTZ
+  smooth_quartz_slab: SMOOTH QUARTZ SLAB
+  smooth_quartz_stairs: SMOOTH QUARTZ STAIRS
+  smooth_red_sandstone: SMOOTH RED SANDSTONE
+  smooth_red_sandstone_slab: SMOOTH RED SANDSTONE SLAB
+  smooth_red_sandstone_stairs: SMOOTH RED SANDSTONE STAIRS
+  smooth_sandstone: SMOOTH SANDSTONE
+  smooth_sandstone_slab: SMOOTH SANDSTONE SLAB
+  smooth_sandstone_stairs: SMOOTH SANDSTONE STAIRS
+  smooth_stone: SMOOTH STONE
+  smooth_stone_slab: SMOOTH STONE SLAB
+  snow: SNOW
+  snowball: SNOWBALL
+  snow_block: SNOW BLOCK
+  soul_sand: SOUL SAND
+  spawner: SPAWNER
+  spectral_arrow: SPECTRAL ARROW
+  spider_eye: SPIDER EYE
+  spider_spawn_egg: SPIDER SPAWN EGG
+  splash_potion: SPLASH POTION
+  sponge: SPONGE
+  spruce_boat: SPRUCE BOAT
+  spruce_button: SPRUCE BUTTON
+  spruce_door: SPRUCE DOOR
+  spruce_fence: SPRUCE FENCE
+  spruce_fence_gate: SPRUCE FENCE GATE
+  spruce_leaves: SPRUCE LEAVES
+  spruce_log: SPRUCE LOG
+  spruce_planks: SPRUCE PLANKS
+  spruce_pressure_plate: SPRUCE PRESSURE PLATE
+  spruce_sapling: SPRUCE SAPLING
+  spruce_sign: SPRUCE SIGN
+  spruce_slab: SPRUCE SLAB
+  spruce_stairs: SPRUCE STAIRS
+  spruce_trapdoor: SPRUCE TRAPDOOR
+  spruce_wall_sign: SPRUCE WALL SIGN
+  spruce_wood: SPRUCE WOOD
+  squid_spawn_egg: SQUID SPAWN EGG
+  stick: STICK
+  sticky_piston: STICKY PISTON
+  stone: STONE
+  stonecutter: STONECUTTER
+  stone_axe: STONE AXE
+  stone_bricks: STONE BRICKS
+  stone_brick_slab: STONE BRICK SLAB
+  stone_brick_stairs: STONE BRICK STAIRS
+  stone_brick_wall: STONE BRICK WALL
+  stone_button: STONE BUTTON
+  stone_hoe: STONE HOE
+  stone_pickaxe: STONE PICKAXE
+  stone_pressure_plate: STONE PRESSURE PLATE
+  stone_shovel: STONE SHOVEL
+  stone_slab: STONE SLAB
+  stone_stairs: STONE STAIRS
+  stone_sword: STONE SWORD
+  stray_spawn_egg: STRAY SPAWN EGG
+  string: STRING
+  stripped_acacia_log: STRIPPED ACACIA LOG
+  stripped_acacia_wood: STRIPPED ACACIA WOOD
+  stripped_birch_log: STRIPPED BIRCH LOG
+  stripped_birch_wood: STRIPPED BIRCH WOOD
+  stripped_dark_oak_log: STRIPPED DARK OAK LOG
+  stripped_dark_oak_wood: STRIPPED DARK OAK WOOD
+  stripped_jungle_log: STRIPPED JUNGLE LOG
+  stripped_jungle_wood: STRIPPED JUNGLE WOOD
+  stripped_oak_log: STRIPPED OAK LOG
+  stripped_oak_wood: STRIPPED OAK WOOD
+  stripped_spruce_log: STRIPPED SPRUCE LOG
+  stripped_spruce_wood: STRIPPED SPRUCE WOOD
+  structure_block: STRUCTURE BLOCK
+  structure_void: STRUCTURE VOID
+  sugar: SUGAR
+  sugar_cane: SUGAR CANE
+  sunflower: SUNFLOWER
+  suspicious_stew: SUSPICIOUS STEW
+  sweet_berries: SWEET BERRIES
+  sweet_berry_bush: SWEET BERRY BUSH
+  tall_grass: TALL GRASS
+  tall_seagrass: TALL SEAGRASS
+  terracotta: TERRACOTTA
+  tipped_arrow: TIPPED ARROW
+  tnt: TNT
+  tnt_minecart: TNT MINECART
+  torch: TORCH
+  totem_of_undying: TOTEM OF UNDYING
+  trader_llama_spawn_egg: TRADER LLAMA SPAWN EGG
+  trapped_chest: TRAPPED CHEST
+  trident: TRIDENT
+  tripwire: TRIPWIRE
+  tripwire_hook: TRIPWIRE HOOK
+  tropical_fish: TROPICAL FISH
+  tropical_fish_bucket: TROPICAL FISH BUCKET
+  tropical_fish_spawn_egg: TROPICAL FISH SPAWN EGG
+  tube_coral: TUBE CORAL
+  tube_coral_block: TUBE CORAL BLOCK
+  tube_coral_fan: TUBE CORAL FAN
+  tube_coral_wall_fan: TUBE CORAL WALL FAN
+  turtle_egg: TURTLE EGG
+  turtle_helmet: TURTLE HELMET
+  turtle_spawn_egg: TURTLE SPAWN EGG
+  vex_spawn_egg: VEX SPAWN EGG
+  villager_spawn_egg: VILLAGER SPAWN EGG
+  vindicator_spawn_egg: VINDICATOR SPAWN EGG
+  vine: VINE
+  void_air: VOID AIR
+  wall_torch: WALL TORCH
+  wandering_trader_spawn_egg: WANDERING TRADER SPAWN EGG
+  water: WATER
+  water_bucket: WATER BUCKET
+  wet_sponge: WET SPONGE
+  wheat: WHEAT
+  wheat_seeds: WHEAT SEEDS
+  white_banner: WHITE BANNER
+  white_bed: WHITE BED
+  white_carpet: WHITE CARPET
+  white_concrete: WHITE CONCRETE
+  white_concrete_powder: WHITE CONCRETE POWDER
+  white_dye: WHITE DYE
+  white_glazed_terracotta: WHITE GLAZED TERRACOTTA
+  white_shulker_box: WHITE SHULKER BOX
+  white_stained_glass: WHITE STAINED GLASS
+  white_stained_glass_pane: WHITE STAINED GLASS PANE
+  white_terracotta: WHITE TERRACOTTA
+  white_tulip: WHITE TULIP
+  white_wall_banner: WHITE WALL BANNER
+  white_wool: WHITE WOOL
+  witch_spawn_egg: WITCH SPAWN EGG
+  wither_rose: WITHER ROSE
+  wither_skeleton_skull: WITHER SKELETON SKULL
+  wither_skeleton_spawn_egg: WITHER SKELETON SPAWN EGG
+  wither_skeleton_wall_skull: WITHER SKELETON WALL SKULL
+  wolf_spawn_egg: WOLF SPAWN EGG
+  wooden_axe: WOODEN AXE
+  wooden_hoe: WOODEN HOE
+  wooden_pickaxe: WOODEN PICKAXE
+  wooden_shovel: WOODEN SHOVEL
+  wooden_sword: WOODEN SWORD
+  writable_book: WRITABLE BOOK
+  written_book: WRITTEN BOOK
+  yellow_banner: YELLOW BANNER
+  yellow_bed: YELLOW BED
+  yellow_carpet: YELLOW CARPET
+  yellow_concrete: YELLOW CONCRETE
+  yellow_concrete_powder: YELLOW CONCRETE POWDER
+  yellow_dye: YELLOW DYE
+  yellow_glazed_terracotta: YELLOW GLAZED TERRACOTTA
+  yellow_shulker_box: YELLOW SHULKER BOX
+  yellow_stained_glass: YELLOW STAINED GLASS
+  yellow_stained_glass_pane: YELLOW STAINED GLASS PANE
+  yellow_terracotta: YELLOW TERRACOTTA
+  yellow_wall_banner: YELLOW WALL BANNER
+  yellow_wool: YELLOW WOOL
+  zombie_head: ZOMBIE HEAD
+  zombie_horse_spawn_egg: ZOMBIE HORSE SPAWN EGG
+  zombie_pigman_spawn_egg: ZOMBIE PIGMAN SPAWN EGG
+  zombie_spawn_egg: ZOMBIE SPAWN EGG
+  zombie_villager_spawn_egg: ZOMBIE VILLAGER SPAWN EGG
+  zombie_wall_head: ZOMBIE WALL HEAD
