@@ -1,7 +1,6 @@
 package com.dmgkz.mcjobs.listeners;
 
 import com.dmgkz.mcjobs.McJobs;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +12,6 @@ import org.bukkit.event.enchantment.EnchantItemEvent;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import java.util.ArrayList;
 import org.bukkit.GameMode;

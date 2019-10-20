@@ -53,7 +53,7 @@ jobscommand:
   hide: '&7Now &chiding&7 pay messages for the &6%j&7 job.'
   join: '&6You have learned the job %j successful.'
   nojob: '&cThe wished Job don''t exist.'
-  donthave: '&cYou don''t habe the job %j.'
+  donthave: '&cYou don''t have the job %j.'
   have: '&cYou have already the wished job.'
   language:
     top: '&ePress on the wished Language to change:'
@@ -95,7 +95,7 @@ jobsdisplay:
   shear: SHEAR
   pvptier: Requires more than %g kills from same player
 jobsjoin:
-  have: You already have &6%j&c!
+  have: 'You already have &6%j&c!'
   join: '%p has joined &9%j&7.'
   toomany: '&6%p&c you have too many jobs.  To join a new job:'
   command: /jobs leave [job]

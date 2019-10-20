@@ -2,7 +2,6 @@ package com.dmgkz.mcjobs.listeners;
 
 import com.dmgkz.mcjobs.McJobs;
 
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

@@ -28,17 +28,17 @@ public class SubCommandLeave {
 
         String pJob = PlayerJobs.getJobsList().get(job).getData().getName(p.getUniqueId());
         if(!PlayerData.hasJob(p.getUniqueId(), job)) {
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("donthave", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobLeave("donthave", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
             return;
         }
 
         if(PlayerJobs.getJobsList().get(job).getData().compJob().isDefault() && !p.hasPermission("mcjobs.admin.leavedefault")) {
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("leavedefault", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobLeave("leavedefault", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
             return;                
         }
         
         PlayerData.removeJob(p.getUniqueId(), job);
-        p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobCommand("quit", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
+        p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobLeave("quit", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
 
         McJobsEventJobChange event = new McJobsEventJobChange(p, job, false, true);
         Bukkit.getServer().getPluginManager().callEvent(event);

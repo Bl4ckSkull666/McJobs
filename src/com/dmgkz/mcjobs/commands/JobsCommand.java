@@ -65,10 +65,10 @@ public class JobsCommand implements CommandExecutor {
                     SubCommandHelp.command(p, Integer.parseInt(a[1]));
                     return true;
                 case "show":
-                    SubCommandHideShow.command(p, a[1], true);
+                    SubCommandHideShow.command(p, a[1].toLowerCase(), true);
                     return true;
                 case "hide":
-                    SubCommandHideShow.command(p, a[1], false);
+                    SubCommandHideShow.command(p, a[1].toLowerCase(), false);
                     return true;
                 case "join":
                     SubCommandJoin.command(p, a);

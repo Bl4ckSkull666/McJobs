@@ -19,36 +19,10 @@ import java.util.ArrayList;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Crafting implements Listener {
     private final HashMap<Location, MyCraft> _hCraft = new HashMap<>();
-    
-    @EventHandler(priority = EventPriority.LOW)
-    public void InventoryMove(InventoryMoveItemEvent e) {
-        if(_hCraft.containsKey(e.getSource().getLocation())) {
-            MyCraft mc = _hCraft.get(e.getSource().getLocation());
-            McJobs.getPlugin().getLogger().info("InventoryMove - MC is " + mc.getResult().name() + " ( " + mc.getAmount() + " )");
-            if(e.getItem() != null)
-                McJobs.getPlugin().getLogger().info("InventoryMove - Item is " + e.getItem().getType().name() + " ( " + e.getItem().getAmount() + " )");
-        }
-    }
-    
-    @EventHandler(priority = EventPriority.LOW)
-    public void InventoryClick(InventoryClickEvent e) {
-        if(_hCraft.containsKey(e.getClickedInventory().getLocation())) {
-            MyCraft mc = _hCraft.get(e.getClickedInventory().getLocation());
-            McJobs.getPlugin().getLogger().info("InventoryClick - MC is " + mc.getResult().name() + " ( " + mc.getAmount() + " )");
-            
-            if(e.getCurrentItem() != null)
-                McJobs.getPlugin().getLogger().info("InventoryClick - CurItem is " + e.getCurrentItem().getType().name() + " ( " + e.getCurrentItem().getAmount() + " )");
-            
-            if(e.getCursor() != null)
-                McJobs.getPlugin().getLogger().info("InventoryClick - Cursor is " + e.getCursor().getType().name() + " ( " + e.getCursor().getAmount() + " )");
-        }
-    }
     
     @EventHandler(priority = EventPriority.LOW)
     public void CraftItem(CraftItemEvent e) {
