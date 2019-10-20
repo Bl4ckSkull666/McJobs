@@ -226,7 +226,9 @@ jobshelp:
     '11': ''
     '12': '&7More info at:&6 https://dev.bukkit.org/projects/mcjobs'
     '13': --
-  endofpage: '&7Continue on Page %g'
+  continuepage: '&7Continue on Page %g'
+  prevpage: '&f[&6Previos page&f]'
+  nextpage: '&f[&6Next page&f]'
   command: '&6/jobs help %g'
   finish: '&7END OF HELP FILE'
   nohelp: '&7%g&c is not a help page!'

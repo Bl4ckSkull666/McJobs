@@ -8,6 +8,9 @@ package com.dmgkz.mcjobs.commands.jobs;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import java.text.DecimalFormat;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -30,21 +33,75 @@ public class SubCommandHelp {
 
         int line = 1;
         while(true) {
-            String now = McJobs.getPlugin().getLanguage().getJobHelp(page + ".line" + String.valueOf(line), p.getUniqueId()).addVariables(df.format(PlayerData.getAllowedJobCount(p.getUniqueId())), p.getName(), String.valueOf(page));
-            String next = McJobs.getPlugin().getLanguage().getJobHelp(page + ".line" + String.valueOf((line+1)), p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page));
-            if(!(now.isEmpty() || now.equals("") || now == null) && !(next.isEmpty() || next.equals("") || next == null) ||
-                    !(now.isEmpty() || now.equals("") || now == null) && (next.isEmpty() || next.equals("") || next == null) ||
-                    (now.isEmpty() || now.equals("") || now == null) && !(next.isEmpty() || next.equals("") || next == null)) {
-                p.sendMessage(now);
-                line++;
-            } else if((now.isEmpty() || now.equals("") || now == null) && (next.isEmpty() || next.equals("") || next == null))
+            String now = McJobs.getPlugin().getLanguage().getJobHelp(page + "." + line, p.getUniqueId()).addVariables(df.format(PlayerData.getAllowedJobCount(p.getUniqueId())), p.getName(), String.valueOf(page));
+            
+            if(now.equalsIgnoreCase("--"))
                 break;
+            
+            p.sendMessage(now);
+            line++;
         }
         
         p.sendMessage("");
         if(page == McJobs.getPlugin().getLanguage().getSpaces("numhelp", p.getUniqueId()))
             p.sendMessage(McJobs.getPlugin().getLanguage().getJobHelp("finish", p.getUniqueId()).addVariables("", p.getName(), ""));
-        else
-            p.sendMessage(McJobs.getPlugin().getLanguage().getJobHelp("endofpage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page)) + " " + McJobs.getPlugin().getLanguage().getJobHelp("command", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page)));
+        else {
+            if(Bukkit.getVersion().toLowerCase().contains("spigot")) {
+                int spaces = 55;
+                TextComponent tcmain = new TextComponent("");
+                TextComponent tcprev = new TextComponent("");
+                if(page > 1) {
+                    tcprev = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("prevpage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page - 1))));
+                    spaces -= ChatColor.stripColor(tcprev.getText()).length();
+                    tcprev.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("command", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page - 1))))));
+                }
+                
+                TextComponent tcnext = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("nextpage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 1))));
+                spaces -= ChatColor.stripColor(tcnext.getText()).length();
+                tcnext.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("command", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 1))))));
+                
+                tcmain.addExtra(tcprev);
+                for(int i = 0; i < spaces; i++)
+                    tcmain.addExtra(" ");
+                tcmain.addExtra(tcnext);
+                p.spigot().sendMessage(tcmain);
+            } else {
+                p.sendMessage(McJobs.getPlugin().getLanguage().getJobHelp("continuepage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 3)) + " " + McJobs.getPlugin().getLanguage().getJobHelp("command", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 1)));
+                p.sendMessage("");
+                
+                int spaces = 55;
+                String tctop = "";
+                String tcprev = "";
+                if(page > 1) {
+                    tcprev = ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("prevpage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page - 1)));
+                    spaces -= ChatColor.stripColor(tcprev).length();
+                }
+                
+                String tcnext = ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("nextpage", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 1)));
+                spaces -= ChatColor.stripColor(tcnext).length();
+                
+                tctop = tcprev;
+                for(int i = 0; i < spaces; i++)
+                    tctop += " ";
+                tctop += tcnext;
+                
+                String tcbot = "";
+                tcprev = "";
+                if(page > 1) {
+                    tcprev = ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("coomand", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page - 1)));
+                    spaces -= ChatColor.stripColor(tcprev).length();
+                }
+                
+                tcnext = ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobHelp("command", p.getUniqueId()).addVariables("", p.getName(), String.valueOf(page + 1)));
+                spaces -= ChatColor.stripColor(tcnext).length();
+                
+                tcbot = tcprev;
+                for(int i = 0; i < spaces; i++)
+                    tcbot += " ";
+                tcbot += tcnext;
+                p.sendMessage(tctop);
+                p.sendMessage(tcbot);
+            }
+        }
     }
 }
