@@ -116,14 +116,14 @@ public class CompData {
         return bEnchanted;
     }
     
-    public boolean compPvP(Player killed, Player play, String sAction, ArrayList<PaymentCache> aPayer) {
+    public boolean compPvP(String job, Player killed, Player play, String sAction, ArrayList<PaymentCache> aPayer) {
         if(_jobsdata.getPvPHash().isEmpty() || !_jobsdata.getPvPHash().containsKey(sAction))
             return false;
         
         PlayerKills pk = PlayerData.getPlayerKills(play.getUniqueId());
-        int killedCount = pk.getKilledCount(killed.getUniqueId());
+        int killedCount = pk.getKilledCount(killed.getUniqueId(), job);
         
-        if(killedCount > 0 && pk.lastKilledBeforeSeconds(killed.getUniqueId()) <= _jobsdata.getPvPInterval()) {
+        if(killedCount > 0 && pk.lastKilledBeforeSeconds(killed.getUniqueId(), job) <= _jobsdata.getPvPInterval()) {
             return false;
         }
         
@@ -136,7 +136,7 @@ public class CompData {
             }
         }
         
-        pk.setKill(killed.getUniqueId());
+        pk.setKill(killed.getUniqueId(), job);
         if(tier > 0) {
             PaymentCache payment = new PaymentCache(play, _jobsdata.getTierPays().get(sAction), tier, _jobsdata.getBasePay(), _jobsdata.getName().toLowerCase());
             aPayer.add(payment);

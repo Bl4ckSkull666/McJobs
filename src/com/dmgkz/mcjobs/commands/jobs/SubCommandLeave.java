@@ -39,7 +39,7 @@ public class SubCommandLeave {
         
         PlayerData.removeJob(p.getUniqueId(), job);
         p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobLeave("quit", p.getUniqueId()).addVariables(pJob, p.getName(), ""));
-
+        
         McJobsEventJobChange event = new McJobsEventJobChange(p, job, false, true);
         Bukkit.getServer().getPluginManager().callEvent(event);
         PlayerData.savePlayerCache(p.getUniqueId());

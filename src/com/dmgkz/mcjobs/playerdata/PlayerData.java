@@ -150,6 +150,7 @@ public class PlayerData {
             checkPlayer._jobexp.remove(job);
             checkPlayer._joblevel.remove(job);
             checkPlayer._jobrank.remove(job);
+            checkPlayer._killManager.removeJob(job);
             if(Bukkit.getPlayer(uuid) != null)
                 Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("reset", uuid).addVariables(jobName, Bukkit.getPlayer(uuid).getName(), ""));
 

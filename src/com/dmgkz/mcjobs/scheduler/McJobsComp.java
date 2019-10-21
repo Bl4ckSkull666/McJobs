@@ -43,7 +43,7 @@ public class McJobsComp implements Runnable {
             else if(cc.getAction().equalsIgnoreCase("shear"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compShear(cc.getColor(), cc.getPlayer(), cc.getAction(), _aPayer);
             else if(cc.getAction().equalsIgnoreCase("pvp"))
-                PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compPvP(cc.getKilled(), cc.getPlayer(), cc.getAction(), _aPayer);
+                PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compPvP(cc.getJob(), cc.getKilled(), cc.getPlayer(), cc.getAction(), _aPayer);
         }
         
         for(PaymentCache pc: _aPayer) {

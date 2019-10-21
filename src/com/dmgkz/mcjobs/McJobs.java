@@ -39,6 +39,7 @@ import com.dmgkz.mcjobs.util.SignManager;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import java.io.IOException;
 import java.util.logging.Level;
+import org.bstats.bukkit.MetricsLite;
 import org.bukkit.configuration.InvalidConfigurationException;
 
 
@@ -62,6 +63,7 @@ public class McJobs extends JavaPlugin {
     private BlockLoggers _blocklogger;
     private SignManager _signManager;
     private Holder _holder;
+    private MetricsLite _metric;
     
     @Override
     public void onEnable() {        
@@ -107,6 +109,7 @@ public class McJobs extends JavaPlugin {
         if(!_bQuit) {
             ConfigMaterials.load(this.getConfig());
             PlayerData.loadPlayerPerms();
+            _metric = new MetricsLite(this);
             getServer().getScheduler().runTask(this, new LanguageCheck());
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsRemovePerm(), 1200L, 1200L);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsPreComp(), 200L, 200L);
