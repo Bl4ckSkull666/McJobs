@@ -23,8 +23,8 @@ import org.bukkit.entity.Player;
  * @author Bl4ckSkull666
  */
 public class SubCommandRegionMessage {
-    private Map<UUID, TextComponent> _users = new HashMap<>();
-    private Map<UUID, String> _jobs = new HashMap<>();
+    private final Map<UUID, TextComponent> _users = new HashMap<>();
+    private final Map<UUID, String> _jobs = new HashMap<>();
     
     /*
     *        0        1       2      3
@@ -36,19 +36,13 @@ public class SubCommandRegionMessage {
     * /jadm rmsg    save                    - Save the Msg and clear the open message
     * /jadm rmsg    remove  jobname
     */
-    public static void command(CommandSender s, String l, String[] a) {
+    public static void command(Player p, String l, String[] a) {
         String str = "";
         PrettyText text = new PrettyText();
-        String name = "Console";
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        if(s instanceof Player) {
-            uuid = ((Player)s).getUniqueId();
-            name = ((Player)s).getName();
-            if(!s.hasPermission("mcjobs.admin.region.message")) {
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);
-                return;
-            }
+        if(!p.hasPermission("mcjobs.admin.region.message")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
+            return;
         }
         
         if(a.length < 2) {
@@ -64,28 +58,28 @@ public class SubCommandRegionMessage {
         
         switch(subCmd.toLowerCase()) {
             case "begin":
-                useCommandBegin((String[])tmp.toArray(), uuid);
+                useCommandBegin((String[])tmp.toArray(), p);
                 break;
             case "add":
-                useCommandAdd((String[])tmp.toArray(), uuid);
+                useCommandAdd((String[])tmp.toArray(), p);
                 break;
             case "break":
-                useCommandBreak((String[])tmp.toArray(), uuid);
+                useCommandBreak((String[])tmp.toArray(), p);
                 break;
             case "hover":
-                useCommandHover((String[])tmp.toArray(), uuid);
+                useCommandHover((String[])tmp.toArray(), p);
                 break;
             case "click":
-                useCommandClick((String[])tmp.toArray(), uuid);
+                useCommandClick((String[])tmp.toArray(), p);
                 break;
             case "save":
-                useCommandSave((String[])tmp.toArray(), uuid);
+                useCommandSave((String[])tmp.toArray(), p);
                 break;
             case "remove":
-                useCommandRemove((String[])tmp.toArray(), uuid);
+                useCommandRemove((String[])tmp.toArray(), p);
                 break;
             case "clear":
-                useCommandClear((String[])tmp.toArray(), uuid);
+                useCommandClear((String[])tmp.toArray(), p);
                 break;
             default:
                 
@@ -93,36 +87,36 @@ public class SubCommandRegionMessage {
         }
     }
     
-    private static void useCommandBegin(String[] a, UUID uuid) {
+    private static void useCommandBegin(String[] a, Player p) {
         //jadm rmsg begin jobname
         
     }
     
-    private static void useCommandAdd(String[] a, UUID uuid) {
+    private static void useCommandAdd(String[] a, Player p) {
         //jadm rmsg add Text here
     }
     
-    private static void useCommandBreak(String[] a, UUID uuid) {
+    private static void useCommandBreak(String[] a, Player p) {
         //jadm rmsg break - Set New Line
     }
     
-    private static void useCommandHover(String[] a, UUID uuid) {
+    private static void useCommandHover(String[] a, Player p) {
         //jadm rmsg hover type Text - Set Hover text to last add
     }
     
-    private static void useCommandClick(String[] a, UUID uuid) {
+    private static void useCommandClick(String[] a, Player p) {
         //jadm rmsg click type doing - Set Click action to last add
     }
     
-    private static void useCommandSave(String[] a, UUID uuid) {
+    private static void useCommandSave(String[] a, Player p) {
         //jadm rmsg save - Save the Msg and clear the open message
     }
     
-    private static void useCommandRemove(String[] a, UUID uuid) {
+    private static void useCommandRemove(String[] a, Player p) {
         //jadm rmsg remove jobname
     }
     
-    private static void useCommandClear(String[] a, UUID uuid) {
+    private static void useCommandClear(String[] a, Player p) {
         //jadm rmsg clear
        
     }

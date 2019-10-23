@@ -38,19 +38,19 @@ import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Level;
-import org.bstats.bukkit.MetricsLite;
+import com.dmgkz.mcjobs.util.Metrics;
 import org.bukkit.configuration.InvalidConfigurationException;
 
 
 public class McJobs extends JavaPlugin {
     private static McJobs _mcJobs;
     private Long _time = 72000L;
-    private Long _notify= 72000L;
+    private Long _notify = 72000L;
     private Integer _version = 0;
     private String _localization = "en";
-    
-    private boolean _bLogBlock = false;
+
     private boolean _bPrune = false;
     private boolean _bQuit = false;
     
@@ -63,25 +63,18 @@ public class McJobs extends JavaPlugin {
     private BlockLoggers _blocklogger;
     private SignManager _signManager;
     private Holder _holder;
-    private MetricsLite _metric;
+    
+    //private MetricsLite _metric;
     
     @Override
     public void onEnable() {        
         _mcJobs = this;
-        _language = new GetLanguage();
-        _blocklogger = new BlockLoggers();
-        _holder = new Holder();
+        loadClasses();
         
         getCommand("mcjobs").setExecutor(new JobsCommand());
         getCommand("mcjobsadmin").setExecutor(new AdminCommand());
 
         initListener.RegisterListeners(this);
-
-        if(getServer().getPluginManager().getPlugin("LogBlock") != null && getConfig().getString("advanced.log_mod").equalsIgnoreCase("logblock")) {
-            _bLogBlock = true;
-            getLogger().info("LogBlock logging found and enabled.");
-        } else
-            getLogger().info("Using builtin logging methods.");
 
         if(getServer().getPluginManager().getPlugin("WorldGuard") != null) {
             MCListeners.setWorldGuard(true);
@@ -109,7 +102,12 @@ public class McJobs extends JavaPlugin {
         if(!_bQuit) {
             ConfigMaterials.load(this.getConfig());
             PlayerData.loadPlayerPerms();
-            _metric = new MetricsLite(this);
+            try {
+                Metrics metric = new Metrics(this);
+                metric.addCustomChart(new Metrics.SimplePie("jobservers", () -> String.valueOf(PlayerJobs.getJobsList().size())));
+            } catch(Exception ex) {
+                getLogger().fine("Error in Metrics. Shit happend.");
+            }
             getServer().getScheduler().runTask(this, new LanguageCheck());
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsRemovePerm(), 1200L, 1200L);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsPreComp(), 200L, 200L);
@@ -121,6 +119,9 @@ public class McJobs extends JavaPlugin {
     @Override
     public void onDisable() {
         getServer().getScheduler().cancelTasks(this);
+        
+        PlayerData.savePlayerPerms();
+        PlayerData.saveAllPlayerCaches();
         
         getLogger().info("Canceling Tasks...");
         getLogger().info("MC Jobs has been disabled!");
@@ -156,7 +157,7 @@ public class McJobs extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        getLanguage().fillAvaLangs();
+
         getLanguage().setDefaultLang(config.getString("advanced.language"));
         
         _bPrune = config.getBoolean("advanced.prune");
@@ -181,14 +182,12 @@ public class McJobs extends JavaPlugin {
         if(config.getInt("advanced.spawn_distance") > 0)
             MCListeners.setSpawnDist(config.getInt("advanced.spawn_distance"));
 
-        if(config.getLong("timers.time_interval", 1200) < 1){
+        if(config.getLong("timers.time_interval", 1200) < 1) {
             _time = 1200L;
             BlockLoggers.setTimer(_time);
-            MCListeners.setTimeInMins(1);
         } else {
-            _time = config.getLong("timers.time_interval") * 20L * 60L;
+            _time = config.getLong("timers.time_interval") * 1000L;
             BlockLoggers.setTimer(_time);
-            MCListeners.setTimeInMins(config.getInt("timers.time_interval"));
         }
 
         if(config.getLong("timers.show_interval") < 1) {
@@ -198,7 +197,7 @@ public class McJobs extends JavaPlugin {
             _notify = config.getLong("timers.show_interval") * 20L * 60L;
             McJobsNotify.setTime(config.getInt("timers.show_interval"));
         }
-        
+
         //Load all available Jobs
         loadJobs();
         
@@ -210,12 +209,17 @@ public class McJobs extends JavaPlugin {
         
         //Load Max Jobs per Group
         if(config.isConfigurationSection("max_jobs")) {
-            for(String group: config.getConfigurationSection("max_jobs").getKeys(false))
+            for(String group: config.getConfigurationSection("max_jobs").getKeys(false)) {
                 PlayerUtils.getMaxDefaults().put(group.toLowerCase(), config.getInt("max_jobs." + group));
+            }
         }
         if(!PlayerUtils.getMaxDefaults().containsKey("default")){
             getLogger().info("max_jobs corrupted.  No default value found.  Setting default to 3!");
             PlayerUtils.getMaxDefaults().put("default", 3);
+        }
+        
+        for(Map.Entry<String, Integer> me: PlayerUtils.getMaxDefaults().entrySet()) {
+            getLogger().info("Group " + me.getKey() + " can learn " + me.getValue().intValue() + " Jobs.");
         }
         
         if(config.getString("database.type", "yaml").equalsIgnoreCase("mysql")) {
@@ -340,11 +344,7 @@ public class McJobs extends JavaPlugin {
     public static Economy getEconomy() {
         return _economy;
     }
-
-    public boolean isLogBlock() {
-        return _bLogBlock;
-    }
-        
+  
     public static WorldGuardPlugin getWorldGuard() {
         return _wgp;
     }
@@ -378,5 +378,11 @@ public class McJobs extends JavaPlugin {
         if(_localization.isEmpty() || !_language.getLanguages().containsKey(_localization)) {
             getLogger().log(Level.INFO, "Cant find default language in config.yml!! Stop Plugin.");
         }
+    }
+    
+    public void loadClasses() {
+        _language = new GetLanguage();
+        _blocklogger = new BlockLoggers();
+        _holder = new Holder();
     }
 }

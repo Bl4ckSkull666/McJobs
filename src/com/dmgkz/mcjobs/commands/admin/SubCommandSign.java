@@ -14,12 +14,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -28,37 +26,35 @@ import org.bukkit.entity.Player;
  */
 public class SubCommandSign {
     //mcjadm sign {job} {type}
-    public static void command(CommandSender s, String l, String[] a) {
+    public static void command(Player p, String[] a) {
         String str = "";
         PrettyText text = new PrettyText();
-        Player p;
-        if(s instanceof Player) {
-            p = (Player)s;
-            if(!s.hasPermission("mcjobs.admin.defaults")) {
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), l);
-                text.formatPlayerText(str, p);
-                return;
-            }
-        } else {
-            s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("cmd-need-player", UUID.fromString("00000000-0000-0000-0000-000000000000")).addVariables("", "Console", l));
+        if(!p.hasPermission("mcjobs.admin.defaults")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
             return;
         }
         
         if(a.length != 3) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", p.getUniqueId()).addVariables("", p.getName(), l);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);                    
             return;
         }
         
         if(!PlayerJobs.getJobsList().containsKey(a[1])) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-job", p.getUniqueId()).addVariables("", p.getName(), l);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-job", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);                    
+            return;
+        }
+        
+        if(a[2].equalsIgnoreCase("top")) {
+            p.sendMessage("Coming soon!");
             return;
         }
         
         SignType siType = SignType.getByName(a[2]);
         if(siType == SignType.NONE) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-signtype", p.getUniqueId()).addVariables("", p.getName(), l);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-signtype", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);                    
             return;
         }
@@ -81,20 +77,20 @@ public class SubCommandSign {
         }
         
         if(tmp == null) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("no-sign-in-sight", p.getUniqueId()).addVariables("", p.getName(), l);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("no-sign-in-sight", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);                    
             return;
         }
         
         if(McJobs.getPlugin().getSignManager().isSign(tmp.getLocation())) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-is-registed", p.getUniqueId()).addVariables("", p.getName(), l);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-is-registed", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);                    
             return;
         }
         
         JobSign js = new JobSign(a[1], siType);
         McJobs.getPlugin().getSignManager().addSign(tmp.getLocation(), js);
-        str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-successfull-registed", p.getUniqueId()).addVariables("", p.getName(), l);
+        str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("sign-successfull-registed", p.getUniqueId()).addVariables("", p.getName(), "");
         text.formatPlayerText(str, p); 
     }
 }

@@ -11,7 +11,9 @@ import de.bl4ckskull666.mu1ti1ingu41.Mu1ti1ingu41;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -27,7 +29,7 @@ public final class GetLanguage {
     //HashMap<Language String, HashMap<YAML Key String, SpigotMessage>
     private final HashMap<String, HashMap<String, SpigotMessage>> _spMessages = new HashMap<>();
     
-    private String _avaLangs = "";
+    private List<String> _avaLangs = new ArrayList<>();
     private String _defaultLang = "";
 
     public GetLanguage() {
@@ -52,9 +54,9 @@ public final class GetLanguage {
         return _languages;
     }
   
-    public String getAvaLangs() {
+    public List<String> getAvaLangs() {
         if(_avaLangs.isEmpty())
-            fillAvaLangs();
+            _avaLangs.addAll(_languages.keySet());
         return _avaLangs;
     }
     
@@ -64,12 +66,6 @@ public final class GetLanguage {
     
     public String getDefaultLang() {
         return _defaultLang;
-    }
-    
-    public void fillAvaLangs() {
-        _avaLangs = "";
-        for(Map.Entry<String, FileConfiguration> e: _languages.entrySet())
-            _avaLangs += _avaLangs.isEmpty()?"§e" + e.getKey():"§9, §e" + e.getKey();
     }
     
     private FileConfiguration getLangFile(String lang) {
@@ -170,32 +166,33 @@ public final class GetLanguage {
         return getSection("jobs.name", jobname, uuid);
     }
     
-    public String getJobNameInLang(String subSection, UUID uuid) {
-        return getSection("jobs.name", subSection, uuid);
+    public String getOriginalJobName(String jobname, UUID uuid) {
+        String lang = PlayerData.getLang(uuid);
+        if(!getLangFile(lang).isConfigurationSection("jobs.name"))
+            return jobname;
+        
+        for(String k: getLangFile(lang).getConfigurationSection("jobs.name").getKeys(false)) {
+            if(getLangFile(lang).isString("jobs.name." + k) && getLangFile(lang).getString("jobs.name." + k).equalsIgnoreCase(jobname.toLowerCase()))
+                return k;
+        }
+        return jobname;
     }
     
-    public String getJobNameByLangName(String subSection, UUID uuid) {
-        ConfigurationSection section = null;
-        if(_useMultilingual) {
-            FileConfiguration f = Language.getMessageFile(McJobs.getPlugin(), uuid);
-            if(f.isConfigurationSection("jobs.reversename"))
-                section = f.getConfigurationSection("jobs.reversename");
-            else
-                return "Unknown Section : jobs.reversename";
-        } else {
-            String lang = PlayerData.getLang(uuid);
-            if(getLangFile(lang).isConfigurationSection("jobs.reversename"))
-                section = getLangFile(lang).getConfigurationSection("jobs.reversename");
-            else
-                return "Unknown Section : jobs.reversename";
-        }
-        
-        for(String key: section.getKeys(false)) {
-            if(section.getString(key).equalsIgnoreCase(subSection))
-                return key;
-        }
-        return "Unknown Value " + subSection + " in Section jobs.reversename";
+    public String getLanguageName(String name, UUID uuid) {
+        return getSection("languages", name, uuid);
     }
+    
+    public String getOriginalLanguageName(String langname, UUID uuid) {
+        String lang = PlayerData.getLang(uuid);
+        if(!getLangFile(lang).isConfigurationSection("languages"))
+            return langname;
+        
+        for(String k: getLangFile(lang).getConfigurationSection("languages").getKeys(false)) {
+            if(getLangFile(lang).isString("languages." + k) && getLangFile(lang).getString("languages." + k).equalsIgnoreCase(langname.toLowerCase()))
+                return k;
+        }
+        return langname;
+    } 
     
     public String getJobRank(String subSection, UUID uuid) {
         return getSection("jobs.rank", subSection, uuid);
@@ -225,20 +222,14 @@ public final class GetLanguage {
     }
         
     private String getSection(String s, String n, UUID uuid) {
-        if(_useMultilingual)
-            return Language.getText(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n);
-        
         String lang = PlayerData.getLang(uuid);
         if(!getLangFile(lang).isConfigurationSection(s))
-            return "Unknow Section: " + n;
+            return "Unknown Section: " + n;
         ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
         return getValue(section, n);
     }
     
     private AddTextVariables getATVSection(String s, String n, UUID uuid) {
-        if(_useMultilingual)
-            return new AddTextVariables(Language.getText(McJobs.getPlugin(), uuid, s + "." + n, "Unknow Section: " + n));
-        
         String lang = PlayerData.getLang(uuid);
         if(!getLangFile(lang).isConfigurationSection(s))
             return new AddTextVariables("Unknow Section: " + s  + " in " + lang);
@@ -247,7 +238,7 @@ public final class GetLanguage {
     }
     
     private String getValue(ConfigurationSection cs, String ss) {
-        String name = cs.getString(ss.toLowerCase(), "Unknown value: " + ss);
+        String name = cs.getString(ss.toLowerCase(), "Unknown Value: " + ss);
         return PrettyText.colorText(name);
     }
     
@@ -286,7 +277,7 @@ public final class GetLanguage {
             McJobs.getPlugin().getLogger().log(Level.INFO, "Language {0} has been loaded.", name);
         }
         
-        loadSpigotMessages();
+        //loadSpigotMessages();
     }
     
     private void loadSpigotMessages() {

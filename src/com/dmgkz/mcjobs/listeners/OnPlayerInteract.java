@@ -30,13 +30,13 @@ public class OnPlayerInteract implements Listener {
                 JobSign js = McJobs.getPlugin().getSignManager().getJobSign(e.getClickedBlock().getLocation());
                 switch(js.getSignType()) {
                     case JOIN:
-                        SubCommandJoin.command(e.getPlayer(), new String[] {"join", js.getJob()});
+                        SubCommandJoin.command(e.getPlayer(), js.getJob());
                         break;
                     case LEAVE:
-                        SubCommandLeave.command(e.getPlayer(), new String[] {"leave", js.getJob()});
+                        SubCommandLeave.command(e.getPlayer(), js.getJob());
                         break;
                     case INFO:
-                        SubCommandInfo.command(e.getPlayer(), new String[] {"info", js.getJob()});
+                        SubCommandInfo.command(e.getPlayer(), js.getJob());
                         break;
                     case NPC:
                         PlayerJobs.getJobsList().get(js.getJob()).getData().sendSignMessage(e.getPlayer());

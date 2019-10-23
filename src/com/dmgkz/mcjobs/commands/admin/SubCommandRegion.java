@@ -7,6 +7,8 @@ package com.dmgkz.mcjobs.commands.admin;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.internal.annotation.Selection;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,31 +21,20 @@ import org.bukkit.entity.Player;
  */
 public class SubCommandRegion {
     //jadm region set/remove {jobname} - Need WorldEdit
-    public static void command(CommandSender s, String l, String[] a) {
+    public static void command(Player p, String[] a) {
         String str = "";
         PrettyText text = new PrettyText();
-        String name = "Console";
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        if(s instanceof Player) {
-            uuid = ((Player)s).getUniqueId();
-            name = ((Player)s).getName();
-            if(!s.hasPermission("mcjobs.admin.reload")) {
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);
-                return;
-            }
-        } else {
-            s.sendMessage("Please run this command from ingame!");
+        if(!p.hasPermission("mcjobs.admin.region")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
             return;
         }
         
         if(!Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-worldedit", uuid).addVariables("", name, l);
-            text.formatPlayerText(str, (Player)s);
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-worldedit", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
             return;
         }
-        
-        //Location[] selection = WESelection.getSelection(_plugin, player);
-        //Selection selection = WorldEdit.getInstance().getSession((Player)s);
+
     }
 }

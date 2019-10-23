@@ -14,6 +14,7 @@ import com.dmgkz.mcjobs.util.PlayerUtils;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -22,110 +23,91 @@ import org.bukkit.entity.Player;
  * @author PapaHarni
  */
 public class SubCommandExp {
-    //mcjadm exp {playername} {job} {exp amount}
-    public static void command(CommandSender s, String l, String[] a, String t) {
+    //mcjadm {exptype} {playername} {job} {exp amount}
+    public static void command(Player p, String[] a, String t) {
         String str = "";
         PrettyText text = new PrettyText();
-        String name = "Console";
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        if(s instanceof Player) {
-            uuid = ((Player)s).getUniqueId();
-            name = ((Player)s).getName();
-            if(!s.hasPermission("mcjobs.admin.addlevel")) {
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);
-                return;
-            }
+        if(!p.hasPermission("mcjobs.admin.addlevel")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
+            return;
         }
         
         if(a.length != 4) {
-            if(s instanceof Player){
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);                    
-            } else
-                s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", uuid).addVariables("", name, l));
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
             return;
         }
         
-        UUID playerUUID = PlayerUtils.getUUIDByName(a[1]);
-        if(playerUUID == null) {
-            if(s instanceof Player){
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);                    
-            } else
-                s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", uuid).addVariables("", name, l));
+        OfflinePlayer op = PlayerUtils.getOfflinePlayer(a[1]);
+        if(op == null) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
             return;
         }
         
-        String job = McJobs.getPlugin().getLanguage().getJobNameByLangName(a[2].toLowerCase(), uuid);
+        String job = McJobs.getPlugin().getLanguage().getOriginalJobName(a[2].toLowerCase(), p.getUniqueId()).toLowerCase();
         double exp = 0.0;
         
         if(isDouble(a[3]))
             exp = Double.parseDouble(a[3]);
         
         if(job.isEmpty() || !PlayerJobs.getJobsList().containsKey(job)) {
-            job = a[2].toLowerCase();
-        
-            if(!PlayerJobs.getJobsList().containsKey(job)) {
-                if(s instanceof Player){
-                    str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", uuid).addVariables("", name, l);
-                    text.formatPlayerText(str, (Player)s);                    
-                } else
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", uuid).addVariables("", name, l));
-                return;
-            }
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
+            return;
         }
         
-        if(!PlayerData.hasJob(playerUUID, job)) {
-            s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+        if(!PlayerData.hasJob(op.getUniqueId(), job)) {
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
             return;
         }
         
         switch(t.toLowerCase()) {
             case "add":
-                if(PlayerData.addExp(playerUUID, job, exp)) {
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("add_lvl", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
-                    if(Bukkit.getPlayer(playerUUID) != null){
+                if(PlayerData.addExp(op.getUniqueId(), job, exp)) {
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("add_lvl", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
+                    if(Bukkit.getPlayer(op.getUniqueId()) != null){
                         text = new PrettyText();
-                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("padd_lvl", playerUUID).addVariables(job, Bukkit.getPlayer(playerUUID).getName(), a[3]);
-                        text.formatPlayerText(str, Bukkit.getPlayer(playerUUID));
+                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("padd_lvl", op.getUniqueId()).addVariables(job, op.getName(), a[3]);
+                        text.formatPlayerText(str, Bukkit.getPlayer(op.getUniqueId()));
                     }                    
                 } else
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("adderror", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("adderror", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
                 return;
             case "set":
-                if(exp >= Leveler.getXPtoLevel(PlayerData.getJobLevel(playerUUID, job))) {
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("exp_to_high", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                if(exp >= Leveler.getXPtoLevel(PlayerData.getJobLevel(op.getUniqueId(), job))) {
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("exp_to_high", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
                     return;
                 }
                 
-                PlayerData.setExp(playerUUID, job, exp);
-                if(PlayerData.getJobExp(playerUUID, job) == exp) {
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("set_exp", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
-                    if(Bukkit.getPlayer(playerUUID) != null){
+                PlayerData.setExp(op.getUniqueId(), job, exp);
+                if(PlayerData.getJobExp(op.getUniqueId(), job) == exp) {
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("set_exp", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
+                    if(Bukkit.getPlayer(op.getUniqueId()) != null){
                         text = new PrettyText();
-                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("pset_exp", playerUUID).addVariables(job, Bukkit.getPlayer(playerUUID).getName(), a[3]);
-                        text.formatPlayerText(str, Bukkit.getPlayer(playerUUID));
+                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("pset_exp", op.getUniqueId()).addVariables(job, op.getName(), a[3]);
+                        text.formatPlayerText(str, Bukkit.getPlayer(op.getUniqueId()));
                     }                    
                 } else
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("seterror", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("seterror", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
                 return;
             case "remove":
-                double xp = PlayerData.getJobExp(playerUUID, job)-exp;
+                double xp = PlayerData.getJobExp(op.getUniqueId(), job)-exp;
                 if(xp < 0.0) {
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("exp_to_low", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("exp_to_low", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
                     return;
                 }
-                PlayerData.setExp(playerUUID, job, xp);
-                s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("rem_exp", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
-                if(Bukkit.getPlayer(playerUUID) != null){
+                PlayerData.setExp(p.getUniqueId(), job, xp);
+                p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("rem_exp", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
+                if(Bukkit.getPlayer(p.getUniqueId()) != null){
                     text = new PrettyText();
-                    str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("prem_exp", playerUUID).addVariables(job, Bukkit.getPlayer(playerUUID).getName(), a[3]);
-                    text.formatPlayerText(str, Bukkit.getPlayer(playerUUID));
+                    str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("prem_exp", op.getUniqueId()).addVariables(job, op.getName(), a[3]);
+                    text.formatPlayerText(str, Bukkit.getPlayer(p.getUniqueId()));
                 }
                 return;
             default:
-                s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("error", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("error", p.getUniqueId()).addVariables(job, op.getName(), a[3]));
         }
     }
     

@@ -58,7 +58,6 @@ public class BlockBreak implements Listener{
         } 
         
         Location loc = event.getBlock().getLocation();
-        Integer timer = MCListeners.getTimeInMins();
 
         if(MCListeners.isWorldGuard()) {
             RegionQuery rq = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
@@ -87,19 +86,17 @@ public class BlockBreak implements Listener{
                 PitchJobs.pitchJobs(play);
         }
         
+        if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(),true))
+             return;
+        
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("break");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
                 if(!Utils.hasNeededTool(play, sJob, "break"))
                     continue;
                     
-                if(McJobs.getPlugin().isLogBlock()) {
-                    if(McJobs.getPlugin().getBlockLogging().checkLogBlock(play.getWorld(), play, event.getBlock().getLocation(), BlockChangeType.DESTROYED, timer))
-                        return;
-                } else {
-                    if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, true))
-                        return;
-                }
+                if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(),true))
+                    return;
                 
                 CompCache comp = new CompCache(sJob, loc, play, event.getBlock().getType(), "break");
                 CompData.getCompCache().add(comp);

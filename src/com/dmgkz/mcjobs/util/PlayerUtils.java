@@ -40,13 +40,13 @@ public class PlayerUtils {
                     return i;
 
                 for(String group: lGroups) {
-                    if(_maxdefaults.containsKey(group)) {
-                        if(i < _maxdefaults.get(group))
-                            i = _maxdefaults.get(group);
+                    if(_maxdefaults.containsKey(group.toLowerCase())) {
+                        if(i < _maxdefaults.get(group.toLowerCase()))
+                            i = _maxdefaults.get(group.toLowerCase());
                     }
                 }
             } catch(Exception e) {
-                McJobs.getPlugin().getLogger().info("Your permission mod does not support player groups.  Using default max jobs only.");
+                McJobs.getPlugin().getLogger().info("Your permission mod does not support player groups. Using default max jobs only.");
                 _bFailed = true;
             }
         }
@@ -65,10 +65,21 @@ public class PlayerUtils {
         return _maxdefaults;
     }
     
-    public static UUID getUUIDByName(String name) {
-        for(OfflinePlayer op: Bukkit.getOfflinePlayers()) {
-            if(op.getName().equalsIgnoreCase(name))
-                return op.getUniqueId();
+    public static OfflinePlayer getOfflinePlayer(String str) {
+        try {
+            if(str.length() >= 32) {
+                if(str.length() == 32) {
+                    str = str.substring(0, 8) + "-" + str.substring(8, 12) + "-" + str.substring(12, 16) + "-" + str.substring(16, 20) + "-" + str.substring(20);
+                }
+                return Bukkit.getOfflinePlayer(UUID.fromString(str));
+            } else {
+                for(OfflinePlayer op: Bukkit.getOfflinePlayers()) {
+                    if(op != null && op.getName() != null && op.getName().equalsIgnoreCase(str))
+                        return op;
+                }
+            }
+        } catch(Exception ex) {
+
         }
         return null;
     }

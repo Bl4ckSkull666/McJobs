@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
@@ -97,9 +98,9 @@ public final class Database {
     }
     
     public static PlayerData loadPlayer(String name) {
-        UUID uuid = PlayerUtils.getUUIDByName(name);
-        if(uuid != null)
-            return loadPlayer(uuid);
+        OfflinePlayer op = PlayerUtils.getOfflinePlayer(name);
+        if(op != null)
+            return loadPlayer(op.getUniqueId());
         else 
             return null;
     }

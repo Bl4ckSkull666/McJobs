@@ -1,6 +1,8 @@
 package com.dmgkz.mcjobs.playerjobs.display;
 
 import com.dmgkz.mcjobs.McJobs;
+import com.dmgkz.mcjobs.commands.jobs.SpigotBuilds;
+import com.dmgkz.mcjobs.commands.jobs.WorldEditBuilds;
 import com.dmgkz.mcjobs.localization.GetLanguage;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.data.JobsData;
@@ -10,7 +12,6 @@ import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import java.util.HashMap;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -111,7 +112,6 @@ public class JobsDisplay {
         GetLanguage modText = McJobs.getPlugin().getLanguage();
         showPlayerJob(p, p.getUniqueId());
 
-        McJobs.getPlugin().getLogger().info("Starte showJob....");
         if(!_jobsdata.compJob().getMatTypeTiers("break").isEmpty() && !getHide("break")) {
             p.sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
             p.sendMessage(ChatColor.YELLOW + modText.getJobDisplay("break", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), ""));
@@ -187,6 +187,25 @@ public class JobsDisplay {
             p.sendMessage("");
             
             buildPvPTiers(_jobsdata.compJob().getPvpTiers("pvp"), p);
+        }
+        
+        p.sendMessage("");
+        if(PlayerData.hasJob(p.getUniqueId(), _jobsdata.getName())) {
+            if(Bukkit.getVersion().toLowerCase().contains("spigot"))
+                SpigotBuilds.getLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
+            else if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+                WorldEditBuilds.getLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
+            } else {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.leave", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), "")));
+            }
+        } else if(PlayerData.isJoinable(p.getUniqueId(), _jobsdata.getName())) {
+            if(Bukkit.getVersion().toLowerCase().contains("spigot"))
+                SpigotBuilds.getJoinButton(_jobsdata.getName(p.getUniqueId()), p);
+            else if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+                WorldEditBuilds.getJoinButton(_jobsdata.getName(p.getUniqueId()), p);
+            } else {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.join", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), "")));
+            }
         }
     }
     

@@ -43,6 +43,28 @@ jobs:
     bulldozer: Bulldozer
     taxes: Taxes
     hunter: Hunter
+  reversename:
+    digger: digger
+    miner: miner
+    builder: builder
+    carpenter: carpenter
+    soldier: soldier
+    tinkerer: tinkerer
+    woodsman: woodsman
+    farmer: farmer
+    toolmaker: toolmaker
+    weaponsmith: weaponsmith
+    armorer: armorer
+    fisherman: fisherman
+    baker: baker
+    alchemist: alchemist
+    brewer: brewer
+    enchanter: enchanter
+    theurgist: theurgist
+    conjurer: conjurer
+    bulldozer: bulldozer
+    taxes: taxes
+    hunter: hunter
 jobscommand:
   playeronly: Can only be done by a player!
   permission: '&cYou do not have permission to do this!'
@@ -1620,3 +1642,5 @@ materials:
   zombie_spawn_egg: ZOMBIE SPAWN EGG
   zombie_villager_spawn_egg: ZOMBIE VILLAGER SPAWN EGG
   zombie_wall_head: ZOMBIE WALL HEAD
+languages:
+  en: English

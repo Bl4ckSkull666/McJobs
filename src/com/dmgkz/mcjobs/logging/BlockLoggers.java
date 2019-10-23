@@ -1,191 +1,141 @@
 package com.dmgkz.mcjobs.logging;
 
-import java.sql.SQLException;
+import com.dmgkz.mcjobs.McJobs;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 
-import com.dmgkz.mcjobs.McJobs;
-import com.dmgkz.mcjobs.scheduler.McJobsLogNotifier;
-
-import de.diddiz.LogBlock.BlockChange;
-import de.diddiz.LogBlock.LogBlock;
-import de.diddiz.LogBlock.QueryParams;
-import de.diddiz.LogBlock.QueryParams.BlockChangeType;
+import java.util.Map;
+import java.util.UUID;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 
 public class BlockLoggers {
     private final ArrayList<String> noLogging;
-    private final HashMap<Location, ArrayList<Player>> hPlayerBreakBlock;
-    private final HashMap<Location, ArrayList<Player>> hPlayerPlaceBlock;
+    private final HashMap<Location, ArrayList<BPlayer>> hPlayerBreakBlock;
+    private final HashMap<Location, ArrayList<BPlayer>> hPlayerPlaceBlock;
     private final HashMap<World, Boolean> hBuiltInWorld;
-    private static long timer;
+    private static long _timer;
+    private static BlockLoggers _logger;
  
-    public BlockLoggers(){
+    public BlockLoggers() {
         noLogging         = new ArrayList<>();
         hPlayerBreakBlock = new HashMap<>();
         hPlayerPlaceBlock = new HashMap<>();
-        hBuiltInWorld     = new HashMap<>(); 
+        hBuiltInWorld     = new HashMap<>();
+        _logger = this;
     }
     
-    public static void setTimer(long time){
-        timer = time;
+    private void start() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(McJobs.getPlugin(), new Clearer(), _timer, _timer);
     }
     
-    public Boolean checkLogBlock(World wWorld, Player player, Location loc, BlockChangeType bct, Integer timer){
-        LogBlock logblock  = (LogBlock) Bukkit.getServer().getPluginManager().getPlugin("LogBlock");
-        QueryParams params = new QueryParams(logblock);
-        String sWorld = wWorld.getName();
-        String sPlayer = player.getName();
-        Logger log = McJobs.getPlugin().getLogger();
-//        List<Block> bTypes = new ArrayList<Block>();
-        
-        if(noLogging.contains(sWorld)){
-            if(bct == BlockChangeType.DESTROYED){
-                if(checkBuiltIn(loc, player, true))
-                    return true;
-                else return false;
-            }
-            else{
-                if(checkBuiltIn(loc, player, false))
-                    return true;
-                else return false;                
-            }
-        }
-
-//        for(Integer temp : lTypes ){
-//            bTypes.add();
-//        }
-            
-        try {
-            params.setPlayer(sPlayer);
-            params.bct   = bct;
-            params.limit = -1;
-            params.since = timer;
-            params.world = wWorld;
-            params.loc   = loc;
-//            params.types = bTypes;
-        
-            params.needDate   = true;
-//            params.needType   = true;
-            params.needPlayer = true;
-            params.needCoords = true;
-
-            try {
-                for (BlockChange bc : logblock.getBlockChanges(params)){
-                    if(bc.getLocation().equals(loc))
-                        return true;
-                    }
-                }
-            catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-            }                    
-        }
-        catch(NullPointerException e){
-            log.severe("LogBlock logging is turned off for world: " + sWorld + ".  Defaulting to built in logger.");                        
-            noLogging.add(sWorld);
-
-            if(bct == BlockChangeType.DESTROYED){
-                if(checkBuiltIn(loc, player, true))
-                    return true;
-                else return false;
-            }
-            else{
-                if(checkBuiltIn(loc, player, false))
-                    return true;
-                else return false;                
-            }        
-        }
-        
-        return false;
+    public static void setTimer(long time) {
+        _timer = time;
+        if(_logger != null)
+            _logger.start();
     }
-
+    
     public Boolean checkHawkEye(Player play, Vector loc, Boolean isBreak){
         return false;
     }
     
-    public Boolean checkBuiltIn(Location loc, Player play, Boolean isBreak){
-        if(!this.getBuiltIn().containsKey(play.getWorld()))
-            this.getBuiltIn().put(play.getWorld(), true);
+    public Boolean checkBuiltIn(Location loc, Player p, Material mat, Boolean isBreak) {
+        if(!this.getBuiltIn().containsKey(p.getWorld()))
+            this.getBuiltIn().put(p.getWorld(), true);
 
-        if(isBreak){
-            if(this.hPlayerBreakBlock.containsKey(loc))
-                if(this.hPlayerBreakBlock.get(loc).contains(play)){
-                    return true;
+        if(isBreak) {
+            if(this.hPlayerBreakBlock.containsKey(loc)) {
+                for(BPlayer bp: hPlayerBreakBlock.get(loc)) {
+                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && bp.isTimeLater(System.currentTimeMillis()))
+                        return true;
                 }
-                else{
-                    return false;
-                }
-            else{
-                return false;
             }
-        }
-        else{
-            if(this.hPlayerPlaceBlock.containsKey(loc))
-                if(this.hPlayerPlaceBlock.get(loc).contains(play)){
-                    return true;
+            return false;
+        } else {
+            if(this.hPlayerPlaceBlock.containsKey(loc)) {
+                for(BPlayer bp: hPlayerPlaceBlock.get(loc)) {
+                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && bp.isTimeLater(System.currentTimeMillis()))
+                        return true;
                 }
-                else{
-                    return false;
-                }
-            else{
-                return false;
             }
+            return false;
         }
     }
 
-    public void addPlayer(Location loc, Player play, Boolean isBreak){
-        ArrayList<Player> aPlayers = new ArrayList<Player>();
-        if(isBreak){
-            if(this.hPlayerBreakBlock.containsKey(loc)){
-                aPlayers.addAll(this.hPlayerBreakBlock.get(loc));
-                aPlayers.add(play);
-            
-                this.hPlayerBreakBlock.put(loc, aPlayers);
-            }
-            else{
-                aPlayers.add(play);
-                this.hPlayerBreakBlock.put(loc, aPlayers);
-            }
-        }
-        else{
-            if(this.hPlayerPlaceBlock.containsKey(loc)){
-                aPlayers.addAll(this.hPlayerPlaceBlock.get(loc));
-                aPlayers.add(play);
-            
-                this.hPlayerPlaceBlock.put(loc, aPlayers);
-            }
-            else{
-                aPlayers.add(play);
-                this.hPlayerPlaceBlock.put(loc, aPlayers);
-            }
-        }
-                
-        Bukkit.getScheduler().scheduleAsyncDelayedTask(McJobs.getPlugin(), new McJobsLogNotifier(this, loc, play, isBreak), timer);;
-    }
-
-    public void removePlayer(Location loc, Player play, Boolean isBreak){
-        if(isBreak){
-            if(this.hPlayerBreakBlock.containsKey(loc))
-                if(this.hPlayerBreakBlock.get(loc).contains(play))
-                    this.hPlayerBreakBlock.get(loc).remove(play);
-        }
-        else{
-            if(this.hPlayerPlaceBlock.containsKey(loc))
-                if(this.hPlayerPlaceBlock.get(loc).contains(play))
-                    this.hPlayerPlaceBlock.get(loc).remove(play);
+    public void addPlayer(Location loc, Player p, Material mat, Boolean isBreak) {
+        ArrayList<BPlayer> aPlayers = new ArrayList<>();
+        aPlayers.add(new BPlayer(p.getUniqueId(), mat));
+        if(isBreak) {
+            if(hPlayerBreakBlock.containsKey(loc))
+                aPlayers.addAll(hPlayerBreakBlock.get(loc));
+            hPlayerBreakBlock.put(loc, aPlayers);
+        } else {
+            if(hPlayerPlaceBlock.containsKey(loc))
+                aPlayers.addAll(hPlayerPlaceBlock.get(loc));
+            hPlayerPlaceBlock.put(loc, aPlayers);
         }
     }
 
-    public HashMap<World, Boolean> getBuiltIn(){
+    public HashMap<World, Boolean> getBuiltIn() {
         return this.hBuiltInWorld;
+    }
+    
+    public class Clearer implements Runnable {
+        @Override
+        public void run() {
+            HashMap<Location, List<BPlayer>> breaker = new HashMap<>();
+            HashMap<Location, List<BPlayer>> placer = new HashMap<>();
+            breaker.putAll(hPlayerBreakBlock);
+            placer.putAll(hPlayerPlaceBlock);
+            
+            for(Map.Entry<Location, List<BPlayer>> me: breaker.entrySet()) {
+                for(BPlayer bp: me.getValue()) {
+                    if(bp.isTimeLater(System.currentTimeMillis()))
+                        hPlayerBreakBlock.get(me.getKey()).remove(bp);
+                }
+            }
+            
+            for(Map.Entry<Location, List<BPlayer>> me: placer.entrySet()) {
+                for(BPlayer bp: me.getValue()) {
+                    if(bp.isTimeLater(System.currentTimeMillis()))
+                        hPlayerPlaceBlock.get(me.getKey()).remove(bp);
+                }
+            }
+        }
+    }
+    
+    public class BPlayer {
+        private final UUID _uuid;
+        private final long _time;
+        private final Material _mat;
+        
+        public BPlayer(UUID uuid, Material mat) {
+            _uuid = uuid;
+            _time = System.currentTimeMillis();
+            _mat = mat;
+        }
+        
+        public boolean isUUID(UUID uuid) {
+            return _uuid.equals(uuid);
+        }
+        
+        public boolean isTimeLater(long t) {
+            long diff = _time - t;
+            return (diff >= BlockLoggers._timer);
+        }
+        
+        public long getTime() {
+            return _time;
+        }
+        
+        public boolean isMaterial(Material mat) {
+            return _mat.equals(mat);
+        }
     }
 }

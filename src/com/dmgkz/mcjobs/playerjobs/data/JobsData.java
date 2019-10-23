@@ -136,7 +136,7 @@ public class JobsData{
     }
     
     public String getName(UUID uuid) {
-        return McJobs.getPlugin().getLanguage().getJobNameInLang(_sJobName, uuid);
+        return McJobs.getPlugin().getLanguage().getJobName(_sJobName, uuid);
     }
     
     public String getDesc(UUID uuid) {

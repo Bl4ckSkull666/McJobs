@@ -15,23 +15,18 @@ import org.bukkit.entity.Player;
  * @author Bl4ckSkull666
  */
 public class SubCommandInfo {
-    public static void command(Player p, String[] a) {
+    public static void command(Player p, String job) {
+        String jobname = McJobs.getPlugin().getLanguage().getJobName(job.toLowerCase(), p.getUniqueId());
         if(!(p.hasPermission("mcjobs.jobs.info") || p.hasPermission("mcjobs.jobs.all")) && McJobs.getPlugin().getConfig().getBoolean("advanced.usePerms", true)) { 
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("permission", p.getUniqueId()).addVariables("", p.getName(), ""));
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("permission", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
             return;
         }
         
-        if(!PlayerJobs.getJobsList().containsKey(a[1].toLowerCase())) {
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("nojob", p.getUniqueId()).addVariables("", p.getName(), ""));
+        if(!PlayerJobs.getJobsList().containsKey(job)) {
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("nojob", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
             return;
         }
         
-        PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().display().showJob(p);
-        
-        /*if(PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getRegionSpigotMessage() != null)
-            PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getRegionSpigotMessage().saveMessage(null, "");
-        
-        if(PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getSignSpigotMessage() != null)
-            PlayerJobs.getJobsList().get(a[1].toLowerCase()).getData().getSignSpigotMessage().saveMessage(null, "");*/
+        PlayerJobs.getJobsList().get(job).getData().display().showJob(p);
     }
 }

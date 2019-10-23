@@ -11,10 +11,9 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.PlayerUtils;
-import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 /**
@@ -23,37 +22,26 @@ import org.bukkit.entity.Player;
  */
 public class SubCommandJob {
     //mcjadm addjob (playername) (job)
-    public static void command(CommandSender s, String l, String[] a, String t) {
+    public static void command(Player p, String[] a, String t) {
         String str = "";
         PrettyText text = new PrettyText();
-        String name = "Console";
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        if(s instanceof Player) {
-            uuid = ((Player)s).getUniqueId();
-            name = ((Player)s).getName();
-            if(!s.hasPermission("mcjobs.admin.addlevel")) {
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);
-                return;
-            }
-        }
         
-        if(a.length != 3 || t.equalsIgnoreCase("list") && a.length != 2) {
-            if(s instanceof Player){
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);                    
-            } else
-                s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", uuid).addVariables("", name, l));
+        if(!p.hasPermission("mcjobs.admin.addlevel")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
             return;
         }
         
-        UUID playerUUID = PlayerUtils.getUUIDByName(a[1]);
-        if(playerUUID == null) {
-            if(s instanceof Player){
-                str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", uuid).addVariables("", name, l);
-                text.formatPlayerText(str, (Player)s);                    
-            } else
-                s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", uuid).addVariables("", name, l));
+        if(a.length != 3 || t.equalsIgnoreCase("list") && a.length != 2) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("args", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
+            return;
+        }
+        
+        OfflinePlayer op = PlayerUtils.getOfflinePlayer(a[1]);
+        if(op == null) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("notjoined", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
             return;
         }
         
@@ -63,65 +51,59 @@ public class SubCommandJob {
             return;
         }
         
-        String job = McJobs.getPlugin().getLanguage().getJobNameByLangName(a[2].toLowerCase(), uuid);
-        
-        if(job.isEmpty() || !PlayerJobs.getJobsList().containsKey(job)) {
-            job = a[2].toLowerCase();
-        
-            if(!PlayerJobs.getJobsList().containsKey(job)) {
-                if(s instanceof Player){
-                    str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", uuid).addVariables("", name, l);
-                    text.formatPlayerText(str, (Player)s);                    
-                } else
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", uuid).addVariables("", name, l));
-                return;
-            }
+        String jobOriginal = McJobs.getPlugin().getLanguage().getOriginalJobName(a[2].toLowerCase(), p.getUniqueId()).toLowerCase();
+        String jobPlayer = McJobs.getPlugin().getLanguage().getJobName(jobOriginal, op.getUniqueId());
+        String jobMe = McJobs.getPlugin().getLanguage().getJobName(jobOriginal, p.getUniqueId());
+        if(a[2].isEmpty() || !PlayerJobs.getJobsList().containsKey(jobOriginal)) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);                    
+            return;
         }
         
         switch(t.toLowerCase()) {
             case "join":
-                if(PlayerData.addJob(playerUUID, job)) {
-                    if(PlayerData.getRejoinTime(playerUUID, job) > 0)
-                        PlayerData.removeRejoinTimer(playerUUID, job);
+                if(PlayerData.addJob(op.getUniqueId(), jobOriginal)) {
+                    if(PlayerData.getRejoinTime(op.getUniqueId(), jobOriginal) > 0)
+                        PlayerData.removeRejoinTimer(op.getUniqueId(), jobOriginal);
                     
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("added_job", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
-                    if(Bukkit.getPlayer(playerUUID) != null){
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("added_job", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
+                    if(Bukkit.getPlayer(op.getUniqueId()) != null){
                         text = new PrettyText();
-                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("padded_job", playerUUID).addVariables(job, Bukkit.getPlayer(playerUUID).getName(), a[3]);
-                        text.formatPlayerText(str, Bukkit.getPlayer(playerUUID));
+                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("padded_job", op.getUniqueId()).addVariables(jobPlayer, op.getName(), "");
+                        text.formatPlayerText(str, Bukkit.getPlayer(op.getUniqueId()));
                     }
                 } else
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("hasjob", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                    p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("hasjob", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
                 return;
             case "leave":
-                if(!PlayerData.hasJob(playerUUID, job)) {
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                if(!PlayerData.hasJob(op.getUniqueId(), jobOriginal)) {
+                    p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
                     return;
                 }
                 
-                if(PlayerJobs.getJobsList().get(job).getData().compJob().isDefault()) {
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("isDefault", uuid).addVariables("", name, l));
+                if(PlayerJobs.getJobsList().get(jobOriginal).getData().compJob().isDefault()) {
+                    p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("isDefault", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
                     return;
                 }
                 
-                if(PlayerData.removeJob(playerUUID, job)) {
-                    PlayerData.addReJoinTimer(playerUUID, job, JobChangeListener.getTimer());
-                    s.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("rem_job", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
-                    if(Bukkit.getPlayer(playerUUID) != null){
+                if(PlayerData.removeJob(op.getUniqueId(), jobOriginal)) {
+                    PlayerData.addReJoinTimer(op.getUniqueId(), jobOriginal, JobChangeListener.getTimer());
+                    p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("rem_job", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
+                    if(Bukkit.getPlayer(op.getUniqueId()) != null){
                         text = new PrettyText();
-                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("prem_job", playerUUID).addVariables(job, Bukkit.getPlayer(playerUUID).getName(), a[3]);
-                        text.formatPlayerText(str, Bukkit.getPlayer(playerUUID));
+                        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("prem_job", op.getUniqueId()).addVariables(jobPlayer, op.getName(), "");
+                        text.formatPlayerText(str, Bukkit.getPlayer(op.getUniqueId()));
                     }
                 } else
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("remerror", uuid).addVariables("", name, l));
+                    p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("remerror", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
                 return;
             case "info":
-                if(!PlayerData.hasJob(playerUUID, job)) {
-                    s.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", uuid).addVariables(job, PlayerData.getName(playerUUID), a[3]));
+                if(!PlayerData.hasJob(op.getUniqueId(), jobOriginal)) {
+                    p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("nojob", p.getUniqueId()).addVariables(jobMe, op.getName(), ""));
                     return;
                 }
                 
-                PlayerJobs.getJobsList().get(job).getData().display().showPlayerJob(s, playerUUID);
+                PlayerJobs.getJobsList().get(jobOriginal).getData().display().showPlayerJob(p, op.getUniqueId());
                 return;
             default:
                 return;

@@ -17,20 +17,21 @@ import org.bukkit.entity.Player;
  */
 public class SubCommandHideShow {
     public static void command(Player p, String job, boolean show) {
+        String jobname = McJobs.getPlugin().getLanguage().getJobName(job.toLowerCase(), p.getUniqueId());
         if(!PlayerJobs.getJobsList().containsKey(job)) {
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("nojob", p.getUniqueId()).addVariables(job, p.getName(), ""));
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("nojob", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
             return;
         }
         
         if(!PlayerData.hasJob(p.getUniqueId(), job)) {
-            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("donthave", p.getUniqueId()).addVariables(job, p.getName(), ""));
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getJobCommand("donthave", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
             return;
         }
         
         PlayerData.setShowEveryTime(p.getUniqueId(), job, show);
         if(show)
-            p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobCommand("show", p.getUniqueId()).addVariables(job, p.getName(), ""));
+            p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobCommand("show", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
         else
-            p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobCommand("hide", p.getUniqueId()).addVariables(job, p.getName(), ""));
+            p.sendMessage(ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobCommand("hide", p.getUniqueId()).addVariables(jobname, p.getName(), ""));
     }
 }

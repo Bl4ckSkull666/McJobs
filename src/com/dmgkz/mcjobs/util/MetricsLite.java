@@ -1,4 +1,4 @@
-package org.bstats.bukkit;
+package com.dmgkz.mcjobs.util;
 
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.google.gson.JsonArray;
@@ -229,7 +229,6 @@ public class MetricsLite {
         data.addProperty("osArch", osArch);
         data.addProperty("osVersion", osVersion);
         data.addProperty("coreCount", coreCount);
-        data.addProperty("jobservers", PlayerJobs.getJobsList().size());
         return data;
     }
 

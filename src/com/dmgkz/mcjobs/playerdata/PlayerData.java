@@ -140,7 +140,7 @@ public class PlayerData {
   
     public static boolean removeJob(UUID uuid, String job) {
         PlayerData checkPlayer = getPlayerData(uuid);
-        String jobName = UpperCaseFirst.toUpperFirst(McJobs.getPlugin().getLanguage().getJobNameInLang(job, uuid).toLowerCase());
+        String jobName = UpperCaseFirst.toUpperFirst(McJobs.getPlugin().getLanguage().getJobName(job, uuid).toLowerCase());
         if (checkPlayer._playerJobs.contains(job)) {
             checkPlayer._playerJobs.remove(job);
             if (!PlayerJobs.getJobsList().get(job).getData().compJob().isDefault())
@@ -154,7 +154,7 @@ public class PlayerData {
             if(Bukkit.getPlayer(uuid) != null)
                 Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("reset", uuid).addVariables(jobName, Bukkit.getPlayer(uuid).getName(), ""));
 
-            //savePlayerCache(player);
+            savePlayerCache(uuid);
             return true;
         }
         return false;
@@ -253,12 +253,12 @@ public class PlayerData {
                     if(!checkPlayer._jobrank.get(job).equalsIgnoreCase(rank)) {
                         checkPlayer._jobrank.put(job, rank);
                         if(Bukkit.getPlayer(uuid) != null)
-                            Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("rank", uuid).addVariables(McJobs.getPlugin().getLanguage().getJobNameInLang(job, uuid), Bukkit.getPlayer(uuid).getName(), McJobs.getPlugin().getLanguage().getJobRank(rank, uuid)));
+                            Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("rank", uuid).addVariables(McJobs.getPlugin().getLanguage().getJobName(job, uuid), Bukkit.getPlayer(uuid).getName(), McJobs.getPlugin().getLanguage().getJobRank(rank, uuid)));
                     }
                     if(Bukkit.getPlayer(uuid) != null)
-                        Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("level", uuid).addVariables(McJobs.getPlugin().getLanguage().getJobNameInLang(job, uuid), Bukkit.getPlayer(uuid).getName(), level.toString()));
+                        Bukkit.getPlayer(uuid).sendMessage(McJobs.getPlugin().getLanguage().getExperience("level", uuid).addVariables(McJobs.getPlugin().getLanguage().getJobName(job, uuid), Bukkit.getPlayer(uuid).getName(), level.toString()));
                 }
-                //savePlayerCache(player);
+                savePlayerCache(uuid);
             } else {
                 checkPlayer._jobexp.put(job, value);
             }
@@ -301,7 +301,7 @@ public class PlayerData {
                     play.sendMessage(modText.getJobCommand("rejoin", uuid).addVariables((String)pair.getKey(), play.getName(), ""));
                 }
                 it.remove();
-                //savePlayerCache(player);
+                savePlayerCache(uuid);
             } else
                 pair.setValue(i);
             
@@ -312,7 +312,7 @@ public class PlayerData {
         
         if(checkPlayer._lastSave > _lastsave_timer) {
             checkPlayer._lastSave = 0;
-            //savePlayerCache(player);
+            savePlayerCache(uuid);
         }
         return removePlayer;
     }

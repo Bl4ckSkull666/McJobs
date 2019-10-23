@@ -1,6 +1,5 @@
 package com.dmgkz.mcjobs.listeners;
 
-import java.util.Map;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -14,7 +13,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
@@ -40,7 +38,6 @@ public class BlockPlace implements Listener {
         Material block = event.getBlock().getType();
         Material replaced = event.getBlockReplacedState().getType();
         Location loc = event.getBlock().getLocation();
-        Integer timer = MCListeners.getTimeInMins();
                 
 
         if((block == ConfigMaterials.getMaterial("DIODE_BLOCK_OFF") || 
@@ -70,19 +67,12 @@ public class BlockPlace implements Listener {
                 return;
         }
         
+        if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(), false))
+            return;
+        
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("place");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){
-
-                if(McJobs.getPlugin().isLogBlock()){
-                    if(McJobs.getPlugin().getBlockLogging().checkLogBlock(play.getWorld(), play, event.getBlock().getLocation(), BlockChangeType.CREATED, timer))
-                        return;
-                }
-                else{
-                    if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, false))
-                        return;
-                }
-
                 CompCache comp = new CompCache(sJob, loc, play, event.getBlock().getType(), "place");
                 CompData.getCompCache().add(comp);
             }

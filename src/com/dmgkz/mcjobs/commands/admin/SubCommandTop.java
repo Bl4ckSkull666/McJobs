@@ -7,29 +7,29 @@ package com.dmgkz.mcjobs.commands.admin;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
-import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
  *
- * @author PapaHarni
+ * @author Bl4ckSkull666
  */
-public class SubCommandDefaults {
-    public static void command(Player p) {
+public class SubCommandTop {
+    //jadm region set/remove {jobname} - Need WorldEdit
+    public static void command(Player p, String[] a) {
         String str = "";
         PrettyText text = new PrettyText();
-        if(!p.hasPermission("mcjobs.admin.defaults")) {
+        if(!p.hasPermission("mcjobs.admin.region")) {
             str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);
             return;
-        }                   
+        }
         
-        McJobs.getPlugin().getConfig().options().copyDefaults(true);
-        McJobs.getPlugin().saveConfig();
-        
-        str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getAdminCommand("defaults", p.getUniqueId()).addVariables("", p.getName(), "");
-        text.formatPlayerText(str, p);
+        if(!Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("missing-worldedit", p.getUniqueId()).addVariables("", p.getName(), "");
+            text.formatPlayerText(str, p);
+            return;
+        }
     }
 }
