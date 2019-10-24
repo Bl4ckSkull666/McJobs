@@ -41,31 +41,29 @@ public class BlockLoggers {
             _logger.start();
     }
     
-    public Boolean checkHawkEye(Player play, Vector loc, Boolean isBreak){
-        return false;
-    }
-    
+    /*
+    + Return true has player build on the location the same material in time_interval
+    */
     public Boolean checkBuiltIn(Location loc, Player p, Material mat, Boolean isBreak) {
-        if(!this.getBuiltIn().containsKey(p.getWorld()))
-            this.getBuiltIn().put(p.getWorld(), true);
+        if(!getBuiltIn().containsKey(p.getWorld()))
+            getBuiltIn().put(p.getWorld(), true);
 
         if(isBreak) {
             if(this.hPlayerBreakBlock.containsKey(loc)) {
                 for(BPlayer bp: hPlayerBreakBlock.get(loc)) {
-                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && bp.isTimeLater(System.currentTimeMillis()))
+                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && !bp.isTimeLater(System.currentTimeMillis()))
                         return true;
                 }
             }
-            return false;
         } else {
             if(this.hPlayerPlaceBlock.containsKey(loc)) {
                 for(BPlayer bp: hPlayerPlaceBlock.get(loc)) {
-                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && bp.isTimeLater(System.currentTimeMillis()))
+                    if(bp.isUUID(p.getUniqueId()) && bp.isMaterial(mat) && !bp.isTimeLater(System.currentTimeMillis()))
                         return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     public void addPlayer(Location loc, Player p, Material mat, Boolean isBreak) {

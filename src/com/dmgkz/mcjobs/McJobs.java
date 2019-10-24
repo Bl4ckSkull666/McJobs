@@ -306,7 +306,7 @@ public class McJobs extends JavaPlugin {
             PlayerUtils.setVault(true);
         }
 
-        if(type.equalsIgnoreCase("money") || type.equalsIgnoreCase("both")){
+        if(type.equalsIgnoreCase("money") || type.equalsIgnoreCase("both")) {
             if(bridge.equalsIgnoreCase("vault") && pVault != null){
                 getLogger().log(Level.INFO, "Found {0} {1}", new Object[]{pVault.getName(), pVault.getDescription().getVersion()});
                 _economy = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class).getProvider();

@@ -122,31 +122,36 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                 list.add("info");
                 list.add("language");
                 for(String job: PlayerJobs.getJobsList().keySet())
-                    list.add(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId()));
+                    list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
             } else if(a.length == 2) {
                 if(a[0].equalsIgnoreCase("help")) {
                     for(int i = 1; i <= McJobs.getPlugin().getLanguage().getSpaces("numhelp", p.getUniqueId()); i++) {
                         list.add(String.valueOf(i));
                     }
                 } else if(a[0].equalsIgnoreCase("language")) {
-                    list.addAll(McJobs.getPlugin().getLanguage().getAvaLangs());
+                    for(String lang: McJobs.getPlugin().getLanguage().getAvaLangs())
+                        list.add(unColor(McJobs.getPlugin().getLanguage().getLanguageName(lang, p.getUniqueId())));
                 } else if(a[0].equalsIgnoreCase("join")) {
                     for(String job: PlayerJobs.getJobsList().keySet()) {
                         if(PlayerData.isJoinable(p.getUniqueId(), job))
-                            list.add(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId()));
+                            list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
                     }
                 } else if(a[0].equalsIgnoreCase("leave")) {
                     for(String job: PlayerJobs.getJobsList().keySet()) {
                         if(PlayerData.hasJob(p.getUniqueId(), job))
-                            list.add(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId()));
+                            list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
                     }
                 } else {
                     for(String job: PlayerJobs.getJobsList().keySet())
-                        list.add(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId()));
+                        list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
                 }
                 Collections.sort(list);
             }
         }
         return list;
+    }
+    
+    private String unColor(String str) {
+        return ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', str));
     }
 }

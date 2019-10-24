@@ -6,7 +6,6 @@
 package com.dmgkz.mcjobs.commands.jobs;
 
 import com.dmgkz.mcjobs.McJobs;
-import static com.dmgkz.mcjobs.commands.jobs.SpigotBuilds.getLanguageButton;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
@@ -28,7 +27,7 @@ public class WorldEditBuilds {
         int i = 0;
         for(Map.Entry<String, PlayerJobs> me: PlayerJobs.getJobsList().entrySet()) {
             String jobOriginal = me.getKey();
-            String jobMe = McJobs.getPlugin().getLanguage().getOriginalJobName(me.getKey(), p.getUniqueId());
+            String jobMe = McJobs.getPlugin().getLanguage().getJobName(me.getKey(), p.getUniqueId());
             
             if(PlayerData.hasJob(p.getUniqueId(), jobOriginal) && !me.getValue().getData().compJob().isDefault())
                 b.append(getInfoButton(jobMe, p, ChatColor.RED));
@@ -105,18 +104,20 @@ public class WorldEditBuilds {
         return b.build();
     }
     
-    public static TextComponent getJoinButton(String jobMe, Player p) {
+    public static void sendJoinButton(String jobMe, Player p) {
         Builder b = TextComponent.builder();
         b.append(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.join", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
         b.clickEvent(ClickEvent.runCommand("/mcjobs join " + jobMe));
-        return b.build();
+        BukkitPlayer bp = BukkitAdapter.adapt(p);
+        bp.print(b.build());
     }
     
-    public static TextComponent getLeaveButton(String jobMe, Player p) {
+    public static void sendLeaveButton(String jobMe, Player p) {
         Builder b = TextComponent.builder();
         b.append(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.leave", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
         b.clickEvent(ClickEvent.runCommand("/mcjobs leave " + jobMe));
-        return b.build();
+        BukkitPlayer bp = BukkitAdapter.adapt(p);
+        bp.print(b.build());
     }
     
     public static TextComponent getLanguageButton(String langMe, Player p) {

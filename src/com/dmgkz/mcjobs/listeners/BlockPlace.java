@@ -67,9 +67,6 @@ public class BlockPlace implements Listener {
                 return;
         }
         
-        if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(), false))
-            return;
-        
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("place");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)){

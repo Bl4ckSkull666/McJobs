@@ -1,6 +1,5 @@
 package com.dmgkz.mcjobs.listeners;
 
-import java.util.Map;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -14,7 +13,6 @@ import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.CompCache;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PitchJobs;
-import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.data.CompData;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.Utils;
@@ -25,9 +23,9 @@ import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 
-import de.diddiz.LogBlock.QueryParams.BlockChangeType;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.block.Sign;
 
 public class BlockBreak implements Listener{
@@ -38,7 +36,7 @@ public class BlockBreak implements Listener{
         if(event.isCancelled())
             return; 
         
-        if(event.getBlock().getType() == null)
+        if(event.getBlock().getType().equals(Material.AIR))
             return;
         
         PrettyText text = new PrettyText();
@@ -85,18 +83,12 @@ public class BlockBreak implements Listener{
             if(!PlayerData.getSeenPitch(play.getUniqueId()))
                 PitchJobs.pitchJobs(play);
         }
-        
-        if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(),true))
-             return;
-        
+
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("break");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
                 if(!Utils.hasNeededTool(play, sJob, "break"))
                     continue;
-                    
-                if(McJobs.getPlugin().getBlockLogging().checkBuiltIn(loc, play, event.getBlock().getType(),true))
-                    return;
                 
                 CompCache comp = new CompCache(sJob, loc, play, event.getBlock().getType(), "break");
                 CompData.getCompCache().add(comp);

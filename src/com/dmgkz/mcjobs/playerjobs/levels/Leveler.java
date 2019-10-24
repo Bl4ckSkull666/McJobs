@@ -13,21 +13,21 @@ public class Leveler {
         return hRanks;
     }
     
-    static public void setXPMod(double i){
+    static public void setXPMod(double i) {
         if(i > 0)
             xpmod = i;
         else
             xpmod = 1;
     }
     
-    static public void setPayMod(double i){
+    static public void setPayMod(double i) {
         if(i > 0)
             paymod = i;
         else
             paymod = 1;
     }
     
-    static public String getRank(int level){
+    static public String getRank(int level) {
         int i = level;
 
         while(i > 0){
@@ -39,7 +39,7 @@ public class Leveler {
         return "novice";
     }
     
-    static public double getXPtoLevel(int level){
+    static public double getXPtoLevel(int level) {
         double xpNeeded;
         
         xpNeeded = (2 * (level * level) + 10 * level - 3) * xpmod;
@@ -47,12 +47,12 @@ public class Leveler {
         return xpNeeded;
     }
     
-    static public String getXPtoLevelDisplay(int level){
+    static public String getXPtoLevelDisplay(int level) {
         DecimalFormat df = new DecimalFormat("#,###,###,##0");
         return df.format(getXPtoLevel(level));
     }
     
-    static public double getMultiplier(int level){
+    static public double getMultiplier(int level) {
         double multi = 1;
         
         if(level <= 20)

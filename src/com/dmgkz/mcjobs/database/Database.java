@@ -159,7 +159,10 @@ public final class Database {
             c.set("seenPitch", PlayerData.getSeenPitch(uuid));
             c.set("dateModified", System.currentTimeMillis());
             c.set("language", PlayerData.getLang(uuid));
-
+            
+            c.set("rejoinJobs", null);
+            c.set("jobs", null);
+            
             for(String job: PlayerData.getPlayerJobs(uuid)) {
                 if(PlayerData.getRejoinTime(uuid, job) > 0)
                     c.set("rejoinJobs." + job, PlayerData.getRejoinTime(uuid, job));
@@ -200,7 +203,7 @@ public final class Database {
             rset = statement.executeQuery();
 
             if(rset.next()) {
-                McJobs.getPlugin().getLogger().log(Level.WARNING, "Loading PlayerData of UUID {0}", uuid);
+                //McJobs.getPlugin().getLogger().log(Level.WARNING, "Loading PlayerData of UUID {0}", uuid);
                 lastSave = rset.getInt("lastSave")*1000;
                 earnedIncome = rset.getDouble("earnedIncome");
                 seenPitch = rset.getBoolean("seenPitch");

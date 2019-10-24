@@ -96,16 +96,16 @@ public class SpigotBuilds {
         return  tc;
     }
     
-    public static TextComponent getJoinButton(String jobMe, Player p) {
+    public static void sendJoinButton(String jobMe, Player p) {
         TextComponent tc = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.join", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
         tc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mcjobs join " + jobMe));
-        return  tc;
+        p.spigot().sendMessage(tc);
     }
     
-    public static TextComponent getLeaveButton(String jobMe, Player p) {
+    public static void sendLeaveButton(String jobMe, Player p) {
         TextComponent tc = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.leave", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
         tc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mcjobs leave " + jobMe));
-        return  tc;
+        p.spigot().sendMessage(tc);
     }
     
     public static TextComponent getLanguageButton(String langMe, Player p) {

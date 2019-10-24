@@ -3,7 +3,6 @@ package com.dmgkz.mcjobs.logging;
 
 import com.dmgkz.mcjobs.util.ConfigMaterials;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
@@ -16,7 +15,6 @@ public class BlockSpawners {
         int y_start = loc.getBlockY() - length;
         int z_start = loc.getBlockZ() - length;
         int operate = 2 * length + 1;
-                
 
         for(int x = x_start ; x < (x_start + operate) ; x++){
             for(int y = y_start ; y < (y_start + operate) ; y++){

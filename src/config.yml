@@ -38,7 +38,6 @@ advanced:
   multiWorld: false
   payment_type: money
   payment_mod: vault
-  log_mod: none
   pay_scale: 1
   xp_modifier: 10
   pay_spawners: false

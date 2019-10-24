@@ -190,19 +190,19 @@ public class JobsDisplay {
         }
         
         p.sendMessage("");
-        if(PlayerData.hasJob(p.getUniqueId(), _jobsdata.getName())) {
+        if(PlayerData.hasJob(p.getUniqueId(), _jobsdata.getName().toLowerCase())) {
             if(Bukkit.getVersion().toLowerCase().contains("spigot"))
-                SpigotBuilds.getLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
+                SpigotBuilds.sendLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
             else if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
-                WorldEditBuilds.getLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
+                WorldEditBuilds.sendLeaveButton(_jobsdata.getName(p.getUniqueId()), p);
             } else {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.leave", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), "")));
             }
-        } else if(PlayerData.isJoinable(p.getUniqueId(), _jobsdata.getName())) {
+        } else if(PlayerData.isJoinable(p.getUniqueId(), _jobsdata.getName().toLowerCase())) {
             if(Bukkit.getVersion().toLowerCase().contains("spigot"))
-                SpigotBuilds.getJoinButton(_jobsdata.getName(p.getUniqueId()), p);
+                SpigotBuilds.sendJoinButton(_jobsdata.getName(p.getUniqueId()), p);
             else if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
-                WorldEditBuilds.getJoinButton(_jobsdata.getName(p.getUniqueId()), p);
+                WorldEditBuilds.sendJoinButton(_jobsdata.getName(p.getUniqueId()), p);
             } else {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.join", p.getUniqueId()).addVariables(_jobsdata.getName(p.getUniqueId()), p.getName(), "")));
             }

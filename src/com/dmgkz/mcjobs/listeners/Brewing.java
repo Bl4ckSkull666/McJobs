@@ -55,12 +55,11 @@ public class Brewing implements Listener{
         if(!play.isOnline())
             return;
         
-        play.sendMessage("You Potion is ready in Brewstand.");
         if(MCListeners.isMultiWorld()){
             if(!play.hasPermission("mcjobs.world.all") && !play.hasPermission("mcjobs.world." + play.getWorld().getName()))
                 return;
         }
-                
+        
         if(play.getGameMode() == GameMode.CREATIVE){
             if(!play.hasPermission("mcjobs.paycreative"))
                 return;
@@ -77,19 +76,18 @@ public class Brewing implements Listener{
             item = tmpItem;
             amount++;
         }
-                
+        
         if(item == null)
             return;
-                
+        
         PotionTypeAdv potion = McJobs.getPlugin().getHolder().getPotions().getPotion(item);
         if(potion == null)
             return;
-                    
+        
         potion = potion.getResultPotion(ingred.getType());
         if(potion == null)
             return;
         
-        play.sendMessage("Your Brewstand has " + amount + " of Potion ready.");
         ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("potion");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(play.getUniqueId(), sJob)) {
@@ -114,9 +112,8 @@ public class Brewing implements Listener{
         if(e.getInventory() instanceof BrewerInventory) {
             BrewerInventory binv = (BrewerInventory)e.getInventory();
             BrewingStand bStand = binv.getHolder();
-            
-            play.sendMessage("Oh you interact on Brewstand.");
-            Bukkit.getScheduler().runTaskLater(McJobs.getPlugin(), new checkBrewingStarted(bStand.getLocation(), play), 20);
+
+            Bukkit.getScheduler().runTaskLater(McJobs.getPlugin(), new checkBrewingStarted(bStand.getLocation(), play), 10);
         }
     }
     
@@ -145,10 +142,7 @@ public class Brewing implements Listener{
                 if(bStand.getFuelLevel() == 0 || bStand.getBrewingTime() <= 0)
                     return;
                 
-                if(!hBrewStands.containsKey(_bStand)) {
-                    _p.sendMessage("Register your Brewstand to your's for the next brewing.");
-                    hBrewStands.put(_bStand, _p);
-                }
+                hBrewStands.put(_bStand, _p);
             }
         }
     }

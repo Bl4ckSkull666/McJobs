@@ -26,10 +26,9 @@ public class McJobsComp implements Runnable {
     public void run() {
         for(CompCache cc: _aComp) {
             if(cc.getAction().equalsIgnoreCase("break") || cc.getAction().equalsIgnoreCase("place")) {
-                if(PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compBlock(cc.getMaterial(), cc.getPlayer(), cc.getAction(), _aPayer)) {
-                    if(McJobs.getPlugin().getBlockLogging().getBuiltIn().containsKey(cc.getPlayer().getWorld())) {
-                        if(!McJobs.getPlugin().getBlockLogging().getBuiltIn().get(cc.getPlayer().getWorld()))
-                            McJobs.getPlugin().getBlockLogging().addPlayer(cc.getLocation(), cc.getPlayer(), cc.getMaterial(), cc.getAction().equalsIgnoreCase("break"));
+                if(!McJobs.getPlugin().getBlockLogging().checkBuiltIn(cc.getLocation(), cc.getPlayer(), cc.getMaterial(), cc.getAction().equalsIgnoreCase("break"))) {
+                    if(PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compBlock(cc.getMaterial(), cc.getPlayer(), cc.getAction(), _aPayer)) {
+                        McJobs.getPlugin().getBlockLogging().addPlayer(cc.getLocation(), cc.getPlayer(), cc.getMaterial(), cc.getAction().equalsIgnoreCase("break"));
                     }
                 }
             } else if(cc.getAction().equalsIgnoreCase("defeat"))
