@@ -71,7 +71,7 @@ public class OnPlayerInteractEntity implements Listener {
             
             String job = s.getLine(2);
             if(PlayerJobs.getJobsList().containsKey(job)) {
-                PlayerJobs.getJobsList().get(job).getData().sendSignMessage(p);
+                PlayerJobs.getJobsList().get(job).getData().sendEntityMessage(p);
                 return true;
             }
         }

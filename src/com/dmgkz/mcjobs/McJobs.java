@@ -32,7 +32,7 @@ import com.dmgkz.mcjobs.scheduler.McJobsPreComp;
 import com.dmgkz.mcjobs.scheduler.McJobsRemovePerm;
 import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.dmgkz.mcjobs.util.Holder;
-import com.dmgkz.mcjobs.util.LanguageCheck;
+import com.dmgkz.mcjobs.localization.LanguageCheck;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
@@ -81,7 +81,7 @@ public class McJobs extends JavaPlugin {
             _wgp = (WorldGuardPlugin)getServer().getPluginManager().getPlugin("WorldGuard");
             getLogger().info("WorldGuard found.  Enabling WorldGuard protections.");
         }
-
+        
         try {        
             loadEconomyBridges();
         } catch(Exception e) {
@@ -100,7 +100,7 @@ public class McJobs extends JavaPlugin {
         }
 
         if(!_bQuit) {
-            ConfigMaterials.load(this.getConfig());
+            ConfigMaterials.load(getConfig());
             PlayerData.loadPlayerPerms();
             try {
                 Metrics metric = new Metrics(this);
@@ -108,22 +108,22 @@ public class McJobs extends JavaPlugin {
             } catch(Exception ex) {
                 getLogger().fine("Error in Metrics. Shit happend.");
             }
-            getServer().getScheduler().runTask(this, new LanguageCheck());
+            
+            if(getConfig().getBoolean("check-language", false))
+                getServer().getScheduler().runTaskAsynchronously(this, new LanguageCheck(null));
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsRemovePerm(), 1200L, 1200L);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsPreComp(), 200L, 200L);
             getLogger().info("MC Jobs has been enabled!");
         }
     }
-    
 
     @Override
     public void onDisable() {
+        getLogger().info("Canceling Tasks...");
         getServer().getScheduler().cancelTasks(this);
-        
+        getLogger().info("Save open PlayerData...");
         PlayerData.savePlayerPerms();
         PlayerData.saveAllPlayerCaches();
-        
-        getLogger().info("Canceling Tasks...");
         getLogger().info("MC Jobs has been disabled!");
     }
 
@@ -210,12 +210,12 @@ public class McJobs extends JavaPlugin {
         //Load Max Jobs per Group
         if(config.isConfigurationSection("max_jobs")) {
             for(String group: config.getConfigurationSection("max_jobs").getKeys(false)) {
-                PlayerUtils.getMaxDefaults().put(group.toLowerCase(), config.getInt("max_jobs." + group));
+                PlayerUtils.setAllowedJobs(group.toLowerCase(), config.getInt("max_jobs." + group));
             }
         }
         if(!PlayerUtils.getMaxDefaults().containsKey("default")){
             getLogger().info("max_jobs corrupted.  No default value found.  Setting default to 3!");
-            PlayerUtils.getMaxDefaults().put("default", 3);
+            PlayerUtils.setAllowedJobs("default", 3);
         }
         
         for(Map.Entry<String, Integer> me: PlayerUtils.getMaxDefaults().entrySet()) {

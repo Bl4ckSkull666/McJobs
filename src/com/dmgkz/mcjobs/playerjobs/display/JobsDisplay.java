@@ -1,8 +1,8 @@
 package com.dmgkz.mcjobs.playerjobs.display;
 
 import com.dmgkz.mcjobs.McJobs;
-import com.dmgkz.mcjobs.commands.jobs.SpigotBuilds;
-import com.dmgkz.mcjobs.commands.jobs.WorldEditBuilds;
+import com.dmgkz.mcjobs.localization.SpigotBuilds;
+import com.dmgkz.mcjobs.localization.WorldEditBuilds;
 import com.dmgkz.mcjobs.localization.GetLanguage;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.data.JobsData;

@@ -39,7 +39,7 @@ public class OnPlayerInteract implements Listener {
                         SubCommandInfo.command(e.getPlayer(), js.getJob());
                         break;
                     case NPC:
-                        PlayerJobs.getJobsList().get(js.getJob()).getData().sendSignMessage(e.getPlayer());
+                        PlayerJobs.getJobsList().get(js.getJob()).getData().sendEntityMessage(e.getPlayer());
                         break;
                     case REGION:
                         PlayerJobs.getJobsList().get(js.getJob()).getData().sendRegionMessage(e.getPlayer());

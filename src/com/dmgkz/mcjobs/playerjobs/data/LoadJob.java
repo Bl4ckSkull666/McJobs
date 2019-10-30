@@ -11,13 +11,11 @@ import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.StringToNumber;
 import com.dmgkz.mcjobs.util.RegionPositions;
-import com.dmgkz.mcjobs.util.SpigotMessage;
 import com.dmgkz.mcjobs.util.Utils;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
-import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 
 public class LoadJob {
@@ -107,25 +105,36 @@ public class LoadJob {
             }
             
             if(key.equalsIgnoreCase("job-info-zone")) {
-                if(section.isConfigurationSection(key + ".region"))
-                    _jobsdata._jobInfoZone = RegionPositions.getRP(section.getConfigurationSection(key + ".region"));
-                else
-                    _jobsdata._jobInfoZone = null;
- 
-                _jobsdata._jobInfoZoneMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("\\|")));
-                if(Bukkit.getServer().getVersion().toLowerCase().contains("spigot"))
-                    _jobsdata._jobInfoZoneSpigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
-                else
-                    _jobsdata._jobInfoZoneSpigotMessage = null;
+                for(String key3: section.getConfigurationSection(key).getKeys(false)) {
+                    if(key3.equalsIgnoreCase("region") && section.isConfigurationSection(key + ".region"))
+                        _jobsdata._jobInfoZone = RegionPositions.getRP(section.getConfigurationSection(key + ".region"));
+                    else if(key3.equalsIgnoreCase("component"))
+                        _jobsdata._jobInfoZoneComponents.put("default", section.getConfigurationSection(key + "." + key3));
+                    else if(key3.equalsIgnoreCase("message")) {
+                        for(String key4: section.getConfigurationSection(key + "." + key3).getKeys(false)) {
+                            if(McJobs.getPlugin().getLanguage().getAvaLangs().contains(key4) || key4.equalsIgnoreCase("default")) {
+                                _jobsdata._jobInfoZoneMessage.put(key4, section.getString(key + "." + key3 + "." + key4));
+                            }
+                        }
+                    } else if(McJobs.getPlugin().getLanguage().getAvaLangs().contains(key3))
+                        _jobsdata._jobInfoZoneComponents.put(key3, section.getConfigurationSection(key + "." + key3 + ".component"));
+                }
                 continue;
             } 
             
             if(key.equalsIgnoreCase("entity-sign")) {
-                _jobsdata._signStringMessage.addAll(Arrays.asList(section.getString(key + ".message", "").split("\\|")));
-                if(Bukkit.getServer().getVersion().toLowerCase().contains("spigot"))
-                    _jobsdata._signSpigotMessage = new SpigotMessage(section.getConfigurationSection(key + ".spigot-message"));
-                else
-                    _jobsdata._signSpigotMessage = null;
+                for(String key3: section.getConfigurationSection(key).getKeys(false)) {
+                    if(key3.equalsIgnoreCase("component"))
+                        _jobsdata._entityComponents.put("default", section.getConfigurationSection(key + "." + key3));
+                    else if(key3.equalsIgnoreCase("message")) {
+                        for(String key4: section.getConfigurationSection(key + "." + key3).getKeys(false)) {
+                            if(McJobs.getPlugin().getLanguage().getAvaLangs().contains(key4) || key4.equalsIgnoreCase("default")) {
+                                _jobsdata._entityMessage.put(key4, section.getString(key + "." + key3 + "." + key4));
+                            }
+                        }
+                    } else if(McJobs.getPlugin().getLanguage().getAvaLangs().contains(key3))
+                        _jobsdata._entityComponents.put(key3, section.getConfigurationSection(key + "." + key3 + ".component"));
+                }
                 continue;
             }
             

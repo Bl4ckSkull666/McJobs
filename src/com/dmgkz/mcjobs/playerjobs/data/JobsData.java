@@ -1,6 +1,7 @@
 package com.dmgkz.mcjobs.playerjobs.data;
 
 import com.dmgkz.mcjobs.McJobs;
+import com.dmgkz.mcjobs.playerdata.PlayerData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,10 +13,13 @@ import com.dmgkz.mcjobs.playerjobs.display.JobsDisplay;
 import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.RegionPositions;
-import com.dmgkz.mcjobs.util.SpigotMessage;
+import com.dmgkz.mcjobs.util.Utils;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 
@@ -30,7 +34,7 @@ public class JobsData{
     private final HashMap<String, HashMap<Integer, List<EnchantTypeAdv>>> _hEnchants = new HashMap<>();
     private final HashMap<String, HashMap<Integer, List<DyeColor>>> _hColors = new HashMap<>();
     private final HashMap<String, HashMap<Integer, Integer>> _hPvPs = new HashMap<>();
-    public long _hPvPInterval = Long.MAX_VALUE;
+    private long _hPvPInterval = Long.MAX_VALUE;
     private final HashMap<String, Boolean> _bTierPays = new HashMap<>();
     
     //Type like Break, Place, Craft... , ArrayList<Tool like pickaxt, sword....>
@@ -46,11 +50,11 @@ public class JobsData{
     protected double _dBasepay;
     protected double _exp_modifier;
     
-    protected RegionPositions _jobInfoZone;
-    protected List<String> _jobInfoZoneMessage = new ArrayList<>();
-    protected SpigotMessage _jobInfoZoneSpigotMessage;
-    protected List<String> _signStringMessage = new ArrayList<>();
-    protected SpigotMessage _signSpigotMessage;
+    protected RegionPositions _jobInfoZone = null;
+    protected HashMap<String, String> _jobInfoZoneMessage = new HashMap<>();
+    protected HashMap<String, ConfigurationSection> _jobInfoZoneComponents = new HashMap<>();
+    protected HashMap<String, String> _entityMessage = new HashMap<>();
+    protected HashMap<String, ConfigurationSection> _entityComponents = new HashMap<>();
 
     public JobsData() {
         _compare = new CompData(this);
@@ -190,39 +194,83 @@ public class JobsData{
         }
     }
     
-    public SpigotMessage getRegionSpigotMessage() {
-        return _jobInfoZoneSpigotMessage;
+    public void setRegionPosition(Location loc) {
+        if(_jobInfoZone == null)
+            _jobInfoZone = new RegionPositions();
+        
+        _jobInfoZone.setPosition(loc);
     }
     
     public void sendRegionMessage(Player p) {
-        try {
-            if(_jobInfoZoneSpigotMessage != null)
-                _jobInfoZoneSpigotMessage.sendMessage(p);
-            else {
-                for(String msg: _jobInfoZoneMessage)
-                    p.sendMessage(msg);
-            }
-        } catch(Exception ex) {
-            for(String msg: _jobInfoZoneMessage)
-                p.sendMessage(msg);
+        String lang = PlayerData.getLang(p.getUniqueId());
+        HashMap<String, String> replaces = new HashMap<>();
+        replaces.put("%j", getName(p.getUniqueId()));
+        replaces.put("%p", p.getName());
+        replaces.put("%g", "");
+        
+        if(_jobInfoZoneComponents.containsKey(lang)) {
+            if(Utils.sendMessage(p, _jobInfoZoneComponents.get(lang), replaces))
+                return;
+        } else if(_jobInfoZoneComponents.containsKey("default")) {
+            if(Utils.sendMessage(p, _jobInfoZoneComponents.get("default"), replaces))
+                return;
         }
+        
+        if(!_jobInfoZoneMessage.containsKey(lang))
+            lang = "default";
+        
+        String[] tmpMsg = new String[0];
+        if(_jobInfoZoneMessage.containsKey(lang))
+            tmpMsg = _jobInfoZoneMessage.get(lang).split("|");
+
+        for(String msg: tmpMsg)
+            p.sendMessage(Utils.ReplaceAll(msg, replaces));
+        
     }
     
-    public SpigotMessage getSignSpigotMessage() {
-        return _signSpigotMessage;
+    public void sendEntityMessage(Player p) {
+        String lang = PlayerData.getLang(p.getUniqueId());
+        HashMap<String, String> replaces = new HashMap<>();
+        replaces.put("%j", getName(p.getUniqueId()));
+        replaces.put("%p", p.getName());
+        replaces.put("%g", "");
+        
+        if(_entityComponents.containsKey(lang)) {
+            if(Utils.sendMessage(p, _entityComponents.get(lang), replaces))
+                return;
+        } else if(_entityComponents.containsKey("default")) {
+            if(Utils.sendMessage(p, _entityComponents.get("default"), replaces))
+                return;
+        }
+        
+        if(!_entityMessage.containsKey(lang))
+            lang = "default";
+        
+        String[] tmpMsg = new String[0];
+        if(_entityMessage.containsKey(lang))
+            tmpMsg = _entityMessage.get(lang).split("|");
+
+        for(String msg: tmpMsg)
+            p.sendMessage(Utils.ReplaceAll(msg, replaces));
     }
     
-    public void sendSignMessage(Player p) {
-        try {
-            if(_signSpigotMessage != null)
-                _signSpigotMessage.sendMessage(p);
-            else {
-                for(String msg: _signStringMessage)
-                    p.sendMessage(msg);
-            }
-        } catch(Exception ex) {
-            for(String msg: _jobInfoZoneMessage)
-                p.sendMessage(msg);
-        }
+    public void setRegionMessage(String lang, ConfigurationSection cs) {
+        if(_jobInfoZoneComponents.containsKey(lang))
+            _jobInfoZoneComponents.remove(lang);
+        _jobInfoZoneComponents.put(lang, cs);
+    }
+    
+    public void removeRegionMessage(String lang) {
+        _jobInfoZoneComponents.remove(lang);
+    }
+    
+    public void setEntityMessage(String lang, ConfigurationSection cs) {
+        if(_entityComponents.containsKey(lang))
+            _entityComponents.remove(lang);
+        _entityComponents.put(lang, cs);
+    }
+    
+    public void removeEntityMessage(String lang) {
+        _entityComponents.remove(lang);
     }
 }

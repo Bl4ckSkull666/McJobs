@@ -141,7 +141,7 @@ public final class Database {
                 }
             }
         }
-        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, user.getInt("lastSave", 0), user.getDouble("earnedIncome", 0.0D), user.getBoolean("seenPitch", false), user.getLong("dateModified", System.currentTimeMillis()), user.getString("language", McJobs.getPlugin().getLanguage().getDefaultLang()));
+        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, user.getInt("lastSave", 0), user.getDouble("earnedIncome", 0.0D), user.getBoolean("seenPitch", false), user.getLong("dateModified", System.currentTimeMillis()), user.getString("language", McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""))));
     }
 
     private static void savePlayerDataToYAML(UUID uuid) {
@@ -192,7 +192,7 @@ public final class Database {
         double earnedIncome = 0.0D;
         boolean seenPitch = false;
         long dateModified = 0;
-        String lang = McJobs.getPlugin().getConfig().getString("defaultLanguage", "en");
+        String lang = McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""));
         
         try {
             con = getConnect();

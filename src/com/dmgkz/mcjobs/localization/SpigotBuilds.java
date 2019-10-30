@@ -3,15 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dmgkz.mcjobs.commands.jobs;
+package com.dmgkz.mcjobs.localization;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
+import com.dmgkz.mcjobs.util.Utils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 /**
@@ -80,6 +88,68 @@ public class SpigotBuilds {
         p.spigot().sendMessage(tcmain);
     }
     
+    public static void sendMessage(Player p, ConfigurationSection section, HashMap<String, String> replaces) {
+        HashMap<Integer, TextComponent> tcMain = new HashMap<>();
+        int iLine = 1;
+        TextComponent tcLine = new TextComponent("");
+        for(String k: section.getKeys(false)) {
+            if(tcLine == null)
+                tcLine = new TextComponent("");
+            
+            ConfigurationSection cs = section.getConfigurationSection(k);
+            if(!cs.isString("message"))
+                continue;
+            
+            TextComponent tcNext = new TextComponent(Utils.colorTrans(Replace(cs.getString("message"), replaces)));
+            if(cs.isString("hover-msg")) {
+                HoverEvent hoverev = new HoverEvent(
+                    getHoverAction(cs.getString("hover-type", "text")), 
+                    new ComponentBuilder(Utils.colorTrans(Replace(cs.getString("hover-msg"), replaces))).create()
+                );
+                tcNext.setHoverEvent(hoverev);
+            }
+             
+            if(cs.isString("click-msg")) {
+                ClickEvent clickev = new ClickEvent(
+                    getClickAction(cs.getString("click-type", "open_url")), 
+                    Replace(cs.getString("click-msg"), replaces)
+                );
+                tcNext.setClickEvent(clickev);
+            }
+            
+            tcLine.addExtra(tcNext);
+            
+            // End of Message?!
+            if(cs.getBoolean("break", false)) {
+                tcMain.put(iLine, tcLine);
+                tcLine = null;
+                iLine++;
+            }
+        }
+        
+        if(tcLine != null) {
+            tcMain.put(iLine, tcLine);
+            iLine++;
+        }
+        
+        List<Integer> it = new ArrayList<>();
+        it.addAll(tcMain.keySet());
+        Collections.sort(it);
+        
+        for(Integer i: it)
+            p.spigot().sendMessage(tcMain.get(i));
+    }
+    
+    private static String Replace(String str, HashMap<String, String> rep) {
+        if(rep.isEmpty())
+            return str;
+        
+        for(Map.Entry<String, String> me: rep.entrySet()) {
+            str = str.replace(me.getKey(), me.getValue());
+        }
+        return str;
+    }
+    
     public static int getPlayerHasJobs(Player p) {
         int iJob = 0;
         for(Map.Entry<String, PlayerJobs> me: PlayerJobs.getJobsList().entrySet()) {
@@ -112,5 +182,17 @@ public class SpigotBuilds {
         TextComponent tc = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.language", p.getUniqueId()).addVariables("", p.getName(), langMe)));
         tc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mcjobs language " + langMe));
         return  tc;
+    }
+    
+    private static HoverEvent.Action getHoverAction(String str) {
+        if(HoverEvent.Action.valueOf("SHOW_" + str.toUpperCase()) != null)
+            return HoverEvent.Action.valueOf("SHOW_" + str.toUpperCase());
+        return HoverEvent.Action.SHOW_TEXT;
+    }
+    
+    private static ClickEvent.Action getClickAction(String str) {
+        if(ClickEvent.Action.valueOf(str.toUpperCase()) != null)
+            return ClickEvent.Action.valueOf(str.toUpperCase());
+        return ClickEvent.Action.RUN_COMMAND;
     }
 }

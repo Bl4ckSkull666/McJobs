@@ -5,6 +5,8 @@
  */
 package com.dmgkz.mcjobs.commands.jobs;
 
+import com.dmgkz.mcjobs.localization.SpigotBuilds;
+import com.dmgkz.mcjobs.localization.WorldEditBuilds;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import java.text.DecimalFormat;

@@ -6,10 +6,17 @@
 package com.dmgkz.mcjobs.util;
 
 import com.dmgkz.mcjobs.McJobs;
+import com.dmgkz.mcjobs.localization.SpigotBuilds;
+import com.dmgkz.mcjobs.localization.WorldEditBuilds;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -66,5 +73,27 @@ public class Utils {
             return false;
         } else
             return true;
+    }
+    
+    public static String colorTrans(String msg) {
+        return ChatColor.translateAlternateColorCodes('&', msg);
+    }
+    
+    public static boolean sendMessage(Player p, ConfigurationSection cs, HashMap<String, String> replaces) {
+        if(Bukkit.getVersion().toLowerCase().contains("spigot")) {
+            SpigotBuilds.sendMessage(p, cs, replaces);
+            return true;
+        } else if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+            WorldEditBuilds.sendMessage(p, cs, replaces);
+            return true;
+        }
+        return false;
+    }
+    
+    public static String ReplaceAll(String msg, HashMap<String, String> replaces) {
+        for(Map.Entry<String, String> me: replaces.entrySet())
+            msg.replaceAll(me.getKey(), me.getValue());
+        
+        return msg;
     }
 }

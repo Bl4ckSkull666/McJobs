@@ -5,7 +5,6 @@ import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.prettytext.AddTextVariables;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.ResourceList;
-import com.dmgkz.mcjobs.util.SpigotMessage;
 import de.bl4ckskull666.mu1ti1ingu41.Language;
 import de.bl4ckskull666.mu1ti1ingu41.Mu1ti1ingu41;
 import java.io.File;
@@ -14,7 +13,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
@@ -26,8 +24,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public final class GetLanguage {
     private boolean _useMultilingual = false;
     private final HashMap<String, FileConfiguration> _languages = new HashMap<>();
-    //HashMap<Language String, HashMap<YAML Key String, SpigotMessage>
-    private final HashMap<String, HashMap<String, SpigotMessage>> _spMessages = new HashMap<>();
     
     private List<String> _avaLangs = new ArrayList<>();
     private String _defaultLang = "";
@@ -64,7 +60,9 @@ public final class GetLanguage {
         _defaultLang = lang;
     }
     
-    public String getDefaultLang() {
+    public String getDefaultLang(String lang) {
+        if(_languages.containsKey(lang))
+            return lang;
         return _defaultLang;
     }
     
@@ -140,6 +138,14 @@ public final class GetLanguage {
   
     public AddTextVariables getAdminList(String subSection, UUID uuid) {
         return getATVSection("adminlist", subSection, uuid);
+    }
+    
+    public AddTextVariables getAdminRegion(String subSection, UUID uuid) {
+        return getATVSection("adminregion", subSection, uuid);
+    }
+    
+    public AddTextVariables getAdminEntity(String subSection, UUID uuid) {
+        return getATVSection("adminentity", subSection, uuid);
     }
   
     public AddTextVariables getAdminLogin(String subSection, UUID uuid) {
@@ -278,54 +284,6 @@ public final class GetLanguage {
         }
         
         //loadSpigotMessages();
-    }
-    
-    private void loadSpigotMessages() {
-        if(!McJobs.getPlugin().getDataFolder().exists())
-            McJobs.getPlugin().getDataFolder().mkdir();
-        
-        File lFold = new File(McJobs.getPlugin().getDataFolder(), "spigot_lang");
-        if(!lFold.exists())
-            lFold.mkdir();
-        
-        lFold = new File(lFold, "english");
-        if(!lFold.exists())
-            lFold.mkdir();
-        
-        if(McJobs.hasYAMLFiles(lFold.listFiles()) == 0) {
-            loadDefaultFiles("spigotlang", lFold);
-        }
-        
-        int t = 0;
-        
-        for(File lang: lFold.listFiles()) {
-            if(!lang.isDirectory())
-                continue;
-            
-            for(File f: lang.listFiles()) {
-                if(!f.getName().endsWith(".yml"))
-                    continue;
-                
-                String name = f.getName();
-                int pos = name.lastIndexOf(".");
-                if (pos > 0)
-                    name = name.substring(0, pos);
-
-                FileConfiguration fc = YamlConfiguration.loadConfiguration(lang);
-                SpigotMessage sp = new SpigotMessage(fc);
-                
-                if(!sp.getMessage().isEmpty())
-                    continue;
-                
-                if(_spMessages.get(lang.getName()).containsKey(name))
-                    McJobs.getPlugin().getLogger().warning("Duplicate of key " + name + " in " + lang.getName() + " found!");
-                else
-                    _spMessages.get(lang.getName()).put(name, sp);
-                
-                t++;
-            }
-        }
-        McJobs.getPlugin().getLogger().log(Level.INFO, "Loaded {0} Spigot messages total.", t);
     }
     
     private void loadDefaultFiles(String resPath, File safeDir) {

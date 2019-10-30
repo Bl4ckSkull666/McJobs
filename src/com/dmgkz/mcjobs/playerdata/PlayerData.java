@@ -64,7 +64,7 @@ public class PlayerData {
         }
         _lastSave = lastSave;
         _earnedIncome = earnedIncome;
-        _allowedJobs = PlayerUtils.getAllowed();
+        _allowedJobs = PlayerUtils.getAllowed(uuid);
         _seenPitch = seenPitch;
         _dateModified = new Date(dateModified);
         _playerLang = lang;
@@ -99,7 +99,7 @@ public class PlayerData {
         if(McJobs.getPlugin().getLanguage().isLang(l))
             cP._playerLang = l;
         else
-            cP._playerLang = McJobs.getPlugin().getLanguage().getDefaultLang();
+            cP._playerLang = McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""));
     }
   
     public static boolean hasJob(UUID uuid, String job) {

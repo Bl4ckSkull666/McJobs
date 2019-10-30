@@ -1,6 +1,7 @@
 max_pay: -1
 percent_cost: 95
 show_pay: true
+check-language: true
 
 timers:
   time_interval: 60

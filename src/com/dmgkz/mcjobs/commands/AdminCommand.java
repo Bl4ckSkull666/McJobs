@@ -10,7 +10,11 @@ import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.commands.admin.SubCommandExp;
 import com.dmgkz.mcjobs.commands.admin.SubCommandJob;
 import com.dmgkz.mcjobs.commands.admin.SubCommandDefaults;
+import com.dmgkz.mcjobs.commands.admin.SubCommandEntityMessage;
+import com.dmgkz.mcjobs.commands.admin.SubCommandLanguage;
 import com.dmgkz.mcjobs.commands.admin.SubCommandLevel;
+import com.dmgkz.mcjobs.commands.admin.SubCommandRegion;
+import com.dmgkz.mcjobs.commands.admin.SubCommandRegionMessage;
 import com.dmgkz.mcjobs.commands.admin.SubCommandReload;
 import com.dmgkz.mcjobs.commands.admin.SubCommandSign;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
@@ -29,7 +33,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
             s.sendMessage("Critical failure!");
             return true;
         }
-        Player playsend = null;
 
         if(!(s instanceof Player)) {
             s.sendMessage("This command can be run only ingame.");
@@ -37,9 +40,9 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
         }
         
         Player p = (Player)s;
-        if(!playsend.hasPermission("mcjobs.admin")){
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", playsend.getUniqueId()).addVariables("", playsend.getName(), l);
-            text.formatPlayerText(str, playsend);
+        if(!p.hasPermission("mcjobs.admin")){
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), l);
+            text.formatPlayerText(str, p);
             return true;
         }
         
@@ -89,14 +92,16 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                 SubCommandSign.command(p, a);
                 return true;
             case "rmsg":
-                p.sendMessage("Comming soon");
-                //SubCommandSign.command(p, a);
+                SubCommandRegionMessage.command(p, a);
                 return true;
             case "emsg":
-                p.sendMessage("Comming soon");
-                //SubCommandSign.command(p, a);
+                SubCommandEntityMessage.command(p, a);
+                return true;
             case "region":
-                p.sendMessage("Comming soon");
+                SubCommandRegion.command(p, a);
+                return true;
+            case "language":
+                SubCommandLanguage.command(p);
                 return true;
         }
         return false;
@@ -127,6 +132,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                 list.add("rmsg");
                 list.add("emsg");
                 list.add("region");
+                list.add("language");
             } else if(a[0].equalsIgnoreCase("sign")) {
                 if(a.length == 2) {
                     for(String job: PlayerJobs.getJobsList().keySet())
@@ -156,15 +162,12 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                     list.add("click");
                     list.add("save");
                     list.add("remove");
+                    list.add("set");
+                    list.add("delete");
                 } else if(a.length == 3) {
-                    if(a[1].equalsIgnoreCase("begin") || a[1].equalsIgnoreCase("remove")) {
+                    if(a[1].equalsIgnoreCase("begin") || a[1].equalsIgnoreCase("remove") || a[1].equalsIgnoreCase("set") || a[1].equalsIgnoreCase("delete")) {
                         for(String job: PlayerJobs.getJobsList().keySet())
                             list.add(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId()));
-                    } else if(a[1].equalsIgnoreCase("hover")) {
-                        list.add("achievement");
-                        list.add("entity");
-                        list.add("item");
-                        list.add("text");
                     } else if(a[1].equalsIgnoreCase("click")) {
                         list.add("change_page");
                         list.add("open_file");
@@ -172,7 +175,15 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                         list.add("run_command");
                         list.add("suggest_command");
                     }
+                } else if(a.length == 4) {
+                    if(a[1].equalsIgnoreCase("begin") || a[1].equalsIgnoreCase("remove") || a[1].equalsIgnoreCase("set") || a[1].equalsIgnoreCase("delete")) {
+                        for(String lang: McJobs.getPlugin().getLanguage().getAvaLangs())
+                            list.add(McJobs.getPlugin().getLanguage().getLanguageName(lang, p.getUniqueId()));
+                    }
                 }
+                
+                list.add("[space]");
+                list.add("[empty]");
             } else if(a[0].equalsIgnoreCase("add") || a[0].equalsIgnoreCase("remove")) {
                 if(a.length == 2) {
                     for(String job: PlayerJobs.getJobsList().keySet())

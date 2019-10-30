@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dmgkz.mcjobs.util;
+package com.dmgkz.mcjobs.localization;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
@@ -11,10 +11,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -22,6 +25,11 @@ import org.bukkit.entity.EntityType;
  */
 public class LanguageCheck implements Runnable {
     private FileConfiguration _tmp = null;
+    private Player _p;
+    
+    public LanguageCheck(Player p) {
+        _p = p;
+    }
     
     @Override
     public void run() {
@@ -78,7 +86,27 @@ public class LanguageCheck implements Runnable {
         }
         
         if(changes) {
+            Bukkit.getScheduler().runTask(McJobs.getPlugin(), new reloadLanguage(_p));
+            if(_p != null)
+                _p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("language.reload", _p.getUniqueId()).addVariables("", _p.getName(), ""));
+        } else {
+            if(_p != null)
+                _p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("language.finish", _p.getUniqueId()).addVariables("", _p.getName(), ""));
+        }
+    }
+    
+    private class reloadLanguage implements Runnable {
+        private final Player _p;
+    
+        public reloadLanguage(Player p) {
+            _p = p;
+        }
+        
+        @Override
+        public void run() {
             McJobs.getPlugin().reloadLanguages();
+            if(_p != null)
+                _p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("language.reloaded", _p.getUniqueId()).addVariables("", _p.getName(), ""));
         }
     }
     
@@ -207,9 +235,6 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobscommand.language-changed", "&6Changed language successfull.");
         tmp.put("jobscommand.language-footer", "&eChange language with use /mcjobs language (language)");
         
-        
-        
-        
         tmp.put("jobsnotify.and", "and");
         tmp.put("jobsnotify.hours", "hours");
         tmp.put("jobsnotify.hour", "hour");
@@ -223,6 +248,7 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobsnotify.month", "month");
         tmp.put("jobsnotify.message", "&aYour &6MC Jobs&a have earned you &6%j&a in the past &c%g&a.");
         tmp.put("jobsnotify.overpay", "&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile.");
+        
         tmp.put("jobsdisplay.employed", "--   &cEmployed");
         tmp.put("jobsdisplay.unemployed", "-- &9Unemployed");
         tmp.put("jobsdisplay.default", "--    &3Default");
@@ -255,15 +281,18 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobsjoin.command", "/jobs leave [job]");
         tmp.put("jobsjoin.jobperm", "&6%p&7 You don''t have permission to join &9%j&7");
         tmp.put("jobsjoin.timer", "&7You cannot join &6%j&7 for another &c%g&7.");
+        
         tmp.put("jobsleave.quit", "You have quit &6%j&7.");
         tmp.put("jobsleave.donthave", "You do not have the &6%j&c job.");
         tmp.put("jobsleave.leavedefault", "You cannot leave &6%j&c because it is a default job.");
+        
         tmp.put("jobslist.available", "&e%p&2, available jobs are:");
         tmp.put("jobslist.jobsin", "Jobs in &cred&2 you already have.");
         tmp.put("jobslist.nojob", "Jobs in &8dark grey&2 are unavailable to you.");
         tmp.put("jobslist.defaultjob", "Jobs in &3dark aqua&2 are default jobs.");
         tmp.put("jobslist.specific", "To learn about a specific job type: &e/jobs [job name]");
         tmp.put("jobslist.jobs", "JOBS:");
+        
         tmp.put("jobshelp.page", "PAGE");
         tmp.put("jobshelp.1.1", "&7   Welcome to &3MC Jobs&7.  &3MC Jobs&7 is a mod designed to allow you");
         tmp.put("jobshelp.1.2", "&7to earn money doing various activities on the server based");
@@ -369,18 +398,27 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobshelp.8.11", "");
         tmp.put("jobshelp.8.12", "&7More info at: &6 https://dev.bukkit.org/projects/mcjobs");
         tmp.put("jobshelp.8.13", "--");
+        
         tmp.put("jobshelp.continuepage", "&7Continue on Page %g");
         tmp.put("jobshelp.prevpage", "&f[&6Previos page&f]");
         tmp.put("jobshelp.nextpage", "&f[&6Next page&f]");
         tmp.put("jobshelp.command", "&6/jobs help %g");
         tmp.put("jobshelp.finish", "&7END OF HELP FILE");
         tmp.put("jobshelp.nohelp", "&7%g&c is not a help page!");
+        
         tmp.put("admincommand.permission", "&6%p&c you do not have permission to do this!");
         tmp.put("admincommand.failedreload", "&cFailed to reload the plugin!");
         tmp.put("admincommand.succeedreload", "&6MC Jobs&c has been reloaded!");
         tmp.put("admincommand.defaults", "&7Defaults have been added to the config.yml file.");
         tmp.put("admincommand.args", "&cToo many arguments for &e/jadm&c.  So this is the end, we''re going to test a ridiculously long string.");
         tmp.put("admincommand.exist", "&6%j&c does not exist!");
+        tmp.put("admincommand.missing-worldedit", "&cYou need WorldEdit for this command. Without WorldEdit you must set it manual to job file.");
+        
+        tmp.put("admincommand.language.start", "&eChecking async all language files. Please wait a moment.");
+        tmp.put("admincommand.language.reload", "&6Language check has been finished. Reload languages files now sync.");
+        tmp.put("admincommand.language.reloaded", "&6All languages files has been reloaded.");
+        tmp.put("admincommand.language.finish", "&eFinished language file check. All is fine!");
+        
         tmp.put("adminadd.args", "&cWrong arguments: &e/jadm add [player/group] [job_name]");
         tmp.put("adminadd.offline", "&6%p&c group doesn''t exist or isn''t a player that has been seen!");
         tmp.put("adminadd.novault", "&6%p&c is not a known player!");
@@ -388,21 +426,67 @@ public class LanguageCheck implements Runnable {
         tmp.put("adminadd.empty", "&7There are no &eplayers&7 online in the &6%p&7 group.");
         tmp.put("adminadd.added", "&6%p&7 has been added to &9%j&7.");
         tmp.put("adminadd.padded", "&6%p&2 you have been added to the &9%j&2 job by a server admin.");
+        
         tmp.put("adminremove.args", "&cWrong arguments: &e/jadm remove [player/group] [job_name]");
         tmp.put("adminremove.nojob", "&6%p&7 does not have the &9%j&7 job.");
         tmp.put("adminremove.nodefault", "&6%p&c you do not have permission to remove &3default&c jobs!");
         tmp.put("adminremove.removed", "&6%p&7 has been removed from &9%j&7.");
         tmp.put("adminremove.premoved", "&6%p&2 you have been removed from the &9%j&2 job by a server admin.");
+        
         tmp.put("adminlist.args", "&cWrong arguments: &e/jadm list [player/group]");
         tmp.put("adminlist.playerlist:", "&2%p&7: %g");
         tmp.put("adminlist.nojobs", "&2%p&c has no jobs.");
         tmp.put("adminlist.wrongpage", "&e%g is not a proper page number.  Using page 1 instead.");
+        
+        tmp.put("adminregion.args", "&cMissing arguments. Please use &e/mcjobs (set/remove) (jobname)");
+        tmp.put("adminregion.no-selection", "&cYou must select a region with toe WorldEdit wand tool.");
+        tmp.put("adminregion.set", "&6Region set for Job &e%j&6.");
+        tmp.put("adminregion.error", "&cCan't save &e%j&6 after Region set.");
+        
+        tmp.put("adminregion.no-permission", "&cYou don't have the rihght permission.");
+        tmp.put("adminregion.missing-args", "&cPlease check the wiki to how work this command.");
+        tmp.put("adminregion.already-begun", "&cYou have already a open builder.");
+        tmp.put("adminregion.missing-job", "&cMissing job as argument.");
+        tmp.put("adminregion.wrong-language", "&cCan't find the language.");
+        tmp.put("adminregion.job-not-found", "&cCan't find the job.");
+        tmp.put("adminregion.non-begun", "&cNo open Build found. Please open frist one.");
+        tmp.put("adminregion.missing-text", "&cOh noo a crocodile has eat the Text.");
+        tmp.put("adminregion.no-open", "&cI'm really sorry, but there isn't a open builder for you.");
+        tmp.put("adminregion.success", "&e%g &6was successful.");
+        tmp.put("adminregion.first-message", "&cPlease add first a message before you do this.");
+        tmp.put("adminregion.missing-hover", "&cHoly, where is the displayed text for the Hover?!");
+        tmp.put("adminregion.missing-click", "&cWhat you want to run on click the last message?");
+        tmp.put("adminregion.wrong-click-type", "&cPlease use one of the follow types: &e%g");
+        tmp.put("adminregion.save-error", "&cWArning - It's happend an error on save the build.");
+        tmp.put("adminregion.cleared", "&eBuilder is cleared. You can begin it new now.");
+        tmp.put("adminregion.not-forget", "&cPlease don't forget to save on end.");
+        
+        tmp.put("adminentity.no-permission", "&cYou don't have the rihght permission.");
+        tmp.put("adminentity.missing-args", "&cPlease check the wiki to how work this command.");
+        tmp.put("adminentity.already-begun", "&cYou have already a open builder.");
+        tmp.put("adminentity.missing-job", "&cMissing job as argument.");
+        tmp.put("adminentity.wrong-language", "&cCan't find the language.");
+        tmp.put("adminentity.job-not-found", "&cCan't find the job.");
+        tmp.put("adminentity.non-begun", "&cNo open Build found. Please open frist one.");
+        tmp.put("adminentity.missing-text", "&cOh noo a crocodile has eat the Text.");
+        tmp.put("adminentity.no-open", "&cI'm really sorry, but there isn't a open builder for you.");
+        tmp.put("adminentity.success", "&e%g &6was successful.");
+        tmp.put("adminentity.first-message", "&cPlease add first a message before you do this.");
+        tmp.put("adminentity.missing-hover", "&cHoly, where is the displayed text for the Hover?!");
+        tmp.put("adminentity.missing-click", "&cWhat you want to run on click the last message?");
+        tmp.put("adminentity.wrong-click-type", "&cPlease use one of the follow types: &e%g");
+        tmp.put("adminentity.save-error", "&cWArning - It's happend an error on save the build.");
+        tmp.put("adminentity.cleared", "&eBuilder is cleared. You can begin it new now.");
+        tmp.put("adminentity.not-forget", "&cPlease don't forget to save on end.");
+        
         tmp.put("pitch.line0", "This server runs:");
         tmp.put("pitch.line1", "&aTo see what jobs are available type. &e/jobs list");
         tmp.put("pitch.line2", "&aTo join a job type. &e/jobs join [job_name]");
         tmp.put("pitch.line3", "&aPlay, &2earn money&a, and have fun!");
+        
         tmp.put("onadminlogin.toolow", "&eYour pay scale is too low for an &6XP&e based economy.  Consider switching &2pay_scale&e to high in the config.yml file.");
         tmp.put("onadminlogin.outofdate", "&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without reloading the config file.");
+        
         tmp.put("experience.level", "&eYou are now level &6%g&e in &6%j&e.");
         tmp.put("experience.reset", "&eYour level in &6%j&e has been reset to &c0&e.");
         tmp.put("experience.rank", "&eYou are now rank &6%g&e in &6%j&e.");
@@ -411,13 +495,16 @@ public class LanguageCheck implements Runnable {
         tmp.put("experience.added_xp", "&7You have given &6%p &a%g&7 experience in &6%j&7.");
         tmp.put("experience.padded_xp", "&7You have been given &a%g&7 experience in &6%j&7 by a system admin.");
         tmp.put("experience.nojob", "&6%p&c doesn''t have the &6%j&c job.");
+        
         tmp.put("payment.pay", "&aThe &6%j&a job has paid you &6%g&a %p.");
         tmp.put("payment.payxp", "&aThe &6%j&a job has earned you &6%g&a experience.");
         tmp.put("payment.charge", "&aThe &6%j&a job has cost you &c%g&a %p.");
         tmp.put("payment.chargexp", "&aThe &6%j&a job has taken &c%g&a experience.");
         tmp.put("payment.currency_single", "dollar");
         tmp.put("payment.currency_plural", "dollars");
+        
         tmp.put("languages.en", "English");
+        
         tmpInt.put("spaces.jobslist", 16);
         tmpInt.put("spaces.display", 4);
         tmpInt.put("spaces.displaytwo", 8);

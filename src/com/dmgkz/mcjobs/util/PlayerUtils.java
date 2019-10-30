@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import com.dmgkz.mcjobs.McJobs;
 import java.util.UUID;
+import java.util.logging.Level;
 import org.bukkit.OfflinePlayer;
 
 
@@ -63,6 +64,27 @@ public class PlayerUtils {
 
     public static HashMap<String, Integer> getMaxDefaults() {
         return _maxdefaults;
+    }
+    
+    public static void setAllowedJobs(String grp, int jobs) {
+        if(_bVault && !grp.equalsIgnoreCase("default")) {
+            try {
+                Permission permission = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class).getProvider();
+                List<String> lGroups = Arrays.asList(permission.getGroups());
+                boolean isGroup = false;
+                for(String grou: lGroups) {
+                    if(grou.equalsIgnoreCase(grp))
+                        isGroup = true;
+                }
+                
+                if(!isGroup) {
+                    McJobs.getPlugin().getLogger().warning("Can't find Group " + grp + ".");
+                }
+            } catch(Exception ex) {
+                McJobs.getPlugin().getLogger().log(Level.INFO, "Can't verify " + grp + " for max jobs. Is your Group Managment (soft)depend with Vault?", ex);
+            }
+        }
+        _maxdefaults.put(grp.toLowerCase(), jobs);
     }
     
     public static OfflinePlayer getOfflinePlayer(String str) {

@@ -9,12 +9,14 @@ import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
+import com.dmgkz.mcjobs.util.RegionPositions;
 import com.dmgkz.mcjobs.util.Utils;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -26,6 +28,36 @@ import org.bukkit.entity.EntityType;
  * @author Bl4ckSkull666
  */
 public class SaveJob {
+    public static boolean saveRegion(String job) {
+        if(!PlayerJobs.getJobsList().containsKey(job))
+            return false;
+        
+        File fo = new File(McJobs.getPlugin().getDataFolder(), "jobs");
+        File f = new File(fo, job + ".yml");
+        
+        FileConfiguration conf = YamlConfiguration.loadConfiguration(f);
+        RegionPositions rp = PlayerJobs.getJobsList().get(job).getData().getRegionPositions();
+        if(rp == null)
+            conf.set("job-info-zone.region", rp);
+        else {
+            conf.set("job-info-zone.region.world", rp.getPos1().getWorld().getName());
+            conf.set("job-info-zone.region.pos1.x", rp.getPos1().getBlockX());
+            conf.set("job-info-zone.region.pos1.y", rp.getPos1().getBlockY());
+            conf.set("job-info-zone.region.pos1.z", rp.getPos1().getBlockZ());
+            conf.set("job-info-zone.region.pos2.x", rp.getPos2().getBlockX());
+            conf.set("job-info-zone.region.pos2.y", rp.getPos2().getBlockY());
+            conf.set("job-info-zone.region.pos2.z", rp.getPos2().getBlockZ());
+        }
+        
+        try {
+            conf.save(f);
+        } catch(IOException ex) {
+            McJobs.getPlugin().getLogger().log(Level.INFO, "Error on save RegionPositions." , ex);
+            return false;
+        }
+        return true;
+    }
+    
     public static boolean saveJob(String job) {
         if(!PlayerJobs.getJobsList().containsKey(job))
             return false;
@@ -59,11 +91,10 @@ public class SaveJob {
             conf.set("job-info-zone.region.pos2.z", jd._jobInfoZone.getPos2().getBlockZ());
         }
         
-        if(!jd._jobInfoZoneMessage.isEmpty())
-            conf.set("job-info-zone.message", Utils.getListToString(jd._jobInfoZoneMessage, "|"));
-        
-        if(jd._jobInfoZoneSpigotMessage != null) {
-            jd._jobInfoZoneSpigotMessage.saveMessage(conf, "job-info-zone.spigot-message");
+        if(!jd._jobInfoZoneMessage.isEmpty()) {
+            for(Map.Entry<String, String> me: jd._jobInfoZoneMessage.entrySet()) {
+                conf.set("job-info-zone.message." + me.getKey(), me.getValue());
+            }
         }
         
         return false;
