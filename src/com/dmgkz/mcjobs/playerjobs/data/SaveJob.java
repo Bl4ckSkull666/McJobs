@@ -37,8 +37,8 @@ public class SaveJob {
         
         FileConfiguration conf = YamlConfiguration.loadConfiguration(f);
         RegionPositions rp = PlayerJobs.getJobsList().get(job).getData().getRegionPositions();
-        if(rp == null)
-            conf.set("job-info-zone.region", rp);
+        if(rp == null || (rp.getPos1() == null && rp.getPos2() == null))
+            conf.set("job-info-zone.region", null);
         else {
             conf.set("job-info-zone.region.world", rp.getPos1().getWorld().getName());
             conf.set("job-info-zone.region.pos1.x", rp.getPos1().getBlockX());

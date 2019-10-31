@@ -26,7 +26,7 @@ public class SubCommandRegion {
         String str = "";
         PrettyText text = new PrettyText();
         if(!p.hasPermission("mcjobs.admin.region")) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", p.getUniqueId()).addVariables("", p.getName(), "");
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("no-permission", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);
             return;
         }
@@ -37,35 +37,54 @@ public class SubCommandRegion {
             return;
         }
         
-        if(a.length < 2) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("missing-worldedit", p.getUniqueId()).addVariables("", p.getName(), "");
+        if(a.length < 3) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("missing-args", p.getUniqueId()).addVariables("", p.getName(), "");
             text.formatPlayerText(str, p);
             return;
         }
-
+        
+        String jobOriginal = McJobs.getPlugin().getLanguage().getOriginalJobName(a[2].toLowerCase(), p.getUniqueId()).toLowerCase();
+        String jobMe = McJobs.getPlugin().getLanguage().getOriginalJobName(a[2].toLowerCase(), p.getUniqueId()).toLowerCase();
+        if(!PlayerJobs.getJobsList().containsKey(jobOriginal)) {
+            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("job-not-found", p.getUniqueId()).addVariables(jobMe, p.getName(), "");
+            text.formatPlayerText(str, p);
+            return;
+        }
+        
+        switch(a[1].toLowerCase()) {
+            case "set":
+                setRegion(p, jobOriginal, jobMe);
+                return;
+            case "remove":
+                clearRegion(p, jobOriginal, jobMe);
+                return;
+            default:
+                p.sendMessage(ChatColor.RED + "Wrong Subsection in job region. Only set and remove available.");               
+        }
+    }
+    
+    private static void setRegion(Player p, String job, String jobMe) {
         Region sel = getSelectedRegion(p);
         if(sel == null || sel.getMaximumPoint() == null || sel.getMinimumPoint() == null) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("no-selection", p.getUniqueId()).addVariables("", p.getName(), "");
-            text.formatPlayerText(str, p);
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("no-selection", p.getUniqueId()).addVariables("", p.getName(), ""));
             return;
         }
         
-        String jobOriginal = McJobs.getPlugin().getLanguage().getOriginalJobName(a[1].toLowerCase(), p.getUniqueId()).toLowerCase();
-        String jobMe = McJobs.getPlugin().getLanguage().getOriginalJobName(a[1].toLowerCase(), p.getUniqueId()).toLowerCase();
-        if(!PlayerJobs.getJobsList().containsKey(jobOriginal)) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("exist", p.getUniqueId()).addVariables(jobMe, p.getName(), "");
-            text.formatPlayerText(str, p);
-            return;
-        }
-        
-        PlayerJobs.getJobsList().get(jobOriginal).getData().setRegionPosition(BukkitAdapter.adapt(BukkitAdapter.adapt(sel.getWorld()), sel.getMinimumPoint()));
-        PlayerJobs.getJobsList().get(jobOriginal).getData().setRegionPosition(BukkitAdapter.adapt(BukkitAdapter.adapt(sel.getWorld()), sel.getMaximumPoint()));
-        if(SaveJob.saveRegion(jobOriginal)) {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("set", p.getUniqueId()).addVariables(jobMe, p.getName(), "");
-            text.formatPlayerText(str, p);
+        PlayerJobs.getJobsList().get(job).getData().setRegionPosition(BukkitAdapter.adapt(BukkitAdapter.adapt(sel.getWorld()), sel.getMinimumPoint()));
+        PlayerJobs.getJobsList().get(job).getData().setRegionPosition(BukkitAdapter.adapt(BukkitAdapter.adapt(sel.getWorld()), sel.getMaximumPoint()));
+        if(SaveJob.saveRegion(job)) {
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("set", p.getUniqueId()).addVariables(jobMe, p.getName(), ""));
         } else {
-            str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("error", p.getUniqueId()).addVariables(jobMe, p.getName(), "");
-            text.formatPlayerText(str, p);
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("error", p.getUniqueId()).addVariables(jobMe, p.getName(), ""));
+        }
+    }
+    
+    private static void clearRegion(Player p, String job, String jobMe) {
+        PlayerJobs.getJobsList().get(job).getData().getRegionPositions().removePositions();
+        if(SaveJob.saveRegion(job)) {
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("removed", p.getUniqueId()).addVariables(jobMe, p.getName(), ""));
+        } else {
+            p.sendMessage(ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminRegion("error", p.getUniqueId()).addVariables(jobMe, p.getName(), ""));
         }
     }
     

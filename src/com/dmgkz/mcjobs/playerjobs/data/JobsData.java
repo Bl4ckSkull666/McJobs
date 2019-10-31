@@ -15,7 +15,6 @@ import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import com.dmgkz.mcjobs.util.RegionPositions;
 import com.dmgkz.mcjobs.util.Utils;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -187,11 +186,7 @@ public class JobsData{
     }
     
     public RegionPositions getRegionPositions() {
-        try {
-            return _jobInfoZone;
-        } catch(Exception ex) {
-            return null;
-        }
+        return _jobInfoZone;
     }
     
     public void setRegionPosition(Location loc) {

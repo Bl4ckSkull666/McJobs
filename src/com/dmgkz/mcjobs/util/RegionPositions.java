@@ -53,7 +53,7 @@ public class RegionPositions {
     }
     
     public boolean hasEntered(UUID uuid, Location loc) {
-        if(_Pos1 != null && _Pos2 != null && !_Pos1.getWorld().equals(loc.getWorld()))
+        if(_Pos1 == null || _Pos2 == null || !_Pos1.getWorld().equals(loc.getWorld()))
             return false;
         
         if(_inside.contains(uuid)) {
@@ -88,6 +88,11 @@ public class RegionPositions {
         if(_inside.contains(uuid))
             _inside.remove(uuid);
         return false;
+    }
+    
+    public void removePositions() {
+        _Pos1 = null;
+        _Pos2 = null;
     }
     
     /*

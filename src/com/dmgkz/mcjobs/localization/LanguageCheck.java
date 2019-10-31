@@ -439,9 +439,11 @@ public class LanguageCheck implements Runnable {
         tmp.put("adminlist.wrongpage", "&e%g is not a proper page number.  Using page 1 instead.");
         
         tmp.put("adminregion.args", "&cMissing arguments. Please use &e/mcjobs (set/remove) (jobname)");
+        tmp.put("adminregion.no-worldedit", "&cCan't find WorldEdit.");
         tmp.put("adminregion.no-selection", "&cYou must select a region with toe WorldEdit wand tool.");
         tmp.put("adminregion.set", "&6Region set for Job &e%j&6.");
         tmp.put("adminregion.error", "&cCan't save &e%j&6 after Region set.");
+        tmp.put("adminregion.removed", "&6Cleared the %j region.");
         
         tmp.put("adminregion.no-permission", "&cYou don't have the rihght permission.");
         tmp.put("adminregion.missing-args", "&cPlease check the wiki to how work this command.");
@@ -460,7 +462,7 @@ public class LanguageCheck implements Runnable {
         tmp.put("adminregion.save-error", "&cWArning - It's happend an error on save the build.");
         tmp.put("adminregion.cleared", "&eBuilder is cleared. You can begin it new now.");
         tmp.put("adminregion.not-forget", "&cPlease don't forget to save on end.");
-        
+       
         tmp.put("adminentity.no-permission", "&cYou don't have the rihght permission.");
         tmp.put("adminentity.missing-args", "&cPlease check the wiki to how work this command.");
         tmp.put("adminentity.already-begun", "&cYou have already a open builder.");
