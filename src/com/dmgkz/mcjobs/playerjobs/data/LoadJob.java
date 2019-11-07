@@ -94,6 +94,11 @@ public class LoadJob {
                 continue;
             }
             
+            if(key.equalsIgnoreCase("hide_in_scoreboard")){
+                setHideInScoreBoard(section.getBoolean(key));
+                continue;
+            }
+            
             if(key.equalsIgnoreCase("exp")){
                 setEXP(section.getDouble(key));
                 continue;
@@ -370,6 +375,10 @@ public class LoadJob {
     
     public void setDefault(boolean bDefaultJob) {
         _jobsdata._bDefaultJob = bDefaultJob;
+    }
+    
+    public void setHideInScoreBoard(boolean bHide) {
+        _jobsdata._bScoreboardHide = bHide;
     }
     
     public void setHide(String block, boolean isHide) {

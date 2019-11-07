@@ -141,7 +141,7 @@ public final class Database {
                 }
             }
         }
-        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, user.getInt("lastSave", 0), user.getDouble("earnedIncome", 0.0D), user.getBoolean("seenPitch", false), user.getLong("dateModified", System.currentTimeMillis()), user.getString("language", McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""))));
+        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, user.getInt("lastSave", 0), user.getDouble("earnedIncome", 0.0D), user.getBoolean("seenPitch", false), user.getLong("dateModified", System.currentTimeMillis()), user.getString("language", McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""))), user.getString("scoreboard.order", "job"), user.getString("scoreboard.sort", "asc"));
     }
 
     private static void savePlayerDataToYAML(UUID uuid) {
@@ -159,6 +159,8 @@ public final class Database {
             c.set("seenPitch", PlayerData.getSeenPitch(uuid));
             c.set("dateModified", System.currentTimeMillis());
             c.set("language", PlayerData.getLang(uuid));
+            c.set("scoreboard.order", PlayerData.getScoreboardOrder(uuid));
+            c.set("scoreboard.sort", PlayerData.getScoreboardSort(uuid));
             
             c.set("rejoinJobs", null);
             c.set("jobs", null);
@@ -193,12 +195,14 @@ public final class Database {
         boolean seenPitch = false;
         long dateModified = 0;
         String lang = McJobs.getPlugin().getLanguage().getDefaultLang((Bukkit.getPlayer(uuid) != null?Bukkit.getPlayer(uuid).getLocale():""));
+        String sbOrder = "job";
+        String sbSort = "asc";
         
         try {
             con = getConnect();
             PreparedStatement statement;
             ResultSet rset;
-            statement = con.prepareStatement("SELECT `lastSave`,`earnedIncome`,`seenPitch`,`dateModified`,`language` FROM `mcjobs_data` WHERE `uuid` = ?");
+            statement = con.prepareStatement("SELECT `lastSave`,`earnedIncome`,`seenPitch`,`dateModified`,`language`,`sborder`,`sbsort` FROM `mcjobs_data` WHERE `uuid` = ?");
             statement.setString(1, uuid.toString());
             rset = statement.executeQuery();
 
@@ -209,6 +213,8 @@ public final class Database {
                 seenPitch = rset.getBoolean("seenPitch");
                 dateModified = rset.getLong("dateModified");
                 lang = rset.getString("language");
+                sbOrder = rset.getString("sborder");
+                sbSort = rset.getString("sbsort");
                 
                 PreparedStatement statement2;
                 statement2 = con.prepareStatement("SELECT `jobname`,`level`,`exp`,`rejoin`,`show` FROM `mcjobs_jobs` WHERE `uuid` = ?");
@@ -233,7 +239,7 @@ public final class Database {
         } catch(SQLException e) {
             McJobs.getPlugin().getLogger().log(Level.WARNING, "Error on load PlayerData on MySQL of " + uuid.toString(), e);
         }
-        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, lastSave, earnedIncome, seenPitch, dateModified, lang);
+        return new PlayerData(Bukkit.getOfflinePlayer(uuid).getName(), uuid, jobs, rejoin, show, exp, level, lastSave, earnedIncome, seenPitch, dateModified, lang, sbOrder, sbSort);
     }
 
     private static void savePlayerDataToMySQL(UUID uuid) {
@@ -242,7 +248,7 @@ public final class Database {
             try {
                 con = getConnect();
                 PreparedStatement statement;
-                statement = con.prepareStatement("INSERT INTO `mcjobs_data` (`uuid`,`lastName`,`lastSave`,`earnedIncome`,`seenPitch`,`dateModified`,`language`) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE `lastName` = ?,`lastSave` = ?,`earnedIncome` = ?,`seenPitch` = ?,`dateModified` = ?,`language` = ?");
+                statement = con.prepareStatement("INSERT INTO `mcjobs_data` (`uuid`,`lastName`,`lastSave`,`earnedIncome`,`seenPitch`,`dateModified`,`language`,`sborder`,`sbsort`) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE `lastName` = ?,`lastSave` = ?,`earnedIncome` = ?,`seenPitch` = ?,`dateModified` = ?,`language` = ?,`sborder` = ?,`sbsort` = ?");
                 statement.setString(1, uuid.toString());
                 statement.setString(2, Bukkit.getOfflinePlayer(uuid).getName());
                 statement.setInt(3, (int)(System.currentTimeMillis()/1000));
@@ -250,12 +256,16 @@ public final class Database {
                 statement.setString(5, String.valueOf(PlayerData.getSeenPitch(uuid)));
                 statement.setLong(6, System.currentTimeMillis());
                 statement.setString(7, PlayerData.getLang(uuid));
-                statement.setString(8, Bukkit.getOfflinePlayer(uuid).getName());
-                statement.setInt(9, PlayerData.getLastSave(uuid));
-                statement.setDouble(10, PlayerData.getEarnedIncome(uuid));
-                statement.setString(11, String.valueOf(PlayerData.getSeenPitch(uuid)));
-                statement.setLong(12, System.currentTimeMillis());
-                statement.setString(13, PlayerData.getLang(uuid));
+                statement.setString(8, PlayerData.getScoreboardOrder(uuid));
+                statement.setString(9, PlayerData.getScoreboardSort(uuid));
+                statement.setString(10, Bukkit.getOfflinePlayer(uuid).getName());
+                statement.setInt(11, PlayerData.getLastSave(uuid));
+                statement.setDouble(12, PlayerData.getEarnedIncome(uuid));
+                statement.setString(13, String.valueOf(PlayerData.getSeenPitch(uuid)));
+                statement.setLong(14, System.currentTimeMillis());
+                statement.setString(15, PlayerData.getLang(uuid));
+                statement.setString(16, PlayerData.getScoreboardOrder(uuid));
+                statement.setString(17, PlayerData.getScoreboardSort(uuid));
                 statement.execute();
                 statement.close();
 
@@ -383,6 +393,8 @@ public final class Database {
                     + "`seenPitch` enum('true','false') NOT NULL DEFAULT 'false', "
                     + "`dateModified` bigint(13) NOT NULL, "
                     + "`language` varchar(32) NOT NULL, "
+                    + "`sborder` varchar(32) NOT NULL DEFAULT 'job', "
+                    + "`sbsort` varchar(32) NOT NULL DEFAULT 'asc', "
                     + "PRIMARY KEY (`uuid`) "
                     + ") ENGINE=MyISAM DEFAULT CHARSET=latin1;"
             );
@@ -414,6 +426,24 @@ public final class Database {
             rs = md.getColumns(null, null, "mcjobs_jobs", "username");
             if(rs.next()) {
                 statement = con.prepareStatement("ALTER TABLE `mcjobs_jobs` CHANGE COLUMN username uuid varchar(64) NOT NULL");
+                statement.execute();
+                statement.close();
+            }
+            rs.close();
+            
+            md = con.getMetaData();
+            rs = md.getColumns(null, null, "mcjobs_data", "sborder");
+            if(!rs.next()) {
+                statement = con.prepareStatement("ALTER TABLE `mcjobs_data` ADD COLUMN sborder varchar(32) NOT NULL DEFAULT 'job'");
+                statement.execute();
+                statement.close();
+            }
+            rs.close();
+            
+            md = con.getMetaData();
+            rs = md.getColumns(null, null, "mcjobs_data", "sbsort");
+            if(!rs.next()) {
+                statement = con.prepareStatement("ALTER TABLE `mcjobs_data` ADD COLUMN sbsort varchar(32) NOT NULL DEFAULT 'job'");
                 statement.execute();
                 statement.close();
             }

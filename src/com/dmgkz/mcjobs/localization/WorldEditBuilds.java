@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -105,12 +104,30 @@ public class WorldEditBuilds {
     }
     
     public static void sendMessage(Player p, ConfigurationSection section, HashMap<String, String> replaces) {
-        HashMap<Integer, TextComponent> tcMain = new HashMap<>();
-        int iLine = 1;
         Builder bLine = TextComponent.builder();
-        for(String k: section.getKeys(false)) {
+        BukkitPlayer bp = BukkitAdapter.adapt(p);
+        
+        List<Integer> keys = new ArrayList<>();
+        for(String strKey: section.getKeys(false)) {
+            try {
+                keys.add(Integer.parseInt(strKey));
+            } catch(Exception ex) {
+                McJobs.getPlugin().getLogger().warning("Please use only integer for Spigot/WorldEdit and Multi Line Messages.");
+            }
+        }
+        Collections.sort(keys);
+        
+        for(int ik: keys) {
+            String k = String.valueOf(ik);
             if(bLine == null)
                 bLine = TextComponent.builder();
+            
+            if(section.isString(k)) {
+                Builder bNext = TextComponent.builder(Utils.colorTrans(Replace(section.getString(k), replaces)));
+                bLine.append(bNext.build());
+                continue;
+            }
+            
             ConfigurationSection cs = section.getConfigurationSection(k);
             if(!cs.isString("message"))
                 continue;
@@ -124,31 +141,20 @@ public class WorldEditBuilds {
                 bNext.clickEvent(getClickAction(cs.getString("click-type", "open_url"), cs.getString("click-msg"), replaces));
             }
             
-            bLine.append(bNext);
+            bLine.append(bNext.build());
             // End of Message?!
             if(cs.getBoolean("break", false)) {
-                tcMain.put(iLine, bLine.build());
+                bp.print(bLine.build());
                 bLine = null;
-                iLine++;
             }
         }
         
-        if(bLine != null) {
-            tcMain.put(iLine, bLine.build());
-            iLine++;
-        }
-        BukkitPlayer bp = BukkitAdapter.adapt(p);
-        
-        List<Integer> it = new ArrayList<>();
-        it.addAll(tcMain.keySet());
-        Collections.sort(it);
-        
-        for(Integer i: it)
-            bp.print(tcMain.get(i));
+        if(bLine != null)
+            bp.print(bLine.build());
     }
     
     private static String Replace(String str, HashMap<String, String> rep) {
-        if(rep.isEmpty())
+        if(rep == null || rep.isEmpty())
             return str;
         
         for(Map.Entry<String, String> me: rep.entrySet()) {

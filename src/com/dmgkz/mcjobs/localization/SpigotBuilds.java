@@ -89,12 +89,28 @@ public class SpigotBuilds {
     }
     
     public static void sendMessage(Player p, ConfigurationSection section, HashMap<String, String> replaces) {
-        HashMap<Integer, TextComponent> tcMain = new HashMap<>();
-        int iLine = 1;
         TextComponent tcLine = new TextComponent("");
-        for(String k: section.getKeys(false)) {
+        
+        List<Integer> keys = new ArrayList<>();
+        for(String strKey: section.getKeys(false)) {
+            try {
+                keys.add(Integer.parseInt(strKey));
+            } catch(Exception ex) {
+                McJobs.getPlugin().getLogger().warning("Please use only integer for Spigot/WorldEdit and Multi Line Messages.");
+            }
+        }
+        Collections.sort(keys);
+        
+        for(int ik: keys) {
+            String k = String.valueOf(ik);
             if(tcLine == null)
                 tcLine = new TextComponent("");
+            
+            if(section.isString(k)) {
+                TextComponent tcNext = new TextComponent(Utils.colorTrans(Replace(section.getString(k), replaces)));
+                tcLine.addExtra(tcNext);
+                continue;
+            }
             
             ConfigurationSection cs = section.getConfigurationSection(k);
             if(!cs.isString("message"))
@@ -121,27 +137,18 @@ public class SpigotBuilds {
             
             // End of Message?!
             if(cs.getBoolean("break", false)) {
-                tcMain.put(iLine, tcLine);
+                p.spigot().sendMessage(tcLine);
                 tcLine = null;
-                iLine++;
             }
         }
         
         if(tcLine != null) {
-            tcMain.put(iLine, tcLine);
-            iLine++;
+            p.spigot().sendMessage(tcLine);
         }
-        
-        List<Integer> it = new ArrayList<>();
-        it.addAll(tcMain.keySet());
-        Collections.sort(it);
-        
-        for(Integer i: it)
-            p.spigot().sendMessage(tcMain.get(i));
     }
     
     private static String Replace(String str, HashMap<String, String> rep) {
-        if(rep.isEmpty())
+        if(rep == null || rep.isEmpty())
             return str;
         
         for(Map.Entry<String, String> me: rep.entrySet()) {

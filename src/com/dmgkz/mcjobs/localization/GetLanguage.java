@@ -11,18 +11,23 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 public final class GetLanguage {
-    private boolean _useMultilingual = false;
+    private static boolean _isSpigot = false;
+    private static boolean _isWorldEdit = false;
     private final HashMap<String, FileConfiguration> _languages = new HashMap<>();
     
     private List<String> _avaLangs = new ArrayList<>();
@@ -30,13 +35,13 @@ public final class GetLanguage {
 
     public GetLanguage() {
         try {
-            if(McJobs.getPlugin().getConfig().getBoolean("use-mu1ti1ingu41", false) && Bukkit.getPluginManager().isPluginEnabled("Mu1ti1ingu41"))
-                _useMultilingual = McJobs.getPlugin().getServer().getPluginManager().isPluginEnabled("Mu1ti1ingu41");
+            if(Bukkit.getVersion().toLowerCase().contains("spigot"))
+                _isSpigot = true;
             
-            if(!_useMultilingual)
-                loadLanguage();
-            else
-                loadMu1ti1ingu41DefaultFiles();
+            if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit"))
+                _isWorldEdit = true;
+            
+            loadLanguage();
         } catch (InvalidConfigurationException ex) {
             McJobs.getPlugin().getLogger().log(Level.WARNING, "Error on loading language.", ex);
         }
@@ -94,6 +99,10 @@ public final class GetLanguage {
     
     public String getColor(String n, UUID uuid) {
         return getSection("color", n, uuid);
+    }
+    
+    public String getScoreboard(String n, UUID uuid) {
+        return getSection("scoreboard", n, uuid);
     }
   
     public AddTextVariables getJobCommand(String subSection, UUID uuid) {
@@ -210,15 +219,11 @@ public final class GetLanguage {
     
     private Integer getIntegerSection(String s, String n, UUID uuid) {
         String str;
-        if(_useMultilingual) {
-            str = Language.getText(McJobs.getPlugin(), uuid, s + "." + n, n);
-        } else {
-            String lang = PlayerData.getLang(uuid);
-            if(!getLangFile(lang).isConfigurationSection(s))
-                return 0;
-            ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
-            str = getValue(section, n);
-        }
+        String lang = PlayerData.getLang(uuid);
+        if(!getLangFile(lang).isConfigurationSection(s))
+            return 0;
+        ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
+        str = getValue(section, n);
         
         try {
             return Integer.parseInt(str);
@@ -315,5 +320,69 @@ public final class GetLanguage {
                 McJobs.getPlugin().getLogger().log(Level.SEVERE, "Error on loading default file " + name, ex);
             }
         }
+    }
+    
+    public static void sendMessage(Player p, String path, String def, HashMap<String, String> sr) {
+        String lang = PlayerData.getLang(p.getUniqueId());
+        FileConfiguration fc = McJobs.getPlugin().getLanguage().getLangFile(lang);
+        if(fc == null) {
+            p.sendMessage(replaceAll(def, sr));
+            return;
+        }
+        
+        if(fc.isString(path)) {
+            p.sendMessage(replaceAll(fc.getString(path), sr));
+            return;
+        } else if(fc.isConfigurationSection(path)) {
+            ConfigurationSection cs = fc.getConfigurationSection(path);
+            if(_isSpigot) {
+                SpigotBuilds.sendMessage(p, cs, sr);
+                return;
+            } else if(_isWorldEdit) {
+                WorldEditBuilds.sendMessage(p, cs, sr);
+                return;
+            }
+            
+            String msg = "";
+            List<Integer> keys = new ArrayList<>();
+            for(String strKey: cs.getKeys(false)) {
+                try {
+                    keys.add(Integer.parseInt(strKey));
+                } catch(Exception ex) {
+                    McJobs.getPlugin().getLogger().warning("Please use only integer for Spigot/WorldEdit and Multi Line Messages.");
+                }
+            }
+            Collections.sort(keys);
+
+            for(int ik: keys) {
+                String k = String.valueOf(ik);
+                if(cs.isString(k)) {
+                    msg += cs.getString(k);
+                } else if(cs.isString(k + ".message")) {
+                    msg += cs.getString(k + ".message");
+                    
+                    if(cs.getBoolean(k + ".break", false)) {
+                        p.sendMessage(replaceAll(msg, sr));
+                        msg = "";
+                    }
+                }
+            }
+            
+            if(!msg.isEmpty()) {
+                p.sendMessage(replaceAll(msg, sr));
+            }
+        } else {
+            p.sendMessage(replaceAll(def, sr));
+        }
+    }
+    
+    private static String replaceAll(String str, HashMap<String, String> sr) {
+        if(sr == null) 
+            return ChatColor.translateAlternateColorCodes('&', str);
+        
+        for(Map.Entry<String, String> me: sr.entrySet()) {
+            str = str.replace(me.getKey(), me.getValue());
+        }
+        return ChatColor.translateAlternateColorCodes('&', str);
     }
 }

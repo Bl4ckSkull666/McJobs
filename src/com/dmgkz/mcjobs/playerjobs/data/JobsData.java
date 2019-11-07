@@ -43,6 +43,7 @@ public class JobsData{
     protected boolean[] _bCP;
     protected boolean   _bShowEveryTime;
     protected boolean   _bDefaultJob;
+    protected boolean   _bScoreboardHide;
     
     protected String _sJobName;
     
@@ -67,6 +68,7 @@ public class JobsData{
         
         _bShowEveryTime = false;
         _bDefaultJob    = false;
+        _bScoreboardHide = false;
         
         _sJobName     = "no_name";
         
@@ -183,6 +185,10 @@ public class JobsData{
 
     public HashMap<String, Boolean> getTierPays() {
         return _bTierPays;
+    }
+    
+    public boolean hideInScoreboard() {
+        return _bScoreboardHide;
     }
     
     public RegionPositions getRegionPositions() {

@@ -14,6 +14,7 @@ import com.dmgkz.mcjobs.commands.jobs.SubCommandJoin;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandLanguage;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandLeave;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandList;
+import com.dmgkz.mcjobs.commands.jobs.SubCommandScoreboard;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.util.StringToNumber;
@@ -51,6 +52,9 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                     return true;
                 case "language":
                     SubCommandLanguage.command(p, "");
+                    return true;
+                case "scoreboard":
+                    SubCommandScoreboard.command(p, a);
                     return true;
                 default:
                     String job = McJobs.getPlugin().getLanguage().getOriginalJobName(a[0].toLowerCase(), p.getUniqueId());
@@ -92,6 +96,9 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                 case "language":
                     SubCommandLanguage.command(p, a[1].toLowerCase());
                     return true;
+                case "scoreboard":
+                    SubCommandScoreboard.command(p, a);
+                    return true;
                 default:
                     sendDefaultMessage(p);
                     return true;
@@ -121,6 +128,8 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                 list.add("leave");
                 list.add("info");
                 list.add("language");
+                if(McJobs.getPlugin().getConfig().getBoolean("scoreboard.use", false))
+                    list.add("scoreboard");
                 for(String job: PlayerJobs.getJobsList().keySet())
                     list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
             } else if(a.length == 2) {
@@ -141,6 +150,16 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                         if(PlayerData.hasJob(p.getUniqueId(), job))
                             list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
                     }
+                } else if(a[0].equalsIgnoreCase("scoreboard")) {
+                    list.add("none");
+                    list.add("job");
+                    list.add("rank");
+                    list.add("level");
+                    list.add("hasexp");
+                    list.add("nextexp");
+                    list.add("needexp");
+                    list.add("desc");
+                    list.add("asc");
                 } else {
                     for(String job: PlayerJobs.getJobsList().keySet())
                         list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));

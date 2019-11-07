@@ -43,8 +43,11 @@ public class PlayerData {
     public Date _dateModified;
     public String _playerLang;
     public PlayerKills _killManager;
+    public boolean _ScoreboardShow = true;
+    public String _ScoreboardOrder = "job";
+    public String _ScoreboardSort = "asc";
     
-    public PlayerData(String pName, UUID uuid, ArrayList<String> jobs, HashMap<String, Integer> rejoin, HashMap<String, Boolean> show, HashMap<String, Double> exp, HashMap<String, Integer> level, int lastSave, double earnedIncome, boolean seenPitch, long dateModified, String lang) {
+    public PlayerData(String pName, UUID uuid, ArrayList<String> jobs, HashMap<String, Integer> rejoin, HashMap<String, Boolean> show, HashMap<String, Double> exp, HashMap<String, Integer> level, int lastSave, double earnedIncome, boolean seenPitch, long dateModified, String lang, String sbOrder, String sbSort) {
         _lastName = pName;
         _uuid = uuid;
         _playerJobs.addAll(jobs);
@@ -69,6 +72,10 @@ public class PlayerData {
         _dateModified = new Date(dateModified);
         _playerLang = lang;
         _killManager = new PlayerKills(_uuid);
+        _ScoreboardOrder = sbOrder;
+        _ScoreboardSort = sbSort;
+        if(sbOrder.equalsIgnoreCase("none"))
+            _ScoreboardShow = false;
     }
     
     
@@ -225,6 +232,56 @@ public class PlayerData {
             return df.format(checkPlayer._jobexp.get(job));
         }
         return "0";
+    }
+    
+    public static String getScoreboardOrder(UUID uuid) {
+        PlayerData checkPlayer = getPlayerData(uuid);
+        return checkPlayer._ScoreboardOrder;
+    }
+    
+     public static boolean setScoreboardOrder(UUID uuid, String newOrder) {
+        PlayerData checkPlayer = getPlayerData(uuid);
+        switch(newOrder.toLowerCase()) {
+            case "job":
+            case "rank":
+            case "level":
+            case "hasexp":
+            case "needexp":
+            case "nextexp":
+                checkPlayer._ScoreboardOrder = newOrder;
+                checkPlayer._ScoreboardShow = true;
+                savePlayerCache(uuid);
+                return true;
+            case "none":
+                checkPlayer._ScoreboardOrder = newOrder;
+                checkPlayer._ScoreboardShow = false;
+                savePlayerCache(uuid);
+            default:
+                return false;
+        }
+    }
+
+    public static String getScoreboardSort(UUID uuid) {
+        PlayerData checkPlayer = getPlayerData(uuid);
+        return checkPlayer._ScoreboardSort;
+    }
+    
+    public static boolean setScoreboardSort(UUID uuid, String newSort) {
+        PlayerData checkPlayer = getPlayerData(uuid);
+        switch(newSort.toLowerCase()) {
+            case "asc":
+            case "desc":
+                checkPlayer._ScoreboardSort = newSort;
+                savePlayerCache(uuid);
+                return true;
+            default:
+                return false;
+        }
+    }
+    
+    public static boolean showScoreboard(UUID uuid) {
+        PlayerData checkPlayer = getPlayerData(uuid);
+        return checkPlayer._ScoreboardShow;
     }
     
     public static void setExp(UUID uuid, String job, double amount) {

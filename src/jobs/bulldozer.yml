@@ -2,6 +2,7 @@ basepay: 67.0
 show_every_time: true
 exp: 0
 default: true
+hide_in_scoreboard: true
 break:
   pays: false
   hide: false

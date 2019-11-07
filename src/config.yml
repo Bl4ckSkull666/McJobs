@@ -58,3 +58,9 @@ materials:
   stationary_water: WATER 
   lava: LAVA 
   stationary_lava: LAVA
+scoreboard:
+  use: true
+  update-interval: 30
+  template:
+  - '&2%jobname &e%level &6%rank'
+  - '%placeholder&3%hasexp&f/&c%needexp'

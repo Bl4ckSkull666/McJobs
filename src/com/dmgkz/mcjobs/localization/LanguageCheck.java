@@ -130,6 +130,13 @@ public class LanguageCheck implements Runnable {
                 hasChanged = true;
             }
         }
+        
+        for(String rank: McJobs.getPlugin().getConfig().getConfigurationSection("ranks").getKeys(false)) {
+            if(!_tmp.isString(section + ".rank." + rank.toLowerCase())) {
+                _tmp.set(section + ".rank." + rank.toLowerCase(), rank);
+                hasChanged = true;
+            }
+        }
         return hasChanged;
     }
     
@@ -215,9 +222,18 @@ public class LanguageCheck implements Runnable {
         return true;
     }
     
+    private boolean issetBoolean(String str, boolean b) {
+        if(!_tmp.isBoolean(str)) {
+            _tmp.set(str, b);
+            return false;
+        }
+        return true;
+    }
+    
     private boolean checkOtherMessages() {
         HashMap<String, String> tmp = new HashMap<>();
         HashMap<String, Integer> tmpInt = new HashMap<>();
+        HashMap<String, Boolean> tmpBol = new HashMap<>();
         
         tmp.put("jobscommand.playeronly", "Can only be done by a player!");
         tmp.put("jobscommand.permission", "&cYou do not have permission to do this!");
@@ -507,6 +523,61 @@ public class LanguageCheck implements Runnable {
         
         tmp.put("languages.en", "English");
         
+        tmp.put("scoreboard.header", "&b&r| &aMcJobs &bStats &b&r|");
+        tmp.put("scoreboard.order", "&aSet the new order successfull.");
+        tmp.put("scoreboard.sort", "&aSet the new sort successfull.");
+        tmp.put("scoreboard.none", "&aThe scoreboard will be hide now.");
+        tmp.put("scoreboard.info.1.message", "&cThe follow parameters are available:");
+        tmpBol.put("scoreboard.info.1.break", true);
+        tmp.put("scoreboard.info.2.message","For the order:");
+        tmpBol.put("scoreboard.info.2.break", true);
+        tmp.put("scoreboard.info.3.message", "&ejob");
+        tmp.put("scoreboard.info.3.hover-msg", "&aOrder the McJobs Scoreboard by the Jobname.");
+        tmp.put("scoreboard.info.3.click-type", "run_command");
+        tmp.put("scoreboard.info.3.click-msg", "/mcjobs scoreboard job");
+        tmp.put("scoreboard.info.4.message", "&f, ");
+        tmp.put("scoreboard.info.5.message", "&erank");
+        tmp.put("scoreboard.info.5.hover-msg", "&aOrder the McJobs Scoreboard by the Job rank.");
+        tmp.put("scoreboard.info.5.click-type", "run_command");
+        tmp.put("scoreboard.info.5.click-msg", "/mcjobs scoreboard rank");
+        tmp.put("scoreboard.info.6.message", "&f, ");
+        tmp.put("scoreboard.info.7.message", "&elevel");
+        tmp.put("scoreboard.info.7.hover-msg", "&aOrder the McJobs Scoreboard by the Job level.");
+        tmp.put("scoreboard.info.7.click-type", "run_command");
+        tmp.put("scoreboard.info.7.click-msg", "/mcjobs scoreboard level");
+        tmp.put("scoreboard.info.8.message", "&f, ");
+        tmp.put("scoreboard.info.9.message", "&ehasexp");
+        tmp.put("scoreboard.info.9.hover-msg", "&aOrder the McJobs Scoreboard by the Exp of the job.");
+        tmp.put("scoreboard.info.9.click-type", "run_command");
+        tmp.put("scoreboard.info.9.click-msg", "/mcjobs scoreboard hasexp");
+        tmp.put("scoreboard.info.10.message", "&f, ");
+        tmp.put("scoreboard.info.11.message", "&eneedexp");
+        tmp.put("scoreboard.info.11.hover-msg", "&aOrder the McJobs Scoreboard by the missing Exp to the next level.");
+        tmp.put("scoreboard.info.11.click-type", "run_command");
+        tmp.put("scoreboard.info.11.click-msg", "/mcjobs scoreboard needexp");
+        tmp.put("scoreboard.info.12.message", "&f, ");
+        tmp.put("scoreboard.info.13.message", "&enextexp");
+        tmp.put("scoreboard.info.13.hover-msg", "&aOrder the McJobs Scoreboard by the Exp that need the next level.");
+        tmp.put("scoreboard.info.13.click-type", "run_command");
+        tmp.put("scoreboard.info.13.click-msg", "/mcjobs scoreboard nextexp");
+        tmpBol.put("scoreboard.info.13.break", true);
+        tmp.put("scoreboard.info.14.message","For the sort:");
+        tmpBol.put("scoreboard.info.14.break", true);
+        tmp.put("scoreboard.info.15.message", "&easc");
+        tmp.put("scoreboard.info.15.hover-msg", "&aSort the McJobs Scoreboard from 0 to 9/A to Z.");
+        tmp.put("scoreboard.info.15.click-type", "run_command");
+        tmp.put("scoreboard.info.15.click-msg", "/mcjobs scoreboard asc");
+        tmp.put("scoreboard.info.16.message", "&f, ");
+        tmp.put("scoreboard.info.17.message", "&edesc");
+        tmp.put("scoreboard.info.17.hover-msg", "&aSort the McJobs Scoreboard from 9 to 0/Z to A.");
+        tmp.put("scoreboard.info.17.click-type", "run_command");
+        tmp.put("scoreboard.info.17.click-msg", "/mcjobs scoreboard desc");
+        tmpBol.put("scoreboard.info.17.break", true);
+        tmp.put("scoreboard.info.18.message", "&bTo Hide the Scoreboard use &enone &f, &bto reactivate set a order again.");
+        tmp.put("scoreboard.info.18.hover-msg", "&aDeactivate the Scoreboard");
+        tmp.put("scoreboard.info.18.click-type", "run_command");
+        tmp.put("scoreboard.info.18.click-msg", "/mcjobs scoreboard none");
+        
         tmpInt.put("spaces.jobslist", 16);
         tmpInt.put("spaces.display", 4);
         tmpInt.put("spaces.displaytwo", 8);
@@ -522,6 +593,11 @@ public class LanguageCheck implements Runnable {
         
         for(Map.Entry<String, Integer> me: tmpInt.entrySet()) {
             if(!issetInt(me.getKey(), me.getValue())) 
+                hasChanges = true;
+        }
+        
+        for(Map.Entry<String, Boolean> me: tmpBol.entrySet()) {
+            if(!issetBoolean(me.getKey(), me.getValue())) 
                 hasChanges = true;
         }
         
