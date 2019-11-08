@@ -7,12 +7,12 @@
 # If you need cash get a job!
 
 # Depends Plugins
-* Vault
+* [Vault](https://www.spigotmc.org/resources/vault.34315/)
 
 # Softdepends
-* WorldEdit
-* mcMMO
-* LogBlock
+* [WorldEdit}(https://worldedit.enginehub.org/en/latest/) 
+* [LogBlock](https://www.spigotmc.org/resources/logblock.67333/) | [GitHub](https://github.com/LogBlock/LogBlock)
+* [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
 # Database support
 * YAML
@@ -34,7 +34,8 @@
 * [Potion Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Potion-Configuration) | [Available Potion Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)
 * [Enchantment Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Enchant-Configuration) | [Available Enchant Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html)
 * [Job Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Job-File)
-* Config File
+* [Config File](https://github.com/Bl4ckSkull666/McJobs/wiki/Configuration-File)
+* [PlaceholderAPI Hooks](https://github.com/Bl4ckSkull666/McJobs/wiki/Softdepend:-PlaceholderAPI)
 
 
 # Download last Build
