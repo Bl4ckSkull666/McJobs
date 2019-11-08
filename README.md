@@ -26,9 +26,8 @@
 * [All Permissions at a glance](https://github.com/Bl4ckSkull666/McJobs/wiki/Permissions)
 
 # New Setting up's
-* NPC Talk ( coming soon in the Wiki )
 * [Job Signs](https://github.com/Bl4ckSkull666/McJobs/wiki/Jobs-Signs)
-* Region Message ( coming soon in the Wiki )
+* [Region & Entity Message](https://github.com/Bl4ckSkull666/McJobs/wiki/How-to-create-Region-&-Entity-Message%3F)
 
 # Information about
 * [Potion Configuration](https://github.com/Bl4ckSkull666/McJobs/wiki/Potion-Configuration) | [Available Potion Types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)
