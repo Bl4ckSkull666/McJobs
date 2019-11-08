@@ -10,7 +10,7 @@
 * [Vault](https://www.spigotmc.org/resources/vault.34315/)
 
 # Softdepends
-* [WorldEdit}(https://worldedit.enginehub.org/en/latest/) 
+* [WorldEdit](https://worldedit.enginehub.org/en/latest/) 
 * [LogBlock](https://www.spigotmc.org/resources/logblock.67333/) | [GitHub](https://github.com/LogBlock/LogBlock)
 * [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
