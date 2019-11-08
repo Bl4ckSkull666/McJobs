@@ -22,6 +22,16 @@ public class PayMoney {
     private static final DecimalFormat _df = new DecimalFormat("#,##0.0#");
     private static final HashMap<UUID, Double> _payCache = new HashMap<>();
     
+    public static double getPayCache(UUID uuid) {
+        if(!_payCache.containsKey(uuid))
+            return 0.0d;
+        return _payCache.get(uuid);
+    }
+    
+    public static String getPayCacheDisplay(UUID uuid) {
+        return _df.format(getPayCache(uuid));
+    }
+    
     public static String payVault(Player play, int tier, double basepay, String job){
         double payAmount = 0.0;
         double iTimes = tier;
@@ -240,11 +250,11 @@ public class PayMoney {
                 OfflinePlayer op = Bukkit.getOfflinePlayer(me.getKey());
                 if(op != null) {
                     if(me.getValue() > 0.0)
-                        McJobs.getEconomy().depositPlayer(op.getName(), me.getValue());
+                        McJobs.getEconomy().depositPlayer(op, me.getValue());
                     else if(me.getValue() < 0) {
                         //Make negative to positic
                         double temp = me.getValue() * -1;
-                        McJobs.getEconomy().withdrawPlayer(op.getName(), temp);
+                        McJobs.getEconomy().withdrawPlayer(op, temp);
                     }
                     _payCache.remove(me.getKey());
                 }

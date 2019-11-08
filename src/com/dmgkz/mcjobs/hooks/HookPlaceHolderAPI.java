@@ -9,6 +9,7 @@ import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.levels.Leveler;
+import com.dmgkz.mcjobs.playerjobs.pay.PayMoney;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
@@ -101,6 +102,8 @@ public class HookPlaceHolderAPI extends PlaceholderExpansion {
                     mylevels += PlayerData.getJobLevel(p.getUniqueId(), job);
                 }
                 return mylevels;
+            case "paycache":
+                return PayMoney.getPayCacheDisplay(p.getUniqueId());
             default:
                 String[] paths = identifier.split("_");
                 if(paths.length <= 1)
