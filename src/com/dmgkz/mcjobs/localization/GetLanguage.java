@@ -1,12 +1,11 @@
 package com.dmgkz.mcjobs.localization;
 
 import com.dmgkz.mcjobs.McJobs;
+import com.dmgkz.mcjobs.hooks.HookPlaceHolderAPI;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.prettytext.AddTextVariables;
 import com.dmgkz.mcjobs.prettytext.PrettyText;
 import com.dmgkz.mcjobs.util.ResourceList;
-import de.bl4ckskull666.mu1ti1ingu41.Language;
-import de.bl4ckskull666.mu1ti1ingu41.Mu1ti1ingu41;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +25,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 public final class GetLanguage {
+    private static boolean _isPlaceHolderAPI = false;
     private static boolean _isSpigot = false;
     private static boolean _isWorldEdit = false;
     private final HashMap<String, FileConfiguration> _languages = new HashMap<>();
@@ -41,6 +41,7 @@ public final class GetLanguage {
             if(Bukkit.getPluginManager().isPluginEnabled("WorldEdit"))
                 _isWorldEdit = true;
             
+            _isPlaceHolderAPI = McJobs.isPlaceholderAPI();
             loadLanguage();
         } catch (InvalidConfigurationException ex) {
             McJobs.getPlugin().getLogger().log(Level.WARNING, "Error on loading language.", ex);
@@ -82,27 +83,31 @@ public final class GetLanguage {
     }
     
     public String getEntity(String n, UUID uuid) {
-        return getSection("entities", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("entities", n, uuid));
     }
     
     public String getMaterial(String n, UUID uuid) {
-        return getSection("materials", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("materials", n, uuid));
     }
   
     public String getPotion(String n, UUID uuid) {
-        return getSection("potion", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("potion", n, uuid));
     }
   
     public String getEnchant(String n, UUID uuid) {
-        return getSection("enchant", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("enchant", n, uuid));
     }
     
     public String getColor(String n, UUID uuid) {
-        return getSection("color", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("color", n, uuid));
     }
     
     public String getScoreboard(String n, UUID uuid) {
-        return getSection("scoreboard", n, uuid);
+        return checkForPlaceholderAPI(uuid, getSection("scoreboard", n, uuid));
+    }
+    
+    public String getPlaceholderAPI(String n, UUID uuid) {
+        return checkForPlaceholderAPI(uuid, getSection("hooks.placeholderapi", n, uuid));
     }
   
     public AddTextVariables getJobCommand(String subSection, UUID uuid) {
@@ -245,7 +250,7 @@ public final class GetLanguage {
         if(!getLangFile(lang).isConfigurationSection(s))
             return new AddTextVariables("Unknow Section: " + s  + " in " + lang);
         ConfigurationSection section = getLangFile(lang).getConfigurationSection(s);
-        return new AddTextVariables(getSubString(section, n));
+        return new AddTextVariables(checkForPlaceholderAPI(uuid, getSubString(section, n)));
     }
     
     private String getValue(ConfigurationSection cs, String ss) {
@@ -257,11 +262,7 @@ public final class GetLanguage {
         String s = cs.getString(ss.toLowerCase(), "&cUnknown String: " + ss);
         return PrettyText.colorText(s);
     }
-    
-    private void loadMu1ti1ingu41DefaultFiles() {
-        Mu1ti1ingu41.loadExternalDefaultLanguage(McJobs.getPlugin(), "languages");
-    }
-    
+
     public void loadLanguage() throws InvalidConfigurationException {
         if(!McJobs.getPlugin().getDataFolder().exists())
             McJobs.getPlugin().getDataFolder().mkdir();
@@ -384,5 +385,11 @@ public final class GetLanguage {
             str = str.replace(me.getKey(), me.getValue());
         }
         return ChatColor.translateAlternateColorCodes('&', str);
+    }
+    
+    private String checkForPlaceholderAPI(UUID uuid, String str) {
+        if(_isPlaceHolderAPI)
+            return HookPlaceHolderAPI.checkPlaceholders(str, uuid);
+        return str;
     }
 }

@@ -1,12 +1,12 @@
 name: mcjobs
 main: com.dmgkz.mcjobs.McJobs
-version: 3.8.7
+version: 3.8.8
 api-version: 1.14
 authors: [RathelmMC, Bl4ckSkull666]
 website: https://www.survival-piraten.de
 dev-url: http://dev.bukkit.org/server-mods/mcjobs/
 depend: [Vault]
-softdepend: [WorldGuard,LogBlock,Citizens,WorldEdit]
+softdepend: [WorldGuard,LogBlock,Citizens,WorldEdit,PlaceholderAPI]
 commands:
     mcjobs:
         aliases: [jobs,mcj]

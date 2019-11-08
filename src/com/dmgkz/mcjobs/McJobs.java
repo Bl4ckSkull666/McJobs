@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.dmgkz.mcjobs.commands.AdminCommand;
 import com.dmgkz.mcjobs.commands.JobsCommand;
 import com.dmgkz.mcjobs.database.Database;
+import com.dmgkz.mcjobs.hooks.HookPlaceHolderAPI;
 import com.dmgkz.mcjobs.listeners.BlockBreak;
 import com.dmgkz.mcjobs.listeners.MCListeners;
 import com.dmgkz.mcjobs.listeners.initListener;
@@ -57,6 +58,7 @@ public class McJobs extends JavaPlugin {
     
     private static WorldGuardPlugin _wgp = null;
     private static Economy _economy = null;
+    private static boolean _isPlaceholderAPI = false;
     
     public static final int _VERSION = 3800; 
     
@@ -72,6 +74,15 @@ public class McJobs extends JavaPlugin {
         _mcJobs = this;
         loadClasses();
         
+        try {
+            mcloadconf(this);
+        } catch(Exception e) {
+            getLogger().severe("mcloadconf failure.  Your config.yml file is corrupted delete it and let it rebuild.");  
+            getLogger().info("Shutting down MC Jobs.");
+            Bukkit.getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+        
         getCommand("mcjobs").setExecutor(new JobsCommand());
         getCommand("mcjobsadmin").setExecutor(new AdminCommand());
 
@@ -83,21 +94,19 @@ public class McJobs extends JavaPlugin {
             getLogger().info("WorldGuard found.  Enabling WorldGuard protections.");
         }
         
+        if(getServer().getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("hooks.placeholderapi.use", false)) {
+            if(new HookPlaceHolderAPI(this).register()) {
+                getLogger().info("PlaceholderAPI found. Registed for PlaceholderAPI using.");
+                _isPlaceholderAPI = true;
+            }
+        }
+        
         try {        
             loadEconomyBridges();
         } catch(Exception e) {
             getLogger().info("Unable to load Economy mods.");
             getLogger().info("Using XP economy.");
             McJobsComp.setXP(true);
-        }
-
-        try {
-            mcloadconf(this);
-        } catch(Exception e) {
-            getLogger().severe("mcloadconf failure.  Your config.yml file is corrupted delete it and let it rebuild.");  
-            getLogger().info("Shutting down MC Jobs.");
-            Bukkit.getServer().getPluginManager().disablePlugin(this);
-            _bQuit = true;
         }
 
         if(!_bQuit) {
@@ -372,6 +381,10 @@ public class McJobs extends JavaPlugin {
 
     public Integer getVersion(){
         return _version;
+    }
+    
+    public static boolean isPlaceholderAPI() {
+        return _isPlaceholderAPI;
     }
     
     public Holder getHolder() {

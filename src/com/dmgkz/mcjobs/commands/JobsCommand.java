@@ -164,9 +164,20 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                     for(String job: PlayerJobs.getJobsList().keySet())
                         list.add(unColor(McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId())));
                 }
-                Collections.sort(list);
             }
         }
+        
+        if(!list.isEmpty() && a.length > 0) {
+            String arg = a[a.length-1];
+            List<String> tmp = new ArrayList<>();
+            tmp.addAll(list);
+            for(String tap: tmp) {
+                if(!tap.startsWith(arg))
+                    list.remove(tap);
+            }
+            
+        }
+        Collections.sort(list);
         return list;
     }
     

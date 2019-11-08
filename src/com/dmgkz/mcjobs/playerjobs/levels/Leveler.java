@@ -4,30 +4,30 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class Leveler {
-    static private HashMap<Integer, String> hRanks = new HashMap<Integer, String>();
-    static private double xpmod;
-    static private double paymod;
+    private static HashMap<Integer, String> hRanks = new HashMap<>();
+    private static double xpmod;
+    private static double paymod;
     
     
-    static public HashMap<Integer, String> getRanks(){
+    public static HashMap<Integer, String> getRanks(){
         return hRanks;
     }
     
-    static public void setXPMod(double i) {
+    public static void setXPMod(double i) {
         if(i > 0)
             xpmod = i;
         else
             xpmod = 1;
     }
     
-    static public void setPayMod(double i) {
+    public static void setPayMod(double i) {
         if(i > 0)
             paymod = i;
         else
             paymod = 1;
     }
     
-    static public String getRank(int level) {
+    public static String getRank(int level) {
         int i = level;
 
         while(i > 0){
@@ -39,7 +39,7 @@ public class Leveler {
         return "novice";
     }
     
-    static public double getXPtoLevel(int level) {
+    public static double getXPtoLevel(int level) {
         double xpNeeded;
         
         xpNeeded = (2 * (level * level) + 10 * level - 3) * xpmod;
@@ -47,12 +47,16 @@ public class Leveler {
         return xpNeeded;
     }
     
-    static public String getXPtoLevelDisplay(int level) {
-        DecimalFormat df = new DecimalFormat("#,###,###,##0");
-        return df.format(getXPtoLevel(level));
+    public static String getXPtoLevelDisplay(int level) {
+        return getXPDisplay(getXPtoLevel(level));
     }
     
-    static public double getMultiplier(int level) {
+    public static String getXPDisplay(double exp) {
+        DecimalFormat df = new DecimalFormat("#,###,###,##0");
+        return df.format(exp);
+    }
+    
+    public static double getMultiplier(int level) {
         double multi = 1;
         
         if(level <= 20)
