@@ -16,6 +16,7 @@ import java.util.UUID;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 /**
@@ -31,7 +32,7 @@ public class HookPlaceHolderAPI extends PlaceholderExpansion {
     
     @Override
     public String getIdentifier() {
-        return McJobs.class.getName();
+        return "mcjobs";
     }
 
     @Override
@@ -61,7 +62,7 @@ public class HookPlaceHolderAPI extends PlaceholderExpansion {
     }
     
     @Override
-    public String onPlaceholderRequest(Player p, String identifier) {
+    public String onRequest(OfflinePlayer p, String identifier) {
         if(p == null) {
             return "Player can't null";
         }
@@ -155,7 +156,15 @@ public class HookPlaceHolderAPI extends PlaceholderExpansion {
         }
     }
     
+    @Override
+    public String onPlaceholderRequest(Player p, String identifier) {
+        return onRequest(Bukkit.getOfflinePlayer(p.getUniqueId()), identifier);
+    }
+    
     public static String checkPlaceholders(String str, UUID uuid) {
-        return PlaceholderAPI.setPlaceholders(Bukkit.getPlayer(uuid), str);
+        if(PlaceholderAPI.containsPlaceholders(str)) {
+            return PlaceholderAPI.setPlaceholders(Bukkit.getOfflinePlayer(uuid), str);
+        }
+        return str;
     }
 }

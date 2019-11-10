@@ -34,5 +34,6 @@ public class initListener {
         
         getServer().getPluginManager().registerEvents(new OnPlayerInteractEntity(), plugin);
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), plugin);
+        getServer().getPluginManager().registerEvents(new Chat(), plugin);
     }
 }

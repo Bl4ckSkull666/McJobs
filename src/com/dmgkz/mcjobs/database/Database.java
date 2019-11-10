@@ -8,7 +8,9 @@ package com.dmgkz.mcjobs.database;
 
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
+import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.playerjobs.levels.Leveler;
+import com.dmgkz.mcjobs.scheduler.McTopSigns;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import java.io.File;
 import java.io.IOException;
@@ -320,6 +322,67 @@ public final class Database {
             } catch(SQLException e) {
                 McJobs.getPlugin().getLogger().log(Level.WARNING,"Error on saving Player data from PlayerData to MySQL", e);
             }
+        }
+    }
+    
+    public static void getTopPlayerJobs() {
+        if(McJobs.getPlugin().getConfig().getString("database.type", "yaml").equalsIgnoreCase("mysql")) {
+            getTopPlayerJobsFromMySQL();
+        } else {
+            getTopPlayerJobsFromYAML();
+        }
+    }
+    
+    private static void getTopPlayerJobsFromYAML() {
+        File dir = new File("plugins/mcjobs", "users");
+        if(!dir.exists())
+            return;
+        
+        for(File f: dir.listFiles()) {
+            String name = f.getName();
+            int pos = name.lastIndexOf(".");
+            if(pos > 0)
+                name = name.substring(0, pos);
+            
+            OfflinePlayer op = Bukkit.getOfflinePlayer(UUID.fromString(name));
+            if(op == null || op.getName() == null || op.getUniqueId() == null || op.getName().isEmpty() || op.getName().equalsIgnoreCase("null"))
+                continue;
+            
+            YamlConfiguration user = YamlConfiguration.loadConfiguration(f);
+            if(user.isConfigurationSection("jobs")) {
+                for(String key : user.getConfigurationSection("jobs").getKeys(false)) {
+                    McTopSigns.addPlyerToTop(op, key, user.getDouble("jobs." + key + ".exp", 0.0D));
+                }
+            }
+            user = null;
+            f = null;
+        }
+    }
+    
+    private static void getTopPlayerJobsFromMySQL() {
+        Connection con;
+
+        try {
+            con = getConnect();
+            PreparedStatement statement;
+            for(String job: PlayerJobs.getJobsList().keySet()) {
+                statement = con.prepareStatement("SELECT `uuid`,`exp` FROM `mcjobs_jobs` WHERE `jobname` = ? AND `exp` > ? LIMIT 0,50");
+                statement.setString(1, job);
+                statement.setDouble(2, 0.0d);
+                ResultSet rset = statement.executeQuery();
+                while(rset.next()) {
+                    OfflinePlayer op = Bukkit.getOfflinePlayer(UUID.fromString(rset.getString("uuid")));
+                    if(op == null || op.getName() == null || op.getUniqueId() == null || op.getName().isEmpty() || op.getName().equalsIgnoreCase("null"))
+                        continue;
+                    
+                    McTopSigns.addPlyerToTop(op, job, rset.getDouble("exp"));
+                }
+                rset.close();
+                statement.close();
+            }
+            close(con);
+        } catch(SQLException e) {
+            McJobs.getPlugin().getLogger().log(Level.WARNING, "Error on load Top Jobs frpm MySQL", e);
         }
     }
     

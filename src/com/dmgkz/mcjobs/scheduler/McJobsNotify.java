@@ -27,7 +27,7 @@ public class McJobsNotify implements Runnable {
     @Override
     public void run() {
         for(Player play: Bukkit.getOnlinePlayers()) {
-            String time = TimeFormat.getFormatedTime(play.getUniqueId(), _timer);
+            String time = TimeFormat.getFormatedTime(play.getUniqueId(), _timer*60);
             double earned = PlayerData.getEarnedIncome(play.getUniqueId());            
             if(earned != 0D){
                 DecimalFormat df = new DecimalFormat("###,###,###.##");

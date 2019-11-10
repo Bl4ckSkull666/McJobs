@@ -31,7 +31,7 @@ import org.bukkit.scoreboard.Scoreboard;
  */
 public class McJobsScoreboard implements Runnable {
     //User UUID <Jobname, String>
-    private final HashMap<UUID, HashMap<String, String>> _userScoreboards = new HashMap<>();
+    private static final HashMap<UUID, Scoreboard> _userScoreboards = new HashMap<>();
     private static final DecimalFormat _df = new DecimalFormat("#,###,###,##0.##");
     private static ConfigurationSection _conf;
     private static GetLanguage _lang; 
@@ -48,20 +48,25 @@ public class McJobsScoreboard implements Runnable {
         }
     }
     
+    private static Scoreboard getScoreboard(Player p) {
+        if(!_userScoreboards.containsKey(p.getUniqueId()))
+            _userScoreboards.put(p.getUniqueId(), Bukkit.getScoreboardManager().getNewScoreboard());
+        return _userScoreboards.get(p.getUniqueId());
+    }
+    
     public static void setScoreboard(Player p) {
         Objective obj = null;
-        Scoreboard sb = p.getScoreboard();
-        obj = sb.getObjective("mc" + p.getUniqueId().toString().replace("-", "").substring(0, 10) + "jobs");
+        Scoreboard sb = getScoreboard(p);
+        obj = sb.getObjective("mcjobs");
         if(obj != null)
             obj.unregister();
         
         if(PlayerData.getPlayerJobs(p.getUniqueId()).isEmpty() || !PlayerData.showScoreboard(p.getUniqueId())) {
-            McJobs.getPlugin().getLogger().info("No jobs or user wish to hide it.");
             p.setScoreboard(sb);
             return;
         }
                 
-        obj = sb.registerNewObjective("mc" + p.getUniqueId().toString().replace("-", "").substring(0, 10) + "jobs", "mcjobs", ChatColor.translateAlternateColorCodes('&', _lang.getScoreboard("header", p.getUniqueId())), RenderType.INTEGER);
+        obj = sb.registerNewObjective("mcjobs", "mcjobs", ChatColor.translateAlternateColorCodes('&', _lang.getScoreboard("header", p.getUniqueId())), RenderType.INTEGER);
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         
         String userOrder = PlayerData.getScoreboardOrder(p.getUniqueId());
@@ -72,7 +77,7 @@ public class McJobsScoreboard implements Runnable {
         for(String job: PlayerData.getPlayerJobs(p.getUniqueId())) {
             if(PlayerJobs.getJobsList().get(job).getData().hideInScoreboard())
                 continue;
-            
+
             JobMe jm = new JobMe(job, p.getUniqueId());
             String order = "";
             switch(userOrder.toLowerCase()) {

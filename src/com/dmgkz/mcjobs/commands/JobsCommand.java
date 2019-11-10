@@ -15,6 +15,7 @@ import com.dmgkz.mcjobs.commands.jobs.SubCommandLanguage;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandLeave;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandList;
 import com.dmgkz.mcjobs.commands.jobs.SubCommandScoreboard;
+import com.dmgkz.mcjobs.commands.jobs.SubCommandTop;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
 import com.dmgkz.mcjobs.util.StringToNumber;
@@ -55,6 +56,9 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                     return true;
                 case "scoreboard":
                     SubCommandScoreboard.command(p, a);
+                    return true;
+                case "top":
+                    SubCommandTop.command(p, a);
                     return true;
                 default:
                     String job = McJobs.getPlugin().getLanguage().getOriginalJobName(a[0].toLowerCase(), p.getUniqueId());
@@ -99,6 +103,9 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                 case "scoreboard":
                     SubCommandScoreboard.command(p, a);
                     return true;
+                case "top":
+                    SubCommandTop.command(p, a);
+                    return true;
                 default:
                     sendDefaultMessage(p);
                     return true;
@@ -128,6 +135,8 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
                 list.add("leave");
                 list.add("info");
                 list.add("language");
+                list.add("top");
+                list.add("scoreboard");
                 if(McJobs.getPlugin().getConfig().getBoolean("scoreboard.use", false))
                     list.add("scoreboard");
                 for(String job: PlayerJobs.getJobsList().keySet())
@@ -168,11 +177,11 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
         }
         
         if(!list.isEmpty() && a.length > 0) {
-            String arg = a[a.length-1];
+            String arg = a[a.length-1].toLowerCase();
             List<String> tmp = new ArrayList<>();
             tmp.addAll(list);
             for(String tap: tmp) {
-                if(!tap.startsWith(arg))
+                if(!tap.toLowerCase().startsWith(arg))
                     list.remove(tap);
             }
             

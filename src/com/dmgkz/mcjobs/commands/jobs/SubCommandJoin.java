@@ -47,7 +47,7 @@ public class SubCommandJoin {
             } else if(time < 0)
                 time = 1;
             
-            String timed = TimeFormat.getFormatedTime(p.getUniqueId(), time);
+            String timed = TimeFormat.getFormatedTime(p.getUniqueId(), time*60);
             PrettyText text = new PrettyText();
             String str = ChatColor.GRAY + McJobs.getPlugin().getLanguage().getJobJoin("timer", p.getUniqueId()).addVariables(jobname, p.getName(), timed);
                     

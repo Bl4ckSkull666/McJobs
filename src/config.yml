@@ -68,3 +68,25 @@ hooks:
   placeholderapi:
     use: false
     list-seperator: ', '
+    
+toplist:
+  use: true
+  update-interval: 1800
+  allow-top: true
+  use-sign: true
+  template: '&a%pos &3%name &4Lv.%level'
+
+statistic-sign:
+  use: true
+  template:
+    has:
+      1: ' &aMc &bStats '
+      2: '&3%job'
+      3: '&9Level &3%level'
+      4: '&9%rank'
+    not:
+      1: ' &aMc &bStats '
+      2: '&3%job'
+      3: '&c----------------'
+      4: '&c----------------'
+   

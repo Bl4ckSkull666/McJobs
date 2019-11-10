@@ -15,6 +15,9 @@ public enum SignType {
     INFO("info"),
     NPC("npc"),
     REGION("region"),
+    TOP("top"),
+    STATS("stats"),
+    REMOVE("remove"),
     NONE("none");
         
     private final String _name;

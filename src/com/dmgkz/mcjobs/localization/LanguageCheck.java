@@ -252,18 +252,24 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobscommand.language-footer", "&eChange language with use /mcjobs language (language)");
         
         tmp.put("jobsnotify.and", "and");
-        tmp.put("jobsnotify.hours", "hours");
-        tmp.put("jobsnotify.hour", "hour");
-        tmp.put("jobsnotify.minutes", "minutes");
-        tmp.put("jobsnotify.minute", "minute");
-        tmp.put("jobsnotify.days", "days");
-        tmp.put("jobsnotify.day", "day");
-        tmp.put("jobsnotify.weeks", "weeks");
-        tmp.put("jobsnotify.week", "week");
-        tmp.put("jobsnotify.months", "months");
-        tmp.put("jobsnotify.month", "month");
+        tmp.put("jobsnotify.hours", " h");
+        tmp.put("jobsnotify.hour", " h");
+        tmp.put("jobsnotify.minutes", " mins");
+        tmp.put("jobsnotify.minute", " min");
+        tmp.put("jobsnotify.seconds", " s");
+        tmp.put("jobsnotify.second", " s");
+        tmp.put("jobsnotify.days", " d");
+        tmp.put("jobsnotify.day", " d");
+        tmp.put("jobsnotify.weeks", " w");
+        tmp.put("jobsnotify.week", " w");
+        tmp.put("jobsnotify.months", " m");
+        tmp.put("jobsnotify.month", " m");
+        tmp.put("jobsnotify.time-seperator", ", ");
+        
         tmp.put("jobsnotify.message", "&aYour &6MC Jobs&a have earned you &6%j&a in the past &c%g&a.");
         tmp.put("jobsnotify.overpay", "&e%p&a, you are exhausted and cannot earn more from &6MC Jobs&a for awhile.");
+        tmp.put("jobsnotify.is-online", "&b%p &eis &aOnline&f.");
+        tmp.put("jobsnotify.last-online", "&b%p &awas last online before &e%g");
         
         tmp.put("jobsdisplay.employed", "--   &cEmployed");
         tmp.put("jobsdisplay.unemployed", "-- &9Unemployed");
@@ -274,22 +280,25 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobsdisplay.level", "LEVEL");
         tmp.put("jobsdisplay.rank", "RANK");
         tmp.put("jobsdisplay.exp", "XP");
-        tmp.put("jobsdisplay.break", "BREAK");
-        tmp.put("jobsdisplay.place", "PLACE");
-        tmp.put("jobsdisplay.defeat", "DEFEAT");
-        tmp.put("jobsdisplay.fishing", "FISHING");
-        tmp.put("jobsdisplay.craft", "CRAFT");
-        tmp.put("jobsdisplay.repair", "REPAIR");
-        tmp.put("jobsdisplay.enchant", "ENCHANT");
-        tmp.put("jobsdisplay.potion", "POTIONS");
-        tmp.put("jobsdisplay.tier", "TIER");
+        tmp.put("jobsdisplay.break", "Breaking Blocks");
+        tmp.put("jobsdisplay.place", "Place Blocks");
+        tmp.put("jobsdisplay.defeat", "Defeat Monsters");
+        tmp.put("jobsdisplay.fishing", "Fishing");
+        tmp.put("jobsdisplay.craft", "Crafting");
+        tmp.put("jobsdisplay.repair", "Repair");
+        tmp.put("jobsdisplay.enchant", "Enchanting");
+        tmp.put("jobsdisplay.potion", "Brewing");
+        tmp.put("jobsdisplay.tier", "Tier");
         tmp.put("jobsdisplay.pvp", "PvP");
-        tmp.put("jobsdisplay.shear", "SHEAR");
+        tmp.put("jobsdisplay.shear", "Shear the Sheep");
+        tmp.put("jobsdisplay.cook", "Camp Fire cooking");
+        tmp.put("jobsdisplay.smelt", "Smelt in Furnace");
         tmp.put("jobsdisplay.pvptier", "Requires more than %g kills from same player");
         tmp.put("jobsdisplay.button.join", "&f[&eJoin &6%j&f]");
         tmp.put("jobsdisplay.button.leave", "&f[&cLeave &6%j&f]");
         tmp.put("jobsdisplay.button.info", "&f[%g%j&f]");
         tmp.put("jobsdisplay.button.language", "&f[&e%g&f]");
+        tmp.put("jobsdisplay.button.command", "&f[&b%j&f]");
         
         tmp.put("jobsjoin.have", "You already have &6%j&c!");
         tmp.put("jobsjoin.join", "%p has joined &9%j&7.");
@@ -396,16 +405,17 @@ public class LanguageCheck implements Runnable {
         tmp.put("jobshelp.7.6", "&6DEFEAT&2: Is the action of killing monsters like &7spiders&2.");
         tmp.put("jobshelp.7.7", "&6CRAFT&2: Is the action of crafting items like &7wood sword&2.");
         tmp.put("jobshelp.7.8", "&6REPAIR&2: Is the action of repairing items like &7stone shovel&2.");
-        tmp.put("jobshelp.7.9", "&2This covers both the &6mcMMO&2 repair and the vanilla repair.");
-        tmp.put("jobshelp.7.10", "&6FISHING&2: &aPays&2 or &ccharges&2 whenever you use a fishing rod to");
-        tmp.put("jobshelp.7.11", "&2catch an entity or fish.");
-        tmp.put("jobshelp.7.12", "&6Potion&2 and &6Enchants&2 are covered on the next page.");
-        tmp.put("jobshelp.7.13", "--");
-        tmp.put("jobshelp.8.1", "&6POTIONS&2: &aPays&2 or &ccharges&2 for using a brew stand to make");
-        tmp.put("jobshelp.8.2", "&2potions.");
+        tmp.put("jobshelp.7.9", "&6FISHING&2: &aPays&2 or &ccharges&2 whenever you use a fishing rod to");
+        tmp.put("jobshelp.7.10", "&2catch an entity or fish.");
+        tmp.put("jobshelp.7.11", "&6POTIONS&2: &aPays&2 or &ccharges&2 for using a brew stand to make");
+        tmp.put("jobshelp.7.12", "&2potions.");
+        tmp.put("jobshelp.7.13", "&2More are covered on the next page.");
+        tmp.put("jobshelp.7.14", "--");
         tmp.put("jobshelp.8.3", "&6ENCHANT&2: &aPays&2 or &ccharges&2 when the player enchants an item.");
         tmp.put("jobshelp.8.4", "&6SHEAR&2: &aPays&2 or &ccharges&2 when the player shear a sheep.");
         tmp.put("jobshelp.8.5", "&6PVP&2: &aPays&2 or &ccharges&2 when the player kills other player.");
+        tmp.put("jobshelp.8.3", "&6SMELT&2: &aPays&2 or &ccharges&2 when the player smelt in furnace.");
+        tmp.put("jobshelp.8.3", "&6COOK&2: &aPays&2 or &ccharges&2 when the player cook on campfire.");
         tmp.put("jobshelp.8.6", "");
         tmp.put("jobshelp.8.7", "");
         tmp.put("jobshelp.8.8", "");
@@ -429,6 +439,16 @@ public class LanguageCheck implements Runnable {
         tmp.put("admincommand.args", "&cToo many arguments for &e/jadm&c.  So this is the end, we''re going to test a ridiculously long string.");
         tmp.put("admincommand.exist", "&6%j&c does not exist!");
         tmp.put("admincommand.missing-worldedit", "&cYou need WorldEdit for this command. Without WorldEdit you must set it manual to job file.");
+        tmp.put("admincommand.top-list", "&cPlease add the wished Job to the command.");
+        tmp.put("admincommand.empty-line", "&cA Top Sign needs minimum the last line empty");
+        tmp.put("admincommand.no-players-in-job", "&cThere is no Player with this Job.");
+        
+        tmp.put("admincommand.missing-job", "&ccCan't find a job with this name %j.");
+        tmp.put("admincommand.missing-signtype", "");
+        tmp.put("admincommand.no-sign-in-sight", "&cCan't find a Sign in next sight.");
+        tmp.put("admincommand.sign-is-registed", "&cThis sign is already registed.");
+        tmp.put("admincommand.sign-successfull-registed", "&aRegisted sign Successful.");
+        tmp.put("admincommand.sign-removed", "&cSign was successful removed.");
         
         tmp.put("admincommand.language.start", "&eChecking async all language files. Please wait a moment.");
         tmp.put("admincommand.language.reload", "&6Language check has been finished. Reload languages files now sync.");
@@ -577,6 +597,9 @@ public class LanguageCheck implements Runnable {
         tmp.put("scoreboard.info.18.hover-msg", "&aDeactivate the Scoreboard");
         tmp.put("scoreboard.info.18.click-type", "run_command");
         tmp.put("scoreboard.info.18.click-msg", "/mcjobs scoreboard none");
+        
+        tmp.put("hooks.placeholderapi.no-job", "No job found.");
+        tmp.put("hooks.placeholderapi.has-job", "Job learned.");
         
         tmpInt.put("spaces.jobslist", 16);
         tmpInt.put("spaces.display", 4);

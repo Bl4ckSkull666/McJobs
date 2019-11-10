@@ -5,6 +5,8 @@
  */
 package com.dmgkz.mcjobs.util;
 
+import org.bukkit.Location;
+
 /**
  *
  * @author Bl4ckSkull666
@@ -12,9 +14,21 @@ package com.dmgkz.mcjobs.util;
 public class JobSign {
     private final SignType _siType;
     private final String _job;
-    public JobSign(String job, SignType siType) {
+    private final Location _loc;
+    private final int _startLine;
+    
+    public JobSign(String job, SignType siType, Location loc) {
         _job = job;
         _siType = siType;
+        _loc = loc;
+        _startLine = -1;
+    }
+    
+    public JobSign(String job, SignType siType, Location loc, int startLine) {
+        _job = job;
+        _siType = siType;
+        _loc = loc;
+        _startLine = startLine;
     }
        
     public SignType getSignType() {
@@ -23,5 +37,13 @@ public class JobSign {
       
     public String getJob() {
         return _job;
+    }
+    
+    public int getStartLine() {
+        return _startLine;
+    }
+    
+    public Location getLocation() {
+        return _loc;
     }
 }

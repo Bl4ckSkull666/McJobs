@@ -35,6 +35,7 @@ import com.dmgkz.mcjobs.util.ConfigMaterials;
 import com.dmgkz.mcjobs.util.Holder;
 import com.dmgkz.mcjobs.localization.LanguageCheck;
 import com.dmgkz.mcjobs.scheduler.McJobsScoreboard;
+import com.dmgkz.mcjobs.scheduler.McTopSigns;
 import com.dmgkz.mcjobs.util.PlayerUtils;
 import com.dmgkz.mcjobs.util.ResourceList;
 import com.dmgkz.mcjobs.util.SignManager;
@@ -74,6 +75,28 @@ public class McJobs extends JavaPlugin {
         _mcJobs = this;
         loadClasses();
         
+        if(getServer().getPluginManager().getPlugin("WorldGuard") != null) {
+            MCListeners.setWorldGuard(true);
+            _wgp = (WorldGuardPlugin)getServer().getPluginManager().getPlugin("WorldGuard");
+            getLogger().info("WorldGuard found.  Enabling WorldGuard protections.");
+        }
+        
+        if(getServer().getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("hooks.placeholderapi.use", false)) {
+            if(new HookPlaceHolderAPI(this).register()) {
+                getLogger().info("PlaceholderAPI found. Registed for PlaceholderAPI using.");
+                _isPlaceholderAPI = true;
+                GetLanguage.setUsingPlaceholderAPI(true);
+            }
+        }
+        
+        try {        
+            loadEconomyBridges();
+        } catch(Exception e) {
+            getLogger().info("Unable to load Economy mods.");
+            getLogger().info("Using XP economy.");
+            McJobsComp.setXP(true);
+        }
+        
         try {
             mcloadconf(this);
         } catch(Exception e) {
@@ -87,27 +110,6 @@ public class McJobs extends JavaPlugin {
         getCommand("mcjobsadmin").setExecutor(new AdminCommand());
 
         initListener.RegisterListeners(this);
-
-        if(getServer().getPluginManager().getPlugin("WorldGuard") != null) {
-            MCListeners.setWorldGuard(true);
-            _wgp = (WorldGuardPlugin)getServer().getPluginManager().getPlugin("WorldGuard");
-            getLogger().info("WorldGuard found.  Enabling WorldGuard protections.");
-        }
-        
-        if(getServer().getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("hooks.placeholderapi.use", false)) {
-            if(new HookPlaceHolderAPI(this).register()) {
-                getLogger().info("PlaceholderAPI found. Registed for PlaceholderAPI using.");
-                _isPlaceholderAPI = true;
-            }
-        }
-        
-        try {        
-            loadEconomyBridges();
-        } catch(Exception e) {
-            getLogger().info("Unable to load Economy mods.");
-            getLogger().info("Using XP economy.");
-            McJobsComp.setXP(true);
-        }
 
         if(!_bQuit) {
             ConfigMaterials.load(getConfig());
@@ -126,6 +128,10 @@ public class McJobs extends JavaPlugin {
             if(getConfig().getBoolean("scoreboard.use", false)) {
                 long updateTime = getConfig().getLong("scoreboard.update-interval", 30)*20L;
                 getServer().getScheduler().scheduleSyncRepeatingTask(this, new McJobsScoreboard(this), updateTime, updateTime);
+            }
+            
+            if(McJobs.getPlugin().getConfig().getBoolean("toplist.use", false)) {
+                Bukkit.getScheduler().runTaskTimerAsynchronously(McJobs.getPlugin(), new McTopSigns(), 30*20, McJobs.getPlugin().getConfig().getInt("toplist.update-interval", 1800)*20);
             }
             getLogger().info("MC Jobs has been enabled!");
         }

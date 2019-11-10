@@ -41,6 +41,7 @@ public class PlayerUtils {
                     return i;
 
                 for(String group: lGroups) {
+                    McJobs.getPlugin().getLogger().info("Checking Group " + group);
                     if(_maxdefaults.containsKey(group.toLowerCase())) {
                         if(i < _maxdefaults.get(group.toLowerCase()))
                             i = _maxdefaults.get(group.toLowerCase());

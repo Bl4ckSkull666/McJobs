@@ -22,7 +22,6 @@ import org.bukkit.DyeColor;
 
 public class CompData {
     private final JobsData _jobsdata;
-
     private static final ArrayList<CompCache> _compcache = new ArrayList<>();
     
     public CompData(JobsData jobsdata){

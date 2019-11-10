@@ -38,7 +38,7 @@ public class PlayerData {
     public int _lastSave;
     public double _earnedIncome;
     public int _jobCount;
-    public int _allowedJobs;
+    //public int _allowedJobs;
     public boolean _seenPitch;
     public Date _dateModified;
     public String _playerLang;
@@ -67,7 +67,7 @@ public class PlayerData {
         }
         _lastSave = lastSave;
         _earnedIncome = earnedIncome;
-        _allowedJobs = PlayerUtils.getAllowed(uuid);
+        //_allowedJobs = PlayerUtils.getAllowed(uuid);
         _seenPitch = seenPitch;
         _dateModified = new Date(dateModified);
         _playerLang = lang;
@@ -120,8 +120,9 @@ public class PlayerData {
     }
   
     public static int getAllowedJobCount(UUID uuid) {
-        PlayerData checkPlayer = getPlayerData(uuid);
-        return checkPlayer._allowedJobs;
+        return PlayerUtils.getAllowed(uuid);
+        /*PlayerData checkPlayer = getPlayerData(uuid);
+        return checkPlayer._allowedJobs;*/
     }
   
     public static ArrayList<String> getPlayerJobs(UUID uuid) {
@@ -177,7 +178,7 @@ public class PlayerData {
             }
         }
         cP._jobCount = temp;
-        cP._allowedJobs = PlayerUtils.getAllowed(uuid);
+        //cP._allowedJobs = PlayerUtils.getAllowed(uuid);
         if(!cP._rejoinJobs.isEmpty() && !_playerperms.contains(uuid)) {
             _playerperms.add(uuid);
             savePlayerPerms();

@@ -8,3 +8,7 @@ break:
   3: gold_ore lapis_ore glowstone emerald_ore
   4: diamond_ore
   5: obsidian
+smelt:
+  1: stone
+  2: iron_ingot gold_ingot
+  

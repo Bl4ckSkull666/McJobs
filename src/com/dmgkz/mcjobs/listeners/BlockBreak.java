@@ -41,7 +41,7 @@ public class BlockBreak implements Listener{
         
         PrettyText text = new PrettyText();
         Player play = event.getPlayer();
-        if(event.getBlock() instanceof Sign && McJobs.getPlugin().getSignManager().isSign(event.getBlock().getLocation())) {
+        if(event.getBlock().getState() instanceof Sign && McJobs.getPlugin().getSignManager().isSign(event.getBlock().getLocation())) {
             if(!play.hasPermission("mcjobs.admin")) {
                 String str = ChatColor.RED + McJobs.getPlugin().getLanguage().getAdminCommand("permission", play.getUniqueId()).addVariables("", play.getName(), "");
                 text.formatPlayerText(str, play);

@@ -1,5 +1,6 @@
 package com.dmgkz.mcjobs.playerjobs.levels;
 
+import com.dmgkz.mcjobs.McJobs;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 
@@ -30,7 +31,7 @@ public class Leveler {
     public static String getRank(int level) {
         int i = level;
 
-        while(i > 0){
+        while(i > 0) {
             if(Leveler.hRanks.containsKey(i))
                 return Leveler.hRanks.get(i);
             i--;
@@ -66,5 +67,26 @@ public class Leveler {
             multi = 0.75 * ((0.0085 * level + 2) * paymod);
         
         return multi;
+    }
+    
+    private static HashMap<Double, Integer> _tmpExp = new HashMap<>();
+    public static int getLevelByExp(double exp) {
+        if(_tmpExp.containsKey(exp)) {
+            return _tmpExp.get(exp);
+        }
+        
+        int i = 1;
+        while(true) {
+            double min = getXPtoLevel(i-1);
+            double max = getXPtoLevel(i);
+            if(exp >= min && exp < max) {
+                _tmpExp.put(exp, i);
+                return i;
+            }
+            i++;
+            if(i == 1000)
+                break;
+        }
+        return 9999;
     }
 }

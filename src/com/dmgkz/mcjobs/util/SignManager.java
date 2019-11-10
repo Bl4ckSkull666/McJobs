@@ -6,7 +6,9 @@
 package com.dmgkz.mcjobs.util;
 
 import com.dmgkz.mcjobs.McJobs;
+import com.dmgkz.mcjobs.listeners.OnPlayerMove;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
+import com.dmgkz.mcjobs.scheduler.McTopSigns;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,15 +49,28 @@ public final class SignManager {
         return null;
     }
     
-    public void addSign(Location loc, JobSign js) {
+    public void addSign(Location loc, JobSign js, boolean save) {
         _signs.put(loc, js);
-        save();
+        if(js.getSignType().equals(SignType.TOP)) {
+            McTopSigns.addSign(js, save);
+        } else if(js.getSignType().equals(SignType.STATS)) {
+            OnPlayerMove.addSign(js);
+        }
+        
+        if(save)
+            save();
     }
     
     public void removeSign(Location loc) {
         if(!_signs.containsKey(loc))
             return;
         
+        JobSign js = _signs.get(loc);
+        if(js.getSignType().equals(SignType.TOP)) {
+            McTopSigns.removeSign(js);
+        } else if(js.getSignType().equals(SignType.STATS)) {
+            OnPlayerMove.removeSign(js);
+        }
         _signs.remove(loc);
         save();
     }
@@ -77,18 +92,24 @@ public final class SignManager {
             if(siType == null)
                 continue;
             
-            JobSign js = new JobSign(conf.getString(k + ".job"), siType);
             if(Bukkit.getWorld(conf.getString(k + ".world")) == null)
                 continue;
             
             World w = Bukkit.getWorld(conf.getString(k + ".world"));
             
             Location loc = new Location(w, conf.getInt(k + ".x"), conf.getInt(k + ".y"), conf.getInt(k + ".z"));
+            JobSign js;
+            if(conf.isInt(k + ".startLine")) {
+                js = new JobSign(conf.getString(k + ".job"), siType, loc, conf.getInt(k + ".startLine"));
+            } else
+                js = new JobSign(conf.getString(k + ".job"), siType, loc);
+            
             Block b = loc.getBlock();
             if(!(b.getState() instanceof Sign)) {
                 continue;
             }
-            _signs.put(loc, js);
+            
+            addSign(loc, js, false);
         }
     }
     
@@ -109,6 +130,8 @@ public final class SignManager {
             conf.set(i + ".z", me.getKey().getBlockZ());
             conf.set(i + ".type", me.getValue().getSignType().getName());
             conf.set(i + ".job", me.getValue().getJob());
+            if(me.getValue().getStartLine() >= 0)
+                conf.set(i + ".startLine", me.getValue().getStartLine());
             i++;
         }
         

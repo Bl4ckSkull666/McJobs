@@ -183,7 +183,7 @@ public final class GetLanguage {
     }
     
     public String getJobName(String jobname, UUID uuid) {
-        return getSection("jobs.name", jobname, uuid);
+        return getSection("jobs.name", jobname.toLowerCase(), uuid);
     }
     
     public String getOriginalJobName(String jobname, UUID uuid) {
@@ -387,9 +387,21 @@ public final class GetLanguage {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
     
-    private String checkForPlaceholderAPI(UUID uuid, String str) {
+    public String checkForPlaceholderAPI(UUID uuid, String str) {
         if(_isPlaceHolderAPI)
             return HookPlaceHolderAPI.checkPlaceholders(str, uuid);
         return str;
+    }
+    
+    public static void setUsingPlaceholderAPI(boolean bol) {
+        _isPlaceHolderAPI = bol;
+    }
+    
+    public static boolean isSpigot() {
+        return _isSpigot;
+    }
+    
+    public static boolean isWorldEdit() {
+        return _isWorldEdit;
     }
 }

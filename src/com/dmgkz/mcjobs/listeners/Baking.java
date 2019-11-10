@@ -3,16 +3,10 @@ package com.dmgkz.mcjobs.listeners;
 import com.dmgkz.mcjobs.McJobs;
 import java.util.HashMap;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.Furnace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.FurnaceSmeltEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import com.dmgkz.mcjobs.playerdata.CompCache;
@@ -26,9 +20,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Campfire;
 import org.bukkit.event.block.BlockCookEvent;
-import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class Baking implements Listener {
@@ -47,11 +39,11 @@ public class Baking implements Listener {
                 return;
         }
 
-        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+        ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("smelt");
         for(String sJob: jobs) {
             if(PlayerData.hasJob(p.getUniqueId(), sJob)) {
                 for(int i = 0; i < e.getItemAmount(); i++) {
-                    CompCache comp = new CompCache(sJob, p.getLocation(), p, e.getItemType(), "craft");
+                    CompCache comp = new CompCache(sJob, p.getLocation(), p, e.getItemType(), "smelt");
                     CompData.getCompCache().add(comp);
                 }
             }
@@ -103,13 +95,14 @@ public class Baking implements Listener {
                         continue;
                     
                     Player p = mcc.getPlayer();
-                    ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("craft");
+                    ArrayList<String> jobs = McJobs.getPlugin().getHolder().getJobsHolder().getJobs("cook");
                     for(String sJob: jobs) {
                         if(PlayerData.hasJob(p.getUniqueId(), sJob)){
-                            CompCache comp = new CompCache(sJob, p.getLocation(), p, _mat, "craft");
+                            CompCache comp = new CompCache(sJob, p.getLocation(), p, _mat, "cook");
                             CompData.getCompCache().add(comp);
                         }
                     }
+                    
                     _hBlockCook.remove(mcc);
                     return;
                 }

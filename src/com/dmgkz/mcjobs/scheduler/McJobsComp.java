@@ -37,7 +37,7 @@ public class McJobsComp implements Runnable {
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compPotions(cc.getPotion(), cc.getPlayer(), cc.getAction(), _aPayer);
             else if(cc.getAction().equalsIgnoreCase("enchant"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compEnchant(cc.getEnchants(), cc.getPlayer(), cc.getAction(), _aPayer);
-            else if(cc.getAction().equalsIgnoreCase("craft") || cc.getAction().equalsIgnoreCase("repair") || cc.getAction().equalsIgnoreCase("fishing"))
+            else if(cc.getAction().equalsIgnoreCase("craft") || cc.getAction().equalsIgnoreCase("repair") || cc.getAction().equalsIgnoreCase("fishing") || cc.getAction().equalsIgnoreCase("smelt") || cc.getAction().equalsIgnoreCase("cook"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compBlock(cc.getMaterial(), cc.getPlayer(), cc.getAction(), _aPayer);
             else if(cc.getAction().equalsIgnoreCase("shear"))
                 PlayerJobs.getJobsList().get(cc.getJob()).getData().compJob().compShear(cc.getColor(), cc.getPlayer(), cc.getAction(), _aPayer);

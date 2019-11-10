@@ -14,14 +14,13 @@ import com.dmgkz.mcjobs.util.EnchantTypeAdv;
 import com.dmgkz.mcjobs.util.PotionTypeAdv;
 import java.util.List;
 import java.util.UUID;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.DyeColor;
 import org.bukkit.command.CommandSender;
 
 public class PrettyText {
     
     public void formatPlayerText(String str, Player play) {
-        formatPlayerText(PlaceholderAPI.setPlaceholders(play, str), (CommandSender)play);
+        formatPlayerText(McJobs.getPlugin().getLanguage().checkForPlaceholderAPI(play.getUniqueId(), str), (CommandSender)play);
     }
 
     public void formatPlayerText(String str, CommandSender play) {

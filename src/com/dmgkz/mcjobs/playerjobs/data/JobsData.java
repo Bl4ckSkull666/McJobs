@@ -61,7 +61,7 @@ public class JobsData{
         _loadjob = new LoadJob(this);
         _display = new JobsDisplay(this);
         
-        _bShow = new boolean[10];
+        _bShow = new boolean[12];
         _bCP   = new boolean[2];
         Arrays.fill(_bShow, false);
         Arrays.fill(_bCP, false);
@@ -180,6 +180,10 @@ public class JobsData{
             return _bShow[8];
         else if(block.equalsIgnoreCase("pvp"))
             return _bShow[9];
+        else if(block.equalsIgnoreCase("smelt"))
+            return _bShow[10];
+        else if(block.equalsIgnoreCase("cook"))
+            return _bShow[11];
         return false;
     }
 

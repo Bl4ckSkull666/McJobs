@@ -8,6 +8,7 @@ package com.dmgkz.mcjobs.localization;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
+import com.dmgkz.mcjobs.util.TimeFormat;
 import com.dmgkz.mcjobs.util.Utils;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.bukkit.BukkitPlayer;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -29,6 +31,39 @@ import org.bukkit.entity.Player;
  * @author Bl4ckSkull666
  */
 public class WorldEditBuilds {
+    public static void sendTopLine(Player p, String line, OfflinePlayer op) {
+        Builder b = TextComponent.builder();
+        b.append(line);
+        
+        String hoverText = "";
+        if(op.isOnline()) {
+            hoverText = McJobs.getPlugin().getLanguage().getJobNotify("is-online", p.getUniqueId()).addVariables("", op.getName(), "");
+        } else if(op.hasPlayedBefore() && op.getLastPlayed() > 0) {
+            hoverText = McJobs.getPlugin().getLanguage().getJobNotify("last-online", p.getUniqueId()).addVariables("", op.getName(), TimeFormat.getFormatedTime(p.getUniqueId(), (System.currentTimeMillis()-op.getLastPlayed())/1000));
+        }
+        
+        if(!hoverText.isEmpty()) {
+            b.hoverEvent(HoverEvent.showText(TextComponent.builder().append(hoverText).build()));
+        }
+        
+        BukkitPlayer bp = BukkitAdapter.adapt(p);
+        bp.print(b.build());
+    }
+    
+    public static void sendJobButtons(Player p, String cmd) {
+        Builder b = TextComponent.builder();
+        boolean firstAdd = false;
+        for(String job: PlayerJobs.getJobsList().keySet()) {
+            if(firstAdd)
+                b.append(" ");
+            String jobMe = McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId());
+            b.append(getCommandButton(jobMe, p, cmd.replace("%j", jobMe)));
+        }
+        
+        BukkitPlayer bp = BukkitAdapter.adapt(p);
+        bp.print(b.build());
+    }
+    
     public static void sendJobList(Player p) {
         Builder b = TextComponent.builder();
         int i = 0;
@@ -161,6 +196,14 @@ public class WorldEditBuilds {
             str = str.replace(me.getKey(), me.getValue());
         }
         return str;
+    }
+    
+    public static TextComponent getCommandButton(String jobMe, Player p, String cmd) {
+        jobMe = ChatColor.stripColor(jobMe);
+        Builder b = TextComponent.builder();
+        b.append(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.command", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
+        b.clickEvent(ClickEvent.runCommand(cmd));
+        return b.build();
     }
     
     public static TextComponent getInfoButton(String jobMe, Player p, ChatColor cc) {

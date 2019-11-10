@@ -8,6 +8,7 @@ package com.dmgkz.mcjobs.localization;
 import com.dmgkz.mcjobs.McJobs;
 import com.dmgkz.mcjobs.playerdata.PlayerData;
 import com.dmgkz.mcjobs.playerjobs.PlayerJobs;
+import com.dmgkz.mcjobs.util.TimeFormat;
 import com.dmgkz.mcjobs.util.Utils;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +20,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -27,6 +29,35 @@ import org.bukkit.entity.Player;
  * @author Bl4ckSkull666
  */
 public class SpigotBuilds {
+    public static void sendTopLine(Player p, String line, OfflinePlayer op) {
+        TextComponent main = new TextComponent(line);
+        String hoverText = "";
+        if(op.isOnline()) {
+            hoverText = McJobs.getPlugin().getLanguage().getJobNotify("is-online", p.getUniqueId()).addVariables("", op.getName(), "");
+        } else if(op.hasPlayedBefore() && op.getLastPlayed() > 0) {
+            hoverText = McJobs.getPlugin().getLanguage().getJobNotify("last-online", p.getUniqueId()).addVariables("", op.getName(), TimeFormat.getFormatedTime(p.getUniqueId(), (System.currentTimeMillis()-op.getLastPlayed())/1000));
+        }
+        
+        if(!hoverText.isEmpty()) {
+            HoverEvent he = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', hoverText)).create());
+            main.setHoverEvent(he);
+        }
+        p.spigot().sendMessage(main);
+    }
+    
+    public static void sendJobButtons(Player p, String cmd) {
+        TextComponent main = new TextComponent("");
+        boolean firstAdd = false;
+        for(String job: PlayerJobs.getJobsList().keySet()) {
+            if(firstAdd)
+                main.addExtra(" ");
+            String jobMe = McJobs.getPlugin().getLanguage().getJobName(job, p.getUniqueId());
+            main.addExtra(getCommandButton(jobMe, p, cmd.replace("%j", jobMe)));
+            firstAdd = true;
+        }
+        p.spigot().sendMessage(main);
+    }
+    
     public static void sendJobList(Player p) {
         TextComponent main = new TextComponent("");
         int i = 0;
@@ -164,6 +195,13 @@ public class SpigotBuilds {
                 iJob++;
         }
         return iJob;
+    }
+    
+    public static TextComponent getCommandButton(String jobMe, Player p, String cmd) {
+        jobMe = ChatColor.stripColor(jobMe);
+        TextComponent tc = new TextComponent(ChatColor.translateAlternateColorCodes('&', McJobs.getPlugin().getLanguage().getJobDisplay("button.command", p.getUniqueId()).addVariables(jobMe, p.getName(), "")));
+        tc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, cmd));
+        return  tc;
     }
     
     public static TextComponent getInfoButton(String jobMe, Player p, ChatColor cc) {
