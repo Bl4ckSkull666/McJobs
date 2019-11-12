@@ -135,11 +135,7 @@
   <property name="project.jdk.home" value="${jdk.home.11}"/>
   <property name="project.jdk.bin" value="${jdk.bin.11}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.11"/>
-  <!-- Register Custom Compiler Taskdefs -->
 
-  
-  <!-- Modules -->
-  
   
   <!-- Module McJobs -->
   
@@ -303,5 +299,7 @@
   
   <target name="build.modules" depends="init, clean, compile.module.mcjobs.main" description="build all modules"/>
   
-  <target name="all" depends="build.modules" description="build all"/>
+  <target name="all" depends="build.modules" description="build all">
+    <jar jarfile="${dist}/lib/${ant.project.name}.jar" basedir="${dist}"/>
+  </target>
 </project>
