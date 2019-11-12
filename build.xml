@@ -295,7 +295,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.mcjobs.main.tests" depends="register.custom.compilers,compile.module.mcjobs.main.production" description="compile module McJobs.main; test classes" unless="skip.tests"/>
+  <target name="compile.module.mcjobs.main.tests" depends="compile.module.mcjobs.main.production" description="compile module McJobs.main; test classes" unless="skip.tests"/>
   
   <target name="clean.module.mcjobs.main" description="cleanup module">
     <delete dir="${mcjobs.main.output.dir}"/>
@@ -379,9 +379,9 @@
   
   <target name="compile.module.mcjobs.test" depends="compile.module.mcjobs.test.production,compile.module.mcjobs.test.tests" description="Compile module McJobs.test"/>
   
-  <target name="compile.module.mcjobs.test.production" depends="register.custom.compilers,compile.module.mcjobs.main" description="Compile module McJobs.test; production classes"/>
+  <target name="compile.module.mcjobs.test.production" depends="compile.module.mcjobs.main" description="Compile module McJobs.test; production classes"/>
   
-  <target name="compile.module.mcjobs.test.tests" depends="register.custom.compilers,compile.module.mcjobs.test.production" description="compile module McJobs.test; test classes" unless="skip.tests">
+  <target name="compile.module.mcjobs.test.tests" depends="compile.module.mcjobs.test.production" description="compile module McJobs.test; test classes" unless="skip.tests">
     <mkdir dir="${mcjobs.test.testoutput.dir}"/>
     <javac2 destdir="${mcjobs.test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mcjobs.test}/javac">
       <compilerarg line="${compiler.args.mcjobs.test}"/>
