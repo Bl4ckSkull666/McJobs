@@ -189,9 +189,9 @@
   
   <target name="compile.module.mcjobs" depends="compile.module.mcjobs.production,compile.module.mcjobs.tests" description="Compile module McJobs"/>
   
-  <target name="compile.module.mcjobs.production" depends="register.custom.compilers" description="Compile module McJobs; production classes"/>
+  <target name="compile.module.mcjobs.production" description="Compile module McJobs; production classes"/>
   
-  <target name="compile.module.mcjobs.tests" depends="register.custom.compilers,compile.module.mcjobs.production" description="compile module McJobs; test classes" unless="skip.tests"/>
+  <target name="compile.module.mcjobs.tests" depends="compile.module.mcjobs.production" description="compile module McJobs; test classes" unless="skip.tests"/>
   
   <target name="clean.module.mcjobs" description="cleanup module">
     <delete dir="${mcjobs.output.dir}"/>
@@ -273,7 +273,7 @@
   
   <target name="compile.module.mcjobs.main" depends="compile.module.mcjobs.main.production,compile.module.mcjobs.main.tests" description="Compile module McJobs.main"/>
   
-  <target name="compile.module.mcjobs.main.production" depends="register.custom.compilers" description="Compile module McJobs.main; production classes">
+  <target name="compile.module.mcjobs.main.production" description="Compile module McJobs.main; production classes">
     <mkdir dir="${mcjobs.main.output.dir}"/>
     <javac2 destdir="${mcjobs.main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mcjobs.main}/javac">
       <compilerarg line="${compiler.args.mcjobs.main}"/>
