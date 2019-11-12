@@ -2,13 +2,14 @@ plugins {
     id 'java'
 }
 
-group 'McJobs'
+group 'de.bl4ckskull6666'
 version '3.8.9'
+buildDir 'build'
 
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
