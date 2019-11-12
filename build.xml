@@ -300,6 +300,7 @@
   <target name="build.modules" depends="init, clean, compile.module.mcjobs.main" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all">
+    <mkdir dir="${dist}"/>
     <jar jarfile="${dist}/lib/${ant.project.name}.jar" basedir="${dist}"/>
   </target>
 </project>
