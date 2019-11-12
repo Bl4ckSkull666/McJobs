@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'de.bl4ckskull666'
+version '3.8.9'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation files(
+            'Z:/Projekte/Minecraft/Jars/Spigot/spigot-1.14.4.jar',
+            'Z:/Projekte/Minecraft/Jars/1.14/PlaceholderAPI-2.10.4.jar',
+            'Z:/Projekte/Minecraft/Jars/1.14/Vault_v1.7.2.jar',
+            'Z:/Projekte/Minecraft/Jars/1.14/WorldEdit_v7.1.0-b4675.jar',
+            'Z:/Projekte/Minecraft/Jars/1.14/WorldGuard_v7.0.1-b1983.jar'
+    )
+}

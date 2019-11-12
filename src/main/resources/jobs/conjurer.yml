@@ -1,0 +1,11 @@
+basepay: 25.0
+show_every_time: true
+exp: 10
+enchant:
+  pays: true
+  hide: false
+  1: EFFICIENCY_1 UNBREAKING_1 FORTUNE_1
+  2: EFFICIENCY_2
+  3: EFFICIENCY_3 UNBREAKING_2 FORTUNE_2
+  4: EFFICIENCY_4
+  5: EFFICIENCY_5 UNBREAKING_3 FORTUNE_3 SILK_TOUCH_1

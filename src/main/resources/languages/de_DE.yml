@@ -1,0 +1,164 @@
+jobscommand:
+  playeronly: Kann nur ein Spieler machen!
+  permission: '&6%p&c Du hast keine Berechtigung das zu machen!'
+  args: '&6%p&c Du hast zuviele Argumente gegeben!'
+  exist: '&cDer Job &6%j&c existiert nicht!'
+  rejoin: '&7Du kannst wieder den Job &6%j&7 auswaehlen.'
+  show: '&7Jetzt wird Dir die Einzelzahlung fuer den Job &6%j&7 angezeigt.'
+  hide: '&7Jetzt wird die Einzelzahlung fuer den Job &6%j&7 ausgeblendet.'
+  available_langs: 'Die folgenden Sprachen fuer McJobs sind verfuegbar : &6%g'
+  wrong_lang: Die Sprache &l%g &r&cist nicht verfuegbar.
+  success_lang: Sprache erfolgreich zu &l%g &r&2gewechselt.
+  missingjob: Der gewuenschte Beruf ist nicht verfuegbar.
+  toomany: Du hast die maximale Anzahl an Berufe.
+  command: Benutze /jobs list um deine Berufe zu sehen.
+jobsnotify:
+  and: und
+  hours: Stunden
+  hour: Stunde
+  minutes: Minuten
+  minute: Minute
+  days: Tage
+  day: Tag
+  weeks: Wochen
+  week: Woche
+  months: Monate
+  month: Monat
+  message: '&aDeine &6MC Jobs&a haben Dir in den letzten &c%g&a &6%j&a Coins eingebracht.'
+  overpay: '&e%p&a, Du bist erschoepft und kannst eine Weile nichts durch Deinen &6MC Jobs&a verdienen.'
+jobsdisplay:
+  employed: --   &cAngestellt
+  unemployed: -- &9Erwerbslos
+  default: --  &3Standard
+  basepay: Grundgehalt
+  charge: Gebuehr
+  pay: Gehalt
+  level: Level
+  rank: Rang
+  exp: XP
+  break: Abbauen
+  place: Platzieren
+  defeat: Besiegen
+  fishing: Angeln
+  craft: Herstellen
+  repair: Reparieren
+  enchant: Verzaubern
+  potions: Traenke
+  tier: 'Stufe '
+jobsjoin:
+  have: Du hast bereits den Job &6%j&c!
+  join: '%p ist jetzt &9%j&7.'
+  toomany: '&6%p&c Du hast zuviele Jobs.  Um einen neuen Job zu waehlen:'
+  command: /jobs leave [job]
+  jobperm: '&6%p&7 Du hast keine Berechtigung um &9%j&7 zu waehlen'
+  timer: '&7Du kannst &6%j&7 fuer die naechsten &c%g&7 nicht waehlen.'
+jobsleave:
+  quit: Du hast &6%j&7 aufgegeben.
+  donthave: Du hast den Job &6%j&c nicht.
+  leavedefault: Du kannst &6%j&c nicht aufgeben, denn es ist ein Standardjob.
+jobslist:
+  available: '&e%p&2, Deine verfuegbaren Jobs sind:'
+  jobsin: Jobs in &crot&2 hast Du schon.
+  nojob: Jobs in &8dunkelgrau&2 sind fuer Dich nicht verfuegbar.
+  defaultjob: Jobs in &3dunkelblau&2 sind Standardjobs.
+  specific: 'Um etwas ueber den Job zu erfahren schreibe: &e/jobs [Job Name]'
+  jobs: 'Berufe:'
+jobshelp:
+  page: Seite
+  endofpage: '&7Weiter zur Seite %g'
+  command: '&6/jobs help %g'
+  finish: '&7ENDE DER HILFEDATEI'
+  nohelp: '&7%g&c ist keine Seite der Hilfe!'
+admincommand:
+  permission: '&6%p&c Du hast keine Berechtigung das zu machen!'
+  failedreload: '&cNeuladen das Plugins fehlgeschlagen!'
+  succeedreload: '&6MC Jobs&c wurde neugestartet!'
+  defaults: '&7Standardwerte wurden der config.yml Datei hinzugefuegt.'
+  args: '&cZuviele Argumente fuer &e/jadm&c.  Das ist das Ende, wir testen einen sehr lange Zeichenkette.'
+  exist: '&6%j&c existiert nicht!'
+adminadd:
+  args: '&cFalsches Argument:  &e/jadm add [player/group] [job_name]'
+  offline: '&6%p&c Gruppe existiert nicht, oder ist ein Spieler der nicht gesehen wurde.!'
+  novault: '&6%p&c ist kein bekannter Spieler!'
+  hasjob: '&6%p&7 hat schon den Job &9%j&7.'
+  empty: '&7es sind keine Spieler &eplayers&7 aus der Gruppe &6%p&7 online.'
+  added: '&6%p&7 wurde hinzugefuegt zu &9%j&7.'
+  padded: '&6%p&2 Du hast durch einen Admin den &9%j&2 erlernt.'
+adminremove:
+  args: '&cFalsches Argument:  &e/jadm remove [player/group] [job_name]'
+  nojob: '&6%p&7 hat den Job &9%j&7 nicht.'
+  nodefault: '&6%p&c Du hast keine Berechtigung &3Standardjobs&c zu entfernen!'
+  removed: '&6%p&7 wurde aus dem Job &9%j&7 entlassen.'
+  premoved: '&6%p&2 Du wurdest beim Job &9%j&2 durch einen Admin entlassen.'
+adminlist:
+  args: '&cFalsches Argument:  &e/jadm list [player/group]'
+  playerlist: '&2%p&7: %g'
+  nojobs: '&2%p&c hat keine Jobs.'
+  wrongpage: '&e%g ist keine gueltige Seitenzahl. Benutze Seite 1.'
+pitch:
+  line0: 'Dieser Server lauft so:'
+  line1: '&aDie verfuegbaren Jobs sieht man mit: &e/jobs list'
+  line2: '&aUm einen Job zu erlernen: &e/jobs join [job_name]'
+  line3: '&aSpiele, &2verdiene Geld&a, und habe Spass!'
+onadminlogin:
+  toolow: '&eYour pay scale is too low for an &6XP&e based economy.  Consider switching &2pay_scale&e to high in the config.yml file.'
+  outofdate: '&eConfig.yml is out of date.  &6MC Jobs&e may not work properly without reloading the config file.'
+  bankisempty: '&eDas Bank Account Guthaben ist beinahe aufgebraucht.'
+experience:
+  level: '&eDu hast jetzt Level &6%g&e beim &6%j&e.'
+  reset: '&eDein Level beim &6%j&e wurde auf &c0&e gesetzt.'
+  rank: '&eDu hast jetzt den Rang &6%g&e beim &6%j&e.'
+  added_lvl: '&7Du hast &6%p &a%g&7 Level beim &6%j&7 bekommen.'
+  padded_lvl: '&7Du hast &a%g&7 Level beim &6%j&7 von einem Admin bekommen.'
+  added_xp: '&7Du hast &6%p &a%g&7 Erfahrung beim &6%j&7 bekommen.'
+  padded_xp: '&7Du hast &a%g&7 Erfahrung beim &6%j&7 von einem Admin bekommen.'
+  nojob: '&6%p&c hat den Job &6%j&c nicht.'
+payment:
+  pay: '&aDer Job &6%j&a hat Dir &6%g&a Coins &aeingebracht.'
+  payxp: '&aDer Job &6%j&a hat Dir &6%g&a Erfahrung eingebracht.'
+  charge: '&aDer Job &6%j&a hat Dich &c%g&a %p gekostet.'
+  chargexp: '&aDer Job &6%j&a hat Dich &c%g&a Erfahrung gekostet.'
+  currency_single: Coin
+  currency_plural: Coins
+spaces:
+  jobslist: 16
+  display: 4
+  displaytwo: 8
+  displaythree: 4
+  chargelen: 7
+  numhelp: 8
+entities:
+  blaze: Lohe
+  cow: Kuh
+  cave_spider: Hoehlenspinne
+  chicken: Huhn
+  creeper: Creeper
+  dropped_item: Fisch
+  ender_dragon: Enderdrache
+  enderman: Endermann
+  ghast: Ghast
+  giant: Riese
+  iron_golem: Eisengolem
+  magma_cube: Magma Wuerfel
+  mushroom_cow: Pilzkuh
+  npc: NPC
+  ocelot: Ocelot
+  pig: Schwein
+  pig_zombie: Schweinezombie
+  player: Spieler
+  sheep: Schaf
+  silverfish: Silberfisch
+  skeleton: Skelett
+  slime: Schleim
+  snowman: Schneemann
+  spider: Spinne
+  squid: Tintenfisch
+  villager: Dorfbewohner
+  wolf: Wolf
+  zombie: Zombie
+  horse: Pferd
+  entitiehorse: Pferd
+  endermite: Endermilbe
+  witch: Hexe
+  guardian: Waechter
+material

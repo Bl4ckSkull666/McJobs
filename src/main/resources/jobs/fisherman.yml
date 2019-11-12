@@ -1,0 +1,9 @@
+basepay: 4.0
+show_every_time: true
+exp: 2
+fishing:
+  pays: true
+  hide: false
+  1: cod salmon
+  2: tropical_fish pufferfish
+  10: name_tag  

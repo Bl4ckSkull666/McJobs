@@ -1,0 +1,118 @@
+basepay: 67.0
+show_every_time: true
+exp: 0
+default: true
+hide_in_scoreboard: true
+break:
+  pays: false
+  hide: false
+  1: 
+  - ACACIA_WOOD
+  - BIRCH_WOOD
+  - DARK_OAK_WOOD
+  - JUNGLE_WOOD
+  - OAK_WOOD
+  - SPRUCE_WOOD
+  - ACACIA_STAIRS
+  - BIRCH_STAIRS
+  - DARK_OAK_STAIRS
+  - JUNGLE_STAIRS
+  - OAK_STAIRS
+  - SPRUCE_STAIRS
+  - ACACIA_SIGN
+  - BIRCH_SIGN
+  - DARK_OAK_SIGN
+  - JUNGLE_SIGN
+  - OAK_SIGN
+  - SPRUCE_SIGN
+  - ACACIA_DOOR
+  - BIRCH_DOOR
+  - DARK_OAK_DOOR
+  - JUNGLE_DOOR 
+  - OAK_DOOR
+  - SPRUCE_DOOR
+  - ACACIA_WALL_SIGN
+  - BIRCH_WALL_SIGN
+  - DARK_OAK_WALL_SIGN
+  - JUNGLE_WALL_SIGN
+  - OAK_WALL_SIGN
+  - SPRUCE_WALL_SIGN
+  - furnace
+  - crafting_table
+  - ACACIA_TRAPDOOR
+  - BIRCH_TRAPDOOR
+  - DARK_OAK_TRAPDOOR
+  - JUNGLE_TRAPDOOR
+  - OAK_TRAPDOOR
+  - SPRUCE_TRAPDOOR
+  - chest
+  - ACACIA_FENCE
+  - BIRCH_FENCE
+  - DARK_OAK_FENCE
+  - JUNGLE_FENCE
+  - OAK_FENCE
+  - SPRUCE_FENCE
+  - BLACK_BED
+  - BLUE_BED
+  - BROWN_BED
+  - CYAN_BED
+  - GRAY_BED
+  - GREEN_BED
+  - LIGHT_BLUE_BED
+  - LIGHT_GRAY_BED
+  - LIME_BED
+  - MAGENTA_BED
+  - PURPLE_BED
+  - PINK_BED
+  - ORANGE_BED
+  - RED_BED
+  - WHITE_BED
+  - YELLOW_BED
+  - ladder
+  - cobblestone_stairs 
+  - ACACIA_SLAB
+  - BIRCH_SLAB
+  - DARK_OAK_SLAB
+  - JUNGLE_SLAB
+  - OAK_SLAB
+  - SPRUCE_SLAB
+  - STONE_PRESSURE_PLATE
+  - glass 
+  - GLASS_PANE
+  - ACACIA_FENCE_GATE 
+  - BIRCH_FENCE_GATE
+  - DARK_OAK_FENCE_GATE
+  - JUNGLE_FENCE_GATE
+  - OAK_FENCE_GATE
+  - SPRUCE_FENCE_GATE
+  2: 
+  - brick 
+  - brick_stairs
+  - sandstone
+  - SMOOTH_STONE
+  - SMOOTH_STONE_SLAB
+  - nether_brick 
+  - NETHER_BRICK_FENCE 
+  - nether_brick_stairs 
+  - redstone_wire
+  - REDSTONE_TORCH
+  - IRON_DOOR
+  - dispenser 
+  - bookshelf 
+  - IRON_BARS
+  3: 
+  - stone_button 
+  - lever 
+  - STONE_PRESSURE_PLATE
+  - ACACIA_PRESSURE_PLATE
+  - BIRCH_PRESSURE_PLATE
+  - DARK_OAK_PRESSURE_PLATE
+  - JUNGLE_PRESSURE_PLATE
+  - OAK_PRESSURE_PLATE
+  - SPRUCE_PRESSURE_PLATE 
+  - REPEATER
+  - PISTON
+  - STICKY_PISTON
+  - REDSTONE_LAMP
+  4: note_block jukebox
+  5: brewing_stand enchanting_table 

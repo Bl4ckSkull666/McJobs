@@ -1,0 +1,23 @@
+basepay: 0.5
+exp: 1
+break:
+  pays: true
+  hide: false
+  1: DANDELION POPPY BLUE_ORCHID ALLIUM AZURE_BLUET RED_TULIP ORANGE_TULIP WHITE_TULIP PINK_TULIP OXEYE_DAISY CORNFLOWER LILY_OF_THE_VALLEY WITHER_ROSE brown_mushroom red_mushroom WHEAT_SEEDS cactus SUGAR_CANE pumpkin melon
+  3: NETHER_WART
+place:
+  pays: true
+  hide: false
+  2: FARMLAND melon_stem MELON_SEEDS pumpkin_stem PUMPKIN_SEEDS
+defeat:
+  pays: true
+  hide: false
+  2: cow chicken pig sheep
+shear:
+  pays: true
+  hide: false
+  1: WHITE GRAY LIGHT_GRAY
+  2: BLACK BROWN
+  3: LIGHT_BLUE BLUE GREEN
+  4: CYAN MAGENTA LIME YELLOW
+  5: ORANGE PINK PURPLE RED
