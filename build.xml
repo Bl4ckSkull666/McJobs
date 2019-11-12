@@ -275,13 +275,6 @@
   
   <target name="compile.module.mcjobs.main.production" description="Compile module McJobs.main; production classes">
     <mkdir dir="${mcjobs.main.output.dir}"/>
-    <javac2 destdir="${mcjobs.main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mcjobs.main}/javac">
-      <compilerarg line="${compiler.args.mcjobs.main}"/>
-      <bootclasspath refid="mcjobs.main.module.bootclasspath"/>
-      <classpath refid="mcjobs.main.module.production.classpath"/>
-      <src refid="mcjobs.main.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.mcjobs.main"/>
-    </javac2>
     
     <copy todir="${mcjobs.main.output.dir}">
       <fileset dir="${module.mcjobs.main.basedir}/src/main/java">
@@ -383,13 +376,6 @@
   
   <target name="compile.module.mcjobs.test.tests" depends="compile.module.mcjobs.test.production" description="compile module McJobs.test; test classes" unless="skip.tests">
     <mkdir dir="${mcjobs.test.testoutput.dir}"/>
-    <javac2 destdir="${mcjobs.test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mcjobs.test}/javac">
-      <compilerarg line="${compiler.args.mcjobs.test}"/>
-      <bootclasspath refid="mcjobs.test.module.bootclasspath"/>
-      <classpath refid="mcjobs.test.module.classpath"/>
-      <src refid="mcjobs.test.module.test.sourcepath"/>
-      <patternset refid="excluded.from.compilation.mcjobs.test"/>
-    </javac2>
     
     <copy todir="${mcjobs.test.testoutput.dir}">
       <fileset dir="${module.mcjobs.test.basedir}/src/test/java">
