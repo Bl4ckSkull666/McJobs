@@ -1,1 +1,1 @@
-### This Scource Code is free available all time for everybody. The only condition to use is to add your own name to the version number in the plugin.yml of the plugin.
+### This is only for the Wiki here. If you search the source of McJobs, please check out the source by RathelmMC. Thank you.
